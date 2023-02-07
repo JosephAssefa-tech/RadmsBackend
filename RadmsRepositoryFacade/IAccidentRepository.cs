@@ -14,7 +14,8 @@ namespace RadmsRepositoryFacade
         bool Delete(AccidentCauseLookupEntity accident);
         List<AccidentCauseLookupEntity> GetAll();
         AccidentCauseLookupEntity GetById(int id);
-        List<AccidentCauseLookupEntity> FilterByDateRange(DateTime startDate, DateTime endDate);
+        AccidentCauseLookupEntity FilterByAccidentName(string CauseName);
+        // List<AccidentCauseLookupEntity> FilterByDateRange(DateTime startDate, DateTime endDate);
 
 
 

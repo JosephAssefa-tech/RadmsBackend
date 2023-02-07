@@ -29,10 +29,26 @@ namespace RadmsRepositoryManager.Services
             }
         }
 
-        public List<AccidentCauseLookupEntity> FilterByDateRange(DateTime startDate, DateTime endDate)
+        public AccidentCauseLookupEntity FilterByAccidentName(string CauseName)
         {
-            throw new NotImplementedException();
+            AccidentCauseLookup model = context.AccidentCauseLookups.Where(x => x.AccidentCauseName == CauseName).FirstOrDefault();
+            return new AccidentCauseLookupEntity(model);
+
         }
+
+        //public List<AccidentCauseLookupEntity> FilterByDateRange(DateTime startDate, DateTime endDate)
+        //{
+        //    List<AccidentCauseLookup> models = context.AccidentCauseLookups.Where(x => x.startDate >= startDate && x.endDate <= endDate).ToList();
+        //    List<AccidentCauseLookupEntity> entities = new List<AccidentCauseLookupEntity>();
+        //    foreach (var model in models)
+        //    {
+
+        //        AccidentCauseLookupEntity entity = new AccidentCauseLookupEntity(model);
+
+        //        entities.Add(entity);
+        //    }
+        //    return entities;
+        //}
 
         public List<AccidentCauseLookupEntity> GetAll()
         {
@@ -50,7 +66,9 @@ namespace RadmsRepositoryManager.Services
 
         public AccidentCauseLookupEntity GetById(int id)
         {
-            throw new NotImplementedException();
+            AccidentCauseLookup model = context.AccidentCauseLookups.Where(x => x.AccidentCauseId == id).FirstOrDefault();
+            return new AccidentCauseLookupEntity(model);
+
         }
 
         public bool Save(AccidentCauseLookupEntity entity)
