@@ -6,8 +6,8 @@ namespace RadmsWebAPI.ViewModels
 {
     public class AccidentDetailsTransactionViewModel: ViewBaseModel
     {
-        public int Lat { get; set; }
-        public int Long { get; set; }
+        public double Lat { get; set; }
+        public double Long { get; set; }
         public decimal AccidentId { get; set; }
         public DateTime DateAndTime { get; set; }
         public string Psid { get; set; } = null!;
