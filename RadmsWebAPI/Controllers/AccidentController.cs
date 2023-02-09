@@ -26,7 +26,7 @@ namespace RadmsWebAPI.Controllers
             List<AccidentCauseLookupViewModel> viewModels = new List<AccidentCauseLookupViewModel>();
             foreach(var entity in entities)
             {
-                AccidentCauseLookupViewModel model= new AccidentCauseLookupViewModel();
+                AccidentCauseLookupViewModel model= new AccidentCauseLookupViewModel(entity);
                 viewModels.Add(model);
             }
             return viewModels;
