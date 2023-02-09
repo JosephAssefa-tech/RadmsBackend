@@ -51,7 +51,10 @@ namespace RadmsRepositoryManager.Services
         //}
 
         public List<AccidentCauseLookupEntity> GetAll()
-        {
+        { 
+            //use the below Include function for table that have a relationship to fetch the other table data
+           // List<AccidentCauseLookup> models = context.AccidentCauseLookups.Include(x=>x.RelationTable).ToList();
+
             List<AccidentCauseLookup> models = context.AccidentCauseLookups.ToList();
             List<AccidentCauseLookupEntity> entities = new List<AccidentCauseLookupEntity>();
             foreach (var model in models)
