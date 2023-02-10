@@ -9,6 +9,10 @@ namespace RadmsEntities
 {
     public class AccidentTypeLookupEntity
     {
+        public AccidentTypeLookupEntity()
+        {
+           // AccidentDetailsTransactions = new HashSet<AccidentDetailsTransactionEntity>();
+        }
 
         public int AccidentTypeId { get; set; }
 

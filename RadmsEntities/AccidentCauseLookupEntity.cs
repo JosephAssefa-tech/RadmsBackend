@@ -10,16 +10,16 @@ namespace RadmsEntities
 {
     public class AccidentCauseLookupEntity: RadmsBaseEntity
     {
+        public AccidentCauseLookupEntity()
+        {
+            //AccidentDetailsTransactions = new HashSet<AccidentDetailsTransactionEntity>();
+        }
 
 
         public int AccidentCauseId { get; set; }
         public string AccidentCauseName { get; set; } = null!;
-        //public virtual ICollection<AccidentDetailsTransaction> AccidentDetailsTransactions { get; set; }
+       // public virtual ICollection<AccidentDetailsTransactionEntity> AccidentDetailsTransactions { get; set; }
 
-        public AccidentCauseLookupEntity()
-        {
-
-        }
         public AccidentCauseLookupEntity(AccidentCauseLookup model)
         {
             this.AccidentCauseId = model.AccidentCauseId;

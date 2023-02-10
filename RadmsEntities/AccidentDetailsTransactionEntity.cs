@@ -10,6 +10,11 @@ namespace RadmsEntities
 {
     public class AccidentDetailsTransactionEntity:RadmsBaseEntity
     {
+        public AccidentDetailsTransactionEntity()
+        {
+            //VehicleDetailsTransactions = new HashSet<VehicleDetailsTransactionEntity>();
+            //VictimDetailsTransactions = new HashSet<VictimDetailsTransactionEntity>();
+        }
         public double Lat { get; set; }
         public double Long { get; set; }
 
@@ -145,15 +150,12 @@ namespace RadmsEntities
 
         public virtual ZoneMaster? Zone { get; set; }
 
-        public virtual ICollection<VehicleDetailsTransaction> VehicleDetailsTransactions { get; set; }
+       // public virtual ICollection<VehicleDetailsTransactionEntity> VehicleDetailsTransactions { get; set; }
 
-        public virtual ICollection<VictimDetailsTransaction> VictimDetailsTransactions { get; set; }
+       // public virtual ICollection<VictimDetailsTransactionEntity> VictimDetailsTransactions { get; set; }
 
 
-        public AccidentDetailsTransactionEntity()
-        {
 
-        }
         public AccidentDetailsTransactionEntity(AccidentDetailsTransaction model)
         {
             this.AccidentLocalName = model.AccidentLocalName;
