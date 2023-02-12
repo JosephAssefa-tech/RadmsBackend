@@ -18,7 +18,7 @@ namespace RadmsEntities
 
         public int AccidentCauseId { get; set; }
         public string AccidentCauseName { get; set; } = null!;
-       // public virtual ICollection<AccidentDetailsTransactionEntity> AccidentDetailsTransactions { get; set; }
+        //public virtual ICollection<AccidentDetailsTransactionEntity> AccidentDetailsTransactions { get; set; }
 
         public AccidentCauseLookupEntity(AccidentCauseLookup model)
         {
