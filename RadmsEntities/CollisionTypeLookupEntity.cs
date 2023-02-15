@@ -1,4 +1,5 @@
-﻿using System;
+﻿using RadmsDataModels.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -13,6 +14,25 @@ namespace RadmsEntities
 
         public string CollisionTypeName { get; set; } = null!;
 
-        public virtual ICollection<AccidentDetailsTransactionEntity> AccidentDetailsTransactions { get; set; }
+        public CollisionTypeLookupEntity()
+        {
+
+        }
+
+        //blic virtual ICollection<AccidentDetailsTransactionEntity> AccidentDetailsTransactions { get; set; }
+        public CollisionTypeLookupEntity(CollisionTypeLookup model)
+        {
+            this.CollisionTypeId = model.CollisionTypeId;
+            this.CollisionTypeName = model.CollisionTypeName;
+
+        }
+        public T MapToModel<T>() where T : class
+        {
+            CollisionTypeLookup model = new CollisionTypeLookup();
+            model.CollisionTypeId = this.CollisionTypeId;
+            model.CollisionTypeName = this.CollisionTypeName;
+            return model as T;
+        }
+
     }
 }

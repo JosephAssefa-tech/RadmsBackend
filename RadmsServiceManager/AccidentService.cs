@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace RadmsServiceManager
 {
-    public class AccidentService : IAccidentServiceCRUD
+    public class AccidentService : IAccidentServiceCRUD, IAccidentService
     {
         IAccidentRepository _repositiory;
         public AccidentService(IAccidentRepository repository)
@@ -114,6 +114,25 @@ namespace RadmsServiceManager
                 throw;
 
             }
+        }
+
+        public AccidentCauseLookupEntity GetById(int id)
+        {
+            var result= _repositiory.GetById(id);
+            if(result!=null)
+            {
+                return result;
+            }
+            else
+            {
+                throw new Exception();
+            }
+         
+        }
+
+        public AccidentCauseLookupEntity FilterByAccidentName(string CauseName)
+        {
+            throw new NotImplementedException();
         }
     }
 }

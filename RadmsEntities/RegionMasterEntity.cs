@@ -1,4 +1,5 @@
-﻿using System;
+﻿using RadmsDataModels.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,8 +11,8 @@ namespace RadmsEntities
     {
         public RegionMasterEntity()
         {
-            AccidentDetailsTransactions = new HashSet<AccidentDetailsTransactionEntity>();
-            ZoneMasters = new HashSet<ZoneMasterEntity>();
+   //       AccidentDetailsTransactions = new HashSet<AccidentDetailsTransactionEntity>();
+    //      ZoneMasters = new HashSet<ZoneMasterEntity>();
         }
 
 
@@ -19,9 +20,16 @@ namespace RadmsEntities
 
         public string RegionName { get; set; } = null!;
 
-        public virtual ICollection<AccidentDetailsTransactionEntity> AccidentDetailsTransactions { get; set; }
- 
-        public virtual ICollection<ZoneMasterEntity> ZoneMasters { get; set; }
+        public RegionMasterEntity(RegionMaster model)
+        {
+            this.RegionId = model.RegionId;
+            this.RegionName = model.RegionName;
+
+        }
+
+        //    public virtual ICollection<AccidentDetailsTransactionEntity> AccidentDetailsTransactions { get; set; }
+
+        //   public virtual ICollection<ZoneMasterEntity> ZoneMasters { get; set; }
 
     }
 }

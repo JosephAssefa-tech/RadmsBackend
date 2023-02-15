@@ -1,4 +1,5 @@
-﻿using System;
+﻿using RadmsDataModels.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,7 +11,7 @@ namespace RadmsEntities
     {
         public RoadSurfaceConditionLookupEntity()
         {
-            AccidentDetailsTransactions = new HashSet<AccidentDetailsTransactionEntity>();
+     //     AccidentDetailsTransactions = new HashSet<AccidentDetailsTransactionEntity>();
         }
 
 
@@ -18,8 +19,12 @@ namespace RadmsEntities
 
         public string RoadSurfaceName { get; set; } = null!;
 
-
-        public virtual ICollection<AccidentDetailsTransactionEntity> AccidentDetailsTransactions { get; set; }
+        public RoadSurfaceConditionLookupEntity(RoadSurfaceConditionLookup model)
+        {
+       this.RoadSurfaceId=model.RoadSurfaceId;
+            this.RoadSurfaceName=model.RoadSurfaceName;
+        }
+    // public virtual ICollection<AccidentDetailsTransactionEntity> AccidentDetailsTransactions { get; set; }
 
     }
 }

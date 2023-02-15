@@ -10,9 +10,13 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
-builder.Services.AddScoped<IAccidentServiceCRUD, AccidentService>();
+builder.Services.AddSwaggerGen(); 
+builder.Services.AddScoped<IAccidentService, AccidentService>();
+builder.Services.AddScoped<IAccidentServiceCRUD, AccidentService>(); 
+builder.Services.AddScoped<IAccidentDetailsTransactionRepository, AccidentDetailsTransactionRepository>();
+builder.Services.AddScoped<IAccidentDetailsTransaction, AccidentDetailsTransactionService>();
 builder.Services.AddScoped<IAccidentRepository, AccidentRepository>();
+
 
 
 

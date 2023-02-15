@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using RadmsEntities;
 using RadmsServiceFacade;
+using RadmsWebAPI.Models.ViewModels;
 using RadmsWebAPI.ViewModels;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -9,13 +10,14 @@ namespace RadmsWebAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class AccidentController : ControllerBase
+    public class AccidentCauseController : ControllerBase
     {
         IAccidentServiceCRUD _service;
-        public AccidentController(IAccidentServiceCRUD service)
+        IAccidentService _accidentService;
+        public AccidentCauseController(IAccidentServiceCRUD service, IAccidentService accidentService)
         {
             this._service = service;
-
+            this._accidentService = accidentService;
         }
         // GET: api/<AccidentController>
         [HttpGet]
@@ -36,9 +38,11 @@ namespace RadmsWebAPI.Controllers
 
         // GET api/<AccidentController>/5
         [HttpGet("{id}")]
-        public string Get(int id)
+        public AccidentCauseLookupEntity Get(int id)
         {
-            return "value";
+            AccidentCauseLookupEntity entity=this._accidentService.GetById(id);
+            return entity;
+           
         }
 
         // POST api/<AccidentController>

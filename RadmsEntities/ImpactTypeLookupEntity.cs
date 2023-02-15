@@ -1,4 +1,5 @@
-﻿using System;
+﻿using RadmsDataModels.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,7 +11,7 @@ namespace RadmsEntities
     {
         public ImpactTypeLookupEntity()
         {
-            AccidentDetailsTransactions = new HashSet<AccidentDetailsTransactionEntity>();
+   //       AccidentDetailsTransactions = new HashSet<AccidentDetailsTransactionEntity>();
         }
 
 
@@ -18,8 +19,12 @@ namespace RadmsEntities
 
         public string ImpactTypeName { get; set; } = null!;
 
-
-        public virtual ICollection<AccidentDetailsTransactionEntity> AccidentDetailsTransactions { get; set; }
+        public ImpactTypeLookupEntity(ImpactTypeLookup model)
+        {
+            this.ImpactTypeId= model.ImpactTypeId;  
+            this.ImpactTypeName=model.ImpactTypeName; 
+        }
+        //    public virtual ICollection<AccidentDetailsTransactionEntity> AccidentDetailsTransactions { get; set; }
 
     }
 }

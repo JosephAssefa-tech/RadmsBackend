@@ -1,4 +1,5 @@
-﻿using System;
+﻿using RadmsDataModels.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,15 +11,19 @@ namespace RadmsEntities
     {
         public LightConditionLookupEntity()
         {
-            AccidentDetailsTransactions = new HashSet<AccidentDetailsTransactionEntity>();
+   //       AccidentDetailsTransactions = new HashSet<AccidentDetailsTransactionEntity>();
         }
 
         public int LightConditionId { get; set; }
 
         public string LightConditionName { get; set; } = null!;
 
-
-        public virtual ICollection<AccidentDetailsTransactionEntity> AccidentDetailsTransactions { get; set; }
+        public LightConditionLookupEntity(LightConditionLookup model)
+        {
+            this.LightConditionId = model.LightConditionId;
+            this.LightConditionName = model.LightConditionName;
+        }
+        //   public virtual ICollection<AccidentDetailsTransactionEntity> AccidentDetailsTransactions { get; set; }
 
     }
 }

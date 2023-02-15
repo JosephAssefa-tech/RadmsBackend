@@ -1,4 +1,5 @@
-﻿using System;
+﻿using RadmsDataModels.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,8 +11,8 @@ namespace RadmsEntities
     {
         public UserMasterEntity()
         {
-            AccidentDetailsTransactions = new HashSet<AccidentDetailsTransactionEntity>();
-            AuditTrailTransactions = new HashSet<AuditTrailTransactionEntity>();
+     //     AccidentDetailsTransactions = new HashSet<AccidentDetailsTransactionEntity>();
+     //     AuditTrailTransactions = new HashSet<AuditTrailTransactionEntity>();
         }
 
         public int UserId { get; set; }
@@ -24,11 +25,23 @@ namespace RadmsEntities
 
         public int? OrganizationId { get; set; }
 
-        public virtual OrganizationMasterEntity? Organization { get; set; }
+       // public virtual OrganizationMasterEntity? Organization { get; set; }
+
+        public UserMasterEntity(UserMaster model)
+        {
+            this.UserId = model.UserId;
+            this.UserPassword=model.UserPassword;
+            this.UserName=model.UserName;
+            this.DateTimeUser = model.DateTimeUser;
+            this.OrganizationId = model.OrganizationId;
+           // this.Organization = new OrganizationMasterEntity(model.Organization);
+
+
+        }
         //[InverseProperty("User")]
-        public virtual ICollection<AccidentDetailsTransactionEntity> AccidentDetailsTransactions { get; set; }
+        //  public virtual ICollection<AccidentDetailsTransactionEntity> AccidentDetailsTransactions { get; set; }
         //[InverseProperty("User")]
-        public virtual ICollection<AuditTrailTransactionEntity> AuditTrailTransactions { get; set; }
+        //  public virtual ICollection<AuditTrailTransactionEntity> AuditTrailTransactions { get; set; }
 
     }
 }

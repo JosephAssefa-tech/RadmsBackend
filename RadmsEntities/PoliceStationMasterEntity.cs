@@ -1,4 +1,5 @@
-﻿using System;
+﻿using RadmsDataModels.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,7 +11,7 @@ namespace RadmsEntities
     {
         public PoliceStationMasterEntity()
         {
-            AccidentDetailsTransactions = new HashSet<AccidentDetailsTransactionEntity>();
+     //     AccidentDetailsTransactions = new HashSet<AccidentDetailsTransactionEntity>();
         }
 
         public string Psid { get; set; } = null!;
@@ -25,7 +26,19 @@ namespace RadmsEntities
 
         public virtual WoredaMasterEntity? Woreda { get; set; }
 
-        public virtual ICollection<AccidentDetailsTransactionEntity> AccidentDetailsTransactions { get; set; }
+        public PoliceStationMasterEntity(PoliceStationMaster model)
+        {
+            this.Psid = model.Psid;
+            this.Psname = model.Psname;
+            this.SubCityId = model.SubCityId;
+            this.WoredaId = model.WoredaId;
+            this.SubCity = new SubCityMasterEntity(model.SubCity);
+            this.Woreda = new WoredaMasterEntity(model.Woreda);
+
+
+
+        }
+        //     public virtual ICollection<AccidentDetailsTransactionEntity> AccidentDetailsTransactions { get; set; }
 
     }
 }
