@@ -97,11 +97,16 @@ namespace RadmsRepositoryManager.Services
             try
             {
                 AccidentCauseLookup old = context.AccidentCauseLookups.Find(entity.AccidentCauseId);
-                old.AccidentCauseId = entity.AccidentCauseId;
-                old.AccidentCauseName = entity.AccidentCauseName;
-                context.Entry(old).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
-                context.SaveChanges();
+                if(old!=null)
+                {
+                    old.AccidentCauseId = entity.AccidentCauseId;
+                    old.AccidentCauseName = entity.AccidentCauseName;
+                    context.Entry(old).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
+                    context.SaveChanges();
+           
+                }
                 return true;
+
             }
             catch (Exception)
             {

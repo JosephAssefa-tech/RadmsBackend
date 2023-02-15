@@ -9,18 +9,18 @@ using System.Threading.Tasks;
 
 namespace RadmsServiceManager
 {
-    public class AccidentService : IAccidentServiceCRUD, IAccidentService
+    public class AccidentDetailsTransactionService : IAccidentDetailsTransaction
     {
-        IAccidentRepository _repositiory;
-        public AccidentService(IAccidentRepository repository)
+        IAccidentDetailsTransactionRepository _repository;
+            public AccidentDetailsTransactionService(IAccidentDetailsTransactionRepository repository)
         {
-            this._repositiory = repository;
+            _repository = repository;
         }
-        public string Delete(AccidentCauseLookupEntity entity)
+        public string Delete(AccidentDetailsTransactionEntity entity)
         {
-            if(entity.AccidentCauseId!=0)
+            if (entity.AccidentId != 0)
             {
-                var result = _repositiory.Delete(entity);
+                var result = _repository.Delete(entity);
 
                 return "sucessfuly deleted";
 
@@ -29,19 +29,36 @@ namespace RadmsServiceManager
             {
                 return "can't delete b/c accident cause id is not given";
             }
-   
         }
 
-        public List<AccidentCauseLookupEntity> GetAll()
+        public AccidentDetailsTransactionEntity FilterByAccidentName(string CauseName)
         {
-            List<AccidentCauseLookupEntity> results = this._repositiory.GetAll();
+            throw new NotImplementedException();
+        }
+
+        public List<AccidentDetailsTransactionEntity> GetAll()
+        {
+            List<AccidentDetailsTransactionEntity> results = this._repository.GetAll();
             return results;
         }
-        private string Validate(AccidentCauseLookupEntity entity)
+
+        public AccidentDetailsTransactionEntity GetById(int id)
         {
-            if (entity.AccidentCauseName == String.Empty)
+            var result = _repository.GetById(id);
+            if (result != null)
             {
-                return "Accident cause name can not be empty";
+                return result;
+            }
+            else
+            {
+                throw new Exception();
+            }
+        }
+        private string Validate(AccidentDetailsTransactionEntity entity)
+        {
+            if (entity.AccidentLocalName == String.Empty)
+            {
+                return "Accident location name can not be empty";
             }
             //else if(entity.startDate>entity.endDate)
             //{
@@ -54,18 +71,18 @@ namespace RadmsServiceManager
 
         }
 
-        public string Save(AccidentCauseLookupEntity entity)
+        public string Save(AccidentDetailsTransactionEntity accident)
         {
             try
             {
-                string msg=Validate(entity);
+                string msg = Validate(accident);
                 if (msg != String.Empty)
                 {
                     return msg;
                 }
                 else
                 {
-                    bool result = _repositiory.Save(entity);
+                    bool result = _repository.Save(accident);
                     if (result == true)
                     {
                         return "saved sucessfuly";
@@ -78,25 +95,25 @@ namespace RadmsServiceManager
                 }
 
             }
-            catch(Exception)
+            catch (Exception)
             {
                 throw;
 
             }
         }
 
-        public string Update(AccidentCauseLookupEntity entity)
+        public string Update(AccidentDetailsTransactionEntity accident)
         {
             try
             {
-                string msg = Validate(entity);
+                string msg = Validate(accident);
                 if (msg != String.Empty)
                 {
                     return msg;
                 }
                 else
                 {
-                    bool result = _repositiory.Update(entity);
+                    bool result = _repository.Update(accident);
                     if (result == true)
                     {
                         return "Updated sucessfuly";
@@ -114,25 +131,6 @@ namespace RadmsServiceManager
                 throw;
 
             }
-        }
-
-        public AccidentCauseLookupEntity GetById(int id)
-        {
-            var result= _repositiory.GetById(id);
-            if(result!=null)
-            {
-                return result;
-            }
-            else
-            {
-                throw new Exception();
-            }
-         
-        }
-
-        public AccidentCauseLookupEntity FilterByAccidentName(string CauseName)
-        {
-            throw new NotImplementedException();
         }
     }
 }
