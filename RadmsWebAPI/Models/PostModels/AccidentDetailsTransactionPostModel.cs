@@ -1,5 +1,6 @@
 ﻿using RadmsDataModels.Models;
 using RadmsEntities;
+using RadmsWebAPI.Models.ViewModels;
 using RadmsWebAPI.ViewModels.BaseModel;
 
 namespace RadmsWebAPI.Models.PostModels
@@ -30,8 +31,8 @@ namespace RadmsWebAPI.Models.PostModels
         public int SubmissionFlag { get; set; }
         public string Hid { get; set; } = null!;
         public string? AccidentLocalName { get; set; }
-        public virtual AccidentTypeLookup AccidentType { get; set; } = null!;
-        //public virtual AirConditionTypeLookup AirCondition { get; set; } = null!;
+        //public virtual AccidentTypeLookupViewModel AccidentType { get; set; } = null!;
+       // public virtual AirConditionTypeLookupViewModel AirCondition { get; set; } = null!;
         //public virtual AccidentCauseLookup CauseofAccident { get; set; } = null!;
         //public virtual CityMaster? City { get; set; }
         //public virtual CollisionTypeLookup CollisionType { get; set; } = null!;
@@ -66,7 +67,7 @@ namespace RadmsWebAPI.Models.PostModels
             Long = entity.Long;
             AccidentId = entity.AccidentId;
             AccidentLocalName = entity.AccidentLocalName;
-            DateAndTime=entity.DateAndTime;
+            DateAndTime = entity.DateAndTime;
             Psid = entity.Psid;
             KebeleName = entity.KebeleName;
             Piname = entity.KebeleName;
@@ -87,6 +88,10 @@ namespace RadmsWebAPI.Models.PostModels
             SubmissionFlag = entity.SubmissionFlag;
             Hid = entity.Hid;
             AccidentLocalName = entity.AccidentLocalName;
+            //AccidentType = new AccidentTypeLookupViewModel(entity.AccidentType) ;
+           // AirCondition = new AirConditionTypeLookupViewModel(entity.AirCondition);
+           // this.AccidentType = new AccidentTypeLookupEntity(model.AccidentType);
+            //this.AccidentType = new AccidentTypeLookupEntity(model.AccidentType);
         }
 
         public T MapToViewEntity<T>() where T : class
@@ -117,7 +122,7 @@ namespace RadmsWebAPI.Models.PostModels
             entity.SubmissionFlag = SubmissionFlag ;
             entity.Hid = Hid ;
             entity.AccidentLocalName = AccidentLocalName ;
-           // entity.AccidentType = this.AccidentType.MapToEntity<TrainingEntity>();
+           // entity.AccidentType = this.AccidentType.<AccidentTypeLookupEntity>();
             return entity as T;
 
 

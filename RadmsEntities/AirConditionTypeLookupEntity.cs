@@ -25,5 +25,12 @@ namespace RadmsEntities
 
         //public virtual ICollection<AccidentDetailsTransactionEntity> AccidentDetailsTransactions { get; set; }
 
+        public T MapToModel<T>() where T : class
+        {
+            AirConditionTypeLookup model = new AirConditionTypeLookup();
+            model.AirConditionId = this.AirConditionId;
+            model.AirConditionName = this.AirConditionName;
+            return model as T;
+        }
     }
 }

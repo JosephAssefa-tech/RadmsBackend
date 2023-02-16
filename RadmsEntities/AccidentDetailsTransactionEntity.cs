@@ -236,10 +236,12 @@ namespace RadmsEntities
             model.Image6 = this.Image6;
             model.SubmissionFlag = this.SubmissionFlag;
             model.Hid = this.Hid;
+           // model.City = City == null ? null : City.MapToModel();
+            model.CityId = this.CityId;
             model.AccidentTypeId = this.AccidentType.AccidentTypeId;
             model.AirConditionId = this.AirCondition.AirConditionId;
             model.CauseofAccidentId = this.CauseofAccident.AccidentCauseId;
-            model.CityId = this.City.CityId;
+           // model.CityId = this.City.CityId;
             model.CollisionTypeId = this.CollisionType.CollisionTypeId;
             
 

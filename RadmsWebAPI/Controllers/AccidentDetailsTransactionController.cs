@@ -21,13 +21,13 @@ namespace RadmsWebAPI.Controllers
         }
         // GET: api/<AccidentDetailsTransactionController>
         [HttpGet]
-        public List<AccidentDetailsTransactionPostModel> GetAll()
+        public List<AccidentDetailsTransactionViewModel> GetAll()
         {
             List<AccidentDetailsTransactionEntity> entities = this._service.GetAll();
-            List<AccidentDetailsTransactionPostModel> viewModels = new List<AccidentDetailsTransactionPostModel>();
+            List<AccidentDetailsTransactionViewModel> viewModels = new List<AccidentDetailsTransactionViewModel>();
             foreach (var entity in entities)
             {
-                AccidentDetailsTransactionPostModel model = new AccidentDetailsTransactionPostModel(entity);
+                AccidentDetailsTransactionViewModel model = new AccidentDetailsTransactionViewModel(entity);
                 viewModels.Add(model);
             }
             return viewModels;
