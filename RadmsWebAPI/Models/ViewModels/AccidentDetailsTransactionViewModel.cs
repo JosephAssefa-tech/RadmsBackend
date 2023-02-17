@@ -33,7 +33,7 @@ namespace RadmsWebAPI.Models.ViewModels
         public virtual AirConditionTypeLookupViewModel AirCondition { get; set; } = null!;
         public virtual AccidentCauseLookupViewModel CauseofAccident { get; set; } = null!;
         public virtual CityMasterViewModel? City { get; set; }
-        public virtual CollisionTypeLookupViewModel CollisionType { get; set; } = null!;
+        //public virtual CollisionTypeLookupViewModel CollisionType { get; set; } = null!;
         //public virtual HighwayMasterViewModel HidNavigation { get; set; } = null!;
         //public virtual HighwayTypeLookupViewModel HighwayType { get; set; } = null!;
         //public virtual ImpactTypeLookupViewModel ImpactType { get; set; } = null!;
@@ -88,7 +88,8 @@ namespace RadmsWebAPI.Models.ViewModels
             AccidentLocalName = entity.AccidentLocalName;
             AccidentType = new AccidentTypeLookupViewModel(entity.AccidentType);
             AirCondition = new AirConditionTypeLookupViewModel(entity.AirCondition);
-            // this.AccidentType = new AccidentTypeLookupEntity(model.AccidentType);
+            CauseofAccident=new AccidentCauseLookupViewModel(entity.CauseofAccident);
+            City=new CityMasterViewModel(entity.City);
             //this.AccidentType = new AccidentTypeLookupEntity(model.AccidentType);
         }
 

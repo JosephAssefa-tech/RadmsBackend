@@ -70,7 +70,8 @@ namespace RadmsRepositoryManager.Services
                 .Include(x => x.WeatherCond)
                 .Include(x => x.Woreda)
                 .Include(x => x.Zone)
-               // .Include(x => x.p)
+                 //      .Include(e => e.EmployeeOrganization).ThenInclude(o => o.Role)
+                // .Include(e => e.EmployeeOrganization).ThenInclude(o => o.Country)
 
                 .ToList();
             List<AccidentDetailsTransactionEntity> entities = new List<AccidentDetailsTransactionEntity>();
