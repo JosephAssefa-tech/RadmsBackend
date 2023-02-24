@@ -25,7 +25,7 @@ namespace RadmsEntities
 
         public int? OrganizationId { get; set; }
 
-       // public virtual OrganizationMasterEntity? Organization { get; set; }
+        public virtual OrganizationMasterEntity? Organization { get; set; }
 
         public UserMasterEntity(UserMaster model)
         {
@@ -34,7 +34,7 @@ namespace RadmsEntities
             this.UserName=model.UserName;
             this.DateTimeUser = model.DateTimeUser;
             this.OrganizationId = model.OrganizationId;
-           // this.Organization = new OrganizationMasterEntity(model.Organization);
+           this.Organization = new OrganizationMasterEntity(model.Organization);
 
 
         }
@@ -42,6 +42,17 @@ namespace RadmsEntities
         //  public virtual ICollection<AccidentDetailsTransactionEntity> AccidentDetailsTransactions { get; set; }
         //[InverseProperty("User")]
         //  public virtual ICollection<AuditTrailTransactionEntity> AuditTrailTransactions { get; set; }
+        public T MapToModel<T>() where T : class
+        {
+            UserMaster model = new UserMaster();
+            model.UserId = this.UserId;
+            model.UserPassword = this.UserPassword;
+            model.UserName = this.UserName;
+            model.DateTimeUser = this.DateTimeUser;
+            model.OrganizationId = this.OrganizationId;
+
+            return model as T;
+        }
 
     }
 }

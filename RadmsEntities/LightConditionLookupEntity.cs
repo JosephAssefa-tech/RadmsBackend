@@ -24,6 +24,14 @@ namespace RadmsEntities
             this.LightConditionName = model.LightConditionName;
         }
         //   public virtual ICollection<AccidentDetailsTransactionEntity> AccidentDetailsTransactions { get; set; }
+        public T MapToModel<T>() where T : class
+        {
+            LightConditionLookup model = new LightConditionLookup();
+            model.LightConditionId = this.LightConditionId;
+            model.LightConditionName = this.LightConditionName;
+    
+            return model as T;
+        }
 
     }
 }

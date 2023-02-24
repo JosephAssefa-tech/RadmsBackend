@@ -16,11 +16,11 @@ namespace RadmsServiceManager
         {
             this._repositiory = repository;
         }
-        public string Delete(AccidentCauseLookupEntity entity)
+        public string Delete(decimal id)
         {
-            if(entity.AccidentCauseId!=0)
+            if(id!=0)
             {
-                var result = _repositiory.Delete(entity);
+                var result = _repositiory.Delete(id);
 
                 return "sucessfuly deleted";
 

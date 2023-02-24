@@ -39,6 +39,15 @@ namespace RadmsEntities
 
         }
         //     public virtual ICollection<AccidentDetailsTransactionEntity> AccidentDetailsTransactions { get; set; }
+        public T MapToModel<T>() where T : class
+        {
+            PoliceStationMaster model = new PoliceStationMaster();
+            model.Psid = this.Psid;
+            model.Psname = this.Psname;
+            model.SubCityId = this.SubCityId;
+            model.WoredaId = this.WoredaId;
+            return model as T;
+        }
 
     }
 }

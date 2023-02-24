@@ -25,6 +25,13 @@ namespace RadmsEntities
         }
 
         //   public virtual ICollection<AccidentDetailsTransactionEntity> AccidentDetailsTransactions { get; set; }
+        public T MapToModel<T>() where T : class
+        {
+            LandmarkTypeLookup model = new LandmarkTypeLookup();
+            model.LandmarkTypeId = this.LandmarkTypeId;
+            model.LandmarkName = this.LandmarkName;
+            return model as T;
+        }
 
     }
 }

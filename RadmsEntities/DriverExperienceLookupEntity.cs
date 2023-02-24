@@ -19,13 +19,20 @@ namespace RadmsEntities
         }
         public DriverExperienceLookupEntity(DriverExperienceLookup model)
         {
-            this.DriverExperienceId=model.DriverExperienceId;
+            this.DriverExperienceId = model.DriverExperienceId;
             this.DriverExperienceName = model.DriverExperienceName;
 
 
         }
 
         //    public virtual ICollection<VehicleDetailsTransactionEntity> VehicleDetailsTransactions { get; set; }
+        public T MapToModel<T>() where T : class
+        {
+            DriverExperienceLookup model = new DriverExperienceLookup();
+            model.DriverExperienceId = this.DriverExperienceId;
+            model.DriverExperienceName = this.DriverExperienceName;
+            return model as T;
 
+        }
     }
 }

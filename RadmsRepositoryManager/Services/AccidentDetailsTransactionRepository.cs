@@ -2,7 +2,9 @@
 using RadmsDataAccessLogic;
 using RadmsDataModels.Models;
 using RadmsEntities;
+
 using RadmsRepositoryFacade;
+using RadmsRepositoryManager.Helpers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,15 +16,23 @@ namespace RadmsRepositoryManager.Services
     public class AccidentDetailsTransactionRepository : IAccidentDetailsTransactionRepository
     {
         RadmsContext context = new RadmsContext();
-        public bool Delete(AccidentDetailsTransactionEntity accident)
+        public bool Delete(decimal id)
         {
             try
             {
-                AccidentDetailsTransaction model = accident.MapToModel<AccidentDetailsTransaction>();
+                var result = context.AccidentDetailsTransactions.Where(x => x.AccidentId == id).FirstOrDefault();
+                if(result!=null)
+                {
+                    context.AccidentDetailsTransactions.Remove(result);
+                    context.SaveChanges();
+                    return true;
+                }
+                else
+                {
+                    return false;
 
-                context.AccidentDetailsTransactions.Remove(model);
-                context.SaveChanges();
-                return true;
+                }
+
             }
             catch (Exception)
             {
@@ -87,24 +97,89 @@ namespace RadmsRepositoryManager.Services
 
         public AccidentDetailsTransactionEntity GetById(int id)
         {
-            AccidentDetailsTransaction model = context.AccidentDetailsTransactions.Where(x => x.AccidentId == id).FirstOrDefault();
+            AccidentDetailsTransaction model = context.AccidentDetailsTransactions.Where(x => x.AccidentId == id)
+                 .Include(x => x.AccidentType)
+                .Include(x => x.AirCondition)
+                .Include(x => x.CauseofAccident)
+                .Include(x => x.City)
+                .Include(x => x.Woreda)
+                .Include(x => x.Zone)
+                .Include(x => x.Region)
+                .Include(x => x.JunctionType)
+                .Include(x => x.CollisionType)
+                .Include(x => x.HidNavigation)
+                .Include(x => x.HighwayType)
+                .Include(x => x.ImpactType)
+                .Include(x => x.JunctionType)
+                .Include(x => x.LandmarkType)
+                .Include(x => x.LightCondtion)
+                .Include(x => x.PavementType)
+                .Include(x => x.Ps)
+                .Include(x => x.Region)
+                .Include(x => x.RoadCarriageway)
+                .Include(x => x.RoadSurface)
+                .Include(x => x.Severity)
+                .Include(x => x.SpeedLimit)
+                .Include(x => x.SubCity)
+                .Include(x => x.TerrianType)
+                .Include(x => x.User)
+                .Include(x => x.WeatherCond)
+                .Include(x => x.Woreda)
+                .Include(x => x.Zone)
+                .FirstOrDefault();
             return new AccidentDetailsTransactionEntity(model);
         }
 
-        public bool Save(AccidentDetailsTransactionEntity accident)
+        public  bool SaveAsync(AccidentDetailsTransactionEntity accident)
         {
             try
             {
                 AccidentDetailsTransaction model = accident.MapToModel<AccidentDetailsTransaction>();
-
-
                 context.AccidentDetailsTransactions.Add(model);
+     
                 context.SaveChanges();
+
+                if (model.AccidentId != 0)
+                {
+                    CustomAccidentIdGenerator a = new CustomAccidentIdGenerator();
+                    var b = a.GetLastNumberFromDatabase();
+                    var c = b;
+
+                }
+          
+
+
+
+
                 return true;
+
+
+
+
+                //var now = DateTime.Now;
+                //var prefix = now.ToString("yyyyMMddHHmmss");
+                //var lastNumber = context.Set<AccidentDetailsTransaction>()
+                //    .OrderByDescending(x => x.AccidentId)
+                //    .Select(x => x.AccidentId)
+                //    .FirstOrDefault();
+                //var nextNumber = lastNumber + 1;
+                //  var id = $"{prefix}{nextNumber:D6}";
+                // AccidentDetailsTransaction model = accident.MapToModel<AccidentDetailsTransaction>();
+                //  context.Add(new AccidentDetailsTransaction { AccidentId = nextNumber,
+
+                // });
+                // context.SaveChanges();
+                //      return id;
+                //    return true;
+
+                //    context.Set<AccidentDetailsTransaction>().Add(new AccidentDetailsTransaction { AccidentId = nextNumber });
+                //    context.SaveChangesAsync();
+                //     return true;
+                //            return id;
             }
             catch (Exception)
             {
-                throw;
+                 throw;
             }
         }
 
@@ -113,7 +188,7 @@ namespace RadmsRepositoryManager.Services
             try
             {
                 AccidentDetailsTransaction old = context.AccidentDetailsTransactions.Find(accident.AccidentId);
-                old.AccidentId = accident.AccidentId;
+                old.AccidentId = (decimal)accident.AccidentId;
                 old.AccidentLocalName = accident.AccidentLocalName;
                 old.Image1=accident.Image1;
                 old.Image2=accident.Image2;
@@ -121,6 +196,13 @@ namespace RadmsRepositoryManager.Services
                 old.Image4=accident.Image4;
                 old.Image5=accident.Image5;
                 old.Image6=accident.Image6;
+
+
+
+
+
+
+
 
                 //old.AccidentType = accident.AccidentType;
                 context.Entry(old).State = Microsoft.EntityFrameworkCore.EntityState.Modified;

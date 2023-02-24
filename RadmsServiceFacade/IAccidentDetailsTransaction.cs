@@ -13,7 +13,7 @@ namespace RadmsServiceFacade
         AccidentDetailsTransactionEntity FilterByAccidentName(string CauseName);
         string Save(AccidentDetailsTransactionEntity accident);
         string Update(AccidentDetailsTransactionEntity accident);
-        string Delete(AccidentDetailsTransactionEntity accident);
+        string Delete(decimal id);
         List<AccidentDetailsTransactionEntity> GetAll();
 
     }

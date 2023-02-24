@@ -25,6 +25,13 @@ namespace RadmsEntities
             this.ImpactTypeName=model.ImpactTypeName; 
         }
         //    public virtual ICollection<AccidentDetailsTransactionEntity> AccidentDetailsTransactions { get; set; }
+        public T MapToModel<T>() where T : class
+        {
+            ImpactTypeLookup model = new ImpactTypeLookup();
+            model.ImpactTypeId = this.ImpactTypeId;
+            model.ImpactTypeName = this.ImpactTypeName;
+            return model as T;
+        }
 
-    }
+        }
 }

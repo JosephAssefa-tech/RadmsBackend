@@ -9,9 +9,9 @@ namespace RadmsRepositoryFacade
 {
     public interface IAccidentDetailsTransactionRepository
     {
-        bool Save(AccidentDetailsTransactionEntity accident);
+        bool SaveAsync(AccidentDetailsTransactionEntity accident);
         bool Update(AccidentDetailsTransactionEntity accident);
-        bool Delete(AccidentDetailsTransactionEntity accident);
+        bool Delete(decimal id );
         List<AccidentDetailsTransactionEntity> GetAll();
         AccidentDetailsTransactionEntity GetById(int id);
         AccidentDetailsTransactionEntity FilterByAccidentName(string CauseName);

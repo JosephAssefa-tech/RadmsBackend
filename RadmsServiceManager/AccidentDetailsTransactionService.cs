@@ -16,11 +16,11 @@ namespace RadmsServiceManager
         {
             _repository = repository;
         }
-        public string Delete(AccidentDetailsTransactionEntity entity)
+        public string Delete(decimal id )
         {
-            if (entity.AccidentId != 0)
+            if (id!= 0)
             {
-                var result = _repository.Delete(entity);
+                var result = _repository.Delete(id);
 
                 return "sucessfuly deleted";
 
@@ -115,7 +115,7 @@ namespace RadmsServiceManager
     //    }
     //}
 
-    bool result = _repository.Save(accident);
+    bool result = _repository.SaveAsync(accident);
                     if (result == true)
                     {
                         return "saved sucessfuly";

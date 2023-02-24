@@ -1,4 +1,5 @@
-﻿using System;
+﻿using RadmsDataModels.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -13,8 +14,26 @@ namespace RadmsEntities
 
         public string EducationLevelName { get; set; } = null!;
 
+        public EducationLevelLookupEntity()
+        {
 
-        public virtual ICollection<VehicleDetailsTransactionEntity> VehicleDetailsTransactions { get; set; }
+        }
+        public EducationLevelLookupEntity(EducationLevelLookup entity)
+        {
+            this.EducationLevelId = entity.EducationLevelId;
+            this.EducationLevelName = entity.EducationLevelName;
+
+        }
+
+        //public virtual ICollection<VehicleDetailsTransactionEntity> VehicleDetailsTransactions { get; set; }
+        public T MapToModel<T>() where T : class
+        {
+            EducationLevelLookup model = new EducationLevelLookup();
+            model.EducationLevelId = this.EducationLevelId;
+            model.EducationLevelName = this.EducationLevelName;
+            return model as T;
+
+        }
 
     }
 }
