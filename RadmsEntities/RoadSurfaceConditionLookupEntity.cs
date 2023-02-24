@@ -24,7 +24,14 @@ namespace RadmsEntities
        this.RoadSurfaceId=model.RoadSurfaceId;
             this.RoadSurfaceName=model.RoadSurfaceName;
         }
-    // public virtual ICollection<AccidentDetailsTransactionEntity> AccidentDetailsTransactions { get; set; }
+        // public virtual ICollection<AccidentDetailsTransactionEntity> AccidentDetailsTransactions { get; set; }
+        public T MapToModel<T>() where T : class
+        {
+            RoadSurfaceConditionLookup model = new RoadSurfaceConditionLookup();
+            model.RoadSurfaceId = this.RoadSurfaceId;
+            model.RoadSurfaceName = this.RoadSurfaceName;
+            return model as T;
+        }
 
     }
 }

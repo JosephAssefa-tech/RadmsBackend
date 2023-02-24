@@ -21,12 +21,20 @@ namespace RadmsEntities
 
         public WeatherConditionTypeLookupEntity(WeatherConditionTypeLookup model)
         {
-      this.WeatherCondId = model.WeatherCondId;
+           this.WeatherCondId = model.WeatherCondId;
             this.WeatherCondName = model.WeatherCondName;
 
           
         }
         // public virtual ICollection<AccidentDetailsTransactionEntity> AccidentDetailsTransactions { get; set; }
+        public T MapToModel<T>() where T : class
+        {
+            WeatherConditionTypeLookup model = new WeatherConditionTypeLookup();
+            model.WeatherCondId = this.WeatherCondId;
+            model.WeatherCondName = this.WeatherCondName;
+
+            return model as T;
+        }
 
     }
 }

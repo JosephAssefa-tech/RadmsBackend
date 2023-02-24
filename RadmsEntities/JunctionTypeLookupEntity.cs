@@ -27,6 +27,14 @@ namespace RadmsEntities
         }
 
         //   public virtual ICollection<AccidentDetailsTransactionEntity> AccidentDetailsTransactions { get; set; }
+        public T MapToModel<T>() where T : class
+        {
+            JunctionTypeLookup model = new JunctionTypeLookup();
+            model.JunctionTypeId = this.JunctionTypeId;
+            model.JunctionTypeName = this.JunctionTypeName;
+            model.JunctionNoOfRoads = this.JunctionNoOfRoads;
+            return model as T;
+        }
 
     }
 }

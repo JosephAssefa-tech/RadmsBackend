@@ -30,6 +30,14 @@ namespace RadmsEntities
         //    public virtual ICollection<AccidentDetailsTransactionEntity> AccidentDetailsTransactions { get; set; }
 
         //   public virtual ICollection<ZoneMasterEntity> ZoneMasters { get; set; }
+        public T MapToModel<T>() where T : class
+        {
+            RegionMaster model = new RegionMaster();
+            model.RegionId = this.RegionId;
+            model.RegionName = this.RegionName;
+
+            return model as T;
+        }
 
     }
 }

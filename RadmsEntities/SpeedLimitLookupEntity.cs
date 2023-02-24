@@ -25,6 +25,13 @@ namespace RadmsEntities
           
         }
         //  public virtual ICollection<AccidentDetailsTransactionEntity> AccidentDetailsTransactions { get; set; }
+        public T MapToModel<T>() where T : class
+        {
+            SpeedLimitLookup model = new SpeedLimitLookup();
+            model.SpeedLimitId = this.SpeedLimitId;
+            model.SpeedLimitName = this.SpeedLimitName;
+            return model as T;
+        }
 
     }
 }

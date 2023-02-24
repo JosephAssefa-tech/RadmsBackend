@@ -22,7 +22,7 @@ namespace RadmsServiceManager
         //    return entities;
         //}
 
-        public string Delete(AccidentCauseLookupEntity accident)
+        public string Delete(decimal  id)
         {
             throw new NotImplementedException();
         }

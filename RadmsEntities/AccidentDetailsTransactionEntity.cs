@@ -1,4 +1,5 @@
-﻿using RadmsDataModels.Models;
+﻿using RadmsDataAccessLogic;
+using RadmsDataModels.Models;
 using RadmsEntities.BaseEntity;
 using System;
 using System.Collections.Generic;
@@ -10,6 +11,8 @@ namespace RadmsEntities
 {
     public class AccidentDetailsTransactionEntity:RadmsBaseEntity
     {
+        RadmsContext context = new RadmsContext();
+
         public AccidentDetailsTransactionEntity()
         {
             //VehicleDetailsTransactions = new HashSet<VehicleDetailsTransactionEntity>();
@@ -26,35 +29,35 @@ namespace RadmsEntities
 
         public string? KebeleName { get; set; }
   
-        public int UserId { get; set; }
+        //public int UserId { get; set; }
 
         public string Piname { get; set; } = null!;
 
         public string PoliceRecordNumber { get; set; } = null!;
 
-        public int HighwayTypeId { get; set; }
+        //public int HighwayTypeId { get; set; }
  
-        public int RoadCarriagewayId { get; set; }
+        //public int RoadCarriagewayId { get; set; }
 
-        public int SpeedLimitId { get; set; }
+        //public int SpeedLimitId { get; set; }
 
-        public int? LandmarkTypeId { get; set; }
+        //public int? LandmarkTypeId { get; set; }
  
-        public int PavementTypeId { get; set; }
+        //public int PavementTypeId { get; set; }
 
-        public int TerrianTypeId { get; set; }
+        //public int TerrianTypeId { get; set; }
     
-        public int RoadSurfaceId { get; set; }
+       // public int RoadSurfaceId { get; set; }
 
-        public int ImpactTypeId { get; set; }
+        //public int ImpactTypeId { get; set; }
 
-        public int JunctionTypeId { get; set; }
+        //public int JunctionTypeId { get; set; }
 
-        public int CollisionTypeId { get; set; }
+        //public int CollisionTypeId { get; set; }
 
-        public int WeatherCondId { get; set; }
+        //public int WeatherCondId { get; set; }
 
-        public int SeverityId { get; set; }
+        //public int SeverityId { get; set; }
         public int NumberOfVehicles { get; set; }
         public int PropertyDamage { get; set; }
         public int NumberofVictims { get; set; }
@@ -80,25 +83,25 @@ namespace RadmsEntities
         public string? Image6 { get; set; }
         public int SubmissionFlag { get; set; }
 
-        public int CauseofAccidentId { get; set; }
+        //public int CauseofAccidentId { get; set; }
 
-        public int? LightCondtionId { get; set; }
+        //public int? LightCondtionId { get; set; }
 
         public string Hid { get; set; } = null!;
  
-        public int AirConditionId { get; set; }
+       // public int AirConditionId { get; set; }
 
-        public int AccidentTypeId { get; set; }
+       // public int AccidentTypeId { get; set; }
 
-        public int? WoredaId { get; set; }
+        //public int? WoredaId { get; set; }
 
-        public int? SubCityId { get; set; }
+        //public int? SubCityId { get; set; }
 
-        public int? CityId { get; set; }
+        //public int? CityId { get; set; }
 
-        public int? RegionId { get; set; }
+        //public int? RegionId { get; set; }
 
-        public int? ZoneId { get; set; }
+        //public int? ZoneId { get; set; }
 
         public string? AccidentLocalName { get; set; }
 
@@ -161,12 +164,12 @@ namespace RadmsEntities
             this.Lat = model.Lat;
             this.Long = model.Long;
             this.AccidentLocalName = model.AccidentLocalName;
-            this.AccidentId=model.AccidentId;
+            this.AccidentId = model.AccidentId;
             this.DateAndTime = model.DateAndTime;
-            this.Psid=model.Psid;
+            this.Psid = model.Psid;
             this.Piname = model.Piname;
             this.KebeleName = model.KebeleName;
-            this.PoliceRecordNumber=model.PoliceRecordNumber;
+            this.PoliceRecordNumber = model.PoliceRecordNumber;
             this.NumberOfVehicles = model.NumberOfVehicles;
             this.NumberofVictims = model.NumberofVictims;
             this.PropertyDamage = model.PropertyDamage;
@@ -183,8 +186,8 @@ namespace RadmsEntities
             this.SubmissionFlag = model.SubmissionFlag;
             this.Hid = model.Hid;
             this.AccidentType = new AccidentTypeLookupEntity(model.AccidentType);
-            this.AirCondition=new AirConditionTypeLookupEntity(model.AirCondition);
-            this.CauseofAccident=new AccidentCauseLookupEntity(model.CauseofAccident);
+            this.AirCondition = new AirConditionTypeLookupEntity(model.AirCondition);
+            this.CauseofAccident = new AccidentCauseLookupEntity(model.CauseofAccident);
             this.City = new CityMasterEntity(model.City);
             this.CollisionType = new CollisionTypeLookupEntity(model.CollisionType);
             this.HidNavigation = new HighwayMasterEntity(model.HidNavigation);
@@ -212,10 +215,26 @@ namespace RadmsEntities
 
         public T MapToModel<T>() where T : class
         {
+            var now = DateTime.Now;
+            var prefix = now.ToString("yyyyMMddHHmmss");
+            var lastNumber = context.Set<AccidentDetailsTransaction>()
+                .OrderByDescending(x => x.AccidentId)
+                .Select(x => x.AccidentId)
+                .FirstOrDefault();
+            var nextNumber = lastNumber + 1;//assign nextNumber to AccidentID in entity to map model property
+           // var id = $"{prefix}{nextNumber:D6}";
+
+           // return id;
+
+
+
+
+
             AccidentDetailsTransaction model = new AccidentDetailsTransaction();
+            model.Lat = this.Lat;
+            model.Long = this.Long;
             model.AccidentLocalName = this.AccidentLocalName;
-            model.AccidentLocalName = this.AccidentLocalName;
-            model.AccidentId = this.AccidentId;
+            model.AccidentId = nextNumber;
             model.DateAndTime = this.DateAndTime;
             model.Psid = this.Psid;
             model.Piname = this.Piname;
@@ -236,14 +255,36 @@ namespace RadmsEntities
             model.Image6 = this.Image6;
             model.SubmissionFlag = this.SubmissionFlag;
             model.Hid = this.Hid;
-           // model.City = City == null ? null : City.MapToModel();
-            model.CityId = this.CityId;
             model.AccidentTypeId = this.AccidentType.AccidentTypeId;
             model.AirConditionId = this.AirCondition.AirConditionId;
             model.CauseofAccidentId = this.CauseofAccident.AccidentCauseId;
-           // model.CityId = this.City.CityId;
+            model.CityId = this.City.CityId;
+            model.AccidentTypeId = this.AccidentType.AccidentTypeId;
+            model.AirConditionId = this.AirCondition.AirConditionId;
             model.CollisionTypeId = this.CollisionType.CollisionTypeId;
-            
+            model.HighwayTypeId = this.HighwayType.HtypeId;
+            model.ImpactTypeId=this.ImpactType.ImpactTypeId;
+            model.JunctionTypeId=this.JunctionType.JunctionTypeId;
+            model.LandmarkTypeId = this.LandmarkType.LandmarkTypeId;
+            model.LightCondtionId = this.LightCondtion.LightConditionId;
+            model.PavementTypeId=this.PavementType.PavementTypeId;
+            model.Psid = this.Psid;
+            model.RegionId = this.Region.RegionId;
+            model.RoadCarriagewayId = this.RoadCarriageway.RoadCarriagewayId;
+            model.RoadSurfaceId = this.RoadSurface.RoadSurfaceId;
+            model.SeverityId = this.Severity.SeverityId;
+            model.SpeedLimitId = this.SpeedLimit.SpeedLimitId;
+            model.SubCityId = this.SubCity.SubCityId;
+            model.TerrianTypeId=this.TerrianType.TerrianTypeId;
+            model.UserId = this.User.UserId;
+            model.WeatherCondId = this.WeatherCond.WeatherCondId;
+            model.WoredaId = this.Woreda.WoredaId;
+            model.ZoneId = this.Zone.ZoneId;
+
+
+           // model.CityId = this.City.CityId;
+           //  model.CollisionTypeId = this.CollisionType.CollisionTypeId;
+
 
 
 

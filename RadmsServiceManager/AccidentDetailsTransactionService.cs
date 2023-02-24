@@ -16,11 +16,11 @@ namespace RadmsServiceManager
         {
             _repository = repository;
         }
-        public string Delete(AccidentDetailsTransactionEntity entity)
+        public string Delete(decimal id )
         {
-            if (entity.AccidentId != 0)
+            if (id!= 0)
             {
-                var result = _repository.Delete(entity);
+                var result = _repository.Delete(id);
 
                 return "sucessfuly deleted";
 
@@ -82,7 +82,40 @@ namespace RadmsServiceManager
                 }
                 else
                 {
-                    bool result = _repository.Save(accident);
+    //               namespace AutoIncrementIDExample
+    //{
+    //    public class AutoIncrementIDGenerator
+    //    {
+    //        private readonly DbContext _dbContext;
+
+    //        public AutoIncrementIDGenerator(DbContext dbContext)
+    //        {
+    //            _dbContext = dbContext;
+    //        }
+
+    //        public async Task<string> GenerateAutoIncrementID()
+    //        {
+    //            var now = DateTime.Now;
+    //            var prefix = now.ToString("yyyyMMddHHmmss");
+    //            var lastNumber = await _dbContext.Set<AutoIncrementID>()
+    //                .OrderByDescending(x => x.ID)
+    //                .Select(x => x.ID)
+    //                .FirstOrDefaultAsync();
+    //            var nextNumber = lastNumber + 1;
+    //            var id = $"{prefix}{nextNumber:D6}";
+    //            _dbContext.Set<AutoIncrementID>().Add(new AutoIncrementID { ID = nextNumber });
+    //            await _dbContext.SaveChangesAsync();
+    //            return id;
+    //        }
+    //    }
+
+    //    public class AutoIncrementID
+    //    {
+    //        public int ID { get; set; }
+    //    }
+    //}
+
+    bool result = _repository.SaveAsync(accident);
                     if (result == true)
                     {
                         return "saved sucessfuly";

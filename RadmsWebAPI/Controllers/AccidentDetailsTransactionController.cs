@@ -75,6 +75,16 @@ namespace RadmsWebAPI.Controllers
         [HttpDelete("{id}")]
         public void Delete(int id)
         {
+          string result=  this._service.Delete(id);
+            if (result == "sucessfuly deleted")
+            {
+
+            }
+            else
+            {
+
+            }
+
         }
     }
 }

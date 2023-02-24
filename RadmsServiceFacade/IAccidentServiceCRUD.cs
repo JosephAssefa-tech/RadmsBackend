@@ -11,7 +11,7 @@ namespace RadmsServiceFacade
     {
         string Save(AccidentCauseLookupEntity accident);
         string Update(AccidentCauseLookupEntity accident);
-        string Delete(AccidentCauseLookupEntity accident);
+        string Delete(decimal id );
         List<AccidentCauseLookupEntity> GetAll();
     }
 }

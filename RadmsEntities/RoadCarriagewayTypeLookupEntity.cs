@@ -26,5 +26,13 @@ namespace RadmsEntities
         }
 
         //     public virtual ICollection<AccidentDetailsTransactionEntity> AccidentDetailsTransactions { get; set; }
+        public T MapToModel<T>() where T : class
+        {
+            RoadCarriagewayTypeLookup model = new RoadCarriagewayTypeLookup();
+            model.RoadCarriagewayId = this.RoadCarriagewayId;
+            model.RoadCarriagewayId = this.RoadCarriagewayId;
+
+            return model as T;
+        }
     }
 }

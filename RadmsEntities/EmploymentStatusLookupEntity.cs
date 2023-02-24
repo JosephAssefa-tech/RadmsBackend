@@ -1,4 +1,5 @@
-﻿using System;
+﻿using RadmsDataModels.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,7 +12,7 @@ namespace RadmsEntities
          public  EmploymentStatusLookupEntity()
         {
 
-            VictimDetailsTransactions = new HashSet<VictimDetailsTransactionEntity>();
+         //   VictimDetailsTransactions = new HashSet<VictimDetailsTransactionEntity>();
 
         }
 
@@ -19,7 +20,21 @@ namespace RadmsEntities
 
         public string EmploymentStatusName { get; set; } = null!;
 
-        public virtual ICollection<VictimDetailsTransactionEntity> VictimDetailsTransactions { get; set; }
+      //  public virtual ICollection<VictimDetailsTransactionEntity> VictimDetailsTransactions { get; set; }
+      public EmploymentStatusLookupEntity(EmploymentStatusLookup model)
+        {
+            this.EmploymentStatusId=model.EmploymentStatusId;
+            this.EmploymentStatusName = model.EmploymentStatusName;
+
+        }
+        public T MapToModel<T>() where T : class
+        {
+            EmploymentStatusLookup model = new EmploymentStatusLookup();
+            model.EmploymentStatusId = this.EmploymentStatusId;
+            model.EmploymentStatusName = this.EmploymentStatusName;
+            return model as T;
+
+        }
 
     }
 }

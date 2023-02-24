@@ -13,15 +13,27 @@ namespace RadmsRepositoryManager.Services
     public class AccidentRepository : IAccidentRepository
     {
         RadmsContext context = new RadmsContext();
-        public bool Delete(AccidentCauseLookupEntity entity)
+        public bool Delete(decimal id )
         {
             try
             {
-                AccidentCauseLookup model = entity.MapToModel<AccidentCauseLookup>();
+                var result = context.AccidentCauseLookups.Where(x => x.AccidentCauseId == id).FirstOrDefault();
+                if (result != null)
+                {
+                    context.AccidentCauseLookups.Remove(result);
+                    context.SaveChanges();
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+         
+               // AccidentCauseLookup model = entity.MapToModel<AccidentCauseLookup>();
 
-                context.AccidentCauseLookups.Remove(model);
-                context.SaveChanges();
-                return true;
+               // context.AccidentCauseLookups.Remove(model);
+               // context.SaveChanges();
+               // return true;
             }
             catch (Exception)
             {
@@ -48,6 +60,36 @@ namespace RadmsRepositoryManager.Services
         //        entities.Add(entity);
         //    }
         //    return entities;
+        //}
+        //public bool UpdatePersonalInfoEmployee(Employee employeeEntity)
+        //{
+        //    var existingEmp = _context.Employees.Where(e => e.Guid == employeeEntity.Guid).FirstOrDefault();
+        //    if (existingEmp == null)
+        //        return false;
+        //    else
+        //    {
+        //        // existingEmp.FirstName = employeeEntity.FirstName;
+        //        // existingEmp.FatherName = employeeEntity.FatherName;
+        //        // existingEmp.GrandFatherName = employeeEntity.GrandFatherName;
+        //        existingEmp.FullName = employeeEntity.FullName;
+
+        //        existingEmp.MobilePhone = employeeEntity.MobilePhone;
+        //        existingEmp.Phone1 = employeeEntity.Phone1;
+        //        existingEmp.Phone2 = employeeEntity.Phone2;
+
+        //        existingEmp.DateofBirth = employeeEntity.DateofBirth;
+        //        existingEmp.Gender = employeeEntity.Gender;
+        //        existingEmp.Nationality = employeeEntity.Nationality;
+        //        existingEmp.PersonalEmail = employeeEntity.PersonalEmail;
+
+        //        existingEmp.PersonalEmail = employeeEntity.PersonalEmail;
+        //        existingEmp.PersonalEmail2 = employeeEntity.PersonalEmail2;
+        //        existingEmp.PersonalEmail3 = employeeEntity.PersonalEmail3;
+
+        //        _context.SaveChanges(true);
+
+        //    }
+        //    return true;
         //}
 
         public List<AccidentCauseLookupEntity> GetAll()

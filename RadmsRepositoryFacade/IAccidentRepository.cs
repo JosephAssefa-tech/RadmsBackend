@@ -11,7 +11,7 @@ namespace RadmsRepositoryFacade
     {
         bool Save(AccidentCauseLookupEntity accident);
         bool Update(AccidentCauseLookupEntity accident);
-        bool Delete(AccidentCauseLookupEntity accident);
+        bool Delete(decimal id);
         List<AccidentCauseLookupEntity> GetAll();
         AccidentCauseLookupEntity GetById(int id);
         AccidentCauseLookupEntity FilterByAccidentName(string CauseName);

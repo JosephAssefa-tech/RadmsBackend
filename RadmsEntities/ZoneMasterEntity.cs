@@ -36,6 +36,15 @@ namespace RadmsEntities
         //    public virtual ICollection<AccidentDetailsTransactionEntity> AccidentDetailsTransactions { get; set; }
 
         //    public virtual ICollection<WoredaMasterEntity> WoredaMasters { get; set; }
+        public T MapToModel<T>() where T : class
+        {
+            ZoneMaster model = new ZoneMaster();
+            model.ZoneId = this.ZoneId;
+            model.ZoneName = this.ZoneName;
+            //model.RegionId = this.RegionId;
+
+            return model as T;
+        }
 
     }
 }

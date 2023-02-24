@@ -26,7 +26,14 @@ namespace RadmsEntities
         }
         //  public virtual ICollection<AccidentDetailsTransactionEntity> AccidentDetailsTransactions { get; set; }
 
-        // public virtual ICollection<HighwayMasterEntity> HighwayMasters { get; set; }
+
+        public T MapToModel<T>() where T : class
+        {
+            HighwayTypeLookup model = new HighwayTypeLookup();
+            model.HtypeId = this.HtypeId;
+            model.HtypeName = this.HtypeName;
+            return model as T;
+        }
 
     }
 }
