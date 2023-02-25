@@ -5,15 +5,17 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace RadmsServiceFacade
+namespace RadmsRepositoryFacade
 {
-    public interface IVehicleDetailsTransaction
+    public interface IVehicleDetailsTransactionRepository
     {
         VehicleDetailsTransactionEntity GetById(int id);
         VehicleDetailsTransactionEntity FilterByAccidentName(string CauseName);
-        string Save(VehicleDetailsTransactionEntity accident);
-        string Update(VehicleDetailsTransactionEntity accident);
-        string Delete(decimal id);
+        bool Save(VehicleDetailsTransactionEntity accident);
+        bool Update(VehicleDetailsTransactionEntity accident);
+        bool Delete(decimal id);
         List<VehicleDetailsTransactionEntity> GetAll();
+
     }
+    
 }

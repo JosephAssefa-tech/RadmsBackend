@@ -1,4 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using RadmsEntities;
+using RadmsServiceFacade;
+using RadmsWebAPI.Models.PostModels;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -8,6 +11,12 @@ namespace RadmsWebAPI.Controllers
     [ApiController]
     public class VehicleDetailsTransactionController : ControllerBase
     {
+        IVehicleDetailsTransaction _service;
+        public VehicleDetailsTransactionController(IVehicleDetailsTransaction service)
+        {
+            _service = service;
+
+        }
         // GET: api/<VehicleDetailsTransactionController>
         [HttpGet]
         public IEnumerable<string> Get()
@@ -24,8 +33,17 @@ namespace RadmsWebAPI.Controllers
 
         // POST api/<VehicleDetailsTransactionController>
         [HttpPost]
-        public void Post([FromBody] string value)
+        public void Save([FromBody] VechicleDetailTransactionPostModel viewModel)
         {
+            string result = this._service.Save(viewModel.MapToViewEntity<VehicleDetailsTransactionEntity>());
+            if (result == "saved sucessfuly")
+            {
+
+            }
+            else
+            {
+
+            }
         }
 
         // PUT api/<VehicleDetailsTransactionController>/5

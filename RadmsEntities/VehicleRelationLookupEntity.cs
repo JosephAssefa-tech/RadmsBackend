@@ -1,4 +1,5 @@
-﻿using System;
+﻿using RadmsDataModels.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,7 +11,7 @@ namespace RadmsEntities
     {
         public VehicleRelationLookupEntity()
         {
-            VehicleDetailsTransactions = new HashSet<VehicleDetailsTransactionEntity>();
+         //   VehicleDetailsTransactions = new HashSet<VehicleDetailsTransactionEntity>();
         }
 
 
@@ -19,7 +20,22 @@ namespace RadmsEntities
         public string VehicleRelationName { get; set; } = null!;
 
 
-        public virtual ICollection<VehicleDetailsTransactionEntity> VehicleDetailsTransactions { get; set; }
+        //   public virtual ICollection<VehicleDetailsTransactionEntity> VehicleDetailsTransactions { get; set; }
+        public VehicleRelationLookupEntity(VehicleRelationLookup model)
+        {
+            this.VehicleRelationId = model.VehicleRelationId;
+            this.VehicleRelationName = model.VehicleRelationName;
+           
+        }
+        public T MapToModel<T>() where T : class
+        {
+
+            VehicleRelationLookup model = new VehicleRelationLookup();
+            model.VehicleRelationId = this.VehicleRelationId;
+            model.VehicleRelationName = this.VehicleRelationName;
+            return model as T;
+
+        }
 
     }
 }
