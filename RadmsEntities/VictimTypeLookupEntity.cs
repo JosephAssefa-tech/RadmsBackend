@@ -1,4 +1,5 @@
-﻿using System;
+﻿using RadmsDataModels.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,7 +11,7 @@ namespace RadmsEntities
     {
         public VictimTypeLookupEntity()
         {
-            VictimDetailsTransactions = new HashSet<VictimDetailsTransactionEntity>();
+          //  VictimDetailsTransactions = new HashSet<VictimDetailsTransactionEntity>();
         }
 
 
@@ -18,8 +19,21 @@ namespace RadmsEntities
 
         public string VictimType { get; set; } = null!;
 
- 
-        public virtual ICollection<VictimDetailsTransactionEntity> VictimDetailsTransactions { get; set; }
+
+        //    public virtual ICollection<VictimDetailsTransactionEntity> VictimDetailsTransactions { get; set; }
+        public VictimTypeLookupEntity(VictimTypeLookup model)
+        {
+            this.VictimType = model.VictimType;
+            this.VictimType = model.VictimType;
+         
+        }
+        public T MapToModel<T>() where T : class
+        {
+            VictimTypeLookup model = new VictimTypeLookup();
+            model.VictimTypeId = this.VictimTypeId;
+            model.VictimType = this.VictimType;
+            return model as T;
+        }
 
     }
 }

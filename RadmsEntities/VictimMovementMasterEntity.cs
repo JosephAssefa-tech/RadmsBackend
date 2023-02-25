@@ -1,4 +1,5 @@
-﻿using System;
+﻿using RadmsDataModels.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,7 +11,7 @@ namespace RadmsEntities
     {
         public VictimMovementMasterEntity()
         {
-            VictimDetailsTransactions = new HashSet<VictimDetailsTransactionEntity>();
+         //   VictimDetailsTransactions = new HashSet<VictimDetailsTransactionEntity>();
         }
 
 
@@ -18,8 +19,21 @@ namespace RadmsEntities
      
         public string VictimMovementType { get; set; } = null!;
 
-    
-        public virtual ICollection<VictimDetailsTransactionEntity> VictimDetailsTransactions { get; set; }
+
+        //   public virtual ICollection<VictimDetailsTransactionEntity> VictimDetailsTransactions { get; set; }
+        public VictimMovementMasterEntity(VictimMovementMaster model)
+        {
+           
+           this.VictimMovementId = model.VictimMovementId;
+            this.VictimMovementType = model.VictimMovementType;
+        }
+        public T MapToModel<T>() where T : class
+        {
+            VictimMovementMaster model = new VictimMovementMaster();
+            model.VictimMovementId = this.VictimMovementId;
+            model.VictimMovementType = this.VictimMovementType;
+            return model as T;
+        }
 
     }
 }
