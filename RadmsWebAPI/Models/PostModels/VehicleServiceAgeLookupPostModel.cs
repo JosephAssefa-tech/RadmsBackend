@@ -1,15 +1,10 @@
-﻿using RadmsDataModels.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using RadmsEntities;
 
-namespace RadmsEntities
+namespace RadmsWebAPI.Models.PostModels
 {
-    public class VehicleServiceAgeLookupEntity
+    public class VehicleServiceAgeLookupPostModel
     {
-        public VehicleServiceAgeLookupEntity()
+        public VehicleServiceAgeLookupPostModel()
         {
             //   VehicleDetailsTransactions = new HashSet<VehicleDetailsTransactionEntity>();
 
@@ -22,21 +17,19 @@ namespace RadmsEntities
 
         //  public virtual ICollection<VehicleDetailsTransactionEntity> VehicleDetailsTransactions { get; set; }
 
-        public VehicleServiceAgeLookupEntity(VehicleServiceAgeLookup model)
+        public VehicleServiceAgeLookupPostModel(VehicleServiceAgeLookupEntity model)
         {
             this.VehicleServiceAgeId = model.VehicleServiceAgeId;
             this.VehicleServiceName = model.VehicleServiceName;
             //   VehicleDetailsTransactions = new HashSet<VehicleDetailsTransactionEntity>();
 
         }
-        public T MapToModel<T>() where T : class
+        public T MapToViewEntity<T>() where T : class
         {
-
-            VehicleServiceAgeLookup model = new VehicleServiceAgeLookup();
-            model.VehicleServiceAgeId = this.VehicleServiceAgeId;
-            model.VehicleServiceName = this.VehicleServiceName;
-            return model as T;
-
+            VehicleServiceAgeLookupEntity entity = new VehicleServiceAgeLookupEntity();
+            entity.VehicleServiceAgeId = this.VehicleServiceAgeId;
+            entity.VehicleServiceName = this.VehicleServiceName;
+            return entity as T;
         }
     }
 }

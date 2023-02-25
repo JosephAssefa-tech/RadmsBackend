@@ -16,7 +16,8 @@ builder.Services.AddScoped<IAccidentServiceCRUD, AccidentService>();
 builder.Services.AddScoped<IAccidentDetailsTransactionRepository, AccidentDetailsTransactionRepository>();
 builder.Services.AddScoped<IAccidentDetailsTransaction, AccidentDetailsTransactionService>();
 builder.Services.AddScoped<IAccidentRepository, AccidentRepository>();
-
+builder.Services.AddScoped<IVehicleDetailsTransactionRepository, VehicleDetailsTransactionRepository>();
+builder.Services.AddScoped<IVehicleDetailsTransaction, VehicleDetailsTransactionService>();
 
 
 

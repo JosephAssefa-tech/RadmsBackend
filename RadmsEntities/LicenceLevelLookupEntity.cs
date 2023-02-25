@@ -1,4 +1,5 @@
-﻿using System;
+﻿using RadmsDataModels.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,7 +11,7 @@ namespace RadmsEntities
     {
         public LicenceLevelLookupEntity()
         {
-            VehicleDetailsTransactions = new HashSet<VehicleDetailsTransactionEntity>();
+          //  VehicleDetailsTransactions = new HashSet<VehicleDetailsTransactionEntity>();
         }
 
 
@@ -19,7 +20,22 @@ namespace RadmsEntities
         public string LeveloflicenceName { get; set; } = null!;
 
 
-        public virtual ICollection<VehicleDetailsTransactionEntity> VehicleDetailsTransactions { get; set; }
+        //  public virtual ICollection<VehicleDetailsTransactionEntity> VehicleDetailsTransactions { get; set; }
+        public LicenceLevelLookupEntity(LicenceLevelLookup model)
+        {
+            //  VehicleDetailsTransactions = new HashSet<VehicleDetailsTransactionEntity>();
+            this.LeveloflicenceId = model.LeveloflicenceId;
+            this.LeveloflicenceName = model.LeveloflicenceName;
+        }
+        public T MapToModel<T>() where T : class
+        {
+
+            LicenceLevelLookup model = new LicenceLevelLookup();
+            model.LeveloflicenceId = this.LeveloflicenceId;
+            model.LeveloflicenceName = this.LeveloflicenceName;
+            return model as T;
+
+        }
 
     }
 }
