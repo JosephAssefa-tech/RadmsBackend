@@ -20,19 +20,23 @@ builder.Services.AddScoped<IVehicleDetailsTransactionRepository, VehicleDetailsT
 builder.Services.AddScoped<IVehicleDetailsTransaction, VehicleDetailsTransactionService>();
 builder.Services.AddScoped<IVictimDetailTransactionRepository, VictimDetailTransactionRepository>();
 builder.Services.AddScoped<IVictimDetailTransaction, VictimDetailTransactionService>();
+builder.Services.AddScoped<ILegalMeasurementDetailsTransactionRepository, LegalMeasurementDetailsTransactionRepository>();
+builder.Services.AddScoped<ILegalMeasurementDetailsTransaction, LegalMeasurementDetailsTransactionService>();
 
 
-var app = builder.Build();
-
-// Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
 {
-    app.UseSwagger();
-    app.UseSwaggerUI();
+    var app = builder.Build();
+
+    // Configure the HTTP request pipeline.
+    if (app.Environment.IsDevelopment())
+    {
+        app.UseSwagger();
+        app.UseSwaggerUI();
+    }
+
+    app.UseAuthorization();
+
+    app.MapControllers();
+
+    app.Run();
 }
-
-app.UseAuthorization();
-
-app.MapControllers();
-
-app.Run();

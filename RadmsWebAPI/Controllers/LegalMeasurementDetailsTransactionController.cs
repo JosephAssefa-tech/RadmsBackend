@@ -1,4 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using RadmsEntities;
+using RadmsServiceFacade;
+using RadmsWebAPI.Models.PostModels;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -8,6 +11,12 @@ namespace RadmsWebAPI.Controllers
     [ApiController]
     public class LegalMeasurementDetailsTransactionController : ControllerBase
     {
+        ILegalMeasurementDetailsTransaction _service;
+        public LegalMeasurementDetailsTransactionController(ILegalMeasurementDetailsTransaction service)
+        {
+            _service = service;
+
+        }
         // GET: api/<LegalMeasurementDetailsTransactionController>
         [HttpGet]
         public IEnumerable<string> Get()
@@ -24,8 +33,17 @@ namespace RadmsWebAPI.Controllers
 
         // POST api/<LegalMeasurementDetailsTransactionController>
         [HttpPost]
-        public void Post([FromBody] string value)
+        public void Save([FromBody] LegalMeasurementDetailsTransactionPostModel viewModel)
         {
+            string result = this._service.Save(viewModel.MapToViewEntity<LegalMeasurementDetailsTransactionEntity>());
+            if (result == "saved sucessfuly")
+            {
+
+            }
+            else
+            {
+
+            }
         }
 
         // PUT api/<LegalMeasurementDetailsTransactionController>/5
