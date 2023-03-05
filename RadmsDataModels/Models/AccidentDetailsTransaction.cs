@@ -15,12 +15,12 @@ namespace RadmsDataModels.Models
             VictimDetailsTransactions = new HashSet<VictimDetailsTransaction>();
         }
 
-        public int Lat { get; set; }
-        public int Long { get; set; }
+        public double Lat { get; set; }
+        public double Long { get; set; }
         [Key]
         [Column("AccidentID", TypeName = "numeric(18, 0)")]
         public decimal AccidentId { get; set; }
-        [Column(TypeName = "datetime")]
+        [Column(TypeName = "datetime2")]
         public DateTime DateAndTime { get; set; }
         [Column("PSID")]
         [StringLength(6)]
