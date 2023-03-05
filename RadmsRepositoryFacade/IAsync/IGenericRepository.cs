@@ -11,10 +11,16 @@ namespace RadmsRepositoryFacade.IAsync
 {
     public interface IGenericRepository<T> where T: class
     {
-        Task<T> GetByIdAsync(int id);
-        Task<IReadOnlyList<T>> GetAllAsync();
-        Task<T> GetWithSpec(ISpecification<T> spec);
-        Task<IReadOnlyList<T>> ListAsync(ISpecification<T> spec);
+        bool Save(T entity);
+        bool Update(T entity);
+        bool Delete(decimal id);
+        List<T> GetAll();
+        T GetById(int id);
+        T FilterByAccidentName(string CauseName);
+        //Task<T> GetByIdAsync(int id);
+        //Task<IReadOnlyList<T>> GetAllAsync();
+        //Task<T> GetWithSpec(ISpecification<T> spec);
+        //Task<IReadOnlyList<T>> ListAsync(ISpecification<T> spec);
 
 
     }

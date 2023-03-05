@@ -54,11 +54,11 @@ namespace RadmsServiceManager
                 throw new Exception();
             }
         }
-        private string Validate(AccidentDetailsTransactionEntity entity)
+        private decimal Validate(AccidentDetailsTransactionEntity entity)
         {
-            if (entity.AccidentLocalName == String.Empty)
+            if (entity.AccidentId == 0)
             {
-                return "Accident location name can not be empty";
+                return entity.AccidentId;
             }
             //else if(entity.startDate>entity.endDate)
             //{
@@ -66,22 +66,22 @@ namespace RadmsServiceManager
             //}
             else
             {
-                return string.Empty;
+                return entity.AccidentId;
             }
 
         }
 
-        public string Save(AccidentDetailsTransactionEntity accident)
+        public decimal Save(AccidentDetailsTransactionEntity accident)
         {
             try
             {
-                string msg = Validate(accident);
-                if (msg != String.Empty)
-                {
-                    return msg;
-                }
-                else
-                {
+                //decimal msg = Validate(accident);
+                //if (msg ==0)
+                //{
+                //    return msg;
+                //}
+                //else
+                //{
     //               namespace AutoIncrementIDExample
     //{
     //    public class AutoIncrementIDGenerator
@@ -115,17 +115,17 @@ namespace RadmsServiceManager
     //    }
     //}
 
-    bool result = _repository.SaveAsync(accident);
-                    if (result == true)
-                    {
-                        return "saved sucessfuly";
-                    }
-                    else
-                    {
-                        return "unkown error occured";
+    var result = _repository.SaveAsync(accident);
+                   // if (result != 0)
+                  //  {
+                        return result;
+                  //  }
+                  //  else
+                  //  {
+                 //       return 0 ;
 
-                    }
-                }
+                 //   }
+              //  }
 
             }
             catch (Exception)
@@ -139,13 +139,13 @@ namespace RadmsServiceManager
         {
             try
             {
-                string msg = Validate(accident);
-                if (msg != String.Empty)
-                {
-                    return msg;
-                }
-                else
-                {
+              //  string msg = Validate(accident);
+              //  if (msg != String.Empty)
+              //  {
+              //      return msg;
+              //  }
+              //  else
+              //  {
                     bool result = _repository.Update(accident);
                     if (result == true)
                     {
@@ -156,7 +156,7 @@ namespace RadmsServiceManager
                         return "unkown error occured";
 
                     }
-                }
+              //  }
 
             }
             catch (Exception)

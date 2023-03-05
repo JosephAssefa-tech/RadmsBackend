@@ -22,6 +22,26 @@ builder.Services.AddScoped<IVictimDetailTransactionRepository, VictimDetailTrans
 builder.Services.AddScoped<IVictimDetailTransaction, VictimDetailTransactionService>();
 builder.Services.AddScoped<ILegalMeasurementDetailsTransactionRepository, LegalMeasurementDetailsTransactionRepository>();
 builder.Services.AddScoped<ILegalMeasurementDetailsTransaction, LegalMeasurementDetailsTransactionService>();
+builder.Services.AddScoped<ILegalMeasurementDetailsTransactionRepository, LegalMeasurementDetailsTransactionRepository>();
+builder.Services.AddScoped<IWeatherConditionType, WeatherConditionTypeService>();
+builder.Services.AddScoped<IWeatherConditionTypeRepository, WeatherConditionTypeRepository>();
+
+
+
+
+
+
+
+
+builder.Services.AddCors(options =>
+{
+options.AddPolicy("AllowAll", builder =>
+{
+builder.AllowAnyOrigin()
+       .AllowAnyHeader()
+       .AllowAnyMethod();
+});
+});
 
 
 {
@@ -33,7 +53,7 @@ builder.Services.AddScoped<ILegalMeasurementDetailsTransaction, LegalMeasurement
         app.UseSwagger();
         app.UseSwaggerUI();
     }
-
+    app.UseCors("AllowAll");
     app.UseAuthorization();
 
     app.MapControllers();

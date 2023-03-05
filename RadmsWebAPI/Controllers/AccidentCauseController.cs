@@ -21,7 +21,7 @@ namespace RadmsWebAPI.Controllers
         }
         // GET: api/<AccidentController>
         [HttpGet]
-        [Route("/GetAll")]
+       // [Route("/GetAll")]
         public List<AccidentCauseLookupViewModel> GetAll()
         {
             List<AccidentCauseLookupEntity> entities = this._service.GetAll();

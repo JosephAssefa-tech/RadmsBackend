@@ -12,6 +12,7 @@ namespace RadmsWebAPI.Models.PostModels
         // public decimal? AccidentId { get; set; }
 
             //  public string? VictimId { get; set; }
+        public int LegalMeasurementId { get; set; }
         public bool? IsSuspended { get; set; }
 
         public bool? IsunderInvestigation { get; set; }

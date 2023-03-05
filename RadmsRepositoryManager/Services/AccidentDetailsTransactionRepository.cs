@@ -130,7 +130,7 @@ namespace RadmsRepositoryManager.Services
             return new AccidentDetailsTransactionEntity(model);
         }
 
-        public  bool SaveAsync(AccidentDetailsTransactionEntity accident)
+        public  decimal SaveAsync(AccidentDetailsTransactionEntity accident)
         {
             try
             {
@@ -139,19 +139,21 @@ namespace RadmsRepositoryManager.Services
      
                 context.SaveChanges();
 
-                if (model.AccidentId != 0)
-                {
-                    CustomAccidentIdGenerator a = new CustomAccidentIdGenerator();
-                    var b = a.GetLastNumberFromDatabase();
-                    var c = b;
+                //if (model.AccidentId != 0)
+                //{
+                //    CustomAccidentIdGenerator a = new CustomAccidentIdGenerator();
+                //    var b = a.GetLastNumberFromDatabase();
+                //    var c = b;
 
-                }
-          
-
-
+                //}
+                var result = model.AccidentId;
 
 
-                return true;
+
+
+                return result;
+                var a = model.AccidentId;
+
 
 
 

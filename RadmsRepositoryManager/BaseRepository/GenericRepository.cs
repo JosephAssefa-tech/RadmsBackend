@@ -1,22 +1,22 @@
-﻿using RadmsEntities;
+﻿using Microsoft.EntityFrameworkCore;
+using RadmsDataAccessLogic;
+using RadmsDataModels.Models;
+using RadmsEntities;
 using RadmsRepositoryFacade.IAsync;
-using RadmsServiceFacade.Generic;
+using RadmsRepositoryFacade.Specifications;
+using RadmsRepositoryManager.Evaluator;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace RadmsServiceManager.NewFolder
+namespace RadmsRepositoryManager.BaseRepository
 {
-    public class GenericService<T> : IGenericService<T> where T : class
+    public class GenericRepository<T> : IGenericRepository<T> where T : class
     {
-        IGenericRepository<T> _iservice;
-        public GenericService(IGenericRepository<T> iservice)
-            {
-            this._iservice = iservice;
-
-            }
+        RadmsContext context = new RadmsContext();
+   
 
         public bool Delete(decimal id)
         {
@@ -30,7 +30,17 @@ namespace RadmsServiceManager.NewFolder
 
         public List<T> GetAll()
         {
-            throw new NotImplementedException();
+            List<T> models = context.Set<T>().ToList();
+            List<T> entities = new List<T>();
+            foreach (var model in models)
+            {
+
+                T entity = (T)Activator.CreateInstance(typeof(T), model);
+
+
+                entities.Add(entity);
+            }
+            return entities;
         }
 
         public T GetById(int id)
