@@ -9,18 +9,17 @@ using System.Threading.Tasks;
 
 namespace RadmsServiceManager
 {
-    public class CityMasterService : ICityMasterService
+    public class AccidentTypeService : IAccidentType
     {
-        ICityMasterRepository _repositiory;
-        public CityMasterService(ICityMasterRepository repositiory)
+        IAccidentTypeRepository _repositiory;
+        public AccidentTypeService(IAccidentTypeRepository repositiory)
         {
             _repositiory = repositiory;
 
         }
-
-        List<CityMasterEntity> ICityMasterService.GetAll()
+        public List<AccidentTypeLookupEntity> GetAll()
         {
-            List<CityMasterEntity> results = this._repositiory.GetAll();
+            List<AccidentTypeLookupEntity> results = this._repositiory.GetAll();
             return results;
         }
     }

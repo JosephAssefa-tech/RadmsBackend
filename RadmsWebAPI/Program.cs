@@ -35,6 +35,10 @@ builder.Services.AddScoped<ICityMasterService, CityMasterService>();
 builder.Services.AddScoped<ICityMasterRepository, CityMasterRepository>();
 builder.Services.AddScoped<IWoredaMasterService, WoredaMasterService>();
 builder.Services.AddScoped<IWoredaMasterRepository, WoredaMasterRepository>();
+builder.Services.AddScoped<ISubCityMasterService, SubCityMasterService>();
+builder.Services.AddScoped<ISubCityRepository, SubCityRepository>();
+builder.Services.AddScoped<IAccidentType, AccidentTypeService>();
+builder.Services.AddScoped<IAccidentTypeRepository, AccidentTypeRepository>();
 
 
 
