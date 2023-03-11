@@ -28,7 +28,6 @@ namespace RadmsEntities
         {
             this.ZoneId = model.ZoneId;
             this.ZoneName = model.ZoneName;
-            this.RegionId = model.RegionId;
             this.Region = new RegionMasterEntity(model.Region);
 
 
@@ -41,7 +40,7 @@ namespace RadmsEntities
             ZoneMaster model = new ZoneMaster();
             model.ZoneId = this.ZoneId;
             model.ZoneName = this.ZoneName;
-            //model.RegionId = this.RegionId;
+            model.RegionId = this.Region.RegionId;
 
             return model as T;
         }

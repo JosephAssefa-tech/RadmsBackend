@@ -20,13 +20,13 @@ namespace RadmsWebAPI.Models.ViewModels
             RegionName = entity.RegionName;
 
         }
-        public T MapToModel<T>() where T : class
+        public T MapToViewEntity<T>() where T : class
         {
-            RegionMaster model = new RegionMaster();
-            model.RegionId = this.RegionId;
-            model.RegionName = this.RegionName;
+            RegionMasterEntity entity = new RegionMasterEntity();
+            entity.RegionId = this.RegionId;
+            entity.RegionName = this.RegionName;
             //model.ZoneId = this.Zone.;
-            return model as T;
+            return entity as T;
         }
     }
 }

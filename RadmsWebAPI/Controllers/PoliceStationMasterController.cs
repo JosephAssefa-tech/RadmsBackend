@@ -1,4 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using RadmsEntities;
+using RadmsServiceFacade;
+using RadmsWebAPI.Models.ViewModels;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -8,11 +11,26 @@ namespace RadmsWebAPI.Controllers
     [ApiController]
     public class PoliceStationMasterController : ControllerBase
     {
+        IPoliceStationMaster _service;
+
+       public PoliceStationMasterController(IPoliceStationMaster service)
+        {
+            _service = service;
+        }
+
+
         // GET: api/<PoliceStationMasterController>
         [HttpGet]
-        public IEnumerable<string> Get()
+        public List<PoliceStationMasterViewModel> GetAll()
         {
-            return new string[] { "value1", "value2" };
+            List<PoliceStationMasterEntity> entities = this._service.GetAll();
+            List<PoliceStationMasterViewModel> viewModels = new List<PoliceStationMasterViewModel>();
+            foreach (var entity in entities)
+            {
+                PoliceStationMasterViewModel model = new PoliceStationMasterViewModel(entity);
+                viewModels.Add(model);
+            }
+            return viewModels;
         }
 
         // GET api/<PoliceStationMasterController>/5

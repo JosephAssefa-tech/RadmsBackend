@@ -27,7 +27,6 @@ namespace RadmsEntities
         public SubCityMasterEntity(SubCityMaster model)
         {
             this.SubCityId = model.SubCityId;
-            this.CityId = model.CityId;
             this.SubCityName = model.SubCityName;
             this.City = new CityMasterEntity(model.City);
 
@@ -41,8 +40,9 @@ namespace RadmsEntities
         {
             SubCityMaster model = new SubCityMaster();
             model.SubCityId = this.SubCityId;
-            model.CityId = this.CityId;
             model.SubCityName = this.SubCityName;
+            model.CityId = this.City.CityId;
+  
 
 
             return model as T;

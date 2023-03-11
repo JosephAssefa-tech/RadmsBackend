@@ -1,4 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using RadmsEntities;
+using RadmsServiceFacade;
+using RadmsWebAPI.Models.PostModels;
+using RadmsWebAPI.Models.ViewModels;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -8,11 +12,29 @@ namespace RadmsWebAPI.Controllers
     [ApiController]
     public class RegionMasterController : ControllerBase
     {
+        IRegionMaster _service;
+        public RegionMasterController(IRegionMaster service)
+        {
+            _service= service;
+
+        }
+
+
         // GET: api/<RegionMasterController>
         [HttpGet]
-        public IEnumerable<string> Get()
+        // [Route("/GetAll")]
+        public List<RegionMasterViewModel> GetAll()
         {
-            return new string[] { "value1", "value2" };
+            List<RegionMasterEntity> entities = this._service.GetAll();
+            List<RegionMasterViewModel> viewModels = new List<RegionMasterViewModel>();
+            foreach (var entity in entities)
+            {
+                RegionMasterViewModel model = new RegionMasterViewModel(entity);
+                viewModels.Add(model);
+            }
+            return viewModels;
+
+
         }
 
         // GET api/<RegionMasterController>/5
@@ -24,8 +46,18 @@ namespace RadmsWebAPI.Controllers
 
         // POST api/<RegionMasterController>
         [HttpPost]
-        public void Post([FromBody] string value)
+        public void Save([FromBody] RegionMasterPostModel viewModel)
         {
+            string result = this._service.Save(viewModel.MapToViewEntity<RegionMasterEntity>());
+            if (result == "saved sucessfuly")
+            {
+
+            }
+            else
+            {
+
+            }
+
         }
 
         // PUT api/<RegionMasterController>/5

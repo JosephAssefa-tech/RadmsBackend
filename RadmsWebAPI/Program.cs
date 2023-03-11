@@ -25,6 +25,20 @@ builder.Services.AddScoped<ILegalMeasurementDetailsTransaction, LegalMeasurement
 builder.Services.AddScoped<ILegalMeasurementDetailsTransactionRepository, LegalMeasurementDetailsTransactionRepository>();
 builder.Services.AddScoped<IWeatherConditionType, WeatherConditionTypeService>();
 builder.Services.AddScoped<IWeatherConditionTypeRepository, WeatherConditionTypeRepository>();
+builder.Services.AddScoped<IRegionMaster, RegionMasterService>();
+builder.Services.AddScoped<IRegionMasterRepository, RegionMasterRepository>();
+builder.Services.AddScoped<IPoliceStationMaster, PoliceStationMasterService>();
+builder.Services.AddScoped<IPoliceStationMasterRepository, PoliceStationMasterRepository>();
+builder.Services.AddScoped<IZoneMasterService, ZoneMasterService>();
+builder.Services.AddScoped<IZoneMasterRepository, ZoneMasterRepository>();
+builder.Services.AddScoped<ICityMasterService, CityMasterService>();
+builder.Services.AddScoped<ICityMasterRepository, CityMasterRepository>();
+builder.Services.AddScoped<IWoredaMasterService, WoredaMasterService>();
+builder.Services.AddScoped<IWoredaMasterRepository, WoredaMasterRepository>();
+
+
+
+//builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
 
 
