@@ -49,7 +49,7 @@ namespace RadmsWebAPI.Controllers
             ResponseDtos response = new ResponseDtos();
         
             var result = this._service.Save(viewModel.MapToViewEntity<AccidentDetailsTransactionEntity>());
-                if(result==0)
+                if(result==null)
             {
                 response.StatusCode = 404;
                 response.Message = "failed";
