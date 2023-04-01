@@ -1,4 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using RadmsEntities;
+using RadmsServiceFacade;
+using RadmsWebAPI.Models.ViewModels;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -8,11 +11,24 @@ namespace RadmsWebAPI.Controllers
     [ApiController]
     public class RoadSurfaceConditionLookupController : ControllerBase
     {
+        IRoadSurfaceConditionService _service;
+        public RoadSurfaceConditionLookupController(IRoadSurfaceConditionService service)
+        {
+            _service = service;
+        }
+
         // GET: api/<RoadSurfaceConditionLookupController>
         [HttpGet]
-        public IEnumerable<string> Get()
+        public List<RoadSurfaceConditionLookupViewModel> GetAll()
         {
-            return new string[] { "value1", "value2" };
+            List<RoadSurfaceConditionLookupEntity> entities = this._service.GetAll();
+            List<RoadSurfaceConditionLookupViewModel> viewModels = new List<RoadSurfaceConditionLookupViewModel>();
+            foreach (var entity in entities)
+            {
+                RoadSurfaceConditionLookupViewModel model = new RoadSurfaceConditionLookupViewModel(entity);
+                viewModels.Add(model);
+            }
+            return viewModels;
         }
 
         // GET api/<RoadSurfaceConditionLookupController>/5

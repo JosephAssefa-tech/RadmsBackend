@@ -1,4 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using RadmsEntities;
+using RadmsServiceFacade;
+using RadmsWebAPI.Models.ViewModels;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -8,11 +11,24 @@ namespace RadmsWebAPI.Controllers
     [ApiController]
     public class PavementTypeController : ControllerBase
     {
+        IpaymentType _service;
+        public PavementTypeController(IpaymentType service)
+        {
+            this._service = service;
+
+        }
         // GET: api/<PavementTypeController>
         [HttpGet]
-        public IEnumerable<string> Get()
+        public List<PavementTypeLookupViewModel> GetAll()
         {
-            return new string[] { "value1", "value2" };
+            List<PavementTypeLookupEntity> entities = this._service.GetAll();
+            List<PavementTypeLookupViewModel> viewModels = new List<PavementTypeLookupViewModel>();
+            foreach (var entity in entities)
+            {
+                PavementTypeLookupViewModel model = new PavementTypeLookupViewModel(entity);
+                viewModels.Add(model);
+            }
+            return viewModels;
         }
 
         // GET api/<PavementTypeController>/5

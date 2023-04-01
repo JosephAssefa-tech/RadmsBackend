@@ -16,8 +16,8 @@ namespace RadmsWebAPI.Models.ViewModels
         }
         public RegionMasterViewModel(RegionMasterEntity entity)
         {
-           RegionId = entity.RegionId;
-            RegionName = entity.RegionName;
+           this.RegionId = entity.RegionId;
+            this.RegionName = entity.RegionName;
 
         }
         public T MapToViewEntity<T>() where T : class

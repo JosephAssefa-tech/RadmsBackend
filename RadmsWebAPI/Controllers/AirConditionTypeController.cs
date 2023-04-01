@@ -1,4 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using RadmsEntities;
+using RadmsServiceFacade;
+using RadmsWebAPI.Models.ViewModels;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -8,11 +11,23 @@ namespace RadmsWebAPI.Controllers
     [ApiController]
     public class AirConditionTypeController : ControllerBase
     {
+        public IAirConditionTypeService _service;
+        public AirConditionTypeController(IAirConditionTypeService service)
+        {
+            this._service = service;
+        }
         // GET: api/<AirConditionTypeController>
         [HttpGet]
-        public IEnumerable<string> Get()
+        public List<AirConditionTypeLookupViewModel> GetAll()
         {
-            return new string[] { "value1", "value2" };
+            List<AirConditionTypeLookupEntity> entities = this._service.GetAll();
+            List<AirConditionTypeLookupViewModel> viewModels = new List<AirConditionTypeLookupViewModel>();
+            foreach (var entity in entities)
+            {
+                AirConditionTypeLookupViewModel model = new AirConditionTypeLookupViewModel(entity);
+                viewModels.Add(model);
+            }
+            return viewModels;
         }
 
         // GET api/<AirConditionTypeController>/5

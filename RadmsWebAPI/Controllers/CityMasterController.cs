@@ -11,7 +11,7 @@ namespace RadmsWebAPI.Controllers
     [ApiController]
     public class CityMasterController : ControllerBase
     {
-        ICityMasterService _service;
+        public ICityMasterService _service;
         public CityMasterController(ICityMasterService service)
         {
             this._service = service;

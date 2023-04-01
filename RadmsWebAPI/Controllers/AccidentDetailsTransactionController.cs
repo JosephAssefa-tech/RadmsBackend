@@ -44,7 +44,7 @@ namespace RadmsWebAPI.Controllers
 
         // POST api/<AccidentDetailsTransactionController>
         [HttpPost]
-        public IActionResult Save([FromBody] AccidentDetailsTransactionPostModel viewModel)
+        public IActionResult Save( AccidentDetailsTransactionPostModel viewModel)
         {
             ResponseDtos response = new ResponseDtos();
         

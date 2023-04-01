@@ -1,4 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using RadmsEntities;
+using RadmsServiceFacade;
+using RadmsWebAPI.Models.ViewModels;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -8,11 +11,23 @@ namespace RadmsWebAPI.Controllers
     [ApiController]
     public class LandmarkTypeController : ControllerBase
     {
+        public ILandmarkTypeService _service;
+        public LandmarkTypeController(ILandmarkTypeService service)
+        {
+            _service = service;
+        }
         // GET: api/<LandmarkTypeController>
         [HttpGet]
-        public IEnumerable<string> Get()
+        public List<LandmarkTypeLookupViewModel> GetAll()
         {
-            return new string[] { "value1", "value2" };
+            List<LandmarkTypeLookupEntity> entities = this._service.GetAll();
+            List<LandmarkTypeLookupViewModel> viewModels = new List<LandmarkTypeLookupViewModel>();
+            foreach (var entity in entities)
+            {
+                LandmarkTypeLookupViewModel model = new LandmarkTypeLookupViewModel(entity);
+                viewModels.Add(model);
+            }
+            return viewModels;
         }
 
         // GET api/<LandmarkTypeController>/5

@@ -1,18 +1,18 @@
 ﻿using RadmsEntities;
 
-namespace RadmsWebAPI.Models.PostModels
+namespace RadmsWebAPI.Models.ViewModels
 {
-    public class LandmarkTypeLookupPostModel
+    public class LandmarkTypeLookupViewModel
     {
         public int LandmarkTypeId { get; set; }
 
         public string LandmarkName { get; set; } = null!;
 
-        public LandmarkTypeLookupPostModel()
+        public LandmarkTypeLookupViewModel()
         {
 
         }
-        public LandmarkTypeLookupPostModel(LandmarkTypeLookupEntity entity)
+        public LandmarkTypeLookupViewModel(LandmarkTypeLookupEntity entity)
         {
             this.LandmarkTypeId = entity.LandmarkTypeId;
             this.LandmarkName = entity.LandmarkName;

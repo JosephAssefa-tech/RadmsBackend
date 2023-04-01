@@ -1,4 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using RadmsEntities;
+using RadmsServiceFacade;
+using RadmsWebAPI.Models.ViewModels;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -8,11 +11,24 @@ namespace RadmsWebAPI.Controllers
     [ApiController]
     public class ImpactTypeController : ControllerBase
     {
+        IImpactTypeService _service;
+        public ImpactTypeController(IImpactTypeService service)
+        {
+            _service = service;
+
+        }
         // GET: api/<ImpactTypeController>
         [HttpGet]
-        public IEnumerable<string> Get()
+        public List<ImpactTypeLookupViewModel> GetAll()
         {
-            return new string[] { "value1", "value2" };
+            List<ImpactTypeLookupEntity> entities = this._service.GetAll();
+            List<ImpactTypeLookupViewModel> viewModels = new List<ImpactTypeLookupViewModel>();
+            foreach (var entity in entities)
+            {
+                ImpactTypeLookupViewModel model = new ImpactTypeLookupViewModel(entity);
+                viewModels.Add(model);
+            }
+            return viewModels;
         }
 
         // GET api/<ImpactTypeController>/5

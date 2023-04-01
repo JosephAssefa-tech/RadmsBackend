@@ -116,6 +116,7 @@ namespace RadmsDataModels.Models
         public int? CityId { get; set; }
         [Column("RegionID")]
         public int? RegionId { get; set; }
+        [ForeignKey("ZoneId")]
         [Column("ZoneID")]
         public int? ZoneId { get; set; }
         [StringLength(255)]
@@ -191,7 +192,7 @@ namespace RadmsDataModels.Models
         [ForeignKey("WoredaId")]
         [InverseProperty("AccidentDetailsTransactions")]
         public virtual WoredaMaster? Woreda { get; set; }
-        [ForeignKey("ZoneId")]
+    
         [InverseProperty("AccidentDetailsTransactions")]
         public virtual ZoneMaster? Zone { get; set; }
         [InverseProperty("Accident")]

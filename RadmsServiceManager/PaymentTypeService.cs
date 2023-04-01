@@ -1,4 +1,6 @@
 ﻿using RadmsEntities;
+using RadmsRepositoryFacade;
+using RadmsServiceFacade;
 using RadmsServiceFacade.Generic;
 using System;
 using System.Collections.Generic;
@@ -8,36 +10,18 @@ using System.Threading.Tasks;
 
 namespace RadmsServiceManager
 {
-    public class PaymentTypeService : IGenericService<PavementTypeLookupEntity>
+    public class PaymentTypeService : IpaymentType
     {
-        public bool Delete(decimal id)
+        IPaymentTypeRepository _repositiory;
+        public PaymentTypeService(IPaymentTypeRepository repositiory)
         {
-            throw new NotImplementedException();
-        }
+            _repositiory = repositiory;
 
-        public PavementTypeLookupEntity FilterByAccidentName(string CauseName)
-        {
-            throw new NotImplementedException();
         }
-
         public List<PavementTypeLookupEntity> GetAll()
         {
-            throw new NotImplementedException();
-        }
-
-        public PavementTypeLookupEntity GetById(int id)
-        {
-            throw new NotImplementedException();
-        }
-
-        public bool Save(PavementTypeLookupEntity entity)
-        {
-            throw new NotImplementedException();
-        }
-
-        public bool Update(PavementTypeLookupEntity entity)
-        {
-            throw new NotImplementedException();
+            List<PavementTypeLookupEntity> results = this._repositiory.GetAll();
+            return results;
         }
     }
 }

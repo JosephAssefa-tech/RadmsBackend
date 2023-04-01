@@ -8,7 +8,8 @@ using System.Threading.Tasks;
 
 namespace RadmsRepositoryFacade
 {
-    public interface IPaymentTypeRepository:IBaseRepoFacade<PavementTypeLookupEntity>
+    public interface IPaymentTypeRepository
     {
+        List<PavementTypeLookupEntity> GetAll();
     }
 }

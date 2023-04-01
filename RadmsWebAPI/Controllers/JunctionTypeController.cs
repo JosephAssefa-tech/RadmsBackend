@@ -1,4 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using RadmsEntities;
+using RadmsServiceFacade;
+using RadmsWebAPI.Models.ViewModels;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -8,11 +11,24 @@ namespace RadmsWebAPI.Controllers
     [ApiController]
     public class JunctionTypeController : ControllerBase
     {
-        // GET: api/<JunctionTypeController>
-        [HttpGet]
-        public IEnumerable<string> Get()
+        public IJunctionTypeService _service;
+        public JunctionTypeController(IJunctionTypeService service)
         {
-            return new string[] { "value1", "value2" };
+            _service = service;
+        }
+
+            // GET: api/<JunctionTypeController>
+        [HttpGet]
+        public List<JunctionTypeLookupViewModel> GetAll()
+        {
+            List<JunctionTypeLookupEntity> entities = this._service.GetAll();
+            List<JunctionTypeLookupViewModel> viewModels = new List<JunctionTypeLookupViewModel>();
+            foreach (var entity in entities)
+            {
+                JunctionTypeLookupViewModel model = new JunctionTypeLookupViewModel(entity);
+                viewModels.Add(model);
+            }
+            return viewModels;
         }
 
         // GET api/<JunctionTypeController>/5

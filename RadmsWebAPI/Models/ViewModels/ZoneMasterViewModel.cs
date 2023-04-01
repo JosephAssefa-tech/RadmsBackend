@@ -29,7 +29,7 @@ namespace RadmsWebAPI.Models.ViewModels
             ZoneMasterEntity entity = new ZoneMasterEntity();
             entity.ZoneId = ZoneId;
             entity.ZoneName = ZoneName;
-
+            entity.RegionId = this.Region.RegionId;
 
             return entity as T;
 

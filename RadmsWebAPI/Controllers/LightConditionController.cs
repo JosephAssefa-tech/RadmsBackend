@@ -1,4 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using RadmsEntities;
+using RadmsServiceFacade;
+using RadmsWebAPI.Models.ViewModels;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -8,11 +11,24 @@ namespace RadmsWebAPI.Controllers
     [ApiController]
     public class LightConditionController : ControllerBase
     {
-        // GET: api/<LightConditionController>
-        [HttpGet]
-        public IEnumerable<string> Get()
+        public IlightConditionService _service;
+        public LightConditionController(IlightConditionService service)
         {
-            return new string[] { "value1", "value2" };
+            _service = service;
+        }
+
+            // GET: api/<LightConditionController>
+            [HttpGet]
+        public List<LightConditionLookupViewModel> GetAll()
+        {
+            List<LightConditionLookupEntity> entities = this._service.GetAll();
+            List<LightConditionLookupViewModel> viewModels = new List<LightConditionLookupViewModel>();
+            foreach (var entity in entities)
+            {
+                LightConditionLookupViewModel model = new LightConditionLookupViewModel(entity);
+                viewModels.Add(model);
+            }
+            return viewModels;
         }
 
         // GET api/<LightConditionController>/5
