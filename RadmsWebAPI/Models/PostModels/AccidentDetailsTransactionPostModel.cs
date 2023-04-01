@@ -7,11 +7,38 @@ namespace RadmsWebAPI.Models.PostModels
 {
     public class AccidentDetailsTransactionPostModel : ViewBaseModel
     {
+        //public int HighwayTypeId { get; set; }
+
+        //public int RoadCarriagewayId { get; set; }
+
+        //public int SpeedLimitId { get; set; }
+
+        //public int? LandmarkTypeId { get; set; }
+
+        //public int PavementTypeId { get; set; }
+
+        //public int TerrianTypeId { get; set; }
+
+        //public int RoadSurfaceId { get; set; }
+
+        //public int ImpactTypeId { get; set; }
+
+        //public int JunctionTypeId { get; set; }
+
+        //public int CollisionTypeId { get; set; }
+
+        //public int WeatherCondId { get; set; }
+
+        //public int SeverityId { get; set; }
+
+        /// <summary>
+        /// ///////////////////////
+        /// </summary>
         public double Lat { get; set; }
         public double Long { get; set; }
-        public decimal AccidentId { get; set; }
+        public decimal? AccidentId { get; set; }
         public DateTime DateAndTime { get; set; }
-        public string Psid { get; set; } = null!;
+      public string Psid { get; set; } = null!;
         public string? KebeleName { get; set; }
         public string Piname { get; set; } = null!;
         public string PoliceRecordNumber { get; set; } = null!;
@@ -68,9 +95,9 @@ namespace RadmsWebAPI.Models.PostModels
             this.AccidentId = (decimal)entity.AccidentId;
             this.AccidentLocalName = entity.AccidentLocalName;
             this.DateAndTime = entity.DateAndTime;
-            this.Psid = entity.Psid;
+           this.Psid = entity.Psid;
             this.KebeleName = entity.KebeleName;
-            Piname = entity.KebeleName;
+            this.Piname = entity.Piname;
             this.PoliceRecordNumber = entity.PoliceRecordNumber;
             this.NumberOfVehicles = entity.NumberOfVehicles;
             this.PropertyDamage = entity.PropertyDamage;
@@ -86,29 +113,29 @@ namespace RadmsWebAPI.Models.PostModels
             this.Image5 = entity.Image5;
             this.Image6 = entity.Image6;
             this.SubmissionFlag = entity.SubmissionFlag;
-            this.Hid = entity.Hid;
+         //   this.Hid = entity.Hid;
             this.AccidentLocalName = entity.AccidentLocalName;
-            this.LandmarkType = new LandmarkTypeLookupPostModel(entity.LandmarkType);
-            this.AccidentType = new AccidentTypeLookupPostModel(entity.AccidentType);
-            this.AirCondition = new AirConditionTypeLookupPostModel(entity.AirCondition);
-            this.City = new CityMasterPostModel(entity.City);
-            this.Region = new RegionMasterPostModel(entity.Region);
-            this.Woreda = new WoredaMasterPostModel(entity.Woreda);
-            this.Zone = new ZoneMasterPostModel(entity.Zone);
-            this.CollisionType = new CollisionTypeLookupPostModel(entity.CollisionType);
-            this.HidNavigation = new HighwayMasterPostModel(entity.HidNavigation);
-            this.HighwayType = new HighwayTypeLookupPostModel(entity.HighwayType);
-            this.ImpactType =new ImpactTypeLookupPostModel(entity.ImpactType);
-            this.JunctionType =new JunctionTypeLookupPostModel(entity.JunctionType);
-            this.LightCondtion =new LightConditionLookupPostModel(entity.LightCondtion);
-            this.SubCity =new SubCityMasterPostModel(entity.SubCity);
-            this.WeatherCond = new WeatherConditionTypeLookupPostModel(entity.WeatherCond);
-            this.User = new UserMasterPostModel(entity.User);
-            this.TerrianType = new TerrainTypeLookupPostModel(entity.TerrianType);
-            this.SpeedLimit =new SpeedLimitLookupPostModel(entity.SpeedLimit);
-            this.Severity = new SeverityLevelLookupPostModel(entity.Severity);
-            this.RoadCarriageway = new RoadCarriagewayTypeLookupPostModel(entity.RoadCarriageway);
-            this.RoadSurface = new RoadSurfaceConditionLookupPostModel(entity.RoadSurface);
+            //this.LandmarkType = new LandmarkTypeLookupPostModel(entity.LandmarkType);
+            //this.AccidentType = new AccidentTypeLookupPostModel(entity.AccidentType);
+            //this.AirCondition = new AirConditionTypeLookupPostModel(entity.AirCondition);
+            //this.City = new CityMasterPostModel(entity.City);
+            //this.Region = new RegionMasterPostModel(entity.Region);
+            //this.Woreda = new WoredaMasterPostModel(entity.Woreda);
+            //this.Zone = new ZoneMasterPostModel(entity.Zone);
+            //this.CollisionType = new CollisionTypeLookupPostModel(entity.CollisionType);
+            //this.HidNavigation = new HighwayMasterPostModel(entity.HidNavigation);
+            //this.HighwayType = new HighwayTypeLookupPostModel(entity.HighwayType);
+            //this.ImpactType =new ImpactTypeLookupPostModel(entity.ImpactType);
+            //this.JunctionType =new JunctionTypeLookupPostModel(entity.JunctionType);
+            //this.LightCondtion =new LightConditionLookupPostModel(entity.LightCondtion);
+            //this.SubCity =new SubCityMasterPostModel(entity.SubCity);
+            //this.WeatherCond = new WeatherConditionTypeLookupPostModel(entity.WeatherCond);
+            //this.User = new UserMasterPostModel(entity.User);
+            //this.TerrianType = new TerrainTypeLookupPostModel(entity.TerrianType);
+            //this.SpeedLimit =new SpeedLimitLookupPostModel(entity.SpeedLimit);
+            //this.Severity = new SeverityLevelLookupPostModel(entity.Severity);
+            //this.RoadCarriageway = new RoadCarriagewayTypeLookupPostModel(entity.RoadCarriageway);
+            //this.RoadSurface = new RoadSurfaceConditionLookupPostModel(entity.RoadSurface);
 
         }
 
@@ -117,7 +144,7 @@ namespace RadmsWebAPI.Models.PostModels
             AccidentDetailsTransactionEntity entity = new AccidentDetailsTransactionEntity();
             entity.Lat = this.Lat;
             entity.Long = this.Long;
-            entity.AccidentId = this.AccidentId;
+            entity.AccidentId = this.AccidentId==null? 0 : (decimal)this.AccidentId;
             entity.AccidentLocalName = this.AccidentLocalName;
             entity.DateAndTime = this.DateAndTime;
             entity.Psid = this.Psid;
@@ -138,15 +165,15 @@ namespace RadmsWebAPI.Models.PostModels
             entity.Image5 = this.Image5;
             entity.Image6 = this.Image6;
             entity.SubmissionFlag = this.SubmissionFlag;
-            entity.Hid = this.Hid;
+            //  entity.Hid = this.Hid;
+           // entity.SpeedLimitId = this.SpeedLimitId;
             entity.AccidentType = this.AccidentType.MapToViewEntity<AccidentTypeLookupEntity>();
             entity.AirCondition = this.AirCondition.MapToViewEntity<AirConditionTypeLookupEntity>();
             entity.CauseofAccident = this.CauseofAccident.MapToViewEntity<AccidentCauseLookupEntity>();
-            entity.AirCondition = this.AirCondition.MapToViewEntity<AirConditionTypeLookupEntity>();
             entity.City = this.City.MapToViewEntity<CityMasterEntity>();
             entity.Region = this.Region.MapToViewEntity<RegionMasterEntity>();
             entity.Woreda = this.Woreda.MapToViewEntity<WoredaMasterEntity>();
-            entity.Zone = this.Zone.MapToViewEntity<ZoneMasterEntity>();
+      //      entity.Zone = this.Zone.MapToViewEntity<ZoneMasterEntity>();
             entity.PavementType=this.PavementType.MapToViewEntity<PavementTypeLookupEntity>();
             entity.LandmarkType = this.LandmarkType.MapToViewEntity<LandmarkTypeLookupEntity>();
             entity.TerrianType = this.TerrianType.MapToViewEntity<TerrainTypeLookupEntity>();
@@ -161,7 +188,6 @@ namespace RadmsWebAPI.Models.PostModels
             entity.User = this.User.MapToViewEntity<UserMasterEntity>();
             entity.SpeedLimit = this.SpeedLimit.MapToViewEntity<SpeedLimitLookupEntity>();
             entity.Severity = this.Severity.MapToViewEntity<SeverityLevelLookupEntity>();
-            entity.Zone= this.Zone.MapToViewEntity<ZoneMasterEntity>();
             entity.RoadCarriageway = this.RoadCarriageway.MapToViewEntity<RoadCarriagewayTypeLookupEntity>();
             entity.RoadSurface = this.RoadSurface.MapToViewEntity<RoadSurfaceConditionLookupEntity>();
             return entity as T;

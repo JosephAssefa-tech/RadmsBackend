@@ -9,6 +9,9 @@ namespace RadmsEntities
 {
     public class RegionMasterEntity
     {
+        public int RegionId { get; set; }
+
+        public string RegionName { get; set; } = null!;
         public RegionMasterEntity()
         {
    //       AccidentDetailsTransactions = new HashSet<AccidentDetailsTransactionEntity>();
@@ -16,9 +19,7 @@ namespace RadmsEntities
         }
 
 
-        public int RegionId { get; set; }
 
-        public string RegionName { get; set; } = null!;
 
         public RegionMasterEntity(RegionMaster model)
         {

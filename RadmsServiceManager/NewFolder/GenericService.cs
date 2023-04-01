@@ -9,20 +9,41 @@ using System.Threading.Tasks;
 
 namespace RadmsServiceManager.NewFolder
 {
-    public class GenericService<T> : IGenericService<AccidentCauseLookupEntity>
+    public class GenericService<T> : IGenericService<T> where T : class
     {
-        IGenericRepository<AccidentCauseLookupEntity> _iservice;
-        public GenericService(IGenericRepository<AccidentCauseLookupEntity> iservice)
+        IGenericRepository<T> _iservice;
+        public GenericService(IGenericRepository<T> iservice)
             {
             this._iservice = iservice;
 
             }
-        public async Task<IReadOnlyList<AccidentCauseLookupEntity>> GetAllAsync()
+
+        public bool Delete(decimal id)
         {
-            return await _iservice.GetAllAsync();
+            throw new NotImplementedException();
         }
 
-        public Task<AccidentCauseLookupEntity> GetByIdAsync(int id)
+        public T FilterByAccidentName(string CauseName)
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<T> GetAll()
+        {
+            throw new NotImplementedException();
+        }
+
+        public T GetById(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool Save(T entity)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool Update(T entity)
         {
             throw new NotImplementedException();
         }

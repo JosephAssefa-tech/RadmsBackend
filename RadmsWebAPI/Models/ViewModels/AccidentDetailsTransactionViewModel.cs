@@ -33,26 +33,26 @@ namespace RadmsWebAPI.Models.ViewModels
         public virtual AirConditionTypeLookupViewModel AirCondition { get; set; } = null!;
         public virtual AccidentCauseLookupViewModel CauseofAccident { get; set; } = null!;
         public virtual CityMasterViewModel? City { get; set; }
-        //public virtual CollisionTypeLookupViewModel CollisionType { get; set; } = null!;
-        //public virtual HighwayMasterViewModel HidNavigation { get; set; } = null!;
-        //public virtual HighwayTypeLookupViewModel HighwayType { get; set; } = null!;
-        //public virtual ImpactTypeLookupViewModel ImpactType { get; set; } = null!;
-        //public virtual JunctionTypeLookupViewModel JunctionType { get; set; } = null!;
-        //public virtual LandmarkTypeLookupViewModel? LandmarkType { get; set; }
-        //public virtual LightConditionLookupViewModel? LightCondtion { get; set; }
-        //public virtual PavementTypeLookupViewModel PavementType { get; set; } = null!;
-        //public virtual PoliceStationMasterViewModel Ps { get; set; } = null!;
-        //public virtual RegionMasterViewModel? Region { get; set; }
-        //public virtual RoadCarriagewayTypeLookupViewModel RoadCarriageway { get; set; } = null!;
-        //public virtual RoadSurfaceConditionLookupViewModel RoadSurface { get; set; } = null!;
-        //public virtual SeverityLevelLookupViewModel Severity { get; set; } = null!;
-        //public virtual SpeedLimitLookupViewModel SpeedLimit { get; set; } = null!;
-        //public virtual SubCityMasterViewModel? SubCity { get; set; }
-        //public virtual TerrainTypeLookupViewModel TerrianType { get; set; } = null!;
-        //public virtual UserMasterViewModel User { get; set; } = null!;
-        //public virtual WeatherConditionTypeLookupViewModel WeatherCond { get; set; } = null!;
-        //public virtual WoredaMasterViewModel? Woreda { get; set; }
-        //public virtual ZoneMasterViewModel? Zone { get; set; }
+        public virtual CollisionTypeLookupViewModel CollisionType { get; set; } = null!;
+        public virtual HighwayMasterViewModel HidNavigation { get; set; } = null!;
+        public virtual HighwayTypeLookupViewModel HighwayType { get; set; } = null!;
+        public virtual ImpactTypeLookupViewModel ImpactType { get; set; } = null!;
+        public virtual JunctionTypeLookupViewModel JunctionType { get; set; } = null!;
+        public virtual LandmarkTypeLookupViewModel? LandmarkType { get; set; }
+        public virtual LightConditionLookupViewModel? LightCondtion { get; set; }
+        public virtual PavementTypeLookupViewModel PavementType { get; set; } = null!;
+        public virtual PoliceStationMasterViewModel Ps { get; set; } = null!;
+        public virtual RegionMasterViewModel? Region { get; set; }
+        public virtual RoadCarriagewayTypeLookupViewModel RoadCarriageway { get; set; } = null!;
+        public virtual RoadSurfaceConditionLookupViewModel RoadSurface { get; set; } = null!;
+        public virtual SeverityLevelLookupViewModel Severity { get; set; } = null!;
+        public virtual SpeedLimitLookupViewModel SpeedLimit { get; set; } = null!;
+        public virtual SubCityMasterViewModel? SubCity { get; set; }
+        public virtual TerrainTypeLookupViewModel TerrianType { get; set; } = null!;
+        public virtual UserMasterViewModel User { get; set; } = null!;
+        public virtual WeatherConditionTypeLookupViewModel WeatherCond { get; set; } = null!;
+        public virtual WoredaMasterViewModel? Woreda { get; set; }
+        public virtual ZoneMasterViewModel? Zone { get; set; }
         //public virtual ICollection<VehicleDetailsTransaction> VehicleDetailsTransactions { get; set; }
         // public virtual ICollection<VictimDetailsTransaction> VictimDetailsTransactions { get; set; }
         public AccidentDetailsTransactionViewModel()
@@ -90,6 +90,30 @@ namespace RadmsWebAPI.Models.ViewModels
             this.AirCondition = new AirConditionTypeLookupViewModel(entity.AirCondition);
             this.CauseofAccident =new AccidentCauseLookupViewModel(entity.CauseofAccident);
             this.City =new CityMasterViewModel(entity.City);
+            this.CollisionType = new CollisionTypeLookupViewModel(entity.CollisionType);
+            this.HidNavigation=new HighwayMasterViewModel(entity.HidNavigation);
+            this.HighwayType = new HighwayTypeLookupViewModel(entity.HighwayType);
+            this.ImpactType = new ImpactTypeLookupViewModel(entity.ImpactType);
+            this.JunctionType = new JunctionTypeLookupViewModel(entity.JunctionType);
+            this.LandmarkType = new LandmarkTypeLookupViewModel(entity.LandmarkType);
+            this.LightCondtion = new LightConditionLookupViewModel(entity.LightCondtion);
+            this.PavementType = new PavementTypeLookupViewModel(entity.PavementType);
+            this.Ps = new PoliceStationMasterViewModel(entity.Ps);
+            this.Region = new RegionMasterViewModel(entity.Region);
+            this.RoadCarriageway = new RoadCarriagewayTypeLookupViewModel(entity.RoadCarriageway);
+            this.RoadSurface = new RoadSurfaceConditionLookupViewModel(entity.RoadSurface);
+            this.Severity = new SeverityLevelLookupViewModel(entity.Severity);
+            this.SpeedLimit = new SpeedLimitLookupViewModel(entity.SpeedLimit);
+            this.SubCity = new SubCityMasterViewModel(entity.SubCity);
+            this.TerrianType = new TerrainTypeLookupViewModel(entity.TerrianType);
+            this.User = new UserMasterViewModel(entity.User);
+            this.WeatherCond = new WeatherConditionTypeLookupViewModel(entity.WeatherCond);
+            this.Woreda = new WoredaMasterViewModel(entity.Woreda);
+            this.Zone = new ZoneMasterViewModel(entity.Zone);
+
+
+
+
             //this.AccidentType = new AccidentTypeLookupEntity(model.AccidentType);
         }
 

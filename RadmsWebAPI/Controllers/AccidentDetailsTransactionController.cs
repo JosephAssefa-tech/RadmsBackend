@@ -3,6 +3,7 @@ using RadmsEntities;
 using RadmsServiceFacade;
 using RadmsWebAPI.Models.PostModels;
 using RadmsWebAPI.Models.ViewModels;
+using RadmsWebAPI.Response;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -43,17 +44,32 @@ namespace RadmsWebAPI.Controllers
 
         // POST api/<AccidentDetailsTransactionController>
         [HttpPost]
-        public void Save([FromBody] AccidentDetailsTransactionPostModel viewModel)
+        public IActionResult Save( AccidentDetailsTransactionPostModel viewModel)
         {
-            string result = this._service.Save(viewModel.MapToViewEntity<AccidentDetailsTransactionEntity>());
-            if (result == "saved sucessfuly")
+            ResponseDtos response = new ResponseDtos();
+        
+            var result = this._service.Save(viewModel.MapToViewEntity<AccidentDetailsTransactionEntity>());
+                if(result==0)
             {
+                response.StatusCode = 404;
+                response.Message = "failed";
+                return NotFound();
+               
 
             }
             else
             {
-
+                response.StatusCode = 200;
+                response.Message = "Success";
+                response.Data = new { AccidentDetailId = result };
+                return Ok(response);
             }
+
+           
+
+        
+
+
         }
 
         // PUT api/<AccidentDetailsTransactionController>/5
