@@ -9,6 +9,14 @@ namespace RadmsEntities
 {
     public class WoredaMasterEntity
     {
+
+        public int WoredaId { get; set; }
+
+        public string WoredaName { get; set; } = null!;
+
+        //  public int? ZoneId { get; set; }
+
+        public virtual ZoneMasterEntity? Zone { get; set; }
         public WoredaMasterEntity()
         {
       //    AccidentDetailsTransactions = new HashSet<AccidentDetailsTransactionEntity>();
@@ -17,13 +25,6 @@ namespace RadmsEntities
         }
 
 
-        public int WoredaId { get; set; }
-   
-        public string WoredaName { get; set; } = null!;
-
-      //  public int? ZoneId { get; set; }
-
-        public virtual ZoneMasterEntity? Zone { get; set; }
 
         public WoredaMasterEntity(WoredaMaster model)
         {
@@ -37,6 +38,7 @@ namespace RadmsEntities
             WoredaMaster model = new WoredaMaster();
             model.WoredaId = this.WoredaId;
             model.WoredaName = this.WoredaName;
+            model.ZoneId = this.Zone.ZoneId;
             return model as T;
         }
 

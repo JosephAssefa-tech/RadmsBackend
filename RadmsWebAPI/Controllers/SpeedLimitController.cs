@@ -1,4 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using RadmsEntities;
+using RadmsServiceFacade;
+using RadmsWebAPI.Models.ViewModels;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -8,11 +11,23 @@ namespace RadmsWebAPI.Controllers
     [ApiController]
     public class SpeedLimitController : ControllerBase
     {
+        ISpeedLimitService _service;
+        public SpeedLimitController(ISpeedLimitService service)
+        {
+            _service = service;
+        }
         // GET: api/<SpeedLimitController>
         [HttpGet]
-        public IEnumerable<string> Get()
+        public List<SpeedLimitLookupViewModel> GetAll()
         {
-            return new string[] { "value1", "value2" };
+            List<SpeedLimitLookupEntity> entities = this._service.GetAll();
+            List<SpeedLimitLookupViewModel> viewModels = new List<SpeedLimitLookupViewModel>();
+            foreach (var entity in entities)
+            {
+                SpeedLimitLookupViewModel model = new SpeedLimitLookupViewModel(entity);
+                viewModels.Add(model);
+            }
+            return viewModels;
         }
 
         // GET api/<SpeedLimitController>/5

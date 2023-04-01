@@ -24,13 +24,13 @@ namespace RadmsWebAPI.Models.ViewModels
             this.Zone = new ZoneMasterViewModel(entity.Zone);
 
         }
-        public T MapToModel<T>() where T : class
+        public T MapToViewEntity<T>() where T : class
         {
-            WoredaMaster model = new WoredaMaster();
-            model.WoredaId = this.WoredaId;
-            model.WoredaName = this.WoredaName;
+            WoredaMasterEntity entity = new WoredaMasterEntity();
+            entity.WoredaId = this.WoredaId;
+            entity.WoredaName = this.WoredaName;
             //model.ZoneId = this.Zone.;
-            return model as T;
+            return entity as T;
         }
     }
 }

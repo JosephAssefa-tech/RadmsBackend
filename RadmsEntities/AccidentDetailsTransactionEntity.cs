@@ -29,35 +29,35 @@ namespace RadmsEntities
 
         public string? KebeleName { get; set; }
   
-        //public int UserId { get; set; }
+        public int UserId { get; set; }
 
         public string Piname { get; set; } = null!;
 
         public string PoliceRecordNumber { get; set; } = null!;
 
-        //public int HighwayTypeId { get; set; }
- 
-        //public int RoadCarriagewayId { get; set; }
+        public int HighwayTypeId { get; set; }
 
-        //public int SpeedLimitId { get; set; }
+        public int RoadCarriagewayId { get; set; }
 
-        //public int? LandmarkTypeId { get; set; }
- 
-        //public int PavementTypeId { get; set; }
+        public int SpeedLimitId { get; set; }
 
-        //public int TerrianTypeId { get; set; }
-    
-       // public int RoadSurfaceId { get; set; }
+        public int? LandmarkTypeId { get; set; }
 
-        //public int ImpactTypeId { get; set; }
+        public int PavementTypeId { get; set; }
 
-        //public int JunctionTypeId { get; set; }
+        public int TerrianTypeId { get; set; }
 
-        //public int CollisionTypeId { get; set; }
+        public int RoadSurfaceId { get; set; }
 
-        //public int WeatherCondId { get; set; }
+        public int ImpactTypeId { get; set; }
 
-        //public int SeverityId { get; set; }
+        public int JunctionTypeId { get; set; }
+
+        public int CollisionTypeId { get; set; }
+
+        public int WeatherCondId { get; set; }
+
+        public int SeverityId { get; set; }
         public int NumberOfVehicles { get; set; }
         public int PropertyDamage { get; set; }
         public int NumberofVictims { get; set; }
@@ -83,25 +83,25 @@ namespace RadmsEntities
         public string? Image6 { get; set; }
         public int SubmissionFlag { get; set; }
 
-        //public int CauseofAccidentId { get; set; }
+        public int CauseofAccidentId { get; set; }
 
-        //public int? LightCondtionId { get; set; }
+        public int? LightCondtionId { get; set; }
 
         public string Hid { get; set; } = null!;
- 
-       // public int AirConditionId { get; set; }
 
-       // public int AccidentTypeId { get; set; }
+        public int AirConditionId { get; set; }
 
-        //public int? WoredaId { get; set; }
+        public int AccidentTypeId { get; set; }
 
-        //public int? SubCityId { get; set; }
+        public int? WoredaId { get; set; }
 
-        //public int? CityId { get; set; }
+        public int? SubCityId { get; set; }
 
-        //public int? RegionId { get; set; }
+        public int? CityId { get; set; }
 
-        //public int? ZoneId { get; set; }
+        public int? RegionId { get; set; }
+
+        public int? ZoneId { get; set; }
 
         public string? AccidentLocalName { get; set; }
 
@@ -279,7 +279,7 @@ namespace RadmsEntities
             model.UserId = this.User.UserId;
             model.WeatherCondId = this.WeatherCond.WeatherCondId;
             model.WoredaId = this.Woreda.WoredaId;
-            model.ZoneId = this.Zone.ZoneId;
+       //     model.ZoneId = this.Zone.ZoneId;
 
 
            // model.CityId = this.City.CityId;

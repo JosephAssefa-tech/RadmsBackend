@@ -20,8 +20,8 @@ namespace RadmsEntities
         public string OrganizationName { get; set; } = null!;
         public OrganizationMasterEntity(OrganizationMaster model)
         {
-           // this.OrganizationId = model.OrganizationId;
-           // this.OrganizationName = model.OrganizationName;
+            this.OrganizationId = model.OrganizationId;
+            this.OrganizationName = model.OrganizationName;
 
         }
 

@@ -1,4 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using RadmsEntities;
+using RadmsServiceFacade;
+using RadmsWebAPI.Models.ViewModels;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -8,11 +11,23 @@ namespace RadmsWebAPI.Controllers
     [ApiController]
     public class UserMasterController : ControllerBase
     {
+        IUserMasterService _service;
+        public UserMasterController(IUserMasterService service)
+        {
+            _service = service;
+        }
         // GET: api/<UserMasterController>
         [HttpGet]
-        public IEnumerable<string> Get()
+        public List<UserMasterViewModel> GetAll()
         {
-            return new string[] { "value1", "value2" };
+            List<UserMasterEntity> entities = this._service.GetAll();
+            List<UserMasterViewModel> viewModels = new List<UserMasterViewModel>();
+            foreach (var entity in entities)
+            {
+                UserMasterViewModel model = new UserMasterViewModel(entity);
+                viewModels.Add(model);
+            }
+            return viewModels;
         }
 
         // GET api/<UserMasterController>/5

@@ -23,7 +23,7 @@ namespace RadmsEntities
 
         public DateTime DateTimeUser { get; set; }
 
-        public int? OrganizationId { get; set; }
+       // public int? OrganizationId { get; set; }
 
         public virtual OrganizationMasterEntity? Organization { get; set; }
 
@@ -33,7 +33,7 @@ namespace RadmsEntities
             this.UserPassword=model.UserPassword;
             this.UserName=model.UserName;
             this.DateTimeUser = model.DateTimeUser;
-            this.OrganizationId = model.OrganizationId;
+         //   this.OrganizationId = model.OrganizationId;
            this.Organization = new OrganizationMasterEntity(model.Organization);
 
 
@@ -49,7 +49,7 @@ namespace RadmsEntities
             model.UserPassword = this.UserPassword;
             model.UserName = this.UserName;
             model.DateTimeUser = this.DateTimeUser;
-            model.OrganizationId = this.OrganizationId;
+           // model.OrganizationId = this.OrganizationId;
 
             return model as T;
         }

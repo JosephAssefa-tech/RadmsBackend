@@ -4,6 +4,10 @@ namespace RadmsWebAPI.Models.PostModels
 {
     public class ZoneMasterPostModel
     {
+        public ZoneMasterPostModel()
+        {
+
+        }
         public int ZoneId { get; set; }
 
         public string ZoneName { get; set; } = null!;
@@ -11,10 +15,7 @@ namespace RadmsWebAPI.Models.PostModels
        // public int? RegionId { get; set; }
 
         public virtual RegionMasterPostModel? Region { get; set; }
-        public ZoneMasterPostModel()
-        {
-
-        }
+    
         public ZoneMasterPostModel(ZoneMasterEntity entity)
         {
             this.ZoneId = entity.ZoneId;

@@ -9,7 +9,7 @@ namespace RadmsWebAPI.Models.ViewModels
 
         public string CityName { get; set; } = null!;
 
-        public int? WoredaId { get; set; }
+     //   public int? WoredaId { get; set; }
 
         public virtual WoredaMasterViewModel? Woreda { get; set; }
 
@@ -29,13 +29,13 @@ namespace RadmsWebAPI.Models.ViewModels
         //public virtual ICollection<AccidentDetailsTransactionEntity> AccidentDetailsTransactions { get; set; }
 
         //public virtual ICollection<SubCityMasterEntity> SubCityMasters { get; set; }
-        public T MapToModel<T>() where T : class
+        public T MapToViewEntity<T>() where T : class
         {
-            CityMaster model = new CityMaster();
-            model.CityId = this.CityId;
-            model.CityName = this.CityName;
-            model.WoredaId = this.Woreda.WoredaId;
-            return model as T;
+            CityMasterEntity entity = new CityMasterEntity();
+            entity.CityId = this.CityId;
+            entity.CityName = this.CityName;
+     //       entity.WoredaId = this.Woreda.WoredaId;
+            return entity as T;
         }
     }
 }

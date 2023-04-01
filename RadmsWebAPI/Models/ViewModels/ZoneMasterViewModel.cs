@@ -9,7 +9,7 @@ namespace RadmsWebAPI.Models.ViewModels
 
         public string ZoneName { get; set; } = null!;
 
-        public int? RegionId { get; set; }
+    //    public int? RegionId { get; set; }
 
         public virtual RegionMasterViewModel? Region { get; set; }
 
@@ -21,8 +21,7 @@ namespace RadmsWebAPI.Models.ViewModels
         {
             this.ZoneId = entity.ZoneId;
             this.ZoneName = entity.ZoneName;
-            this.RegionId = entity.RegionId;
-
+            this.Region = new RegionMasterViewModel(entity.Region);
 
         }
         public T MapToViewEntity<T>() where T : class
@@ -30,7 +29,7 @@ namespace RadmsWebAPI.Models.ViewModels
             ZoneMasterEntity entity = new ZoneMasterEntity();
             entity.ZoneId = ZoneId;
             entity.ZoneName = ZoneName;
-
+            entity.RegionId = this.Region.RegionId;
 
             return entity as T;
 

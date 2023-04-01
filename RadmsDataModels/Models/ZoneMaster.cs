@@ -21,10 +21,11 @@ namespace RadmsDataModels.Models
         [StringLength(255)]
         [Unicode(false)]
         public string ZoneName { get; set; } = null!;
+        [ForeignKey("RegionId")]
         [Column("RegionID")]
         public int? RegionId { get; set; }
 
-        [ForeignKey("RegionId")]
+     
         [InverseProperty("ZoneMasters")]
         public virtual RegionMaster? Region { get; set; }
         [InverseProperty("Zone")]

@@ -1,4 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using RadmsEntities;
+using RadmsServiceFacade;
+using RadmsWebAPI.Models.ViewModels;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -8,13 +11,25 @@ namespace RadmsWebAPI.Controllers
     [ApiController]
     public class ZoneMasterController : ControllerBase
     {
+        IZoneMasterService _service;
+        public ZoneMasterController(IZoneMasterService service)
+        {
+            _service = service;
+
+        }
         // GET: api/<ZoneMasterController>
         [HttpGet]
-        public IEnumerable<string> Get()
+        public List<ZoneMasterViewModel> GetAll()
         {
-            return new string[] { "value1", "value2" };
+            List<ZoneMasterEntity> entities = this._service.GetAll();
+            List<ZoneMasterViewModel> viewModels = new List<ZoneMasterViewModel>();
+            foreach (var entity in entities)
+            {
+                ZoneMasterViewModel model = new ZoneMasterViewModel(entity);
+                viewModels.Add(model);
+            }
+            return viewModels;
         }
-
         // GET api/<ZoneMasterController>/5
         [HttpGet("{id}")]
         public string Get(int id)

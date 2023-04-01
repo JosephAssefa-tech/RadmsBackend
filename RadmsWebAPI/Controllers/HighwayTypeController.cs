@@ -1,4 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using RadmsEntities;
+using RadmsServiceFacade;
+using RadmsWebAPI.Models.ViewModels;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -8,11 +11,23 @@ namespace RadmsWebAPI.Controllers
     [ApiController]
     public class HighwayTypeController : ControllerBase
     {
+        IHighWayTypeSerivice _service;
+        public HighwayTypeController(IHighWayTypeSerivice service)
+        {
+            this._service = service;
+        }
         // GET: api/<HighwayTypeController>
         [HttpGet]
-        public IEnumerable<string> Get()
+        public List<HighwayTypeLookupViewModel> GetAll()
         {
-            return new string[] { "value1", "value2" };
+            List<HighwayTypeLookupEntity> entities = this._service.GetAll();
+            List<HighwayTypeLookupViewModel> viewModels = new List<HighwayTypeLookupViewModel>();
+            foreach (var entity in entities)
+            {
+                HighwayTypeLookupViewModel model = new HighwayTypeLookupViewModel(entity);
+                viewModels.Add(model);
+            }
+            return viewModels;
         }
 
         // GET api/<HighwayTypeController>/5
