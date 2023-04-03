@@ -10,6 +10,9 @@ namespace RadmsDataModels.Models
     [Table("RoadsInvolvedDetailsTransaction")]
     public partial class RoadsInvolvedDetailsTransaction
     {
+        [Key]
+        [Column("RoadInvolvedId")]
+        public int RoadInvolvedId { get; set; }
         [Column("AccidentID", TypeName = "numeric(18, 0)")]
         public decimal? AccidentId { get; set; }
         [Column("HID")]

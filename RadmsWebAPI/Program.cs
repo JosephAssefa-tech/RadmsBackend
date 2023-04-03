@@ -83,6 +83,8 @@ builder.Services.AddScoped<IImpactTypeRepository, ImpactTypeRepository>();
 builder.Services.AddScoped<ICollisionTypeLookupService, CollisionTypeService>();
 builder.Services.AddScoped<ICollisionTypeRepository, CollisionTypeLookupRepository>();
 
+builder.Services.AddScoped<IRoadsInvolvedDetailsTransactionService, RoadsInvolvedDetailsTransactionService>();
+builder.Services.AddScoped<IRoadsInvolvedDetailsTransactionRepository, RoadsInvolvedDetailsTransactionRepository>();
 
 
 
