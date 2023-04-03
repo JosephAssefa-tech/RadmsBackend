@@ -454,6 +454,9 @@ namespace RadmsDataAccessLogic
 
             modelBuilder.Entity<RoadsInvolvedDetailsTransaction>(entity =>
             {
+                entity.HasKey(d => d.RoadInvolvedId);
+                
+
                 entity.HasOne(d => d.Accident)
                     .WithMany()
                     .HasForeignKey(d => d.AccidentId)
