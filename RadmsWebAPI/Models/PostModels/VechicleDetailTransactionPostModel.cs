@@ -105,7 +105,7 @@ namespace RadmsWebAPI.Models.PostModels
         {
             VehicleDetailsTransactionEntity entity = new VehicleDetailsTransactionEntity();
             entity.VehicleInvolvedId = this.VehicleInvolvedId;
-            entity.VehicleInvolvedId = this.VehicleInvolvedId;
+            entity.VehicleId = this.VehicleId;
             entity.NumberPlate = this.NumberPlate;
             entity.DriverName = this.DriverName;
             entity.DriverAge = this.DriverAge;

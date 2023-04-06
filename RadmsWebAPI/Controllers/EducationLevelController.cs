@@ -1,4 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using RadmsEntities;
+using RadmsServiceFacade;
+using RadmsWebAPI.Models.ViewModels;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -8,11 +11,23 @@ namespace RadmsWebAPI.Controllers
     [ApiController]
     public class EducationLevelController : ControllerBase
     {
+        public IEducationLevelService _service;
+        public EducationLevelController(IEducationLevelService service)
+        {
+            this._service = service;
+        }
         // GET: api/<EducationLevelController>
         [HttpGet]
-        public IEnumerable<string> Get()
+        public List<EducationLevelViewModel> GetAll()
         {
-            return new string[] { "value1", "value2" };
+            List<EducationLevelLookupEntity> entities = this._service.GetAll();
+            List<EducationLevelViewModel> viewModels = new List<EducationLevelViewModel>();
+            foreach (var entity in entities)
+            {
+                EducationLevelViewModel model = new EducationLevelViewModel(entity);
+                viewModels.Add(model);
+            }
+            return viewModels;
         }
 
         // GET api/<EducationLevelController>/5

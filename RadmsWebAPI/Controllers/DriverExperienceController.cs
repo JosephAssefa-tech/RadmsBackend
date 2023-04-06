@@ -1,4 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using RadmsEntities;
+using RadmsServiceFacade;
+using RadmsWebAPI.Models.ViewModels;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -8,11 +11,23 @@ namespace RadmsWebAPI.Controllers
     [ApiController]
     public class DriverExperienceController : ControllerBase
     {
+        public IDriverExperienceLookupService _service;
+        public DriverExperienceController(IDriverExperienceLookupService service)
+        {
+            this._service = service;
+        }
         // GET: api/<DriverExperienceController>
         [HttpGet]
-        public IEnumerable<string> Get()
+        public List<DriverExperienceLookupViewModel> GetAll()
         {
-            return new string[] { "value1", "value2" };
+            List<DriverExperienceLookupEntity> entities = this._service.GetAll();
+            List<DriverExperienceLookupViewModel> viewModels = new List<DriverExperienceLookupViewModel>();
+            foreach (var entity in entities)
+            {
+                DriverExperienceLookupViewModel model = new DriverExperienceLookupViewModel(entity);
+                viewModels.Add(model);
+            }
+            return viewModels;
         }
 
         // GET api/<DriverExperienceController>/5
