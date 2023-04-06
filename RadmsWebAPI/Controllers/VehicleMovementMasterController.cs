@@ -1,4 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using RadmsEntities;
+using RadmsServiceFacade;
+using RadmsWebAPI.Models.ViewModels;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -8,11 +11,25 @@ namespace RadmsWebAPI.Controllers
     [ApiController]
     public class VehicleMovementMasterController : ControllerBase
     {
+        public IVechileMovementService _service;
+        public VehicleMovementMasterController(IVechileMovementService service)
+        {
+            _service = service;
+
+        }
+
         // GET: api/<VehicleMovementMasterController>
         [HttpGet]
-        public IEnumerable<string> Get()
+        public List<VehicleMovementMasterViewModel> GetAll()
         {
-            return new string[] { "value1", "value2" };
+            List<VehicleMovementMasterEntity> entities = this._service.GetAll();
+            List<VehicleMovementMasterViewModel> viewModels = new List<VehicleMovementMasterViewModel>();
+            foreach (var entity in entities)
+            {
+                VehicleMovementMasterViewModel model = new VehicleMovementMasterViewModel(entity);
+                viewModels.Add(model);
+            }
+            return viewModels;
         }
 
         // GET api/<VehicleMovementMasterController>/5

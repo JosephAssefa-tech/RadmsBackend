@@ -87,6 +87,34 @@ builder.Services.AddScoped<IRoadsInvolvedDetailsTransactionService, RoadsInvolve
 builder.Services.AddScoped<IRoadsInvolvedDetailsTransactionRepository, RoadsInvolvedDetailsTransactionRepository>();
 
 
+builder.Services.AddScoped<IEducationLevelService, EducationLevelService>();
+builder.Services.AddScoped<IEducationLevelRepository, EducationLevelRepository>();
+
+builder.Services.AddScoped<IDriverExperienceLookupService, DriverExperienceLookupService>();
+builder.Services.AddScoped<IDriverExperienceLookupRepository, DriverExperienceLookupRepository>();
+
+
+builder.Services.AddScoped<IVehicleOwnershipService, VehicleOwnershipService>();
+builder.Services.AddScoped<IVehicleOwnershipRepository, VehicleOwnershipRepository>();
+
+builder.Services.AddScoped<IVehicleRelationLookupService, VehicleRelationLookupService>();
+builder.Services.AddScoped<IVehicleRelationLookupRepository, VehicleRelationLookupRepository>();
+
+
+
+builder.Services.AddScoped<IVechileServiceAgeService, VechileServiceAgeService>();
+builder.Services.AddScoped<IVechileServiceAgeRepository, VechileServiceAgeRepository>();
+
+
+builder.Services.AddScoped<IVechileMovementService, VechileMovementService>();
+builder.Services.AddScoped<IVechileMovementRespository, VechileMovementRespository>();
+
+builder.Services.AddScoped<IVehicleDefectService, VehicleDefectServicecs>();
+builder.Services.AddScoped<IVehicleDefectRepository, VehicleDefectRepository>();
+
+builder.Services.AddScoped<IVechicleMasterService, VechicleMasterService>();
+builder.Services.AddScoped<IVechicleMasterRepository, VechicleMasterRepository>();
+
 
 builder.Services.AddCors(options =>
 {
