@@ -38,12 +38,12 @@ namespace RadmsRepositoryManager.Services
         {
             try
             {
-                CustomAccidentIdGenerator a = new CustomAccidentIdGenerator();
-                var b = a.GetLastNumberFromDatabase();
-                var c = b;
+                //CustomAccidentIdGenerator a = new CustomAccidentIdGenerator();
+                //var b = a.GetLastNumberFromDatabase();
+                //var c = b;
 
                 VictimDetailsTransaction model = victm.MapToModel<VictimDetailsTransaction>();
-                model.AccidentId = c;
+              //  model.AccidentId = c;
                 context.VictimDetailsTransactions.Add(model);
 
                 context.SaveChanges();
