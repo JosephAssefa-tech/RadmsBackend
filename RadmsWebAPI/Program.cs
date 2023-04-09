@@ -124,6 +124,8 @@ builder.Services.AddScoped<IHealthConditionLookupService, HealthConditionLookupS
 builder.Services.AddScoped<IHealthConditionLookupRepository, HealthConditionLookupRepository>();
 
 
+builder.Services.AddScoped<ILicenceLevelLookupService, LicenceLevelLookupService>();
+builder.Services.AddScoped<ILicenceLevelLookupRepository, LicenceLevelLookupRepository>();
 
 
 
