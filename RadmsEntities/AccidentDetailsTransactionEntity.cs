@@ -303,7 +303,6 @@ namespace RadmsEntities
             model.Lat = this.Lat;
             model.Long = this.Long;
 
-            model.AccidentId = this.AccidentId;
 
             model.DateAndTime = this.DateAndTime;
             // what is the below Psid

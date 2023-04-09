@@ -22,7 +22,7 @@ namespace RadmsWebAPI.Models.PostModels
         public string? DriverName { get; set; }
 
         public int DlcatagoryId { get; set; }
-        public int DriverAge { get; set; }
+        public int DriverAge { get; set; }//??
 
         public int? EducationLevelId { get; set; }
 
@@ -32,9 +32,9 @@ namespace RadmsWebAPI.Models.PostModels
 
         public int GenderId { get; set; }
 
-        public int Dlstatus { get; set; }
+        public int Dlstatus { get; set; }//??
 
-        public int? DllevelId { get; set; }//
+        public int? DllevelId { get; set; }//??
 
         public string? Dlnumber { get; set; }
 

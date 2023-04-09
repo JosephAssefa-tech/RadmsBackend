@@ -116,6 +116,9 @@ builder.Services.AddScoped<IVechicleMasterService, VechicleMasterService>();
 builder.Services.AddScoped<IVechicleMasterRepository, VechicleMasterRepository>();
 
 
+builder.Services.AddScoped<IVictimTypeLookupService, VictimTypeLookupService>();
+builder.Services.AddScoped<IVictimTypeLookupRepository, VictimTypeLookupRepository>();
+
 builder.Services.AddCors(options =>
 {
 options.AddPolicy("CorsPolicy", builder =>
