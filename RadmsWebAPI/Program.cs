@@ -128,6 +128,8 @@ builder.Services.AddScoped<ILicenceLevelLookupService, LicenceLevelLookupService
 builder.Services.AddScoped<ILicenceLevelLookupRepository, LicenceLevelLookupRepository>();
 
 
+builder.Services.AddScoped<IDrivingLicenceCatagoryLookupService, DrivingLicenceCatagoryLookupService>();
+builder.Services.AddScoped<IDrivingLicenceCatagoryLookupRepository, DrivingLicenceCatagoryLookupRepository>();
 
 
 
