@@ -116,6 +116,30 @@ builder.Services.AddScoped<IVechicleMasterService, VechicleMasterService>();
 builder.Services.AddScoped<IVechicleMasterRepository, VechicleMasterRepository>();
 
 
+builder.Services.AddScoped<IVictimTypeLookupService, VictimTypeLookupService>();
+builder.Services.AddScoped<IVictimTypeLookupRepository, VictimTypeLookupRepository>();
+
+
+builder.Services.AddScoped<IHealthConditionLookupService, HealthConditionLookupServicecs>();
+builder.Services.AddScoped<IHealthConditionLookupRepository, HealthConditionLookupRepository>();
+
+
+builder.Services.AddScoped<ILicenceLevelLookupService, LicenceLevelLookupService>();
+builder.Services.AddScoped<ILicenceLevelLookupRepository, LicenceLevelLookupRepository>();
+
+
+builder.Services.AddScoped<IDrivingLicenceCatagoryLookupService, DrivingLicenceCatagoryLookupService>();
+builder.Services.AddScoped<IDrivingLicenceCatagoryLookupRepository, DrivingLicenceCatagoryLookupRepository>();
+
+
+
+
+
+
+
+
+
+
 builder.Services.AddCors(options =>
 {
 options.AddPolicy("CorsPolicy", builder =>

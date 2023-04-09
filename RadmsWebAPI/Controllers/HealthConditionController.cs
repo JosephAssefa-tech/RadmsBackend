@@ -1,4 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using RadmsEntities;
+using RadmsServiceFacade;
+using RadmsWebAPI.Models.ViewModels;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -8,11 +11,24 @@ namespace RadmsWebAPI.Controllers
     [ApiController]
     public class HealthConditionController : ControllerBase
     {
+        IHealthConditionLookupService _service;
+            public HealthConditionController(IHealthConditionLookupService service)
+        {
+            _service = service;
+
+        }
         // GET: api/<HealthConditionController>
         [HttpGet]
-        public IEnumerable<string> Get()
+        public List<HealthConditionLookupViewModel> GetAll()
         {
-            return new string[] { "value1", "value2" };
+            List<HealthConditionLookupEntity> entities = this._service.GetAll();
+            List<HealthConditionLookupViewModel> viewModels = new List<HealthConditionLookupViewModel>();
+            foreach (var entity in entities)
+            {
+                HealthConditionLookupViewModel model = new HealthConditionLookupViewModel(entity);
+                viewModels.Add(model);
+            }
+            return viewModels;
         }
 
         // GET api/<HealthConditionController>/5

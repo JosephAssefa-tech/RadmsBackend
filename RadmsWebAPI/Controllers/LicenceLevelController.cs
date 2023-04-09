@@ -1,4 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using RadmsEntities;
+using RadmsServiceFacade;
+using RadmsWebAPI.Models.ViewModels;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -8,11 +11,23 @@ namespace RadmsWebAPI.Controllers
     [ApiController]
     public class LicenceLevelController : ControllerBase
     {
+        ILicenceLevelLookupService _service;
+        public LicenceLevelController(ILicenceLevelLookupService service)
+        {
+            this._service = service;
+        }
         // GET: api/<LicenceLevelController>
         [HttpGet]
-        public IEnumerable<string> Get()
+        public List<LicenceLevelLookupViewModel> GetAll()
         {
-            return new string[] { "value1", "value2" };
+            List<LicenceLevelLookupEntity> entities = this._service.GetAll();
+            List<LicenceLevelLookupViewModel> viewModels = new List<LicenceLevelLookupViewModel>();
+            foreach (var entity in entities)
+            {
+                LicenceLevelLookupViewModel model = new LicenceLevelLookupViewModel(entity);
+                viewModels.Add(model);
+            }
+            return viewModels;
         }
 
         // GET api/<LicenceLevelController>/5
