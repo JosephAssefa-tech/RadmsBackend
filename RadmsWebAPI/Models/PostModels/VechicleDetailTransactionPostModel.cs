@@ -44,6 +44,7 @@ namespace RadmsWebAPI.Models.PostModels
         public int? IsOverSpeed { get; set; }
         public int? RecordedSpeed { get; set; }
         public int? IsAlcohalConsumed { get; set; }
+        public int? AlcholTested { get; set; }
         public int? AlcohalConsumptionLevel { get; set; }
         public int ValidInsurance { get; set; }
         public int AccuseStatus { get; set; }
@@ -80,6 +81,7 @@ namespace RadmsWebAPI.Models.PostModels
             this.IsOverSpeed = entity.IsOverSpeed;
             this.RecordedSpeed = entity.RecordedSpeed;
             this.IsAlcohalConsumed = entity.IsAlcohalConsumed;
+            this.AlcholTested = entity.AlcholTested;
             this.AlcohalConsumptionLevel = entity.AlcohalConsumptionLevel;
             this.ValidInsurance = entity.ValidInsurance;
             this.AccuseStatus = entity.AccuseStatus;
@@ -127,6 +129,7 @@ namespace RadmsWebAPI.Models.PostModels
             entity.IsOverSpeed = this.IsOverSpeed;
             entity.RecordedSpeed = this.RecordedSpeed;
             entity.IsAlcohalConsumed = this.IsAlcohalConsumed;
+            entity.AlcholTested = this.AlcholTested;
             entity.AlcohalConsumptionLevel = this.AlcohalConsumptionLevel;
             entity.ValidInsurance = this.ValidInsurance;
             entity.AccuseStatus = this.AccuseStatus;

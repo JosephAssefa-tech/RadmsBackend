@@ -165,5 +165,18 @@ namespace RadmsServiceManager
 
             }
         }
+
+        public int GetTotalAccidentCount()
+        {
+            var count = _repository.GetTotalAccidentCount(); 
+            if (count != null)
+            {
+                return count;
+            }
+            else
+            {
+                throw new Exception();
+            }
+        }
     }
 }

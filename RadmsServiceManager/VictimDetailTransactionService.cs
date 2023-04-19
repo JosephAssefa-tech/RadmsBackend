@@ -1,5 +1,8 @@
-﻿using RadmsEntities;
+﻿using Microsoft.EntityFrameworkCore;
+using RadmsDataModels.Models;
+using RadmsEntities;
 using RadmsRepositoryFacade;
+using RadmsRepositoryFacade.BaseRepositoryFacade;
 using RadmsServiceFacade;
 using System;
 using System.Collections.Generic;
@@ -12,9 +15,11 @@ namespace RadmsServiceManager
     public class VictimDetailTransactionService : IVictimDetailTransaction
     {
         IVictimDetailTransactionRepository _repository;
-        public VictimDetailTransactionService(IVictimDetailTransactionRepository repository)
+        private readonly IRepository<VictimDetailsTransaction> _otherClassRepository;
+        public VictimDetailTransactionService(IVictimDetailTransactionRepository repository, IRepository<VictimDetailsTransaction> otherClassRepository)
         {
             _repository = repository;
+            _otherClassRepository = otherClassRepository;
         }
 
 
@@ -90,5 +95,23 @@ namespace RadmsServiceManager
         {
             throw new NotImplementedException();
         }
+
+        public async Task<IEnumerable<SummaryCount>> GetGroupedDataAsync()
+        {
+            var groupedData = await _otherClassRepository.Query()
+                .Include(o => o.EmploymentStatus)
+                .GroupBy(o => new { o.EmploymentStatus.EmploymentStatusId, o.EmploymentStatus.EmploymentStatusName })
+                .Select(g => new SummaryCount
+                {
+                    EmploymentStatusId = g.Key.EmploymentStatusId,
+                    EmploymentStatusName = g.Key.EmploymentStatusName,
+                    Count = g.Count()
+                })
+                .ToListAsync();
+
+            return groupedData;
+        }
+
+
     }
 }

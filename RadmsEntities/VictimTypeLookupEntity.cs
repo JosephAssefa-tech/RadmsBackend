@@ -23,7 +23,7 @@ namespace RadmsEntities
         //    public virtual ICollection<VictimDetailsTransactionEntity> VictimDetailsTransactions { get; set; }
         public VictimTypeLookupEntity(VictimTypeLookup model)
         {
-            this.VictimType = model.VictimType;
+            this.VictimTypeId = model.VictimTypeId;
             this.VictimType = model.VictimType;
          
         }

@@ -1,4 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using RadmsEntities;
+using RadmsServiceFacade;
+using RadmsWebAPI.Models.ViewModels;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -8,11 +11,24 @@ namespace RadmsWebAPI.Controllers
     [ApiController]
     public class EmploymentStatusController : ControllerBase
     {
+        IEmploymentStatusLookupService _service;
+        public EmploymentStatusController(IEmploymentStatusLookupService service)
+        {
+            _service = service;
+
+        }
         // GET: api/<EmploymentStatusController>
         [HttpGet]
-        public IEnumerable<string> Get()
+        public List<EmploymentStatusLookupViewModel> GetAll()
         {
-            return new string[] { "value1", "value2" };
+            List<EmploymentStatusLookupEntity> entities = this._service.GetAll();
+            List<EmploymentStatusLookupViewModel> viewModels = new List<EmploymentStatusLookupViewModel>();
+            foreach (var entity in entities)
+            {
+                EmploymentStatusLookupViewModel model = new EmploymentStatusLookupViewModel(entity);
+                viewModels.Add(model);
+            }
+            return viewModels;
         }
 
         // GET api/<EmploymentStatusController>/5

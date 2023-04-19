@@ -1,4 +1,5 @@
-﻿using RadmsEntities;
+﻿using RadmsDataModels.Models;
+using RadmsEntities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,6 +11,10 @@ namespace RadmsRepositoryFacade
     public interface IVictimDetailTransactionRepository
     {
         VictimDetailsTransactionEntity GetById(int id);
+        // IQueryable<SummaryCount> GetFatalCount();
+        int GetSeriousCount();
+        int GetSlightCount();
+
         VictimDetailsTransactionEntity FilterByAccidentName(string CauseName);
         bool Save(VictimDetailsTransactionEntity accident);
         bool Update(VictimDetailsTransactionEntity accident);

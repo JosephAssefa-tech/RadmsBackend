@@ -1,7 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using RadmsDataModels.Models;
 using RadmsEntities;
 using RadmsServiceFacade;
 using RadmsWebAPI.Models.PostModels;
+using RadmsWebAPI.Response;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -24,6 +26,17 @@ namespace RadmsWebAPI.Controllers
         {
             return new string[] { "value1", "value2" };
         }
+        [HttpGet("grouped-data")]
+        public async Task<ActionResult<IEnumerable<SummaryCount>>> GetGroupedData()
+        {
+            
+                var groupedData = await _service.GetGroupedDataAsync();
+                return Ok(groupedData);
+            
+
+        }
+
+
 
         // GET api/<VictimDetailsTransactionController>/5
         [HttpGet("{id}")]
