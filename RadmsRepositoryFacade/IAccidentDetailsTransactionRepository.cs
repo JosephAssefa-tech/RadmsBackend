@@ -1,4 +1,5 @@
-﻿using RadmsEntities;
+﻿using RadmsDataModels.Models;
+using RadmsEntities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +10,8 @@ namespace RadmsRepositoryFacade
 {
     public interface IAccidentDetailsTransactionRepository
     {
-        decimal SaveAsync(AccidentDetailsTransactionEntity accident);
+        //  decimal SaveAsync(AccidentDetailsTransactionEntity accident);
+        SummaryCount SaveAsync(AccidentDetailsTransactionEntity accident);
         int GetTotalAccidentCount();
         bool Update(AccidentDetailsTransactionEntity accident);
         bool Delete(decimal id );

@@ -61,7 +61,7 @@ namespace RadmsWebAPI.Controllers
             {
                 response.StatusCode = 200;
                 response.Message = "Success";
-                response.Data = new { AccidentDetailId = result };
+                response.Data = new { AccidentDetailId = result.AccidentId,NumberOfRoad=result.NumberOfMainRoad };
                 return Ok(response);
             }
         }

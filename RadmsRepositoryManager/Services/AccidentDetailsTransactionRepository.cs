@@ -136,11 +136,11 @@ namespace RadmsRepositoryManager.Services
             
         }
 
-        public  decimal SaveAsync(AccidentDetailsTransactionEntity accident)
+        public SummaryCount SaveAsync(AccidentDetailsTransactionEntity accident)
         {
             try
             {
-                decimal NumberOfMainRoads;
+                int NumberOfMainRoads;
                 AccidentDetailsTransaction model = accident.MapToModel<AccidentDetailsTransaction>();
                 context.AccidentDetailsTransactions.Add(model);
               
@@ -151,7 +151,7 @@ namespace RadmsRepositoryManager.Services
                                 on accidentDetail.JunctionTypeId equals junctionType.JunctionTypeId
                             where accidentDetail.AccidentId==model.AccidentId
                             select junctionType.JunctionNoOfRoads;
-                int value = query.FirstOrDefault();
+                int value =  query.FirstOrDefault();
 
                 if(query==null)
                 {
@@ -172,10 +172,13 @@ namespace RadmsRepositoryManager.Services
 
                 //}
                var result = model.AccidentId;
-
-                return result;
-                return NumberOfMainRoads;
-                var a = model.AccidentId;
+                SummaryCount sm = new SummaryCount
+                {
+                    AccidentId = result,
+                    NumberOfMainRoad = NumberOfMainRoads
+                    
+                };
+                return sm;
 
 
 
@@ -208,6 +211,8 @@ namespace RadmsRepositoryManager.Services
                  throw;
             }
         }
+
+
 
         public bool Update(AccidentDetailsTransactionEntity accident)
         {
