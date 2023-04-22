@@ -1,4 +1,5 @@
-﻿using RadmsEntities;
+﻿using RadmsDataModels.Models;
+using RadmsEntities;
 using RadmsRepositoryFacade;
 using RadmsServiceFacade;
 using System;
@@ -71,7 +72,7 @@ namespace RadmsServiceManager
 
         }
 
-        public decimal Save(AccidentDetailsTransactionEntity accident)
+        public SummaryData Save(AccidentDetailsTransactionEntity accident)
         {
             try
             {
@@ -163,6 +164,19 @@ namespace RadmsServiceManager
             {
                 throw;
 
+            }
+        }
+
+        public int GetTotalAccidentCount()
+        {
+            var count = _repository.GetTotalAccidentCount(); 
+            if (count != null)
+            {
+                return count;
+            }
+            else
+            {
+                throw new Exception();
             }
         }
     }

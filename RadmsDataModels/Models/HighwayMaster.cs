@@ -12,6 +12,7 @@ namespace RadmsDataModels.Models
         public HighwayMaster()
         {
             AccidentDetailsTransactions = new HashSet<AccidentDetailsTransaction>();
+            RoadsInvolvedDetailsTransactions = new HashSet<RoadsInvolvedDetailsTransaction>();
         }
 
         [Key]
@@ -23,10 +24,8 @@ namespace RadmsDataModels.Models
         [Unicode(false)]
         public string Hname { get; set; } = null!;
         [Column("HTypeID")]
-        [ForeignKey("HtypeId")]
         public int? HtypeId { get; set; }
         [Column("HOwnerID")]
-        [ForeignKey("HownerId")]
         [StringLength(3)]
         [Unicode(false)]
         public string? HownerId { get; set; }
@@ -34,13 +33,15 @@ namespace RadmsDataModels.Models
         public int? StartChange { get; set; }
         public int? EndChanage { get; set; }
 
-       
+        [ForeignKey("HownerId")]
         [InverseProperty("HighwayMasters")]
         public virtual HighwayOwnerMaster? Howner { get; set; }
-       
+        [ForeignKey("HtypeId")]
         [InverseProperty("HighwayMasters")]
         public virtual HighwayTypeLookup? Htype { get; set; }
         [InverseProperty("HidNavigation")]
         public virtual ICollection<AccidentDetailsTransaction> AccidentDetailsTransactions { get; set; }
+        [InverseProperty("HidNavigation")]
+        public virtual ICollection<RoadsInvolvedDetailsTransaction> RoadsInvolvedDetailsTransactions { get; set; }
     }
 }

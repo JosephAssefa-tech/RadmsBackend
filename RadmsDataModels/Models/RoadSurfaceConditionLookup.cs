@@ -12,6 +12,7 @@ namespace RadmsDataModels.Models
         public RoadSurfaceConditionLookup()
         {
             AccidentDetailsTransactions = new HashSet<AccidentDetailsTransaction>();
+            RoadsInvolvedDetailsTransactions = new HashSet<RoadsInvolvedDetailsTransaction>();
         }
 
         [Key]
@@ -23,5 +24,7 @@ namespace RadmsDataModels.Models
 
         [InverseProperty("RoadSurface")]
         public virtual ICollection<AccidentDetailsTransaction> AccidentDetailsTransactions { get; set; }
+        [InverseProperty("RoadSurface")]
+        public virtual ICollection<RoadsInvolvedDetailsTransaction> RoadsInvolvedDetailsTransactions { get; set; }
     }
 }

@@ -28,8 +28,9 @@ namespace RadmsDataModels.Models
         [Column(TypeName = "datetime")]
         public DateTime DateTimeUser { get; set; }
         [Column("OrganizationID")]
-        [ForeignKey("OrganizationId")]
         public int? OrganizationId { get; set; }
+
+        [ForeignKey("OrganizationId")]
         [InverseProperty("UserMasters")]
         public virtual OrganizationMaster? Organization { get; set; }
         [InverseProperty("User")]

@@ -1,4 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using RadmsEntities;
+using RadmsServiceFacade;
+using RadmsWebAPI.Models.ViewModels;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -8,11 +11,25 @@ namespace RadmsWebAPI.Controllers
     [ApiController]
     public class PedestrianMovementController : ControllerBase
     {
+        IPedestrianMovementLookupService _service;
+        public PedestrianMovementController(IPedestrianMovementLookupService service)
+        {
+            _service = service;
+        }
+
+
         // GET: api/<PedestrianMovementController>
         [HttpGet]
-        public IEnumerable<string> Get()
+        public List<PedestrianMovementLookupViewModel> GetAll()
         {
-            return new string[] { "value1", "value2" };
+            List<PedestrianMovementLookupEntity> entities = this._service.GetAll();
+            List<PedestrianMovementLookupViewModel> viewModels = new List<PedestrianMovementLookupViewModel>();
+            foreach (var entity in entities)
+            {
+                PedestrianMovementLookupViewModel model = new PedestrianMovementLookupViewModel(entity);
+                viewModels.Add(model);
+            }
+            return viewModels;
         }
 
         // GET api/<PedestrianMovementController>/5

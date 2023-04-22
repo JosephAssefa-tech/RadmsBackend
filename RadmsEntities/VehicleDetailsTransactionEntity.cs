@@ -51,7 +51,8 @@ namespace RadmsEntities
         public int? IsOverSpeed { get; set; }
         public int? RecordedSpeed { get; set; }
         public int? IsAlcohalConsumed { get; set; }
-        public int? AlcohalConsumptionLevel { get; set; }
+        public int AlcholTested { get; set; }
+        public double? AlcohalConsumptionLevel { get; set; }
         public int ValidInsurance { get; set; }
         public int AccuseStatus { get; set; }
 
@@ -87,6 +88,7 @@ namespace RadmsEntities
             this.IsOverSpeed = model.IsOverSpeed;
             this.RecordedSpeed = model.RecordedSpeed;
             this.IsAlcohalConsumed=model.IsAlcohalConsumed;
+            this.AlcholTested = model.AlcholTested;
             this.AlcohalConsumptionLevel=model.AlcohalConsumptionLevel;
             this.ValidInsurance=model.ValidInsurance;
             this.AccuseStatus = model.AccuseStatus;
@@ -135,6 +137,7 @@ namespace RadmsEntities
             model.IsOverSpeed = this.IsOverSpeed;
             model.RecordedSpeed = this.RecordedSpeed;
             model.IsAlcohalConsumed = this.IsAlcohalConsumed;
+            model.AlcholTested = this.AlcholTested;
             model.AlcohalConsumptionLevel = this.AlcohalConsumptionLevel;
             model.ValidInsurance = this.ValidInsurance;
             model.AccuseStatus = this.AccuseStatus;

@@ -6,13 +6,12 @@ using Microsoft.EntityFrameworkCore;
 
 namespace RadmsDataModels.Models
 {
-    [Keyless]
     [Table("RoadsInvolvedDetailsTransaction")]
     public partial class RoadsInvolvedDetailsTransaction
     {
         [Key]
-        [Column("RoadInvolvedId")]
-        public int RoadInvolvedId { get; set; }
+        [Column("RoadsInvolvedID", TypeName = "numeric(18, 0)")]
+        public decimal RoadsInvolvedId { get; set; }
         [Column("AccidentID", TypeName = "numeric(18, 0)")]
         public decimal? AccidentId { get; set; }
         [Column("HID")]
@@ -27,14 +26,19 @@ namespace RadmsDataModels.Models
         public int RoadCarriagewayId { get; set; }
 
         [ForeignKey("AccidentId")]
+        [InverseProperty("RoadsInvolvedDetailsTransactions")]
         public virtual AccidentDetailsTransaction? Accident { get; set; }
         [ForeignKey("Hid")]
+        [InverseProperty("RoadsInvolvedDetailsTransactions")]
         public virtual HighwayMaster HidNavigation { get; set; } = null!;
         [ForeignKey("PavementTypeId")]
+        [InverseProperty("RoadsInvolvedDetailsTransactions")]
         public virtual PavementTypeLookup PavementType { get; set; } = null!;
         [ForeignKey("RoadCarriagewayId")]
+        [InverseProperty("RoadsInvolvedDetailsTransactions")]
         public virtual RoadCarriagewayTypeLookup RoadCarriageway { get; set; } = null!;
         [ForeignKey("RoadSurfaceId")]
+        [InverseProperty("RoadsInvolvedDetailsTransactions")]
         public virtual RoadSurfaceConditionLookup RoadSurface { get; set; } = null!;
     }
 }

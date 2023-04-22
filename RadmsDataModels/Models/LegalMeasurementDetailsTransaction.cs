@@ -6,10 +6,12 @@ using Microsoft.EntityFrameworkCore;
 
 namespace RadmsDataModels.Models
 {
-    [Keyless]
     [Table("LegalMeasurementDetailsTransaction")]
     public partial class LegalMeasurementDetailsTransaction
     {
+        [Key]
+        [Column("LegalMeasurementID", TypeName = "numeric(18, 0)")]
+        public decimal LegalMeasurementId { get; set; }
         [Column("AccidentID", TypeName = "numeric(18, 0)")]
         public decimal? AccidentId { get; set; }
         [Column("VictimID")]
@@ -28,8 +30,10 @@ namespace RadmsDataModels.Models
         public decimal? MoneyDesposit { get; set; }
 
         [ForeignKey("AccidentId")]
+        [InverseProperty("LegalMeasurementDetailsTransactions")]
         public virtual AccidentDetailsTransaction? Accident { get; set; }
         [ForeignKey("VictimId")]
+        [InverseProperty("LegalMeasurementDetailsTransactions")]
         public virtual VictimDetailsTransaction? Victim { get; set; }
     }
 }

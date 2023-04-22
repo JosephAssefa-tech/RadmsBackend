@@ -61,14 +61,35 @@ namespace RadmsWebAPI.Controllers
             {
                 response.StatusCode = 200;
                 response.Message = "Success";
-                response.Data = new { AccidentDetailId = result };
+                response.Data = new { AccidentDetailId = result.AccidentId,NumberOfRoad=result.NumberOfMainRoad };
                 return Ok(response);
             }
+        }
+        [HttpGet("count")]
+        public IActionResult GetTotalNumberOfAccident()
+        {
+            ResponseDtos response = new ResponseDtos();
+            int accidentCount = this._service.GetTotalAccidentCount();
+            if(accidentCount==0)
+            {
+                response.StatusCode = 404;
+                response.Message = "no record is found";
+                return NotFound();
 
-           
+            }
+            else
+            {
+                response.StatusCode = 200;
+                response.Message = "Success";
+                var dashboardResponse = new DashboardResponse
+                {
+                    TotalAccidentCount = accidentCount
+                };
+                return Ok(dashboardResponse);
 
-        
+            }
 
+             
 
         }
 

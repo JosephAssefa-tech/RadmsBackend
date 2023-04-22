@@ -1,4 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using RadmsEntities;
+using RadmsRepositoryFacade;
+using RadmsServiceFacade;
+using RadmsWebAPI.Models.ViewModels;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -8,11 +12,24 @@ namespace RadmsWebAPI.Controllers
     [ApiController]
     public class SeatingTypeController : ControllerBase
     {
+        ISeatingTypeServicecs _service;
+        public SeatingTypeController(ISeatingTypeServicecs service)
+        {
+            _service = service;
+
+        }
         // GET: api/<SeatingTypeController>
         [HttpGet]
-        public IEnumerable<string> Get()
+        public List<SeatingTypeLookupViewModel> GetAll()
         {
-            return new string[] { "value1", "value2" };
+            List<SeatingTypeLookupEntity> entities = this._service.GetAll();
+            List<SeatingTypeLookupViewModel> viewModels = new List<SeatingTypeLookupViewModel>();
+            foreach (var entity in entities)
+            {
+                SeatingTypeLookupViewModel model = new SeatingTypeLookupViewModel(entity);
+                viewModels.Add(model);
+            }
+            return viewModels;
         }
 
         // GET api/<SeatingTypeController>/5

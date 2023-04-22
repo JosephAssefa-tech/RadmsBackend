@@ -1,4 +1,5 @@
-﻿using RadmsEntities;
+﻿using RadmsDataModels.Models;
+using RadmsEntities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,6 +11,8 @@ namespace RadmsServiceFacade
     public interface IVictimDetailTransaction
     {
         VictimDetailsTransactionEntity GetById(int id);
+        Task<IEnumerable<SummaryData>> GetGroupedDataAsync();
+
         VictimDetailsTransactionEntity FilterByAccidentName(string CauseName);
         string Save(VictimDetailsTransactionEntity victim);
         string Update(VictimDetailsTransactionEntity victim);

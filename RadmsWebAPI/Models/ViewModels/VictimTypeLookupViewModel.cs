@@ -13,7 +13,7 @@ namespace RadmsWebAPI.Models.ViewModels
         public VictimTypeLookupViewModel(VictimTypeLookupEntity entity)
         {
             this.VictimType = entity.VictimType;
-            this.VictimType = entity.VictimType;
+            this.VictimTypeId = entity.VictimTypeId;
 
         }
         public T MapToViewEntity<T>() where T : class

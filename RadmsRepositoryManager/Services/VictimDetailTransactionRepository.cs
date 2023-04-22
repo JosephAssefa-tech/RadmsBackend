@@ -34,6 +34,30 @@ namespace RadmsRepositoryManager.Services
             throw new NotImplementedException();
         }
 
+        //public IQueryable<SummaryCount> GetFatalCount()
+        //{
+        //    var result = context.VictimDetailsTransactions.ToList();
+        //    var counts = result.GroupBy(x => x.EmploymentStatus)
+        //        .Select(s => new SummaryCount
+        //        {
+        //            Severity = s.Key,
+        //            Count = s.Count()
+
+        //        }).ToList();
+
+        //    return (IQueryable<SummaryCount>)counts;
+        //}
+
+        public int GetSeriousCount()
+        {
+            throw new NotImplementedException();
+        }
+
+        public int GetSlightCount()
+        {
+            throw new NotImplementedException();
+        }
+
         public bool Save(VictimDetailsTransactionEntity victm)
         {
             try
@@ -47,6 +71,16 @@ namespace RadmsRepositoryManager.Services
                 context.VictimDetailsTransactions.Add(model);
 
                 context.SaveChanges();
+
+                var result = model.VictimId;
+                if (victm.AccidentId != model.AccidentId)
+                {
+
+                }
+                else if(victm.AccidentId==model.AccidentId)
+                {
+
+                }
 
 
 

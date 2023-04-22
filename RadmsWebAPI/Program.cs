@@ -1,4 +1,6 @@
 using RadmsRepositoryFacade;
+using RadmsRepositoryFacade.BaseRepositoryFacade;
+using RadmsRepositoryManager.BaseRepository;
 using RadmsRepositoryManager.Services;
 using RadmsServiceFacade;
 using RadmsServiceManager;
@@ -133,12 +135,29 @@ builder.Services.AddScoped<IDrivingLicenceCatagoryLookupRepository, DrivingLicen
 
 
 
+builder.Services.AddScoped<IEmploymentStatusLookupService, EmploymentStatusLookupService>();
+builder.Services.AddScoped<IEmploymentStatusLookupRepository, EmploymentStatusLookupServices>();
+
+
+builder.Services.AddScoped<IVictimMovementMasterService, VictimMovementMasterServices>();
+builder.Services.AddScoped<IVictimMovementMasterRepository, VictimMovementMasterRepository>();
+
+
+builder.Services.AddScoped<ISeatingTypeServicecs, SeatingTypeServices>();
+builder.Services.AddScoped<ISeatingTypeRepository, SeatingTypeService>();
+
+
+builder.Services.AddScoped<IPedestrianMovementLookupService, PedestrianMovementLookupServices>();
+builder.Services.AddScoped<IPedestrianMovementLookupRepository, PedestrianMovementLookupService>();
 
 
 
+builder.Services.AddScoped<IBlackSpotService, BlackSpotService>();
+builder.Services.AddScoped<IBlackSpotRepository, BlackSpotRepository>();
 
 
 
+builder.Services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
 
 builder.Services.AddCors(options =>
 {
