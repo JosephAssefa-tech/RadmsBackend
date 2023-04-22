@@ -11,6 +11,9 @@ namespace RadmsDataModels.Models
     {
         public AccidentDetailsTransaction()
         {
+            BlackSpotMasters = new HashSet<BlackSpotMaster>();
+            LegalMeasurementDetailsTransactions = new HashSet<LegalMeasurementDetailsTransaction>();
+            RoadsInvolvedDetailsTransactions = new HashSet<RoadsInvolvedDetailsTransaction>();
             VehicleDetailsTransactions = new HashSet<VehicleDetailsTransaction>();
             VictimDetailsTransactions = new HashSet<VictimDetailsTransaction>();
         }
@@ -20,7 +23,7 @@ namespace RadmsDataModels.Models
         [Key]
         [Column("AccidentID", TypeName = "numeric(18, 0)")]
         public decimal AccidentId { get; set; }
-        [Column(TypeName = "datetime2")]
+        [Column(TypeName = "datetime")]
         public DateTime DateAndTime { get; set; }
         [Column("PSID")]
         [StringLength(6)]
@@ -116,7 +119,6 @@ namespace RadmsDataModels.Models
         public int? CityId { get; set; }
         [Column("RegionID")]
         public int? RegionId { get; set; }
-        [ForeignKey("ZoneId")]
         [Column("ZoneID")]
         public int? ZoneId { get; set; }
         [StringLength(255)]
@@ -192,9 +194,15 @@ namespace RadmsDataModels.Models
         [ForeignKey("WoredaId")]
         [InverseProperty("AccidentDetailsTransactions")]
         public virtual WoredaMaster? Woreda { get; set; }
-    
+        [ForeignKey("ZoneId")]
         [InverseProperty("AccidentDetailsTransactions")]
         public virtual ZoneMaster? Zone { get; set; }
+        [InverseProperty("Accident")]
+        public virtual ICollection<BlackSpotMaster> BlackSpotMasters { get; set; }
+        [InverseProperty("Accident")]
+        public virtual ICollection<LegalMeasurementDetailsTransaction> LegalMeasurementDetailsTransactions { get; set; }
+        [InverseProperty("Accident")]
+        public virtual ICollection<RoadsInvolvedDetailsTransaction> RoadsInvolvedDetailsTransactions { get; set; }
         [InverseProperty("Accident")]
         public virtual ICollection<VehicleDetailsTransaction> VehicleDetailsTransactions { get; set; }
         [InverseProperty("Accident")]

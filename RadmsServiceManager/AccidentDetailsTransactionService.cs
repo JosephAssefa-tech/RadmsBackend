@@ -72,7 +72,7 @@ namespace RadmsServiceManager
 
         }
 
-        public SummaryCount Save(AccidentDetailsTransactionEntity accident)
+        public SummaryData Save(AccidentDetailsTransactionEntity accident)
         {
             try
             {

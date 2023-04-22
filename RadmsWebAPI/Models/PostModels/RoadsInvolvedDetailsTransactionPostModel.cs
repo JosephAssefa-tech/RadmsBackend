@@ -4,7 +4,7 @@ namespace RadmsWebAPI.Models.PostModels
 {
     public class RoadsInvolvedDetailsTransactionPostModel
     {
-        public int RoadInvolvedId {get;set;}
+        public decimal RoadsInvolvedId { get; set; }
         public decimal? AccidentId { get; set; }
 
         public string Hid { get; set; } = null!;
@@ -31,7 +31,7 @@ namespace RadmsWebAPI.Models.PostModels
         }
         public RoadsInvolvedDetailsTransactionPostModel(RoadsInvolvedDetailsTransactionEntity entity)
         {
-            this.RoadInvolvedId = entity.RoadInvolvedId;
+            this.RoadsInvolvedId = entity.RoadsInvolvedId;
             this.AccidentId = entity.AccidentId;
             this.Hid = entity.Hid;
             this.PavementTypeId = entity.PavementTypeId;
@@ -42,7 +42,7 @@ namespace RadmsWebAPI.Models.PostModels
         public T MapToViewEntity<T>() where T : class
         {
             RoadsInvolvedDetailsTransactionEntity entity = new RoadsInvolvedDetailsTransactionEntity();
-            entity.RoadInvolvedId = this.RoadInvolvedId;
+            entity.RoadsInvolvedId = this.RoadsInvolvedId;
             entity.AccidentId = this.AccidentId;
             entity.Hid = this.Hid;
             entity.PavementTypeId = this.PavementTypeId;

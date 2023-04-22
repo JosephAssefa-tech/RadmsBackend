@@ -4,17 +4,17 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace RadmsDataModels.Models
+namespace RadmsEntities
 {
-    public class SummaryCount
+    public class SummaryData
     {
-        public int EmploymentStatusId { get; set; }
-        public string EmploymentStatusName { get; set; }
+        public int SeverityId { get; set; }
+        public string SeverityType { get; set; }
         public int Count { get; set; }
         public decimal AccidentId { get; set; }
         public int NumberOfMainRoad { get; set; }
 
-        public SummaryCount()
+        public SummaryData()
         {
 
         }

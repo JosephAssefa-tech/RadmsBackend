@@ -27,7 +27,7 @@ namespace RadmsWebAPI.Controllers
             return new string[] { "value1", "value2" };
         }
         [HttpGet("grouped-data")]
-        public async Task<ActionResult<IEnumerable<SummaryCount>>> GetGroupedData()
+        public async Task<ActionResult<IEnumerable<SummaryData>>> GetGroupedData()
         {
             
                 var groupedData = await _service.GetGroupedDataAsync();

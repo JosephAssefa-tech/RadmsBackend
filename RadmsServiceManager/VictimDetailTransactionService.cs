@@ -96,15 +96,15 @@ namespace RadmsServiceManager
             throw new NotImplementedException();
         }
 
-        public async Task<IEnumerable<SummaryCount>> GetGroupedDataAsync()
+        public async Task<IEnumerable<SummaryData>> GetGroupedDataAsync()
         {
             var groupedData = await _otherClassRepository.Query()
-                .Include(o => o.EmploymentStatus)
-                .GroupBy(o => new { o.EmploymentStatus.EmploymentStatusId, o.EmploymentStatus.EmploymentStatusName })
-                .Select(g => new SummaryCount
+                .Include(o => o.Severity)
+                .GroupBy(o => new { o.Severity.SeverityId, o.Severity.SeverityType })
+                .Select(g => new SummaryData
                 {
-                    EmploymentStatusId = g.Key.EmploymentStatusId,
-                    EmploymentStatusName = g.Key.EmploymentStatusName,
+                    SeverityId = g.Key.SeverityId,
+                    SeverityType = g.Key.SeverityType,
                     Count = g.Count()
                 })
                 .ToListAsync();

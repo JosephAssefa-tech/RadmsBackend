@@ -9,7 +9,7 @@ namespace RadmsEntities
 {
     public class RoadsInvolvedDetailsTransactionEntity
     {
-        public int RoadInvolvedId { get; set; }
+        public decimal RoadsInvolvedId { get; set; }
         public decimal? AccidentId { get; set; }
 
         public string Hid { get; set; } = null!;
@@ -36,7 +36,7 @@ namespace RadmsEntities
         }
         public RoadsInvolvedDetailsTransactionEntity(RoadsInvolvedDetailsTransaction model)
         {
-            this.RoadInvolvedId =model.RoadInvolvedId;
+            this.RoadsInvolvedId = model.RoadsInvolvedId;
             this.AccidentId = model.AccidentId;
             this.Hid = model.Hid;
             this.PavementTypeId = model.PavementTypeId;
@@ -54,7 +54,7 @@ namespace RadmsEntities
         {
             RoadsInvolvedDetailsTransaction model = new RoadsInvolvedDetailsTransaction();
 
-            model.RoadInvolvedId = this.RoadInvolvedId;
+            model.RoadsInvolvedId = this.RoadsInvolvedId;
             model.AccidentId = this.AccidentId;
             model.Hid = this.Hid;
             model.PavementTypeId = this.PavementTypeId;

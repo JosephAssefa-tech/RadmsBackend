@@ -44,8 +44,8 @@ namespace RadmsWebAPI.Models.PostModels
         public int? IsOverSpeed { get; set; }
         public int? RecordedSpeed { get; set; }
         public int? IsAlcohalConsumed { get; set; }
-        public int? AlcholTested { get; set; }
-        public int? AlcohalConsumptionLevel { get; set; }
+        public int AlcholTested { get; set; }
+        public double? AlcohalConsumptionLevel { get; set; }
         public int ValidInsurance { get; set; }
         public int AccuseStatus { get; set; }
 

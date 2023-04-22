@@ -11,7 +11,7 @@ namespace RadmsServiceFacade
     public interface IVictimDetailTransaction
     {
         VictimDetailsTransactionEntity GetById(int id);
-        Task<IEnumerable<SummaryCount>> GetGroupedDataAsync();
+        Task<IEnumerable<SummaryData>> GetGroupedDataAsync();
 
         VictimDetailsTransactionEntity FilterByAccidentName(string CauseName);
         string Save(VictimDetailsTransactionEntity victim);

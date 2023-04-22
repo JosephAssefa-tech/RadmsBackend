@@ -12,6 +12,7 @@ namespace RadmsDataModels.Models
         public SeverityLevelLookup()
         {
             AccidentDetailsTransactions = new HashSet<AccidentDetailsTransaction>();
+            VictimDetailsTransactions = new HashSet<VictimDetailsTransaction>();
         }
 
         [Key]
@@ -23,5 +24,7 @@ namespace RadmsDataModels.Models
 
         [InverseProperty("Severity")]
         public virtual ICollection<AccidentDetailsTransaction> AccidentDetailsTransactions { get; set; }
+        [InverseProperty("Severity")]
+        public virtual ICollection<VictimDetailsTransaction> VictimDetailsTransactions { get; set; }
     }
 }

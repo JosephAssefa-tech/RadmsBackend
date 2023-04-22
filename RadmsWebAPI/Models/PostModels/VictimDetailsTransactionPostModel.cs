@@ -23,7 +23,7 @@ namespace RadmsWebAPI.Models.PostModels
 
         public int EmploymentStatusId { get; set; }
         public int? SeatBeltUsed { get; set; }
-        public int? AirbadDeployed { get; set; }
+        public int? AirbagDeployed { get; set; }
         public int? HelmetUsed { get; set; }
 
         public int? HealthConditionId { get; set; }
@@ -31,6 +31,7 @@ namespace RadmsWebAPI.Models.PostModels
         public int? PedestrianMovementId { get; set; }
 
         public int? SeatingTypeId { get; set; }
+        public int SeverityId { get; set; }
 
 
         //public virtual AccidentDetailsTransactionPostModel Accident { get; set; } = null!;
@@ -53,8 +54,9 @@ namespace RadmsWebAPI.Models.PostModels
             this.Age = entity.Age;
             this.GenderType = entity.GenderType;
             this.SeatBeltUsed = entity.SeatBeltUsed;
-            this.AirbadDeployed = entity.AirbadDeployed;
+            this.AirbagDeployed = entity.AirbagDeployed;
             this.HelmetUsed = entity.HelmetUsed;
+            this.SeverityId = entity.SeverityId;
 
             //this.Accident = new AccidentDetailsTransactionPostModel(entity.Accident);
             //this.EmploymentStatus = new EmploymentStatusLookupPostModel(entity.EmploymentStatus);
@@ -82,8 +84,9 @@ namespace RadmsWebAPI.Models.PostModels
             entity.Age = this.Age;
             entity.GenderType = this.GenderType;
             entity.SeatBeltUsed = this.SeatBeltUsed;
-            entity.AirbadDeployed = this.AirbadDeployed;
+            entity.AirbagDeployed = this.AirbagDeployed;
             entity.HelmetUsed = this.HelmetUsed;
+            entity.SeverityId = this.SeverityId;
 
             //entity.Accident = this.Accident.MapToViewEntity<AccidentDetailsTransactionEntity>();
             //entity.EmploymentStatus = this.EmploymentStatus.MapToViewEntity<EmploymentStatusLookupEntity>();// (entity.Dlcatagory);

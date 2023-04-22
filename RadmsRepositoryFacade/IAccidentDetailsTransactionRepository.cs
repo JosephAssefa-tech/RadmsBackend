@@ -11,7 +11,7 @@ namespace RadmsRepositoryFacade
     public interface IAccidentDetailsTransactionRepository
     {
         //  decimal SaveAsync(AccidentDetailsTransactionEntity accident);
-        SummaryCount SaveAsync(AccidentDetailsTransactionEntity accident);
+        SummaryData SaveAsync(AccidentDetailsTransactionEntity accident);
         int GetTotalAccidentCount();
         bool Update(AccidentDetailsTransactionEntity accident);
         bool Delete(decimal id );

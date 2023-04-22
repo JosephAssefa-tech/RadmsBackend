@@ -28,7 +28,7 @@ namespace RadmsEntities
 
         public int EmploymentStatusId { get; set; }
         public int? SeatBeltUsed { get; set; }
-        public int? AirbadDeployed { get; set; }
+        public int? AirbagDeployed { get; set; }
         public int? HelmetUsed { get; set; }
 
         public int? HealthConditionId { get; set; }
@@ -36,6 +36,7 @@ namespace RadmsEntities
         public int? PedestrianMovementId { get; set; }
 
         public int? SeatingTypeId { get; set; }
+        public int SeverityId { get; set; }
 
 
         //public virtual AccidentDetailsTransactionEntity Accident { get; set; } = null!;
@@ -60,8 +61,9 @@ namespace RadmsEntities
             this.Age=model.Age;
             this.GenderType = model.GenderType;
             this.SeatBeltUsed = model.SeatBeltUsed;
-            this.AirbadDeployed = model.AirbadDeployed;
+            this.AirbagDeployed = model.AirbagDeployed;
             this.HelmetUsed = model.HelmetUsed;
+            this.SeverityId = model.SeverityId;
 
             //this.Accident = new AccidentDetailsTransactionEntity(model.Accident);
             //this.EmploymentStatus = new EmploymentStatusLookupEntity(model.EmploymentStatus);
@@ -88,8 +90,9 @@ namespace RadmsEntities
             model.Age = this.Age;
             model.GenderType = this.GenderType;
             model.SeatBeltUsed = this.SeatBeltUsed;
-            model.AirbadDeployed = this.AirbadDeployed;
+            model.AirbagDeployed = this.AirbagDeployed;
             model.HelmetUsed = this.HelmetUsed;
+            model.SeverityId = this.SeverityId;
 
             //model.AccidentId = this.Accident.AccidentId;
             //model.VictimMovementId = this.VictimMovement.VictimMovementId;

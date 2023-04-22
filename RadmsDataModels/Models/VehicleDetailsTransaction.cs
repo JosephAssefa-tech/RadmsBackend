@@ -9,6 +9,11 @@ namespace RadmsDataModels.Models
     [Table("VehicleDetailsTransaction")]
     public partial class VehicleDetailsTransaction
     {
+        public VehicleDetailsTransaction()
+        {
+            VictimDetailsTransactions = new HashSet<VictimDetailsTransaction>();
+        }
+
         [Column("AccidentID", TypeName = "numeric(18, 0)")]
         public decimal AccidentId { get; set; }
         [Key]
@@ -52,10 +57,10 @@ namespace RadmsDataModels.Models
         public int? IsOverSpeed { get; set; }
         public int? RecordedSpeed { get; set; }
         public int? IsAlcohalConsumed { get; set; }
-        public int? AlcholTested { get; set; }
-        public int? AlcohalConsumptionLevel { get; set; }
+        public double? AlcohalConsumptionLevel { get; set; }
         public int ValidInsurance { get; set; }
         public int AccuseStatus { get; set; }
+        public int AlcholTested { get; set; }
 
         [ForeignKey("AccidentId")]
         [InverseProperty("VehicleDetailsTransactions")]
@@ -90,5 +95,7 @@ namespace RadmsDataModels.Models
         [ForeignKey("VehicleRelationId")]
         [InverseProperty("VehicleDetailsTransactions")]
         public virtual VehicleRelationLookup? VehicleRelation { get; set; }
+        [InverseProperty("VehicleInvolved")]
+        public virtual ICollection<VictimDetailsTransaction> VictimDetailsTransactions { get; set; }
     }
 }

@@ -151,6 +151,12 @@ builder.Services.AddScoped<IPedestrianMovementLookupService, PedestrianMovementL
 builder.Services.AddScoped<IPedestrianMovementLookupRepository, PedestrianMovementLookupService>();
 
 
+
+builder.Services.AddScoped<IBlackSpotService, BlackSpotService>();
+builder.Services.AddScoped<IBlackSpotRepository, BlackSpotRepository>();
+
+
+
 builder.Services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
 
 builder.Services.AddCors(options =>

@@ -136,7 +136,7 @@ namespace RadmsRepositoryManager.Services
             
         }
 
-        public SummaryCount SaveAsync(AccidentDetailsTransactionEntity accident)
+        public SummaryData SaveAsync(AccidentDetailsTransactionEntity accident)
         {
             try
             {
@@ -172,7 +172,7 @@ namespace RadmsRepositoryManager.Services
 
                 //}
                var result = model.AccidentId;
-                SummaryCount sm = new SummaryCount
+                SummaryData sm = new SummaryData
                 {
                     AccidentId = result,
                     NumberOfMainRoad = NumberOfMainRoads
