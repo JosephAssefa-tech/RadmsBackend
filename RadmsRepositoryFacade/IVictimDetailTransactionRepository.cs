@@ -11,6 +11,7 @@ namespace RadmsRepositoryFacade
     public interface IVictimDetailTransactionRepository
     {
         VictimDetailsTransactionEntity GetById(int id);
+        SummaryData GetSummaryWithDateAndRegion(AccidentDetailsTransactionEntity accident);
         // IQueryable<SummaryCount> GetFatalCount();
         int GetSeriousCount();
         int GetSlightCount();
