@@ -20,6 +20,8 @@ namespace RadmsRepositoryManager.BaseRepository
 
         public IQueryable<TEntity> Query()
         {
+          
+
             return _dbContext.Set<TEntity>().AsQueryable();
         }
     }

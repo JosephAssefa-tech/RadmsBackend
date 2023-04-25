@@ -13,6 +13,13 @@ namespace RadmsEntities
         public int Count { get; set; }
         public decimal AccidentId { get; set; }
         public int NumberOfMainRoad { get; set; }
+        public int? Year
+        {
+            get; set;
+        }
+        public int RegionId { get; set; }
+        public string RegionName { get; set; }
+
 
         public SummaryData()
         {

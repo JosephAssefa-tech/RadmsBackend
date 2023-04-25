@@ -1,4 +1,5 @@
-﻿using RadmsDataAccessLogic;
+﻿using Microsoft.EntityFrameworkCore;
+using RadmsDataAccessLogic;
 using RadmsDataModels.Models;
 using RadmsEntities;
 using RadmsRepositoryFacade;
@@ -96,5 +97,32 @@ namespace RadmsRepositoryManager.Services
         {
             throw new NotImplementedException();
         }
+        public SummaryData GetSummaryWithDateAndRegion(AccidentDetailsTransactionEntity? entity)
+        {
+            
+            var result = context.VictimDetailsTransactions
+    .Include(v => v.Severity)
+    .Join(context.AccidentDetailsTransactions,
+        victim => victim.AccidentId,
+        accident => accident.AccidentId,
+        (victim, accident) => new { victim, accident })
+    .Where(va => va.accident.RegionId == 2)
+    .GroupBy(o => new { o.victim.Severity.SeverityId, o.victim.Severity.SeverityType, o.accident.RegionId, o.accident.Region.RegionName })
+    .Select(g => new SummaryData
+    {
+        SeverityId = g.Key.SeverityId,
+        SeverityType = g.Key.SeverityType,
+        Count = g.Count(),
+        RegionId = (int)g.Key.RegionId,
+        RegionName = g.Key.RegionName
+    })
+    .FirstOrDefault();
+
+
+            return result;
+
+        }
+
+       
     }
 }

@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using RadmsDataAccessLogic;
 using RadmsDataModels.Models;
 using RadmsEntities;
 using RadmsRepositoryFacade;
@@ -14,6 +15,7 @@ namespace RadmsServiceManager
 {
     public class VictimDetailTransactionService : IVictimDetailTransaction
     {
+      RadmsContext context =new RadmsContext();
         IVictimDetailTransactionRepository _repository;
         private readonly IRepository<VictimDetailsTransaction> _otherClassRepository;
         public VictimDetailTransactionService(IVictimDetailTransactionRepository repository, IRepository<VictimDetailsTransaction> otherClassRepository)
@@ -91,6 +93,7 @@ namespace RadmsServiceManager
             }
         }
 
+
         public string Update(VictimDetailsTransactionEntity victim)
         {
             throw new NotImplementedException();
@@ -103,6 +106,7 @@ namespace RadmsServiceManager
                 .GroupBy(o => new { o.Severity.SeverityId, o.Severity.SeverityType })
                 .Select(g => new SummaryData
                 {
+                   // Year=g.Key
                     SeverityId = g.Key.SeverityId,
                     SeverityType = g.Key.SeverityType,
                     Count = g.Count()
@@ -110,6 +114,25 @@ namespace RadmsServiceManager
                 .ToListAsync();
 
             return groupedData;
+        }
+        public SummaryData GetSummaryWithDateAndRegion(AccidentDetailsTransactionEntity? accident)
+        {
+            try
+            {
+               
+             
+
+                var result = _repository.GetSummaryWithDateAndRegion(accident);
+            
+                return result;
+        
+
+            }
+            catch (Exception)
+            {
+                throw;
+
+            }
         }
 
 
