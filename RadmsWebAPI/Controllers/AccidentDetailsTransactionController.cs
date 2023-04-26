@@ -88,9 +88,22 @@ namespace RadmsWebAPI.Controllers
                 return Ok(dashboardResponse);
 
             }
+        }
+        [HttpGet("property-damage")]
+        public IActionResult GetTotalPropertyDamage()
+        {
+            ResponseDtos response = new ResponseDtos();
+            int propertyCount = this._service.GetTotalPropertyDamage();
+    
+                response.StatusCode = 200;
+                response.Message = "Success";
+                var dashboardResponse = new DashboardResponse
+                {
+                    TotalPropertyDamage = propertyCount
+                };
+                return Ok(dashboardResponse);
 
-             
-
+            
         }
 
         // PUT api/<AccidentDetailsTransactionController>/5

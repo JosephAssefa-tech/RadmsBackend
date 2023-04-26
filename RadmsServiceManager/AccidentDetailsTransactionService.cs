@@ -179,5 +179,18 @@ namespace RadmsServiceManager
                 throw new Exception();
             }
         }
+
+        public int GetTotalPropertyDamage()
+        {
+            var propertyCount = _repository.GetTotalPropertyDamage();
+            if (propertyCount != null)
+            {
+                return propertyCount;
+            }
+            else
+            {
+                throw new Exception();
+            }
+        }
     }
 }

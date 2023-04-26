@@ -2,6 +2,7 @@
 using RadmsEntities;
 using RadmsServiceFacade;
 using RadmsWebAPI.Models.ViewModels;
+using RadmsWebAPI.Response;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -28,6 +29,30 @@ namespace RadmsWebAPI.Controllers
                 viewModels.Add(model);
             }
             return viewModels;
+        }
+        [HttpGet("count-blackspot")]
+        public IActionResult GetTotalNumberOfBlackspotCount()
+        {
+            ResponseDtos response = new ResponseDtos();
+            int blackspotCount = this._service.GetTotalBlackspotCount();
+            if (blackspotCount == 0)
+            {
+                response.StatusCode = 404;
+                response.Message = "no record is found";
+                return NotFound();
+
+            }
+            else
+            {
+                response.StatusCode = 200;
+                response.Message = "Success";
+                var dashboardResponse = new DashboardResponse
+                {
+                    blackspotCount = blackspotCount
+                };
+                return Ok(dashboardResponse);
+
+            }
         }
 
         // GET api/<BlackSpotController>/5
