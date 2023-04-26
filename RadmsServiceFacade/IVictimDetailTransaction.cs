@@ -11,7 +11,7 @@ namespace RadmsServiceFacade
     public interface IVictimDetailTransaction
     {
         VictimDetailsTransactionEntity GetById(int id);
-        SummaryData GetSummaryWithDateAndRegion(AccidentDetailsTransactionEntity entity);
+        List<SummaryData> GetSummaryWithDateAndRegion(int? regionId, DateTime? dateTime);
         Task<IEnumerable<SummaryData>> GetGroupedDataAsync();
 
         VictimDetailsTransactionEntity FilterByAccidentName(string CauseName);

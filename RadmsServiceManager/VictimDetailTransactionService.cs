@@ -101,9 +101,10 @@ namespace RadmsServiceManager
 
         public async Task<IEnumerable<SummaryData>> GetGroupedDataAsync()
         {
-            var groupedData = await _otherClassRepository.Query()
-                .Include(o => o.Severity)
-                .GroupBy(o => new { o.Severity.SeverityId, o.Severity.SeverityType })
+            var query =  _otherClassRepository.Query();
+                ;
+
+                var groupedData= await query.Include(o => o.Severity).GroupBy(o => new { o.Severity.SeverityId, o.Severity.SeverityType })
                 .Select(g => new SummaryData
                 {
                    // Year=g.Key
@@ -115,14 +116,14 @@ namespace RadmsServiceManager
 
             return groupedData;
         }
-        public SummaryData GetSummaryWithDateAndRegion(AccidentDetailsTransactionEntity? accident)
+        public List<SummaryData> GetSummaryWithDateAndRegion(int? regionId, DateTime? dateTime)
         {
             try
             {
                
              
 
-                var result = _repository.GetSummaryWithDateAndRegion(accident);
+                var result = _repository.GetSummaryWithDateAndRegion(regionId,dateTime);
             
                 return result;
         
