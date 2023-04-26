@@ -37,10 +37,10 @@ namespace RadmsWebAPI.Controllers
         }
         [HttpGet("grouped-region-data")]
 
-        public IActionResult GetSummaryWithDateAndRegion()
+        public ActionResult<List<SummaryData>> GetSummaryWithDateAndRegion(int? regionId,DateTime? dateTime)
         {
-            AccidentDetailsTransactionEntity entity = new AccidentDetailsTransactionEntity();
-            var groupedData =  _service.GetSummaryWithDateAndRegion( entity);
+          //  AccidentDetailsTransactionEntity entity = new AccidentDetailsTransactionEntity();
+            var groupedData =  _service.GetSummaryWithDateAndRegion(regionId,dateTime);
             return Ok(groupedData);
 
         }

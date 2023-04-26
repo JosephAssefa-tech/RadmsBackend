@@ -95,9 +95,22 @@ namespace RadmsRepositoryManager.Services
 
         public bool Update(VictimDetailsTransactionEntity accident)
         {
-            throw new NotImplementedException();
-        }
-        public SummaryData GetSummaryWithDateAndRegion(AccidentDetailsTransactionEntity? entity)
+        //    var groupedData = await _otherClassRepository.Query()
+        //      .Include(o => o.Severity)
+        //      .GroupBy(o => new { o.Severity.SeverityId, o.Severity.SeverityType })
+        //      .Select(g => new SummaryData
+        //      {
+        //            // Year=g.Key
+        //          SeverityId = g.Key.SeverityId,
+        //          SeverityType = g.Key.SeverityType,
+        //          Count = g.Count()
+        //      })
+        //      .ToListAsync();
+
+        //    return groupedData;
+        throw new NotImplementedException();
+    }
+        public List<SummaryData> GetSummaryWithDateAndRegion(int? regionId, DateTime? dateTime)
         {
             
             var result = context.VictimDetailsTransactions
@@ -106,8 +119,15 @@ namespace RadmsRepositoryManager.Services
         victim => victim.AccidentId,
         accident => accident.AccidentId,
         (victim, accident) => new { victim, accident })
-    .Where(va => va.accident.RegionId == 2)
-    .GroupBy(o => new { o.victim.Severity.SeverityId, o.victim.Severity.SeverityType, o.accident.RegionId, o.accident.Region.RegionName })
+.Where(va => va.accident.Region.RegionId == regionId);
+
+            if (!result.Any())
+            {
+                return null;
+            }
+            var a=result
+    .GroupBy(o => new { o.accident.Severity.SeverityId, o.accident.Severity.SeverityType,o.accident.Region.RegionId,o.accident
+    .Region.RegionName})
     .Select(g => new SummaryData
     {
         SeverityId = g.Key.SeverityId,
@@ -116,10 +136,10 @@ namespace RadmsRepositoryManager.Services
         RegionId = (int)g.Key.RegionId,
         RegionName = g.Key.RegionName
     })
-    .FirstOrDefault();
+    .ToList();
 
 
-            return result;
+            return a;
 
         }
 
