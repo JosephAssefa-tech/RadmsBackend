@@ -35,5 +35,14 @@ namespace RadmsRepositoryManager.Services
             }
             return entities;
         }
+
+        public int GetBlackspotCount()
+        {
+            var totalCount = context.BlackSpotMasters
+                
+                .Distinct()
+                .Count();
+            return totalCount;
+        }
     }
 }

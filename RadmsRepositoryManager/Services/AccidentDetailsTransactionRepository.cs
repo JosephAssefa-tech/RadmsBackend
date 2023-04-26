@@ -136,6 +136,14 @@ namespace RadmsRepositoryManager.Services
             
         }
 
+        public int GetTotalPropertyDamage()
+        {
+            var totalCount = context.AccidentDetailsTransactions.
+                Include(x=>x.Severity).
+                Where(x=>x.SeverityId==5).Count();
+            return totalCount;
+        }
+
         public SummaryData SaveAsync(AccidentDetailsTransactionEntity accident)
         {
             try

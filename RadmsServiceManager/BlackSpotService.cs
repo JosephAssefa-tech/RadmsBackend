@@ -22,5 +22,18 @@ namespace RadmsServiceManager
             List<BlackSpotMasterEntity> results = this._repositiory.GetAll();
             return results;
         }
+
+        public int GetTotalBlackspotCount()
+        {
+            var count = _repositiory.GetBlackspotCount();
+            if (count != null)
+            {
+                return count;
+            }
+            else
+            {
+                throw new Exception();
+            }
+        }
     }
 }

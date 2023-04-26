@@ -10,5 +10,6 @@ namespace RadmsServiceFacade
     public interface  IBlackSpotService
     {
         List<BlackSpotMasterEntity> GetAll();
+        int GetTotalBlackspotCount();
     }
 }
