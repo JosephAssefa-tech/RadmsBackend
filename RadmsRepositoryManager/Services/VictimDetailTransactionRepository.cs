@@ -112,37 +112,46 @@ namespace RadmsRepositoryManager.Services
     }
         public List<SummaryData> GetSummaryWithDateAndRegion(int? regionId, DateTime? dateTime)
         {
-            
+
             var result = context.VictimDetailsTransactions
-    .Include(v => v.Severity)
-    .Join(context.AccidentDetailsTransactions,
-        victim => victim.AccidentId,
-        accident => accident.AccidentId,
-        (victim, accident) => new { victim, accident })
-.Where(va => va.accident.Region.RegionId == regionId);
+     .Include(v => v.Severity)
+     .Join(context.AccidentDetailsTransactions,
+         victim => victim.AccidentId,
+         accident => accident.AccidentId,
+         (victim, accident) => new { victim, accident })
+     .Where(va => va.accident.Region.RegionId == regionId)
+     .GroupBy(o => new { o.accident.Severity.SeverityId, o.accident.Severity.SeverityType, o.accident.Region.RegionId, o.accident.Region.RegionName })
+     .Select(g => new SummaryData
+     {
+         SeverityId = g.Key.SeverityId,
+         SeverityType = g.Key.SeverityType,
+         Count = g.Count(),
+         RegionId = (int)g.Key.RegionId,
+         RegionName = g.Key.RegionName
+     })
+     .ToList();
 
-            if (!result.Any())
-            {
-                return null;
-            }
-            var a=result
-    .GroupBy(o => new { o.accident.Severity.SeverityId, o.accident.Severity.SeverityType,o.accident.Region.RegionId,o.accident
-    .Region.RegionName})
-    .Select(g => new SummaryData
-    {
-        SeverityId = g.Key.SeverityId,
-        SeverityType = g.Key.SeverityType,
-        Count = g.Count(),
-        RegionId = (int)g.Key.RegionId,
-        RegionName = g.Key.RegionName
-    })
-    .ToList();
+            var severityTypes = context.SeverityLevelLookups.ToList();
+            var finalResult = severityTypes
+                .GroupJoin(result,
+                    s => s.SeverityType,
+                    r => r.SeverityType,
+                    (s, r) => new { SeverityType = s, SummaryData = r.FirstOrDefault() })
+                .Select(x => new SummaryData
+                {
+                    SeverityId = x.SeverityType.SeverityId,
+                    SeverityType = x.SeverityType.SeverityType,
+                    Count = (x.SummaryData?.Count) ?? 0,
+                   // RegionId = (int)regionId,
+                   // RegionName = x.region.regionName
+                })
+                .ToList(); 
 
+            return finalResult;
 
-            return a;
 
         }
 
-       
+
     }
 }

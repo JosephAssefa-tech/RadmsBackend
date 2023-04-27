@@ -101,16 +101,18 @@ namespace RadmsServiceManager
 
         public async Task<IEnumerable<SummaryData>> GetGroupedDataAsync()
         {
+            var currentYear = DateTime.Now.Year;
             var query =  _otherClassRepository.Query();
                 ;
 
                 var groupedData= await query.Include(o => o.Severity).GroupBy(o => new { o.Severity.SeverityId, o.Severity.SeverityType })
                 .Select(g => new SummaryData
                 {
-                   // Year=g.Key
+                    Year=currentYear,
                     SeverityId = g.Key.SeverityId,
                     SeverityType = g.Key.SeverityType,
                     Count = g.Count()
+                    
                 })
                 .ToListAsync();
 
