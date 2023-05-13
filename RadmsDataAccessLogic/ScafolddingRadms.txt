@@ -1,1 +1,1 @@
-Scaffold-DbContext "Server=LAPTOP-LMG59KKQ;Database=Radms;Trusted_Connection=True;TrustServerCertificate=True;" Microsoft.EntityFrameworkCore.SqlServer -OutputDir Models -Context "RadmsContext" -DataAnnotations
+Scaffold-DbContext "Server=WIN-SILTODJTP4C\MSSQLSERVER01;Database=RADMS;Trusted_Connection=True;TrustServerCertificate=True;" Microsoft.EntityFrameworkCore.SqlServer -OutputDir Models -Context "RadmsContext" -DataAnnotations

@@ -42,7 +42,7 @@ namespace RadmsRepositoryManager.Services
                 //  var c = b;
 
                 RoadsInvolvedDetailsTransaction model = road.MapToModel<RoadsInvolvedDetailsTransaction>();
-              //  model.AccidentId = c;
+                
                 context.RoadsInvolvedDetailsTransactions.Add(model);
 
                 context.SaveChanges();

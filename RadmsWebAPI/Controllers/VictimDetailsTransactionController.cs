@@ -1,10 +1,11 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using RadmsDataModels.Models;
 using RadmsEntities;
+using RadmsRepositoryManager.Services;
 using RadmsServiceFacade;
 using RadmsWebAPI.Models.PostModels;
 using RadmsWebAPI.Response;
-
+using Newtonsoft.Json;
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace RadmsWebAPI.Controllers
@@ -15,9 +16,11 @@ namespace RadmsWebAPI.Controllers
     public class VictimDetailsTransactionController : ControllerBase
     {
         IVictimDetailTransaction _service;
+     
         public VictimDetailsTransactionController(IVictimDetailTransaction service)
         {
             _service = service;
+         
 
         }
         // GET: api/<VictimDetailsTransactionController>
@@ -79,6 +82,34 @@ namespace RadmsWebAPI.Controllers
         [HttpDelete("{id}")]
         public void Delete(int id)
         {
+        }
+        [HttpGet("trend-analysis-data")]
+        public async Task<IActionResult> GetTrendAnalysisData()
+        {
+            int currentYear = DateTime.Now.Year;
+            var data = new List<object>();
+
+            for (int i = 0; i < 11; i++)
+            {
+                int year = currentYear - i;
+                var fatalCount = await this._service.GetFatalAccidentCount(year);
+                var seriousCount = await this._service.GetSeriousAccidentCount(year);
+                var slightCount = await this._service.GetSlightAccidentCount(year);
+                var propertyDamageCount = await this._service.GetPropertyDamageCount(year);
+
+                var yearData = new TrendAnalysisResponse()
+                {
+                    Year = year,
+                    FatalCount = fatalCount,
+                    SeriousCount = seriousCount,
+                    SlightCount = slightCount,
+                    PropertyDamageCount = propertyDamageCount
+                };
+
+                data.Add(yearData);
+            }
+
+            return Ok(data);
         }
     }
 }

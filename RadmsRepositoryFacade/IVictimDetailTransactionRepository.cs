@@ -21,5 +21,9 @@ namespace RadmsRepositoryFacade
         bool Update(VictimDetailsTransactionEntity accident);
         bool Delete(decimal id);
         List<VictimDetailsTransactionEntity> GetAll();
+        Task<int> GetFatalAccidentCount(int year);
+        Task<int> GetSeriousAccidentCount(int year);
+        Task<int> GetSlightAccidentCount(int year);
+        Task<int> GetPropertyDamageCount(int year);
     }
 }
