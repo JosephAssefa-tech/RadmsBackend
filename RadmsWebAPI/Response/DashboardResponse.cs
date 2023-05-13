@@ -5,6 +5,7 @@
         public int TotalAccidentCount { get; set; }
         public int TotalPropertyDamage { get; set; }
         public int blackspotCount { get; set; }
+
         public DashboardResponse()
         {
 

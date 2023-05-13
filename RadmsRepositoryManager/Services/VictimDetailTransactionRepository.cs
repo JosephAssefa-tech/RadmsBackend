@@ -152,6 +152,48 @@ namespace RadmsRepositoryManager.Services
 
         }
 
+        public async Task<int> GetFatalAccidentCount(int year)
+        {
+            return await context.VictimDetailsTransactions
+                .Join(context.AccidentDetailsTransactions,
+                    vdt => vdt.AccidentId,
+                    adt => adt.AccidentId,
+                    (vdt, adt) => new { Vdt = vdt, Adt = adt })
+                     .CountAsync(x => x.Vdt.SeverityId == 2  && x.Adt.DateAndTime.Year == year);
 
+            //  .CountAsync(x => x.Vdt.SeverityId == 2 && x.Adt.SubmissionFlag == 2 && x.Adt.DateAndTime.Year == year);
+        }
+
+        public async Task<int> GetSeriousAccidentCount(int year)
+        {
+            return await context.VictimDetailsTransactions
+                .Join(context.AccidentDetailsTransactions,
+                    vdt => vdt.AccidentId,
+                    adt => adt.AccidentId,
+                    (vdt, adt) => new { Vdt = vdt, Adt = adt })
+                   .CountAsync(x => x.Vdt.SeverityId == 3  && x.Adt.DateAndTime.Year == year);
+
+            //  .CountAsync(x => x.Vdt.SeverityId == 3 && x.Adt.SubmissionFlag == 2 && x.Adt.DateAndTime.Year == year);
+        }
+
+        public async Task<int> GetSlightAccidentCount(int year)
+        {
+            return await context.VictimDetailsTransactions
+                .Join(context.AccidentDetailsTransactions,
+                    vdt => vdt.AccidentId,
+                    adt => adt.AccidentId,
+                    (vdt, adt) => new { Vdt = vdt, Adt = adt })
+                  .CountAsync(x => x.Vdt.SeverityId == 4  && x.Adt.DateAndTime.Year == year);
+   
+               // .CountAsync(x => x.Vdt.SeverityId == 4 && x.Adt.SubmissionFlag == 2 && x.Adt.DateAndTime.Year == year);
+        }
+
+        public async Task<int> GetPropertyDamageCount(int year)
+        {
+            return await context.AccidentDetailsTransactions
+                     .CountAsync(x => x.SeverityId == 5  && x.DateAndTime.Year == year);
+
+            //   .CountAsync(x => x.SeverityId == 5 && x.SubmissionFlag == 2 && x.DateAndTime.Year == year);
+        }
     }
 }

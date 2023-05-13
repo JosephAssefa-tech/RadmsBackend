@@ -137,6 +137,25 @@ namespace RadmsServiceManager
 
             }
         }
+        public async Task<int> GetFatalAccidentCount(int year)
+        {
+            return await _repository.GetFatalAccidentCount(year);
+        }
+
+        public async Task<int> GetSeriousAccidentCount(int year)
+        {
+            return await _repository.GetSeriousAccidentCount(year);
+        }
+
+        public async Task<int> GetSlightAccidentCount(int year)
+        {
+            return await _repository.GetSlightAccidentCount(year);
+        }
+
+        public async Task<int> GetPropertyDamageCount(int year)
+        {
+            return await _repository.GetPropertyDamageCount(year);
+        }
 
 
     }

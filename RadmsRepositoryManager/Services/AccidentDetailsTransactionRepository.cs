@@ -168,7 +168,7 @@ namespace RadmsRepositoryManager.Services
                 }
                 else
                 {
-                    NumberOfMainRoads = value - 1;
+                    NumberOfMainRoads = value ;
                 }
                
 
