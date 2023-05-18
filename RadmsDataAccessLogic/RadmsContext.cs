@@ -78,9 +78,9 @@ namespace RadmsDataAccessLogic
         {
             if (!optionsBuilder.IsConfigured)
             {
-                 var builder = new SqlConnectionStringBuilder { DataSource = @"LAPTOP-LMG59KKQ", InitialCatalog = "Radms_April_21", UserID = "user", Password = "Radms123" };
+              //   var builder = new SqlConnectionStringBuilder { DataSource = @"LAPTOP-LMG59KKQ", InitialCatalog = "RadmsMultiLangual", UserID = "user", Password = "Radms123" };
 
-              //  var builder = new SqlConnectionStringBuilder { DataSource = @"WIN-SILTODJTP4C\MSSQLSERVER01", InitialCatalog = "RADMS", UserID = "user", Password = "Radms123" };
+                var builder = new SqlConnectionStringBuilder { DataSource = @"WIN-SILTODJTP4C\MSSQLSERVER01", InitialCatalog = "RADMS", UserID = "user", Password = "Radms123" };
                 var connectionString = builder.ConnectionString; // Use connection string optionsBuilder.UseSqlServer(connectionString );
 
                 optionsBuilder.UseSqlServer(connectionString);
