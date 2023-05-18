@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using Microsoft.EntityFrameworkCore;
-using RadmsDataModels.Models;
+using RadmsDataModels.Modelss;
 
 namespace RadmsEntities
 {
@@ -34,12 +34,12 @@ namespace RadmsEntities
         {
             this.Hid = model.Hid;
             this.Hname = model.Hname;
-            this.Hlength = model.Hlength;
-            this.StartChange = model.StartChange;
-            this.EndChanage = model.EndChanage;
+            //this.Hlength = model.Hlength;
+            //this.StartChange = model.StartChange;
+            //this.EndChanage = model.EndChanage;
             // this.HtypeId = model.HtypeId;
-            this.Howner = new HighwayOwnerMasterEntity(model.Howner);
-            this.Htype = new HighwayTypeLookupEntity(model.Htype);
+            //this.Howner = new HighwayOwnerMasterEntity(model.Howner);
+            //this.Htype = new HighwayTypeLookupEntity(model.Htype);
 
         }
         public T MapToModel<T>() where T : class
@@ -47,9 +47,9 @@ namespace RadmsEntities
             HighwayMaster model = new HighwayMaster();
             model.Hid = this.Hid;
             model.Hname = this.Hname;
-            model.Hlength = this.Hlength;
-            model.StartChange = this.StartChange;
-            model.EndChanage = this.EndChanage;
+            //model.Hlength = this.Hlength;
+            //model.StartChange = this.StartChange;
+            //model.EndChanage = this.EndChanage;
            // model.Howner=new HighwayOwnerMasterEntity(MapToModel<HighwayOwnerMaster>())
             return model as T;
         }

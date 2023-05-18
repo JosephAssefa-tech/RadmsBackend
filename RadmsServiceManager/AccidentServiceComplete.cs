@@ -32,7 +32,7 @@ namespace RadmsServiceManager
             throw new NotImplementedException();
         }
 
-        public List<AccidentCauseLookupEntity> GetAll()
+        public List<AccidentCauseLookupEntity> GetAll(string language)
         {
             throw new NotImplementedException();
         }

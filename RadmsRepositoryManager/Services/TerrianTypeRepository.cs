@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using RadmsDataAccessLogic;
-using RadmsDataModels.Models;
+using RadmsDataModels.Modelss;
 using RadmsEntities;
 using RadmsRepositoryFacade;
 using System;
@@ -14,10 +14,31 @@ namespace RadmsRepositoryManager.Services
     public class TerrianTypeRepository : ITerrianTypeRepository
     {
         RadmsContext context = new RadmsContext();
-        public List<TerrainTypeLookupEntity> GetAll()
+        public List<TerrainTypeLookupEntity> GetAll(string language)
         {
-            List<TerrainTypeLookup> models = context.TerrainTypeLookups
-             .ToList();
+            List<TerrainTypeLookup> models;
+
+
+            if (language == "amharic")
+            {
+                models = context.TerrainTypeLookups.Select(x => new TerrainTypeLookup
+                {
+                   TerrianName = x.TerrianNameAm,
+                   TerrianTypeId=x.TerrianTypeId,
+                }).ToList();
+
+            }
+            else
+            {
+                models = context.TerrainTypeLookups.Select(x => new TerrainTypeLookup
+                {
+                    TerrianName = x.TerrianName,
+                    TerrianTypeId = x.TerrianTypeId,
+                }).ToList();
+            }
+
+
+
             List<TerrainTypeLookupEntity> entities = new List<TerrainTypeLookupEntity>();
             foreach (var model in models)
             {

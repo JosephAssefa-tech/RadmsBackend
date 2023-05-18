@@ -19,9 +19,9 @@ namespace RadmsWebAPI.Controllers
         }
         // GET: api/<TerrainTypeLookupController>
         [HttpGet]
-        public List<TerrainTypeLookupPostModel> GetAll()
+        public List<TerrainTypeLookupPostModel> GetAll(string languge)
         {
-            List<TerrainTypeLookupEntity> entities = this._service.GetAll();
+            List<TerrainTypeLookupEntity> entities = this._service.GetAll(languge);
             List<TerrainTypeLookupPostModel> viewModels = new List<TerrainTypeLookupPostModel>();
             foreach (var entity in entities)
             {

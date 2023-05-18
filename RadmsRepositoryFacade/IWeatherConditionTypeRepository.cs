@@ -12,7 +12,7 @@ namespace RadmsRepositoryFacade
         bool Save(WeatherConditionTypeLookupEntity accident);
         bool Update(WeatherConditionTypeLookupEntity accident);
         bool Delete(decimal id);
-        List<WeatherConditionTypeLookupEntity> GetAll();
+        List<WeatherConditionTypeLookupEntity> GetAll(string language);
         WeatherConditionTypeLookupEntity GetById(int id);
         WeatherConditionTypeLookupEntity FilterByAccidentName(string CauseName);
     }

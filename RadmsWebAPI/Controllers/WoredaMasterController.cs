@@ -19,9 +19,9 @@ namespace RadmsWebAPI.Controllers
        
         // GET: api/<WoredaMasterController>
         [HttpGet]
-        public List<WoredaMasterViewModel> GetAll()
+        public List<WoredaMasterViewModel> GetAll(string language)
         {
-            List<WoredaMasterEntity> entities = this._service.GetAll();
+            List<WoredaMasterEntity> entities = this._service.GetAll(language);
             List<WoredaMasterViewModel> viewModels = new List<WoredaMasterViewModel>();
             foreach (var entity in entities)
             {

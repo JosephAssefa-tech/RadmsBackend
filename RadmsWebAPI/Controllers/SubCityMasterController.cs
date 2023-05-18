@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using RadmsDataModels.Models;
+using RadmsDataModels.Modelss;
 using RadmsEntities;
 using RadmsServiceFacade;
 using RadmsWebAPI.Models.ViewModels;
@@ -19,9 +19,9 @@ namespace RadmsWebAPI.Controllers
         }
         // GET: api/<SubCityMasterController>
         [HttpGet]
-        public List<SubCityMasterViewModel> GetAll()
+        public List<SubCityMasterViewModel> GetAll(string language)
         {
-            List<SubCityMasterEntity> entities = this._service.GetAll();
+            List<SubCityMasterEntity> entities = this._service.GetAll(language);
             List<SubCityMasterViewModel> viewModels = new List<SubCityMasterViewModel>();
             foreach (var entity in entities)
             {

@@ -16,9 +16,9 @@ namespace RadmsServiceManager
         {
             _repository = repository;
         }
-        public List<JunctionTypeLookupEntity> GetAll()
+        public List<JunctionTypeLookupEntity> GetAll(string language)
         {
-            List<JunctionTypeLookupEntity> results = this._repository.GetAll();
+            List<JunctionTypeLookupEntity> results = this._repository.GetAll(language);
             return results;
         }
     }

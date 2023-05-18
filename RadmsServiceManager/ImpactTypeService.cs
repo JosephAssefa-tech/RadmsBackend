@@ -17,9 +17,9 @@ namespace RadmsServiceManager
             _repository = repository;
         }
 
-        public List<ImpactTypeLookupEntity> GetAll()
+        public List<ImpactTypeLookupEntity> GetAll(string language)
         {
-            List<ImpactTypeLookupEntity> results = this._repository.GetAll();
+            List<ImpactTypeLookupEntity> results = this._repository.GetAll(language);
             return results;
         }
     }

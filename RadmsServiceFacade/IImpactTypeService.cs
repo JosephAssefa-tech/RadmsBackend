@@ -9,6 +9,6 @@ namespace RadmsServiceFacade
 {
     public interface  IImpactTypeService
     {
-        List<ImpactTypeLookupEntity> GetAll();
+        List<ImpactTypeLookupEntity> GetAll(string language);
     }
 }

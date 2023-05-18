@@ -19,9 +19,9 @@ namespace RadmsWebAPI.Controllers
 
             // GET: api/<LightConditionController>
             [HttpGet]
-        public List<LightConditionLookupViewModel> GetAll()
+        public List<LightConditionLookupViewModel> GetAll(string language)
         {
-            List<LightConditionLookupEntity> entities = this._service.GetAll();
+            List<LightConditionLookupEntity> entities = this._service.GetAll(language);
             List<LightConditionLookupViewModel> viewModels = new List<LightConditionLookupViewModel>();
             foreach (var entity in entities)
             {

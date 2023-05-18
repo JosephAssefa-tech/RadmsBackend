@@ -19,9 +19,9 @@ namespace RadmsWebAPI.Controllers
 
         // GET: api/<RoadCarriagewayTypeController>
         [HttpGet]
-        public List<RoadCarriagewayTypeLookupViewModel> GetAll()
+        public List<RoadCarriagewayTypeLookupViewModel> GetAll(string language)
         {
-            List<RoadCarriagewayTypeLookupEntity> entities = this._service.GetAll();
+            List<RoadCarriagewayTypeLookupEntity> entities = this._service.GetAll(language);
             List<RoadCarriagewayTypeLookupViewModel> viewModels = new List<RoadCarriagewayTypeLookupViewModel>();
             foreach (var entity in entities)
             {

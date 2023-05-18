@@ -1,4 +1,4 @@
-﻿using RadmsDataModels.Models;
+﻿using RadmsDataModels.Modelss;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -32,8 +32,8 @@ namespace RadmsEntities
             this.Psname = model.Psname;
        //     this.SubCityId = model.SubCityId;
       //      this.WoredaId = model.WoredaId;
-            this.SubCity = new SubCityMasterEntity(model.SubCity);
-            this.Woreda = new WoredaMasterEntity(model.Woreda);
+       //     this.SubCity = new SubCityMasterEntity(model.SubCity);
+        //    this.Woreda = new WoredaMasterEntity(model.Woreda);
 
 
 
@@ -44,8 +44,8 @@ namespace RadmsEntities
             PoliceStationMaster model = new PoliceStationMaster();
             model.Psid = this.Psid;
             model.Psname = this.Psname;
-            model.SubCityId = this.SubCity.SubCityId;
-            model.WoredaId = this.Woreda.WoredaId;
+      //      model.SubCityId = this.SubCity.SubCityId;
+       //     model.WoredaId = this.Woreda.WoredaId;
             return model as T;
         }
 

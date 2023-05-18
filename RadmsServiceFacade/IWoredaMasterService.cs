@@ -9,7 +9,7 @@ namespace RadmsServiceFacade
 {
     public interface IWoredaMasterService
     {
-        List<WoredaMasterEntity> GetAll();
+        List<WoredaMasterEntity> GetAll(string language);
 
     }
 }

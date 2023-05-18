@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using RadmsDataAccessLogic;
-using RadmsDataModels.Models;
+using RadmsDataModels.Modelss;
 using RadmsEntities;
 using RadmsRepositoryFacade;
 using System;
@@ -14,12 +14,27 @@ namespace RadmsRepositoryManager.Services
     public class ZoneMasterRepository : IZoneMasterRepository
     {
         RadmsContext context = new RadmsContext();
-        public List<ZoneMasterEntity> GetAll()
+        public List<ZoneMasterEntity> GetAll(string language)
         {
-            List<ZoneMaster> models = context.ZoneMasters.
-                 Include(x => x.Region)
+            List<ZoneMaster> models;
 
-                .ToList();
+            if (language == "amharic")
+            {
+                models = context.ZoneMasters.Select(x => new ZoneMaster
+                {
+                    ZoneId = x.ZoneId,
+                    ZoneName = x.ZoneNameAm
+                }).ToList();
+
+            }
+            else
+            {
+                models = context.ZoneMasters.Select(x => new ZoneMaster
+                {
+                    ZoneId = x.ZoneId,
+                    ZoneName = x.ZoneName
+                }).ToList();
+            }
             List<ZoneMasterEntity> entities = new List<ZoneMasterEntity>();
             foreach (var model in models)
             {

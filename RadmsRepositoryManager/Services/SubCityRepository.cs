@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using RadmsDataAccessLogic;
-using RadmsDataModels.Models;
+using RadmsDataModels.Modelss;
 using RadmsEntities;
 using RadmsRepositoryFacade;
 using System;
@@ -14,11 +14,30 @@ namespace RadmsRepositoryManager.Services
     public class SubCityRepository : ISubCityRepository
     {
         RadmsContext context = new RadmsContext();
-        public List<SubCityMasterEntity> GetAll()
+        public List<SubCityMasterEntity> GetAll(string language)
         {
-            List<SubCityMaster> models = context.SubCityMasters.
-              Include(x => x.City).ThenInclude(r=>r.Woreda).ThenInclude(z=>z.Zone).ThenInclude(r=>r.Region)
-             .ToList();
+            List<SubCityMaster> models;
+            if (language == "amharic")
+            {
+                models = context.SubCityMasters.Select(x => new SubCityMaster
+                {
+                    SubCityId = x.SubCityId,
+                    SubCityName = x.SubCityNameAm
+                }).ToList();
+
+            }
+            else
+            {
+                models = context.SubCityMasters.Select(x => new SubCityMaster
+                {
+                    SubCityId = x.SubCityId,
+                    SubCityName = x.SubCityName
+                }).ToList();
+            }
+
+
+
+
             List<SubCityMasterEntity> entities = new List<SubCityMasterEntity>();
             foreach (var model in models)
             {

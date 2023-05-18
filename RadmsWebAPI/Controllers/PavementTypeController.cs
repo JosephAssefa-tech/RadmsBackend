@@ -19,9 +19,9 @@ namespace RadmsWebAPI.Controllers
         }
         // GET: api/<PavementTypeController>
         [HttpGet]
-        public List<PavementTypeLookupViewModel> GetAll()
+        public List<PavementTypeLookupViewModel> GetAll(string language)
         {
-            List<PavementTypeLookupEntity> entities = this._service.GetAll();
+            List<PavementTypeLookupEntity> entities = this._service.GetAll(language);
             List<PavementTypeLookupViewModel> viewModels = new List<PavementTypeLookupViewModel>();
             foreach (var entity in entities)
             {

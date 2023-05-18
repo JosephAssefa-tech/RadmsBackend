@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using RadmsDataAccessLogic;
-using RadmsDataModels.Models;
+using RadmsDataModels.Modelss;
 using RadmsEntities;
 using RadmsRepositoryFacade;
 using System;
@@ -44,13 +44,34 @@ namespace RadmsRepositoryManager.Services
         return new PoliceStationMasterEntity(model);
           }
 
-        public List<PoliceStationMasterEntity> GetAll()
+        public List<PoliceStationMasterEntity> GetAll(string language)
         {
-            List<PoliceStationMaster> models = context.PoliceStationMasters
-                 .Include(x => x.Woreda).ThenInclude(z=>z.Zone).ThenInclude(r=>r.Region)
-                .Include(s => s.SubCity).ThenInclude(c=>c.City)
+            List<PoliceStationMaster> models;
+            if(language== "amharic")
+            {
+                models = context.PoliceStationMasters.Select(x=>new PoliceStationMaster
+                {
+                    Psid = x.Psid,
+                    Psname = x.PsnameAm,
+                }).ToList();
 
-                .ToList();
+            }
+            else
+            {
+                models = context.PoliceStationMasters.Select(x => new PoliceStationMaster
+                {
+                    Psid = x.Psid,
+                    Psname = x.Psname,
+                }).ToList();
+            }
+
+
+           
+
+
+
+
+
             List<PoliceStationMasterEntity> entities = new List<PoliceStationMasterEntity>();
             foreach (var model in models)
             {

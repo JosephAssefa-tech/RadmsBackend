@@ -12,7 +12,7 @@ namespace RadmsRepositoryFacade
         bool Save(PoliceStationMasterEntity entity);
         bool Update(PoliceStationMasterEntity entity);
         bool Delete(string id);
-        List<PoliceStationMasterEntity> GetAll();
+        List<PoliceStationMasterEntity> GetAll(string language);
         PoliceStationMasterEntity GetById(string id);
         PoliceStationMasterEntity FilterByAccidentName(string CauseName);
     }

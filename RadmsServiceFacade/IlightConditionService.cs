@@ -9,6 +9,6 @@ namespace RadmsServiceFacade
 {
     public interface  IlightConditionService
     {
-        List<LightConditionLookupEntity> GetAll();
+        List<LightConditionLookupEntity> GetAll(string language);
     }
 }

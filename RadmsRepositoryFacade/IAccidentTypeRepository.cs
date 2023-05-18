@@ -9,6 +9,6 @@ namespace RadmsRepositoryFacade
 {
     public interface IAccidentTypeRepository
     {
-        List<AccidentTypeLookupEntity> GetAll();
+        List<AccidentTypeLookupEntity> GetAll(string language);
     }
 }

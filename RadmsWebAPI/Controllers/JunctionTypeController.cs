@@ -19,9 +19,9 @@ namespace RadmsWebAPI.Controllers
 
             // GET: api/<JunctionTypeController>
         [HttpGet]
-        public List<JunctionTypeLookupViewModel> GetAll()
+        public List<JunctionTypeLookupViewModel> GetAll(string language)
         {
-            List<JunctionTypeLookupEntity> entities = this._service.GetAll();
+            List<JunctionTypeLookupEntity> entities = this._service.GetAll(language);
             List<JunctionTypeLookupViewModel> viewModels = new List<JunctionTypeLookupViewModel>();
             foreach (var entity in entities)
             {

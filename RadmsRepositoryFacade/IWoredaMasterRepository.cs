@@ -9,6 +9,6 @@ namespace RadmsRepositoryFacade
 {
     public interface  IWoredaMasterRepository
     {
-        List<WoredaMasterEntity> GetAll();
+        List<WoredaMasterEntity> GetAll(string language);
     }
 }

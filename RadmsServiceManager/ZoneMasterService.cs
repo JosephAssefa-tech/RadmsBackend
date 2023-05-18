@@ -18,9 +18,9 @@ namespace RadmsServiceManager
             _repositiory = repositiory;
 
         }
-        List<ZoneMasterEntity> IZoneMasterService.GetAll()
+        List<ZoneMasterEntity> IZoneMasterService.GetAll(string language)
         {
-            List<ZoneMasterEntity> results = this._repositiory.GetAll();
+            List<ZoneMasterEntity> results = this._repositiory.GetAll(language);
             return results;
         }
     }

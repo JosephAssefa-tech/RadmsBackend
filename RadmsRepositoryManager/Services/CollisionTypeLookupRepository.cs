@@ -1,5 +1,5 @@
 ﻿using RadmsDataAccessLogic;
-using RadmsDataModels.Models;
+using RadmsDataModels.Modelss;
 using RadmsEntities;
 using RadmsRepositoryFacade;
 using System;
@@ -12,10 +12,29 @@ namespace RadmsRepositoryManager.Services
 {
     public class CollisionTypeLookupRepository : ICollisionTypeRepository
     {
-        public List<CollisionTypeLookupEntity> GetAll()
+        public List<CollisionTypeLookupEntity> GetAll(string language)
         {
             RadmsContext context = new RadmsContext();
-            List<CollisionTypeLookup> models = context.CollisionTypeLookups.ToList();
+            List<CollisionTypeLookup> models;
+            if (language == "amharic")
+            {
+                models = context.CollisionTypeLookups.Select(x => new CollisionTypeLookup
+                {
+                   CollisionTypeId = x.CollisionTypeId,
+                   CollisionTypeName = x.CollisionTypeNameAm,
+                }).ToList();
+
+            }
+            else
+            {
+                models = context.CollisionTypeLookups.Select(x => new CollisionTypeLookup
+                {
+                    CollisionTypeId = x.CollisionTypeId,
+                    CollisionTypeName = x.CollisionTypeName
+                }).ToList();
+            }
+
+
             List<CollisionTypeLookupEntity> entities = new List<CollisionTypeLookupEntity>();
             foreach (var model in models)
             {

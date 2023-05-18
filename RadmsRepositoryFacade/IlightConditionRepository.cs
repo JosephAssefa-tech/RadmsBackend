@@ -9,6 +9,6 @@ namespace RadmsRepositoryFacade
 {
     public interface  IlightConditionRepository
     {
-        List<LightConditionLookupEntity> GetAll();
+        List<LightConditionLookupEntity> GetAll(string language);
     }
 }

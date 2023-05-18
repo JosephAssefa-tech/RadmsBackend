@@ -19,9 +19,9 @@ namespace RadmsWebAPI.Controllers
 
         // GET: api/<RoadSurfaceConditionLookupController>
         [HttpGet]
-        public List<RoadSurfaceConditionLookupViewModel> GetAll()
+        public List<RoadSurfaceConditionLookupViewModel> GetAll(string language)
         {
-            List<RoadSurfaceConditionLookupEntity> entities = this._service.GetAll();
+            List<RoadSurfaceConditionLookupEntity> entities = this._service.GetAll(language);
             List<RoadSurfaceConditionLookupViewModel> viewModels = new List<RoadSurfaceConditionLookupViewModel>();
             foreach (var entity in entities)
             {

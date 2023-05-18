@@ -14,7 +14,7 @@ namespace RadmsServiceFacade
         bool Save(PoliceStationMasterEntity accident);
         string Update(PoliceStationMasterEntity accident);
         string Delete(string id);
-        List<PoliceStationMasterEntity> GetAll();
+        List<PoliceStationMasterEntity> GetAll(string language);
 
 
 

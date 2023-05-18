@@ -9,6 +9,6 @@ namespace RadmsRepositoryFacade
 {
     public interface  IAirConditionTypeRepository
     {
-        List<AirConditionTypeLookupEntity> GetAll();
+        List<AirConditionTypeLookupEntity> GetAll(string language);
     }
 }

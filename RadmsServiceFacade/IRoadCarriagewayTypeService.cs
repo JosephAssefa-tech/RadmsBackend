@@ -9,7 +9,7 @@ namespace RadmsServiceFacade
 {
     public interface  IRoadCarriagewayTypeService
     {
-        List<RoadCarriagewayTypeLookupEntity> GetAll();
+        List<RoadCarriagewayTypeLookupEntity> GetAll(string lanague);
 
     }
 }

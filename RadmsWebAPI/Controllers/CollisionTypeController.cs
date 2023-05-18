@@ -19,9 +19,9 @@ namespace RadmsWebAPI.Controllers
         }
         // GET: api/<CollisionTypeController>
         [HttpGet]
-        public List<CollisionTypeLookupViewModel> GetAll()
+        public List<CollisionTypeLookupViewModel> GetAll(string language)
         {
-            List<CollisionTypeLookupEntity> entities = this._service.GetAll();
+            List<CollisionTypeLookupEntity> entities = this._service.GetAll(language);
             List<CollisionTypeLookupViewModel> viewModels = new List<CollisionTypeLookupViewModel>();
             foreach (var entity in entities)
             {

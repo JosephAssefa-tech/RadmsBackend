@@ -1,5 +1,5 @@
 ﻿using RadmsDataAccessLogic;
-using RadmsDataModels.Models;
+using RadmsDataModels.Modelss;
 using RadmsEntities;
 using RadmsRepositoryFacade;
 using System;
@@ -13,10 +13,29 @@ namespace RadmsRepositoryManager.Services
     public class lightConditionRepository : IlightConditionRepository
     {
         RadmsContext context = new RadmsContext();
-        public List<LightConditionLookupEntity> GetAll()
+        public List<LightConditionLookupEntity> GetAll(string language)
         {
-            List<LightConditionLookup> models = context.LightConditionLookups.
-            ToList();
+            List<LightConditionLookup> models;
+            if (language == "amharic")
+            {
+                models = context.LightConditionLookups.Select(x => new LightConditionLookup
+                {
+                 LightConditionId = x.LightConditionId,
+                 LightConditionName = x.LightConditionNameAm,
+                }).ToList();
+
+            }
+            else
+            {
+                models = context.LightConditionLookups.Select(x => new LightConditionLookup
+                {
+                    LightConditionId = x.LightConditionId,
+                    LightConditionName = x.LightConditionName,
+                }).ToList();
+            }
+
+
+
             List<LightConditionLookupEntity> entities = new List<LightConditionLookupEntity>();
             foreach (var model in models)
             {

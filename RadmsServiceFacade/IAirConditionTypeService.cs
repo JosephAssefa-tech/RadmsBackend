@@ -9,6 +9,6 @@ namespace RadmsServiceFacade
 {
     public interface IAirConditionTypeService
     {
-        List<AirConditionTypeLookupEntity> GetAll();
+        List<AirConditionTypeLookupEntity> GetAll(string languge);
     }
 }

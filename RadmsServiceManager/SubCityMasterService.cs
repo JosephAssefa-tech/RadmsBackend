@@ -17,9 +17,9 @@ namespace RadmsServiceFacade
             _repository = repository;
         }
 
-            public List<SubCityMasterEntity> GetAll()
+            public List<SubCityMasterEntity> GetAll(string language)
         {
-            List<SubCityMasterEntity> results = this._repository.GetAll();
+            List<SubCityMasterEntity> results = this._repository.GetAll(language);
             return results;
         }
     }

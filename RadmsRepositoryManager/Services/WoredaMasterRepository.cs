@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using RadmsDataAccessLogic;
-using RadmsDataModels.Models;
+using RadmsDataModels.Modelss;
 using RadmsEntities;
 using RadmsRepositoryFacade;
 using System;
@@ -14,12 +14,30 @@ namespace RadmsRepositoryManager.Services
     public class WoredaMasterRepository : IWoredaMasterRepository
     {
         RadmsContext context = new RadmsContext();
-    public List<WoredaMasterEntity> GetAll()
+    public List<WoredaMasterEntity> GetAll(string language)
     {
-            List<WoredaMaster> models = context.WoredaMasters.
-                 Include(x => x.Zone).ThenInclude(r=>r.Region)
+            List<WoredaMaster> models;
+            if (language == "amharic")
+            {
+                models = context.WoredaMasters.Select(x => new WoredaMaster
+                {
+                   WoredaId=x.WoredaId,
+                   WoredaName=x.WoredaNameAm
+                }).ToList();
 
-                .ToList();
+            }
+            else
+            {
+                models = context.WoredaMasters.Select(x => new WoredaMaster
+                {
+                    WoredaId = x.WoredaId,
+                    WoredaName = x.WoredaName
+                }).ToList();
+            }
+
+
+
+
             List<WoredaMasterEntity> entities = new List<WoredaMasterEntity>();
             foreach (var model in models)
             {

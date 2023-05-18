@@ -18,9 +18,9 @@ namespace RadmsServiceManager
             _repositiory = repositiory;
 
         }
-        public List<WoredaMasterEntity> GetAll()
+        public List<WoredaMasterEntity> GetAll(string language)
         {
-            List<WoredaMasterEntity> results = this._repositiory.GetAll();
+            List<WoredaMasterEntity> results = this._repositiory.GetAll(language);
             return results;
         }
 

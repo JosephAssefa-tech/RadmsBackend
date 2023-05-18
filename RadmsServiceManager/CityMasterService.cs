@@ -18,9 +18,9 @@ namespace RadmsServiceManager
 
         }
 
-        List<CityMasterEntity> ICityMasterService.GetAll()
+        List<CityMasterEntity> ICityMasterService.GetAll(string language)
         {
-            List<CityMasterEntity> results = this._repositiory.GetAll();
+            List<CityMasterEntity> results = this._repositiory.GetAll( language);
             return results;
         }
     }

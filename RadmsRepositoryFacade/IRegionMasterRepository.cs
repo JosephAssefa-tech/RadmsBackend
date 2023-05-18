@@ -12,7 +12,7 @@ namespace RadmsRepositoryFacade
         bool Save(RegionMasterEntity accident);
         bool Update(RegionMasterEntity accident);
         bool Delete(decimal id);
-        List<RegionMasterEntity> GetAll();
+        List<RegionMasterEntity> GetAll(string language);
         RegionMasterEntity GetById(int id);
         RegionMasterEntity FilterByAccidentName(string CauseName);
     }

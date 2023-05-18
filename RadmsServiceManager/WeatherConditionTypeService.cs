@@ -32,9 +32,9 @@ namespace RadmsServiceManager
             }
         }
 
-        public List<WeatherConditionTypeLookupEntity> GetAll()
+        public List<WeatherConditionTypeLookupEntity> GetAll(string language)
         {
-            List<WeatherConditionTypeLookupEntity> results = this._repository.GetAll();
+            List<WeatherConditionTypeLookupEntity> results = this._repository.GetAll(language);
             return results;
         }
         private string Validate(WeatherConditionTypeLookupEntity entity)

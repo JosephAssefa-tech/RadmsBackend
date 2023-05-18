@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
-using RadmsDataModels.Models;
+using RadmsDataModels.Modelss;
 
 namespace RadmsDataAccessLogic
 {
@@ -78,29 +77,23 @@ namespace RadmsDataAccessLogic
         {
             if (!optionsBuilder.IsConfigured)
             {
-              //   var builder = new SqlConnectionStringBuilder { DataSource = @"LAPTOP-LMG59KKQ", InitialCatalog = "RadmsMultiLangual", UserID = "user", Password = "Radms123" };
-
-                var builder = new SqlConnectionStringBuilder { DataSource = @"WIN-SILTODJTP4C\MSSQLSERVER01", InitialCatalog = "RADMS", UserID = "user", Password = "Radms123" };
-                var connectionString = builder.ConnectionString; // Use connection string optionsBuilder.UseSqlServer(connectionString );
-
-                optionsBuilder.UseSqlServer(connectionString);
-                //  optionsBuilder.UseSqlServer("Server=LAPTOP-LMG59KKQ;Database=Radms_April_21;Trusted_Connection=True;TrustServerCertificate=True;");
+#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
+                optionsBuilder.UseSqlServer("Server=LAPTOP-LMG59KKQ;Database=RadmsMultiLangual;Trusted_Connection=True;TrustServerCertificate=True;");
             }
         }
-          //optionsBuilder.UseSqlServer("Server=LAPTOP-LMG59KKQ;Database=Radms_April_21;Trusted_Connection=True;TrustServerCertificate=True;");
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<AccidentCauseLookup>(entity =>
             {
                 entity.HasKey(e => e.AccidentCauseId)
-                    .HasName("PK__Accident__76AD4616379DBD97");
+                    .HasName("PK__Accident__76AD461600056A00");
             });
 
             modelBuilder.Entity<AccidentDetailsTransaction>(entity =>
             {
                 entity.HasKey(e => e.AccidentId)
-                    .HasName("PK__Accident__8133DE8F7FD2C9D4");
+                    .HasName("PK__Accident__8133DE8FE164A482");
 
                 entity.HasOne(d => d.AccidentType)
                     .WithMany(p => p.AccidentDetailsTransactions)
@@ -243,25 +236,25 @@ namespace RadmsDataAccessLogic
             modelBuilder.Entity<AccidentTypeLookup>(entity =>
             {
                 entity.HasKey(e => e.AccidentTypeId)
-                    .HasName("PK__Accident__DF01314AC405F6E0");
+                    .HasName("PK__Accident__DF01314AEA35EDB9");
             });
 
             modelBuilder.Entity<ActivityTypeLookup>(entity =>
             {
                 entity.HasKey(e => e.ActivityId)
-                    .HasName("PK__Activity__45F4A7F1CF6BA03B");
+                    .HasName("PK__Activity__45F4A7F18A56A477");
             });
 
             modelBuilder.Entity<AirConditionTypeLookup>(entity =>
             {
                 entity.HasKey(e => e.AirConditionId)
-                    .HasName("PK__AirCondi__39576F6E0A5A7353");
+                    .HasName("PK__AirCondi__39576F6ED1B9D8FC");
             });
 
             modelBuilder.Entity<AuditTrailTransaction>(entity =>
             {
                 entity.HasKey(e => e.RecordId)
-                    .HasName("PK__AuditTra__FBDF78C97DA49DB2");
+                    .HasName("PK__AuditTra__FBDF78C9209AF206");
 
                 entity.HasOne(d => d.Activity)
                     .WithMany(p => p.AuditTrailTransactions)
@@ -282,7 +275,7 @@ namespace RadmsDataAccessLogic
             modelBuilder.Entity<BlackSpotMaster>(entity =>
             {
                 entity.HasKey(e => e.BlackSpotId)
-                    .HasName("PK__BlackSpo__87C4D9BFA89956B0");
+                    .HasName("PK__BlackSpo__87C4D9BFE36A6342");
 
                 entity.HasOne(d => d.Accident)
                     .WithMany(p => p.BlackSpotMasters)
@@ -293,7 +286,7 @@ namespace RadmsDataAccessLogic
             modelBuilder.Entity<CityMaster>(entity =>
             {
                 entity.HasKey(e => e.CityId)
-                    .HasName("PK__CityMast__F2D21A96F195D95C");
+                    .HasName("PK__CityMast__F2D21A96BB818205");
 
                 entity.HasOne(d => d.Woreda)
                     .WithMany(p => p.CityMasters)
@@ -304,55 +297,55 @@ namespace RadmsDataAccessLogic
             modelBuilder.Entity<CollisionTypeLookup>(entity =>
             {
                 entity.HasKey(e => e.CollisionTypeId)
-                    .HasName("PK__Collisio__B13F64FEA059642E");
+                    .HasName("PK__Collisio__B13F64FEF8B706C7");
             });
 
             modelBuilder.Entity<DriverExperienceLookup>(entity =>
             {
                 entity.HasKey(e => e.DriverExperienceId)
-                    .HasName("PK__DriverEx__37A7814DE1F28C89");
+                    .HasName("PK__DriverEx__37A7814D4130AB50");
             });
 
             modelBuilder.Entity<DrivingLicenceCatagoryLookup>(entity =>
             {
                 entity.HasKey(e => e.DrivingLicenceCatagoryId)
-                    .HasName("PK__DrivingL__7E92041371D07C29");
+                    .HasName("PK__DrivingL__7E9204136D88D8F9");
             });
 
             modelBuilder.Entity<EducationLevelLookup>(entity =>
             {
                 entity.HasKey(e => e.EducationLevelId)
-                    .HasName("PK__Educatio__6F6237AD6B052FF5");
+                    .HasName("PK__Educatio__6F6237ADE9BC409B");
             });
 
             modelBuilder.Entity<EmploymentStatusLookup>(entity =>
             {
                 entity.HasKey(e => e.EmploymentStatusId)
-                    .HasName("PK__Employme__CF794BCF0BAFFFE7");
+                    .HasName("PK__Employme__CF794BCFE3B56C62");
             });
 
             modelBuilder.Entity<FormMaster>(entity =>
             {
                 entity.HasKey(e => e.FormId)
-                    .HasName("PK__FormMast__FB05B7BD6C9D0522");
+                    .HasName("PK__FormMast__FB05B7BDC3C26F1B");
             });
 
             modelBuilder.Entity<Gdpmaster>(entity =>
             {
                 entity.HasKey(e => e.Gdpid)
-                    .HasName("PK__GDPMaste__827B75DE79973D75");
+                    .HasName("PK__GDPMaste__827B75DE73A1FB05");
             });
 
             modelBuilder.Entity<HealthConditionLookup>(entity =>
             {
                 entity.HasKey(e => e.HealthConditionId)
-                    .HasName("PK__HealthCo__B7616A514C4E90B2");
+                    .HasName("PK__HealthCo__B7616A51510A7D25");
             });
 
             modelBuilder.Entity<HighwayMaster>(entity =>
             {
                 entity.HasKey(e => e.Hid)
-                    .HasName("PK__HighwayM__C755152729EF9306");
+                    .HasName("PK__HighwayM__C7551527EC621B14");
 
                 entity.HasOne(d => d.Howner)
                     .WithMany(p => p.HighwayMasters)
@@ -368,43 +361,43 @@ namespace RadmsDataAccessLogic
             modelBuilder.Entity<HighwayOwnerMaster>(entity =>
             {
                 entity.HasKey(e => e.HownerId)
-                    .HasName("PK__HighwayO__A8D5F1150F16999B");
+                    .HasName("PK__HighwayO__A8D5F115CD3D8AC5");
             });
 
             modelBuilder.Entity<HighwayTypeLookup>(entity =>
             {
                 entity.HasKey(e => e.HtypeId)
-                    .HasName("PK__HighwayT__DE2C074A10229FC8");
+                    .HasName("PK__HighwayT__DE2C074A0EDF912D");
             });
 
             modelBuilder.Entity<ImpactTypeLookup>(entity =>
             {
                 entity.HasKey(e => e.ImpactTypeId)
-                    .HasName("PK__ImpactTy__674B9D6C99F2C982");
+                    .HasName("PK__ImpactTy__674B9D6C1BA3ED1A");
             });
 
             modelBuilder.Entity<JunctionTypeLookup>(entity =>
             {
                 entity.HasKey(e => e.JunctionTypeId)
-                    .HasName("PK__Junction__D5D1823615613BFD");
+                    .HasName("PK__Junction__D5D18236C118BEA4");
             });
 
             modelBuilder.Entity<KebeleMaster>(entity =>
             {
                 entity.HasKey(e => e.KebeleId)
-                    .HasName("PK__KebeleMa__BAE690470FBDA2BF");
+                    .HasName("PK__KebeleMa__BAE690474A7AE710");
             });
 
             modelBuilder.Entity<LandmarkTypeLookup>(entity =>
             {
                 entity.HasKey(e => e.LandmarkTypeId)
-                    .HasName("PK__Landmark__A5900FC0CA6357AB");
+                    .HasName("PK__Landmark__A5900FC0537F04B0");
             });
 
             modelBuilder.Entity<LegalMeasurementDetailsTransaction>(entity =>
             {
                 entity.HasKey(e => e.LegalMeasurementId)
-                    .HasName("PK__LegalMea__4CBE38C0C3AA1C87");
+                    .HasName("PK__LegalMea__4CBE38C0199516BB");
 
                 entity.HasOne(d => d.Accident)
                     .WithMany(p => p.LegalMeasurementDetailsTransactions)
@@ -420,37 +413,37 @@ namespace RadmsDataAccessLogic
             modelBuilder.Entity<LicenceLevelLookup>(entity =>
             {
                 entity.HasKey(e => e.LeveloflicenceId)
-                    .HasName("PK__LicenceL__E6A26B5111326CA7");
+                    .HasName("PK__LicenceL__E6A26B517CCA6AEB");
             });
 
             modelBuilder.Entity<LightConditionLookup>(entity =>
             {
                 entity.HasKey(e => e.LightConditionId)
-                    .HasName("PK__LightCon__D3BCC66C927B4939");
+                    .HasName("PK__LightCon__D3BCC66C6CAC2DCD");
             });
 
             modelBuilder.Entity<OrganizationMaster>(entity =>
             {
                 entity.HasKey(e => e.OrganizationId)
-                    .HasName("PK__Organiza__CADB0B72C4D6673D");
+                    .HasName("PK__Organiza__CADB0B72334F21C0");
             });
 
             modelBuilder.Entity<PavementTypeLookup>(entity =>
             {
                 entity.HasKey(e => e.PavementTypeId)
-                    .HasName("PK__Pavement__13F54EF91C7159A7");
+                    .HasName("PK__Pavement__13F54EF992083915");
             });
 
             modelBuilder.Entity<PedestrianMovementLookup>(entity =>
             {
                 entity.HasKey(e => e.PedestrianMovementId)
-                    .HasName("PK__Pedestri__6141EC3D3659027D");
+                    .HasName("PK__Pedestri__6141EC3D304318CF");
             });
 
             modelBuilder.Entity<PoliceStationMaster>(entity =>
             {
                 entity.HasKey(e => e.Psid)
-                    .HasName("PK__PoliceSt__BC000976D352A022");
+                    .HasName("PK__PoliceSt__BC00097615255C30");
 
                 entity.HasOne(d => d.SubCity)
                     .WithMany(p => p.PoliceStationMasters)
@@ -466,25 +459,25 @@ namespace RadmsDataAccessLogic
             modelBuilder.Entity<RegionMaster>(entity =>
             {
                 entity.HasKey(e => e.RegionId)
-                    .HasName("PK__RegionMa__ACD844439056D5D5");
+                    .HasName("PK__RegionMa__ACD844437B821DFE");
             });
 
             modelBuilder.Entity<RoadCarriagewayTypeLookup>(entity =>
             {
                 entity.HasKey(e => e.RoadCarriagewayId)
-                    .HasName("PK__RoadCarr__C83870D94A5F277C");
+                    .HasName("PK__RoadCarr__C83870D98D1A1BF5");
             });
 
             modelBuilder.Entity<RoadSurfaceConditionLookup>(entity =>
             {
                 entity.HasKey(e => e.RoadSurfaceId)
-                    .HasName("PK__RoadSurf__E5E0D7DE8F77E930");
+                    .HasName("PK__RoadSurf__E5E0D7DE1664CFC4");
             });
 
             modelBuilder.Entity<RoadsInvolvedDetailsTransaction>(entity =>
             {
                 entity.HasKey(e => e.RoadsInvolvedId)
-                    .HasName("PK__RoadsInv__3CA5E41BD47E3B7A");
+                    .HasName("PK__RoadsInv__3CA5E41B8E8F88EE");
 
                 entity.HasOne(d => d.Accident)
                     .WithMany(p => p.RoadsInvolvedDetailsTransactions)
@@ -519,25 +512,25 @@ namespace RadmsDataAccessLogic
             modelBuilder.Entity<SeatingTypeLookup>(entity =>
             {
                 entity.HasKey(e => e.SeatingTypeId)
-                    .HasName("PK__SeatingT__78708CC6585AF227");
+                    .HasName("PK__SeatingT__78708CC631FF8D08");
             });
 
             modelBuilder.Entity<SeverityLevelLookup>(entity =>
             {
                 entity.HasKey(e => e.SeverityId)
-                    .HasName("PK__Severity__C618A951106628C1");
+                    .HasName("PK__Severity__C618A9516BACD4AC");
             });
 
             modelBuilder.Entity<SpeedLimitLookup>(entity =>
             {
                 entity.HasKey(e => e.SpeedLimitId)
-                    .HasName("PK__SpeedLim__10D3A26457C828F4");
+                    .HasName("PK__SpeedLim__10D3A264F77C584E");
             });
 
             modelBuilder.Entity<SubCityMaster>(entity =>
             {
                 entity.HasKey(e => e.SubCityId)
-                    .HasName("PK__SubCityM__194218973300B536");
+                    .HasName("PK__SubCityM__19421897B00B58BC");
 
                 entity.HasOne(d => d.City)
                     .WithMany(p => p.SubCityMasters)
@@ -548,13 +541,13 @@ namespace RadmsDataAccessLogic
             modelBuilder.Entity<TerrainTypeLookup>(entity =>
             {
                 entity.HasKey(e => e.TerrianTypeId)
-                    .HasName("PK__TerrainT__FE8BDBADB46F7507");
+                    .HasName("PK__TerrainT__FE8BDBADFB318B37");
             });
 
             modelBuilder.Entity<UserMaster>(entity =>
             {
                 entity.HasKey(e => e.UserId)
-                    .HasName("PK__UserMast__1788CCAC345B8C96");
+                    .HasName("PK__UserMast__1788CCAC67EBB59C");
 
                 entity.HasOne(d => d.Organization)
                     .WithMany(p => p.UserMasters)
@@ -565,7 +558,7 @@ namespace RadmsDataAccessLogic
             modelBuilder.Entity<UserRoleTransaction>(entity =>
             {
                 entity.HasKey(e => e.DepartmentTypeId)
-                    .HasName("PK__UserRole__FC33D0777A59F398");
+                    .HasName("PK__UserRole__FC33D077DC51A26D");
 
                 entity.HasOne(d => d.Form)
                     .WithMany(p => p.UserRoleTransactions)
@@ -581,25 +574,25 @@ namespace RadmsDataAccessLogic
             modelBuilder.Entity<UserTypeLookup>(entity =>
             {
                 entity.HasKey(e => e.UserTypeId)
-                    .HasName("PK__UserType__40D2D8F613DF89E1");
+                    .HasName("PK__UserType__40D2D8F62025CFBD");
             });
 
             modelBuilder.Entity<VechicleMaster>(entity =>
             {
                 entity.HasKey(e => e.VehicleId)
-                    .HasName("PK__Vechicle__476B54B26D9CF485");
+                    .HasName("PK__Vechicle__476B54B261358A3B");
             });
 
             modelBuilder.Entity<VehicleDefectLookup>(entity =>
             {
                 entity.HasKey(e => e.VehicleDefectId)
-                    .HasName("PK__VehicleD__9C5FBEEA9F648E35");
+                    .HasName("PK__VehicleD__9C5FBEEAB445A705");
             });
 
             modelBuilder.Entity<VehicleDetailsTransaction>(entity =>
             {
                 entity.HasKey(e => e.VehicleInvolvedId)
-                    .HasName("PK__VehicleD__761E7F706BE20FBD");
+                    .HasName("PK__VehicleD__761E7F705C873E11");
 
                 entity.HasOne(d => d.Accident)
                     .WithMany(p => p.VehicleDetailsTransactions)
@@ -665,31 +658,31 @@ namespace RadmsDataAccessLogic
             modelBuilder.Entity<VehicleMovementMaster>(entity =>
             {
                 entity.HasKey(e => e.VehicleMovementId)
-                    .HasName("PK__VehicleM__63F2ECDC7FCA2091");
+                    .HasName("PK__VehicleM__63F2ECDC9306741C");
             });
 
             modelBuilder.Entity<VehicleOwnershipLookup>(entity =>
             {
                 entity.HasKey(e => e.VehicleOwnershipId)
-                    .HasName("PK__VehicleO__90406EB4C525F23A");
+                    .HasName("PK__VehicleO__90406EB4924FAB1E");
             });
 
             modelBuilder.Entity<VehicleRelationLookup>(entity =>
             {
                 entity.HasKey(e => e.VehicleRelationId)
-                    .HasName("PK__VehicleR__33D8CB7520448902");
+                    .HasName("PK__VehicleR__33D8CB7513BCBE33");
             });
 
             modelBuilder.Entity<VehicleServiceAgeLookup>(entity =>
             {
                 entity.HasKey(e => e.VehicleServiceAgeId)
-                    .HasName("PK__VehicleS__5F12DCE6E2F790DC");
+                    .HasName("PK__VehicleS__5F12DCE682883FDE");
             });
 
             modelBuilder.Entity<VictimDetailsTransaction>(entity =>
             {
                 entity.HasKey(e => e.VictimId)
-                    .HasName("PK__VictimDe__1ABDABABBAF57D3D");
+                    .HasName("PK__VictimDe__1ABDABAB2AF2EC17");
 
                 entity.HasOne(d => d.Accident)
                     .WithMany(p => p.VictimDetailsTransactions)
@@ -745,25 +738,25 @@ namespace RadmsDataAccessLogic
             modelBuilder.Entity<VictimMovementMaster>(entity =>
             {
                 entity.HasKey(e => e.VictimMovementId)
-                    .HasName("PK__VictimMo__0F126498289D7850");
+                    .HasName("PK__VictimMo__0F12649878B6AB17");
             });
 
             modelBuilder.Entity<VictimTypeLookup>(entity =>
             {
                 entity.HasKey(e => e.VictimTypeId)
-                    .HasName("PK__VictimTy__683028A4700C1FE3");
+                    .HasName("PK__VictimTy__683028A4140148AC");
             });
 
             modelBuilder.Entity<WeatherConditionTypeLookup>(entity =>
             {
                 entity.HasKey(e => e.WeatherCondId)
-                    .HasName("PK__WeatherC__C11BEEC403DE09A7");
+                    .HasName("PK__WeatherC__C11BEEC4B89FFC8D");
             });
 
             modelBuilder.Entity<WoredaMaster>(entity =>
             {
                 entity.HasKey(e => e.WoredaId)
-                    .HasName("PK__WoredaMa__5C15D5B20A888154");
+                    .HasName("PK__WoredaMa__5C15D5B2F1553545");
 
                 entity.HasOne(d => d.Zone)
                     .WithMany(p => p.WoredaMasters)
@@ -774,7 +767,7 @@ namespace RadmsDataAccessLogic
             modelBuilder.Entity<ZoneMaster>(entity =>
             {
                 entity.HasKey(e => e.ZoneId)
-                    .HasName("PK__ZoneMast__6016679558B979F2");
+                    .HasName("PK__ZoneMast__60166795BE9BD541");
 
                 entity.HasOne(d => d.Region)
                     .WithMany(p => p.ZoneMasters)

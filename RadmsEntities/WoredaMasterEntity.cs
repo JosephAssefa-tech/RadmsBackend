@@ -1,4 +1,4 @@
-﻿using RadmsDataModels.Models;
+﻿using RadmsDataModels.Modelss;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -31,14 +31,14 @@ namespace RadmsEntities
             this.WoredaId=model.WoredaId;
             this.WoredaName = model.WoredaName;
           //  this.ZoneId = model.ZoneId;
-            this.Zone = new ZoneMasterEntity(model.Zone);
+         //   this.Zone = new ZoneMasterEntity(model.Zone);
         }
         public T MapToModel<T>() where T : class
         {
             WoredaMaster model = new WoredaMaster();
             model.WoredaId = this.WoredaId;
             model.WoredaName = this.WoredaName;
-            model.ZoneId = this.Zone.ZoneId;
+         //   model.ZoneId = this.Zone.ZoneId;
             return model as T;
         }
 

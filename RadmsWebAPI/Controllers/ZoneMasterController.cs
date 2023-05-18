@@ -19,9 +19,9 @@ namespace RadmsWebAPI.Controllers
         }
         // GET: api/<ZoneMasterController>
         [HttpGet]
-        public List<ZoneMasterViewModel> GetAll()
+        public List<ZoneMasterViewModel> GetAll(string language)
         {
-            List<ZoneMasterEntity> entities = this._service.GetAll();
+            List<ZoneMasterEntity> entities = this._service.GetAll(language);
             List<ZoneMasterViewModel> viewModels = new List<ZoneMasterViewModel>();
             foreach (var entity in entities)
             {

@@ -1,4 +1,4 @@
-﻿using RadmsDataModels.Models;
+﻿using RadmsDataModels.Modelss;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,9 +14,9 @@ namespace RadmsEntities
 
         public string CityName { get; set; } = null!;
 
-        public int? WoredaId { get; set; }
+       public int? WoredaId { get; set; }
 
-        public virtual WoredaMasterEntity? Woreda { get; set; }
+       public virtual WoredaMasterEntity? Woreda { get; set; }
 
         public CityMasterEntity()
         {
@@ -26,7 +26,7 @@ namespace RadmsEntities
         {
             this.CityId = model.CityId;
             this.CityName = model.CityName;
-            this.Woreda = new WoredaMasterEntity(model.Woreda);
+          //  this.Woreda = new WoredaMasterEntity(model.Woreda);
 
         }
 
@@ -39,7 +39,7 @@ namespace RadmsEntities
             CityMaster model = new CityMaster();
             model.CityId = this.CityId;
             model.CityName = this.CityName;
-            model.WoredaId = this.Woreda.WoredaId;
+         //   model.WoredaId = this.Woreda.WoredaId;
             return model as T;
         }
     }

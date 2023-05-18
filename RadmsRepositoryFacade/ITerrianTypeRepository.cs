@@ -9,6 +9,6 @@ namespace RadmsRepositoryFacade
 {
     public interface ITerrianTypeRepository
     {
-        List<TerrainTypeLookupEntity> GetAll();
+        List<TerrainTypeLookupEntity> GetAll(string language);
     }
 }

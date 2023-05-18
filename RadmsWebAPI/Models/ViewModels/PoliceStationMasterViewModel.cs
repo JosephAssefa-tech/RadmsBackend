@@ -23,8 +23,8 @@ namespace RadmsWebAPI.Models.ViewModels
         {
             this.Psid = entity.Psid;
             this.Psname = entity.Psname;
-            this.SubCity = new SubCityMasterViewModel(entity.SubCity);
-            this.Woreda = new WoredaMasterViewModel(entity.Woreda);
+         //   this.SubCity = new SubCityMasterViewModel(entity.SubCity);
+         //   this.Woreda = new WoredaMasterViewModel(entity.Woreda);
 
         }
         public T MapToViewEntity<T>() where T : class
@@ -32,8 +32,8 @@ namespace RadmsWebAPI.Models.ViewModels
             PoliceStationMasterEntity entity = new PoliceStationMasterEntity();
             entity.Psid = this.Psid;
             entity.Psname = this.Psname;
-            entity.WoredaId = this.Woreda.WoredaId;
-            entity.SubCityId = this.SubCity.SubCityId;
+         //   entity.WoredaId = this.Woreda.WoredaId;
+         //   entity.SubCityId = this.SubCity.SubCityId;
 
 
             return entity as T;

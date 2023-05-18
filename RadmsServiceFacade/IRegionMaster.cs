@@ -12,6 +12,6 @@ namespace RadmsServiceFacade
         string Save(RegionMasterEntity accident);
         string Update(RegionMasterEntity accident);
         string Delete(decimal id);
-        List<RegionMasterEntity> GetAll();
+        List<RegionMasterEntity> GetAll(string language);
     }
 }

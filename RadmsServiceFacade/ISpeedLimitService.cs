@@ -9,6 +9,6 @@ namespace RadmsServiceFacade
 {
     public interface  ISpeedLimitService
     {
-        List<SpeedLimitLookupEntity> GetAll();
+        List<SpeedLimitLookupEntity> GetAll(string language);
     }
 }

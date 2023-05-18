@@ -12,9 +12,9 @@ namespace RadmsServiceManager
         {
             _service = service;
         }
-        public List<SeverityLevelLookupEntity> GetAll()
+        public List<SeverityLevelLookupEntity> GetAll(string language)
         {
-            List<SeverityLevelLookupEntity> results = this._service.GetAll();
+            List<SeverityLevelLookupEntity> results = this._service.GetAll(language);
             return results;
         }
     }

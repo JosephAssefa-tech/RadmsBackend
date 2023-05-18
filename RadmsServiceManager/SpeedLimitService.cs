@@ -16,9 +16,9 @@ namespace RadmsServiceManager
         {
             _repository = repository;
         }
-        public List<SpeedLimitLookupEntity> GetAll()
+        public List<SpeedLimitLookupEntity> GetAll(string language)
         {
-            List<SpeedLimitLookupEntity> results = this._repository.GetAll();
+            List<SpeedLimitLookupEntity> results = this._repository.GetAll(language);
             return results;
         }
     }

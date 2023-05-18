@@ -1,4 +1,4 @@
-﻿using RadmsDataModels.Models;
+﻿using RadmsDataModels.Modelss;
 using RadmsEntities;
 
 namespace RadmsWebAPI.Models.PostModels

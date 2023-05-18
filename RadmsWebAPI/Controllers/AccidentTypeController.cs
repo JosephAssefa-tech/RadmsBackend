@@ -18,9 +18,9 @@ namespace RadmsWebAPI.Controllers
         }
         // GET: api/<AccidentTypeController>
         [HttpGet]
-        public List<AccidentTypeLookupViewModel> GetAll()
+        public List<AccidentTypeLookupViewModel> GetAll(string language)
         {
-            List<AccidentTypeLookupEntity> entities = this._service.GetAll();
+            List<AccidentTypeLookupEntity> entities = this._service.GetAll(language);
             List<AccidentTypeLookupViewModel> viewModels = new List<AccidentTypeLookupViewModel>();
             foreach (var entity in entities)
             {
