@@ -24,6 +24,7 @@ namespace RadmsEntities
         public decimal AccidentId { get; set; }
 
         public DateTime DateAndTime { get; set; }
+        public DateTime RegistrationDate { get; set; }
         // what is the below Psid
         public string Psid { get; set; } = null!;
 
@@ -305,6 +306,7 @@ namespace RadmsEntities
 
 
             model.DateAndTime = this.DateAndTime;
+            model.RegistrationDate= DateTime.Now;
             // what is the below Psid
             model.Psid = this.Psid;
 

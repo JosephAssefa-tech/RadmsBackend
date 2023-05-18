@@ -24,6 +24,8 @@ namespace RadmsDataModels.Models
         [Column("AccidentID", TypeName = "numeric(18, 0)")]
         public decimal AccidentId { get; set; }
         [Column(TypeName = "datetime")]
+        public DateTime RegistrationDate { get; set; }
+        [Column(TypeName = "datetime")]
         public DateTime DateAndTime { get; set; }
         [Column("PSID")]
         [StringLength(6)]
