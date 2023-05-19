@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 using RadmsDataModels.Modelss;
@@ -77,8 +78,17 @@ namespace RadmsDataAccessLogic
         {
             if (!optionsBuilder.IsConfigured)
             {
-#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-                optionsBuilder.UseSqlServer("Server=LAPTOP-LMG59KKQ;Database=RadmsMultiLangual;Trusted_Connection=True;TrustServerCertificate=True;");
+
+                // optionsBuilder.UseSqlServer("Server=LAPTOP-LMG59KKQ;Database=RadmsMultiLangual;Trusted_Connection=True;TrustServerCertificate=True;");
+
+                //  var builder = new SqlConnectionStringBuilder { DataSource = @"LAPTOP-LMG59KKQ", InitialCatalog = "RadmsMultiLangual", UserID = "user", Password = "Radms123" };
+
+                var builder = new SqlConnectionStringBuilder { DataSource = @"WIN-SILTODJTP4C\MSSQLSERVER01", InitialCatalog = "RADMS", UserID = "user", Password = "Radms123" };
+                var connectionString = builder.ConnectionString; // Use connection string optionsBuilder.UseSqlServer(connectionString );
+
+                optionsBuilder.UseSqlServer(connectionString);
+                 // optionsBuilder.UseSqlServer("Server=LAPTOP-LMG59KKQ;Database=RadmsMultiLangual;Trusted_Connection=True;TrustServerCertificate=True;");
+
             }
         }
 
