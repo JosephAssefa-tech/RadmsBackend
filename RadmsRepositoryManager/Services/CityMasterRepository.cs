@@ -22,7 +22,11 @@ namespace RadmsRepositoryManager.Services
                 models = context.CityMasters.Select(x => new CityMaster
                 {
                     CityId = x.CityId,
-                    CityName = x.CityNameAm
+                    CityName = x.CityNameAm,
+                    Woreda = new WoredaMaster
+                    {
+                        WoredaName = x.Woreda.WoredaNameAm
+                    }
                 }).ToList();
 
             }
@@ -31,7 +35,11 @@ namespace RadmsRepositoryManager.Services
                 models = context.CityMasters.Select(x => new CityMaster
                 {
                     CityId = x.CityId,
-                    CityName = x.CityName
+                    CityName = x.CityName,
+                    Woreda = new WoredaMaster
+                    {
+                    WoredaName = x.Woreda.WoredaName
+                    }
                 }).ToList();
             }
 

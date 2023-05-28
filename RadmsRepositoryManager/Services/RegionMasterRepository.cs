@@ -14,11 +14,11 @@ namespace RadmsRepositoryManager.Services
     {
         RadmsContext context = new RadmsContext();
 
-        public bool Delete(decimal id)
+        public bool Delete(int regionId)
         {
             try
             {
-                var result = context.RegionMasters.Where(x => x.RegionId == id).FirstOrDefault();
+                var result = context.RegionMasters.Where(x => x.RegionId == regionId).FirstOrDefault();
                 if (result != null)
                 {
                     context.RegionMasters.Remove(result);

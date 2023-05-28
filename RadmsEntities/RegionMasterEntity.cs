@@ -12,7 +12,13 @@ namespace RadmsEntities
         public int RegionId { get; set; }
 
         public string RegionName { get; set; } = null!;
-        public RegionMasterEntity()
+        public string RegionNameAm { get; set; } = null!;
+        public string RegionNameOr { get; set; } = null!;
+    public string RegionNameTi { get; set; } = null!;
+    public string RegionNameAf { get; set; } = null!;
+    public string RegionNameSo { get; set; } = null!;
+
+    public RegionMasterEntity()
         {
    //       AccidentDetailsTransactions = new HashSet<AccidentDetailsTransactionEntity>();
     //      ZoneMasters = new HashSet<ZoneMasterEntity>();
@@ -25,6 +31,11 @@ namespace RadmsEntities
         {
             this.RegionId = model.RegionId;
             this.RegionName = model.RegionName;
+            this.RegionNameAm = model.RegionNameAm;
+            this.RegionNameOr = model.RegionNameOr;
+            this.RegionNameAf = model.RegionNameAf;
+            this.RegionNameSo = model.RegionNameSo;
+            this.RegionNameTi = model.RegionNameTi;
 
         }
 
@@ -34,8 +45,13 @@ namespace RadmsEntities
         public T MapToModel<T>() where T : class
         {
             RegionMaster model = new RegionMaster();
-            model.RegionId = this.RegionId;
+            //model.RegionId = this.RegionId;
             model.RegionName = this.RegionName;
+            model.RegionNameAm = this.RegionNameAm;
+            model.RegionNameOr = this.RegionNameOr;
+            model.RegionNameAf = this.RegionNameAf;
+            model.RegionNameSo = this.RegionNameSo;
+            model.RegionNameTi = this.RegionNameTi;
 
             return model as T;
         }

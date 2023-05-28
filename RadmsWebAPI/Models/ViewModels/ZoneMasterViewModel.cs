@@ -21,7 +21,11 @@ namespace RadmsWebAPI.Models.ViewModels
         {
             this.ZoneId = entity.ZoneId;
             this.ZoneName = entity.ZoneName;
-         //   this.Region = new RegionMasterViewModel(entity.Region);
+            this.Region = new RegionMasterViewModel
+            {
+                RegionName = entity.Region.RegionName,
+                // other mapped properties
+            };
 
         }
         public T MapToViewEntity<T>() where T : class

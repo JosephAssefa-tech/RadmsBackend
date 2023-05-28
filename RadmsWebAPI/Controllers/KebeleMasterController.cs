@@ -23,10 +23,19 @@ namespace RadmsWebAPI.Controllers
         }
 
         // POST api/<KebeleMasterController>
-        [HttpPost]
-        public void Post([FromBody] string value)
-        {
-        }
+        //[HttpPost]
+        //public void Post([FromBody] KebeleMasterPostModel postModel)
+        //{
+        //    string result = this._service.Save(postModel.MapToViewEntity<ZoneMasterEntity>());
+        //    if (result == "saved sucessfuly")
+        //    {
+
+        //    }
+        //    else
+        //    {
+
+        //    }
+        //}
 
         // PUT api/<KebeleMasterController>/5
         [HttpPut("{id}")]

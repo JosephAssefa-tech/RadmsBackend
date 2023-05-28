@@ -4,24 +4,46 @@ namespace RadmsWebAPI.Models.PostModels
 {
     public class RegionMasterPostModel
     {
-        public int RegionId { get; set; }
-
+        //public int RegionId { get; set; }
         public string RegionName { get; set; } = null!;
+
+
+        public string? RegionNameAm { get; set; }
+
+        public string? RegionNameOr { get; set; }
+
+        public string? RegionNameTi { get; set; }
+
+        public string? RegionNameAf { get; set; }
+
+        public string? RegionNameSo { get; set; }
         public RegionMasterPostModel()
         {
 
         }
         public RegionMasterPostModel(RegionMasterEntity entity)
         {
-            this.RegionId = entity.RegionId;
             this.RegionName = entity.RegionName;
+            this.RegionNameAm = entity.RegionNameAm;
+            this.RegionNameOr = entity.RegionNameOr;
+            this.RegionNameTi = entity.RegionNameTi;
+            this.RegionNameAf = entity.RegionNameAf;
+            this.RegionNameSo = entity.RegionNameSo;
+
+
+
 
         }
         public T MapToViewEntity<T>() where T : class
         {
             RegionMasterEntity entity = new RegionMasterEntity();
-            entity.RegionId = this.RegionId;
+     
             entity.RegionName = this.RegionName;
+            entity.RegionNameAm = this.RegionNameAm;
+            entity.RegionNameOr = this.RegionNameOr;
+            entity.RegionNameTi = this.RegionNameTi;
+            entity.RegionNameAf = this.RegionNameAf;
+            entity.RegionNameSo = this.RegionNameSo;
             return entity as T;
 
 

@@ -8,26 +8,26 @@ namespace RadmsWebAPI.Models.PostModels
         {
 
         }
-        public int ZoneId { get; set; }
+       // public int ZoneId { get; set; }
 
         public string ZoneName { get; set; } = null!;
 
-       // public int? RegionId { get; set; }
+        public int? RegionId { get; set; }
 
-        public virtual RegionMasterPostModel? Region { get; set; }
+      //  public virtual RegionMasterPostModel? Region { get; set; }
     
         public ZoneMasterPostModel(ZoneMasterEntity entity)
         {
-            this.ZoneId = entity.ZoneId;
+           // this.ZoneId = entity.ZoneId;
             this.ZoneName = entity.ZoneName;
-            this.Region = new RegionMasterPostModel(entity.Region);
+            this.RegionId = entity.RegionId;
         }
         public T MapToViewEntity<T>() where T : class
         {
             ZoneMasterEntity entity = new ZoneMasterEntity();
-            entity.ZoneId = this.ZoneId;
+           // entity.ZoneId = this.ZoneId;
             entity.ZoneName = this.ZoneName;
-            entity.Region = this.Region.MapToViewEntity<RegionMasterEntity>(); ;
+            entity.RegionId = this.RegionId;
             return entity as T;
 
 

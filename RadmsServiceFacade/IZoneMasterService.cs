@@ -10,5 +10,6 @@ namespace RadmsServiceFacade
     public interface IZoneMasterService
     {
         List<ZoneMasterEntity> GetAll(string language);
+        string Save(ZoneMasterEntity accident, string? selectedLanguage);
     }
 }

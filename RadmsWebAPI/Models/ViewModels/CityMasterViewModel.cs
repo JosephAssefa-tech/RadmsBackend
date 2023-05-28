@@ -21,7 +21,10 @@ namespace RadmsWebAPI.Models.ViewModels
         {
             this.CityId = entity.CityId;
             this.CityName = entity.CityName;
-        //    this.Woreda = new WoredaMasterViewModel(entity.Woreda);
+            this.Woreda = new WoredaMasterViewModel
+            {
+                WoredaName = entity.Woreda.WoredaName
+            };
 
         }
 

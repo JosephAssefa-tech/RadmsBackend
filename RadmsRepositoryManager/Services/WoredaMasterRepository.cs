@@ -22,8 +22,12 @@ namespace RadmsRepositoryManager.Services
                 models = context.WoredaMasters.Select(x => new WoredaMaster
                 {
                    WoredaId=x.WoredaId,
-                   WoredaName=x.WoredaNameAm
-                }).ToList();
+                   WoredaName=x.WoredaNameAm,
+                    Zone = new ZoneMaster
+                    {
+                        ZoneName = x.Zone.ZoneNameAm
+                    }
+            }).ToList();
 
             }
             else
@@ -31,7 +35,11 @@ namespace RadmsRepositoryManager.Services
                 models = context.WoredaMasters.Select(x => new WoredaMaster
                 {
                     WoredaId = x.WoredaId,
-                    WoredaName = x.WoredaName
+                    WoredaName = x.WoredaName,
+                    Zone = new ZoneMaster
+                    {
+                        ZoneName = x.Zone.ZoneName
+                    }
                 }).ToList();
             }
 
@@ -47,6 +55,23 @@ namespace RadmsRepositoryManager.Services
                 entities.Add(entity);
             }
             return entities;
+        }
+
+        public string Save(WoredaMasterEntity entity)
+        {
+            try
+            {
+                WoredaMaster model = entity.MapToModel<WoredaMaster>();
+
+
+                context.WoredaMasters.Add(model);
+                context.SaveChanges();
+                return "saved";
+            }
+            catch (Exception)
+            {
+                throw;
+            }
         }
     }
 }

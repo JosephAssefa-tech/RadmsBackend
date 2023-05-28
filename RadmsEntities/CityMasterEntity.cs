@@ -26,7 +26,10 @@ namespace RadmsEntities
         {
             this.CityId = model.CityId;
             this.CityName = model.CityName;
-          //  this.Woreda = new WoredaMasterEntity(model.Woreda);
+            this.Woreda = new WoredaMasterEntity
+            {
+                WoredaName = model.Woreda.WoredaName
+            };
 
         }
 
@@ -39,7 +42,7 @@ namespace RadmsEntities
             CityMaster model = new CityMaster();
             model.CityId = this.CityId;
             model.CityName = this.CityName;
-         //   model.WoredaId = this.Woreda.WoredaId;
+           model.WoredaId = this.Woreda.WoredaId;
             return model as T;
         }
     }

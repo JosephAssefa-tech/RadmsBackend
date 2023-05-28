@@ -23,7 +23,11 @@ namespace RadmsRepositoryManager.Services
                 models = context.ZoneMasters.Select(x => new ZoneMaster
                 {
                     ZoneId = x.ZoneId,
-                    ZoneName = x.ZoneNameAm
+                    ZoneName = x.ZoneNameAm,
+                    Region = new RegionMaster
+                    {
+                        RegionName = x.Region.RegionNameAm
+                    }
                 }).ToList();
 
             }
@@ -32,7 +36,11 @@ namespace RadmsRepositoryManager.Services
                 models = context.ZoneMasters.Select(x => new ZoneMaster
                 {
                     ZoneId = x.ZoneId,
-                    ZoneName = x.ZoneName
+                    ZoneName = x.ZoneName,
+                    Region = new RegionMaster
+                    {
+                        RegionName = x.Region.RegionName
+                    }
                 }).ToList();
             }
             List<ZoneMasterEntity> entities = new List<ZoneMasterEntity>();
@@ -44,6 +52,47 @@ namespace RadmsRepositoryManager.Services
                 entities.Add(entity);
             }
             return entities;
+        }
+
+        public bool Save(ZoneMasterEntity entity, string? selectedLanguage)
+        {
+            try
+            {
+                ZoneMaster model = entity.MapToModel<ZoneMaster>();
+
+                // Set the data based on the selected language
+                if (selectedLanguage == "English")
+                {
+                    model.ZoneName = entity.ZoneName;
+                }
+                else if (selectedLanguage == "amharic")
+                {
+                    model.ZoneNameAm = entity.ZoneName;
+                }
+                else if (selectedLanguage == "afanoromo")
+                {
+                    model.ZoneNameOr = entity.ZoneName;
+                }
+                else if (selectedLanguage == "somalia")
+                {
+                    model.ZoneNameSo = entity.ZoneName;
+                }
+                else if (selectedLanguage == "tigray")
+                {
+                    model.ZoneNameTi = entity.ZoneName;
+                }
+                // Add more conditions for other languages if needed
+
+
+
+                context.ZoneMasters.Add(model);
+                context.SaveChanges();
+                return true;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
         }
     }
 }

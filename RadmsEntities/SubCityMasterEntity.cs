@@ -28,7 +28,10 @@ namespace RadmsEntities
         {
             this.SubCityId = model.SubCityId;
             this.SubCityName = model.SubCityName;
-          //  this.City = new CityMasterEntity(model.City);
+            City = new CityMasterEntity
+            {
+                CityName = model.City.CityName
+            };
 
 
         }
