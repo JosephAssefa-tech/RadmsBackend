@@ -28,20 +28,20 @@ namespace RadmsWebAPI.Models.ViewModels
         {
             this.Hid = entity.Hid;
             this.Hname = entity.Hname;
-            this.Hlength=entity.Hlength;
-            this.StartChange=entity.StartChange;
-            this.EndChanage=entity.EndChanage;
-            this.Howner = new HighwayOwnerMasterViewModel(entity.Howner);
-            this.Htype = new HighwayTypeLookupViewModel(entity.Htype);
+            //this.Hlength=entity.Hlength;
+            //this.StartChange=entity.StartChange;
+            //this.EndChanage=entity.EndChanage;
+            //this.Howner = new HighwayOwnerMasterViewModel(entity.Howner);
+            //this.Htype = new HighwayTypeLookupViewModel(entity.Htype);
         }
         public T MapToViewEntity<T>() where T : class
         {
             HighwayMasterEntity model = new HighwayMasterEntity();
             model.Hid = this.Hid;
             model.Hname = this.Hname;
-            model.Hlength = this.Hlength;
-            model.StartChange = this.StartChange;
-            model.EndChanage = this.EndChanage;
+            //model.Hlength = this.Hlength;
+            //model.StartChange = this.StartChange;
+            //model.EndChanage = this.EndChanage;
             return model as T;
         }
     }

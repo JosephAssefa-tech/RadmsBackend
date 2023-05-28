@@ -1,5 +1,5 @@
 ﻿using RadmsDataAccessLogic;
-using RadmsDataModels.Models;
+using RadmsDataModels.Modelss;
 using RadmsEntities;
 using RadmsRepositoryFacade;
 using System;
@@ -14,11 +14,11 @@ namespace RadmsRepositoryManager.Services
     {
         RadmsContext context = new RadmsContext();
 
-        public bool Delete(decimal id)
+        public bool Delete(int regionId)
         {
             try
             {
-                var result = context.RegionMasters.Where(x => x.RegionId == id).FirstOrDefault();
+                var result = context.RegionMasters.Where(x => x.RegionId == regionId).FirstOrDefault();
                 if (result != null)
                 {
                     context.RegionMasters.Remove(result);
@@ -48,11 +48,31 @@ namespace RadmsRepositoryManager.Services
             return new RegionMasterEntity(model);
         }
 
-        public List<RegionMasterEntity> GetAll()
+        public List<RegionMasterEntity> GetAll(string language)
         {
 
-            List<RegionMaster> models = context.RegionMasters.ToList();
-            List<RegionMasterEntity> entities = new List<RegionMasterEntity>();
+            List<RegionMaster> models;
+            if (language == "amharic")
+            {
+               models = context.RegionMasters.Select(x => new RegionMaster
+               {
+                    RegionId = x.RegionId,
+                    RegionName = x.RegionNameAm,
+               }).ToList();
+
+            }
+            else
+            {
+                models = context.RegionMasters.Select(x => new RegionMaster
+                {
+                    RegionId = x.RegionId,
+                    RegionName = x.RegionName,
+                }).ToList();
+            }
+
+
+
+                List<RegionMasterEntity> entities = new List<RegionMasterEntity>();
             foreach (var model in models)
             {
 

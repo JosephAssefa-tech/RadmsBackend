@@ -9,6 +9,6 @@ namespace RadmsServiceFacade
 {
     public interface  ISubCityMasterService
     {
-        List<SubCityMasterEntity> GetAll();
+        List<SubCityMasterEntity> GetAll(string language);
     }
 }

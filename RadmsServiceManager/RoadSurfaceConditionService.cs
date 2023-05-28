@@ -16,9 +16,9 @@ namespace RadmsServiceManager
         {
             _repository = repository;
         }
-        public List<RoadSurfaceConditionLookupEntity> GetAll()
+        public List<RoadSurfaceConditionLookupEntity> GetAll(string language)
         {
-            List<RoadSurfaceConditionLookupEntity> results = this._repository.GetAll();
+            List<RoadSurfaceConditionLookupEntity> results = this._repository.GetAll(language);
             return results;
         }
     }

@@ -19,9 +19,9 @@ namespace RadmsWebAPI.Controllers
         }
         // GET: api/<ImpactTypeController>
         [HttpGet]
-        public List<ImpactTypeLookupViewModel> GetAll()
+        public List<ImpactTypeLookupViewModel> GetAll(string language)
         {
-            List<ImpactTypeLookupEntity> entities = this._service.GetAll();
+            List<ImpactTypeLookupEntity> entities = this._service.GetAll(language);
             List<ImpactTypeLookupViewModel> viewModels = new List<ImpactTypeLookupViewModel>();
             foreach (var entity in entities)
             {

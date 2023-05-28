@@ -1,4 +1,4 @@
-﻿using RadmsDataModels.Models;
+﻿using RadmsDataModels.Modelss;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -28,7 +28,13 @@ namespace RadmsEntities
         {
             this.ZoneId = model.ZoneId;
             this.ZoneName = model.ZoneName;
-            this.Region = new RegionMasterEntity(model.Region);
+            this.RegionId = model.RegionId;
+            this.Region = new RegionMasterEntity
+            {
+                RegionName = model.Region.RegionName,
+                // other mapped properties
+            };
+
 
 
         }
@@ -40,7 +46,8 @@ namespace RadmsEntities
             ZoneMaster model = new ZoneMaster();
             model.ZoneId = this.ZoneId;
             model.ZoneName = this.ZoneName;
-            model.RegionId = this.Region.RegionId;
+            model.RegionId = this.RegionId;
+         
 
             return model as T;
         }

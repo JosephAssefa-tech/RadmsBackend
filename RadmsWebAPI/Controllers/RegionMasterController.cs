@@ -23,9 +23,9 @@ namespace RadmsWebAPI.Controllers
         // GET: api/<RegionMasterController>
         [HttpGet]
         // [Route("/GetAll")]
-        public List<RegionMasterViewModel> GetAll()
+        public List<RegionMasterViewModel> GetAll(string language)
         {
-            List<RegionMasterEntity> entities = this._service.GetAll();
+            List<RegionMasterEntity> entities = this._service.GetAll(language);
             List<RegionMasterViewModel> viewModels = new List<RegionMasterViewModel>();
             foreach (var entity in entities)
             {
@@ -67,9 +67,10 @@ namespace RadmsWebAPI.Controllers
         }
 
         // DELETE api/<RegionMasterController>/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
+        [HttpDelete]
+        public void Delete(int regionId)
         {
+            var result = this._service.Delete(regionId);
         }
     }
 }

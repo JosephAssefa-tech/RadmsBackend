@@ -9,6 +9,6 @@ namespace RadmsRepositoryFacade
 {
     public interface  IJunctionTypeRepository
     {
-        List<JunctionTypeLookupEntity> GetAll();
+        List<JunctionTypeLookupEntity> GetAll(string language);
     }
 }

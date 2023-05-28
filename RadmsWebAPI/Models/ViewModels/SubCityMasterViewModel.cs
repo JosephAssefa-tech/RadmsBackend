@@ -18,7 +18,11 @@ namespace RadmsWebAPI.Models.ViewModels
         public SubCityMasterViewModel(SubCityMasterEntity entity)
         {
             this.SubCityId = entity.SubCityId;
-            this.SubCityName = entity.SubCityName;  
+            this.SubCityName = entity.SubCityName;
+            City = new CityMasterViewModel
+            {
+                CityName = entity.City.CityName
+            };
         }
         public T MapToViewEntity<T>() where T : class
         {

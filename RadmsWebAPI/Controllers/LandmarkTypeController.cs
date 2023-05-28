@@ -18,9 +18,9 @@ namespace RadmsWebAPI.Controllers
         }
         // GET: api/<LandmarkTypeController>
         [HttpGet]
-        public List<LandmarkTypeLookupViewModel> GetAll()
+        public List<LandmarkTypeLookupViewModel> GetAll(string language)
         {
-            List<LandmarkTypeLookupEntity> entities = this._service.GetAll();
+            List<LandmarkTypeLookupEntity> entities = this._service.GetAll(language);
             List<LandmarkTypeLookupViewModel> viewModels = new List<LandmarkTypeLookupViewModel>();
             foreach (var entity in entities)
             {

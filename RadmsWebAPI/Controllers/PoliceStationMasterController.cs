@@ -21,9 +21,9 @@ namespace RadmsWebAPI.Controllers
 
         // GET: api/<PoliceStationMasterController>
         [HttpGet]
-        public List<PoliceStationMasterViewModel> GetAll()
+        public List<PoliceStationMasterViewModel> GetAll(string language)
         {
-            List<PoliceStationMasterEntity> entities = this._service.GetAll();
+            List<PoliceStationMasterEntity> entities = this._service.GetAll(language);
             List<PoliceStationMasterViewModel> viewModels = new List<PoliceStationMasterViewModel>();
             foreach (var entity in entities)
             {

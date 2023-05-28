@@ -1,5 +1,5 @@
 ﻿using RadmsDataAccessLogic;
-using RadmsDataModels.Models;
+using RadmsDataModels.Modelss;
 using RadmsEntities;
 using RadmsRepositoryFacade;
 using System;
@@ -92,20 +92,33 @@ namespace RadmsRepositoryManager.Services
         //    return true;
         //}
 
-        public List<AccidentCauseLookupEntity> GetAll()
-        { 
-            //use the below Include function for table that have a relationship to fetch the other table data
-           // List<AccidentCauseLookup> models = context.AccidentCauseLookups.Include(x=>x.RelationTable).ToList();
+        public List<AccidentCauseLookupEntity> GetAll(string language)
+        {
+            List<AccidentCauseLookup> models;
+            if (language == "amharic")
+            {
+                models = context.AccidentCauseLookups.Select(x => new AccidentCauseLookup
+                {
+                    AccidentCauseId = x.AccidentCauseId,
+                    AccidentCauseName = x.AccidentCauseNameAm
+                }).ToList();
+            }
+            else
+            {
+                models = context.AccidentCauseLookups.Select(x => new AccidentCauseLookup
+                {
+                    AccidentCauseId = x.AccidentCauseId,
+                    AccidentCauseName = x.AccidentCauseName
+                }).ToList();
+            }
 
-            List<AccidentCauseLookup> models = context.AccidentCauseLookups.ToList();
             List<AccidentCauseLookupEntity> entities = new List<AccidentCauseLookupEntity>();
             foreach (var model in models)
             {
-
                 AccidentCauseLookupEntity entity = new AccidentCauseLookupEntity(model);
-
                 entities.Add(entity);
             }
+
             return entities;
         }
 

@@ -17,9 +17,9 @@ namespace RadmsServiceManager
             _repositiory = repositiory;
 
         }
-        public List<AirConditionTypeLookupEntity> GetAll()
+        public List<AirConditionTypeLookupEntity> GetAll(string language)
         {
-            List<AirConditionTypeLookupEntity> results = this._repositiory.GetAll();
+            List<AirConditionTypeLookupEntity> results = this._repositiory.GetAll(language);
             return results;
         }
     }

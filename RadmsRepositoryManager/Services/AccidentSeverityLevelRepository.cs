@@ -1,5 +1,5 @@
 ﻿using RadmsDataAccessLogic;
-using RadmsDataModels.Models;
+using RadmsDataModels.Modelss;
 using RadmsEntities;
 using RadmsRepositoryFacade;
 using System;
@@ -13,10 +13,30 @@ namespace RadmsRepositoryManager.Services
     public class AccidentSeverityLevelRepository : IAccidentSeverityLevelRepository
     {
         RadmsContext context = new RadmsContext();
-        public List<SeverityLevelLookupEntity> GetAll()
+        public List<SeverityLevelLookupEntity> GetAll(string language)
         {
-            List<SeverityLevelLookup> models = context.SeverityLevelLookups.
-         ToList();
+            List<SeverityLevelLookup> models;
+
+
+            if (language == "amharic")
+            {
+                models = context.SeverityLevelLookups.Select(x => new SeverityLevelLookup
+                {
+                   SeverityId = x.SeverityId,
+                   SeverityType = x.SeverityTypeAm
+                }).ToList();
+
+            }
+            else
+            {
+                models = context.SeverityLevelLookups.Select(x => new SeverityLevelLookup
+                {
+                    SeverityId = x.SeverityId,
+                    SeverityType = x.SeverityType
+                }).ToList();
+            }
+
+
             List<SeverityLevelLookupEntity> entities = new List<SeverityLevelLookupEntity>();
             foreach (var model in models)
             {

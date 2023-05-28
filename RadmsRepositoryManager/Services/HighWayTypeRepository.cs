@@ -1,5 +1,5 @@
 ﻿using RadmsDataAccessLogic;
-using RadmsDataModels.Models;
+using RadmsDataModels.Modelss;
 using RadmsEntities;
 using RadmsRepositoryFacade;
 using System;
@@ -13,9 +13,28 @@ namespace RadmsRepositoryManager.Services
     public class HighWayTypeRepository : IHighWayTypeRepository
     {
         RadmsContext context = new RadmsContext();
-        public List<HighwayTypeLookupEntity> GetAll()
+        public List<HighwayTypeLookupEntity> GetAll(string language)
         {
-            List<HighwayTypeLookup> models = context.HighwayTypeLookups.ToList();
+            List<HighwayTypeLookup> models;
+            if (language == "amharic")
+            {
+                models = context.HighwayTypeLookups.Select(x => new HighwayTypeLookup
+                {
+                    HtypeId=x.HtypeId,
+                    HtypeName=x.HtypeNameAm
+                }).ToList();
+
+            }
+            else
+            {
+                models = context.HighwayTypeLookups.Select(x => new HighwayTypeLookup
+                {
+                    HtypeId = x.HtypeId,
+                    HtypeName = x.HtypeName
+                }).ToList();
+            }
+
+
             List<HighwayTypeLookupEntity> entities = new List<HighwayTypeLookupEntity>();
             foreach (var model in models)
             {

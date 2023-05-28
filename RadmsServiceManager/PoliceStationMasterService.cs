@@ -38,9 +38,9 @@ namespace RadmsServiceManager
             throw new NotImplementedException();
         }
 
-        public List<PoliceStationMasterEntity> GetAll()
+        public List<PoliceStationMasterEntity> GetAll(string language)
         {
-            List<PoliceStationMasterEntity> results = this._repository.GetAll();
+            List<PoliceStationMasterEntity> results = this._repository.GetAll(language);
             return results;
         }
 

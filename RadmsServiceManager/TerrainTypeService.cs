@@ -16,9 +16,9 @@ namespace RadmsServiceManager
         {
             _repository = repository;
         }
-        public List<TerrainTypeLookupEntity> GetAll()
+        public List<TerrainTypeLookupEntity> GetAll(string language)
         {
-            List<TerrainTypeLookupEntity> results = this._repository.GetAll();
+            List<TerrainTypeLookupEntity> results = this._repository.GetAll(language);
             return results;
         }
     }

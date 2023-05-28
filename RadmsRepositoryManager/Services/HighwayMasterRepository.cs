@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using RadmsDataAccessLogic;
-using RadmsDataModels.Models;
+using RadmsDataModels.Modelss;
 using RadmsEntities;
 using RadmsRepositoryFacade;
 using System;
@@ -14,12 +14,29 @@ namespace RadmsRepositoryManager.Services
     public class HighwayMasterRepository : IHighwayMasterRepository
     {
         RadmsContext context = new RadmsContext();
-        public List<HighwayMasterEntity> GetAll()
+        public List<HighwayMasterEntity> GetAll(string language)
 
         {
-            List<HighwayMaster> models = context.HighwayMasters.Include(x=>x.Howner)
-                .Include(x=>x.Htype)
-               .ToList();
+            List<HighwayMaster> models;
+            if (language == "amharic")
+            {
+                models = context.HighwayMasters.Select(x => new HighwayMaster
+                {
+                    Hid = x.Hid,
+                    Hname = x.HnameAm
+                }).ToList();
+
+            }
+            else
+            {
+                models = context.HighwayMasters.Select(x => new HighwayMaster
+                {
+                    Hid = x.Hid,
+                    Hname = x.Hname
+                }).ToList();
+            }
+
+
             List<HighwayMasterEntity> entities = new List<HighwayMasterEntity>();
             foreach (var model in models)
             {

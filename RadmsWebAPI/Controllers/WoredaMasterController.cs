@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using RadmsEntities;
 using RadmsServiceFacade;
+using RadmsWebAPI.Models.PostModels;
 using RadmsWebAPI.Models.ViewModels;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -19,9 +20,9 @@ namespace RadmsWebAPI.Controllers
        
         // GET: api/<WoredaMasterController>
         [HttpGet]
-        public List<WoredaMasterViewModel> GetAll()
+        public List<WoredaMasterViewModel> GetAll(string language)
         {
-            List<WoredaMasterEntity> entities = this._service.GetAll();
+            List<WoredaMasterEntity> entities = this._service.GetAll(language);
             List<WoredaMasterViewModel> viewModels = new List<WoredaMasterViewModel>();
             foreach (var entity in entities)
             {
@@ -40,8 +41,17 @@ namespace RadmsWebAPI.Controllers
 
         // POST api/<WoredaMasterController>
         [HttpPost]
-        public void Post([FromBody] string value)
+        public void Post([FromBody] WoredaMasterPostModel postModel)
         {
+            string result = this._service.Save(postModel.MapToViewEntity<WoredaMasterEntity>());
+            if (result == "saved sucessfuly")
+            {
+
+            }
+            else
+            {
+
+            }
         }
 
         // PUT api/<WoredaMasterController>/5

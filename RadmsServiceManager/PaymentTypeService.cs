@@ -18,9 +18,9 @@ namespace RadmsServiceManager
             _repositiory = repositiory;
 
         }
-        public List<PavementTypeLookupEntity> GetAll()
+        public List<PavementTypeLookupEntity> GetAll(string language)
         {
-            List<PavementTypeLookupEntity> results = this._repositiory.GetAll();
+            List<PavementTypeLookupEntity> results = this._repositiory.GetAll(language);
             return results;
         }
     }

@@ -9,6 +9,6 @@ namespace RadmsRepositoryFacade
 {
     public interface  ILandmarkTypeRepository
     {
-        List<LandmarkTypeLookupEntity> GetAll();
+        List<LandmarkTypeLookupEntity> GetAll(string language);
     }
 }

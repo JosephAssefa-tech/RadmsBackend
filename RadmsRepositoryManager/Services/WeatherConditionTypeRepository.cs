@@ -1,5 +1,5 @@
 ﻿using RadmsDataAccessLogic;
-using RadmsDataModels.Models;
+using RadmsDataModels.Modelss;
 using RadmsEntities;
 using RadmsRepositoryFacade;
 using System;
@@ -46,9 +46,31 @@ namespace RadmsRepositoryManager.Services
             throw new NotImplementedException();
         }
 
-        public List<WeatherConditionTypeLookupEntity> GetAll()
+        public List<WeatherConditionTypeLookupEntity> GetAll(string language)
         {
-            List<WeatherConditionTypeLookup> models = context.WeatherConditionTypeLookups.ToList();
+            List<WeatherConditionTypeLookup> models;
+
+            if (language == "amharic")
+            {
+                models = context.WeatherConditionTypeLookups.Select(x => new WeatherConditionTypeLookup
+                {
+                    WeatherCondName = x.WeatherCondNameAm,
+                    WeatherCondId = x.WeatherCondId,
+                }).ToList();
+
+            } 
+            else
+            {
+                models = context.WeatherConditionTypeLookups.Select(x => new WeatherConditionTypeLookup
+                {
+                    WeatherCondName = x.WeatherCondName,
+                    WeatherCondId = x.WeatherCondId,
+                }).ToList();
+            }
+
+
+
+
             List<WeatherConditionTypeLookupEntity> entities = new List<WeatherConditionTypeLookupEntity>();
             foreach (var model in models)
             {

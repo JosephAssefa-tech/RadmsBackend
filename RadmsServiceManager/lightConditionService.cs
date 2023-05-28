@@ -17,9 +17,9 @@ namespace RadmsServiceManager
             _repositiory = repositiory;
 
         }
-        public List<LightConditionLookupEntity> GetAll()
+        public List<LightConditionLookupEntity> GetAll(string language)
         {
-            List<LightConditionLookupEntity> results = this._repositiory.GetAll();
+            List<LightConditionLookupEntity> results = this._repositiory.GetAll(language);
             return results;
         }
     }

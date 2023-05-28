@@ -1,4 +1,4 @@
-﻿using RadmsDataModels.Models;
+﻿using RadmsDataModels.Modelss;
 using RadmsEntities;
 
 namespace RadmsWebAPI.Models.ViewModels
@@ -21,7 +21,11 @@ namespace RadmsWebAPI.Models.ViewModels
         {
             this.WoredaId = entity.WoredaId;
             this.WoredaName = entity.WoredaName;
-            this.Zone = new ZoneMasterViewModel(entity.Zone);
+            this.Zone = new ZoneMasterViewModel
+            {
+                ZoneName = entity.Zone.ZoneName,
+                // other mapped properties
+            };
 
         }
         public T MapToViewEntity<T>() where T : class

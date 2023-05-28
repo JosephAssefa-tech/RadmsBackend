@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using RadmsDataAccessLogic;
-using RadmsDataModels.Models;
+using RadmsDataModels.Modelss;
 using RadmsEntities;
 using RadmsRepositoryFacade;
 using RadmsRepositoryManager.Services.BaseRepo;
@@ -15,10 +15,29 @@ namespace RadmsRepositoryManager.Services
     public class PaymentTypeRepository : IPaymentTypeRepository
     {
         RadmsContext context = new RadmsContext();
-        public List<PavementTypeLookupEntity> GetAll()
+        public List<PavementTypeLookupEntity> GetAll(string language)
         {
-            List<PavementTypeLookup> models = context.PavementTypeLookups
-             .ToList();
+            List<PavementTypeLookup> models;
+            if (language == "amharic")
+            {
+                models = context.PavementTypeLookups.Select(x => new PavementTypeLookup
+                {
+                  PavementName = x.PavementNameAm,
+                  PavementTypeId=x.PavementTypeId,
+                }).ToList();
+
+            }
+            else
+            {
+                models = context.PavementTypeLookups.Select(x => new PavementTypeLookup
+                {
+                    PavementName = x.PavementName,
+                    PavementTypeId = x.PavementTypeId,
+                }).ToList();
+            }
+
+
+
             List<PavementTypeLookupEntity> entities = new List<PavementTypeLookupEntity>();
             foreach (var model in models)
             {

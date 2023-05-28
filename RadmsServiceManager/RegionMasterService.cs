@@ -19,11 +19,11 @@ namespace RadmsServiceManager
 
         }
 
-        public string Delete(decimal id)
+        public string Delete(int regionId)
         {
-            if (id != 0)
+            if (regionId != 0)
             {
-                var result = _repositiory.Delete(id);
+                var result = _repositiory.Delete(regionId);
 
                 return "sucessfuly deleted";
 
@@ -39,9 +39,9 @@ namespace RadmsServiceManager
             throw new NotImplementedException();
         }
 
-        public List<RegionMasterEntity> GetAll()
+        public List<RegionMasterEntity> GetAll(string language)
         {
-            List<RegionMasterEntity> results = this._repositiory.GetAll();
+            List<RegionMasterEntity> results = this._repositiory.GetAll(language);
             return results;
         }
 

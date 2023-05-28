@@ -17,9 +17,9 @@ namespace RadmsServiceManager
             _repositiory = repositiory;
 
         }
-        public List<AccidentTypeLookupEntity> GetAll()
+        public List<AccidentTypeLookupEntity> GetAll(string language)
         {
-            List<AccidentTypeLookupEntity> results = this._repositiory.GetAll();
+            List<AccidentTypeLookupEntity> results = this._repositiory.GetAll(language);
             return results;
         }
     }

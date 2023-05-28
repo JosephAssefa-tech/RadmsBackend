@@ -18,9 +18,9 @@ namespace RadmsWebAPI.Controllers
         }
         // GET: api/<CityMasterController>
         [HttpGet]
-        public List<CityMasterViewModel> GetAll()
+        public List<CityMasterViewModel> GetAll(string language)
         {
-            List<CityMasterEntity> entities = this._service.GetAll();
+            List<CityMasterEntity> entities = this._service.GetAll(language);
             List<CityMasterViewModel> viewModels = new List<CityMasterViewModel>();
             foreach (var entity in entities)
             {

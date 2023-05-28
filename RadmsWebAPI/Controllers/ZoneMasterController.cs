@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using RadmsEntities;
 using RadmsServiceFacade;
+using RadmsWebAPI.Models.PostModels;
 using RadmsWebAPI.Models.ViewModels;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -19,9 +20,9 @@ namespace RadmsWebAPI.Controllers
         }
         // GET: api/<ZoneMasterController>
         [HttpGet]
-        public List<ZoneMasterViewModel> GetAll()
+        public List<ZoneMasterViewModel> GetAll(string language)
         {
-            List<ZoneMasterEntity> entities = this._service.GetAll();
+            List<ZoneMasterEntity> entities = this._service.GetAll(language);
             List<ZoneMasterViewModel> viewModels = new List<ZoneMasterViewModel>();
             foreach (var entity in entities)
             {
@@ -39,8 +40,17 @@ namespace RadmsWebAPI.Controllers
 
         // POST api/<ZoneMasterController>
         [HttpPost]
-        public void Post([FromBody] string value)
+        public void Save([FromBody] ZoneMasterPostModel postModel, string? selectedLanguage)
         {
+            string result = this._service.Save(postModel.MapToViewEntity<ZoneMasterEntity>(), selectedLanguage);
+            if (result == "saved sucessfuly")
+            {
+
+            }
+            else
+            {
+
+            }
         }
 
         // PUT api/<ZoneMasterController>/5

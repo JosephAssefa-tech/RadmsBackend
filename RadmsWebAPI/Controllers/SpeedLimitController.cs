@@ -18,9 +18,9 @@ namespace RadmsWebAPI.Controllers
         }
         // GET: api/<SpeedLimitController>
         [HttpGet]
-        public List<SpeedLimitLookupViewModel> GetAll()
+        public List<SpeedLimitLookupViewModel> GetAll(string language)
         {
-            List<SpeedLimitLookupEntity> entities = this._service.GetAll();
+            List<SpeedLimitLookupEntity> entities = this._service.GetAll(language);
             List<SpeedLimitLookupViewModel> viewModels = new List<SpeedLimitLookupViewModel>();
             foreach (var entity in entities)
             {

@@ -19,9 +19,9 @@ namespace RadmsWebAPI.Controllers
         }
         // GET: api/<WeatherConditionTypeController>
         [HttpGet]
-        public List<WeatherConditionTypeLookupPostModel> GetAll()
+        public List<WeatherConditionTypeLookupPostModel> GetAll(string language)
         {
-            List<WeatherConditionTypeLookupEntity> entities = this._service.GetAll();
+            List<WeatherConditionTypeLookupEntity> entities = this._service.GetAll(language);
             List<WeatherConditionTypeLookupPostModel> viewModels = new List<WeatherConditionTypeLookupPostModel>();
             foreach (var entity in entities)
             {

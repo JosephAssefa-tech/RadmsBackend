@@ -32,9 +32,9 @@ namespace RadmsServiceManager
    
         }
 
-        public List<AccidentCauseLookupEntity> GetAll()
+        public List<AccidentCauseLookupEntity> GetAll(string language)
         {
-            List<AccidentCauseLookupEntity> results = this._repositiory.GetAll();
+            List<AccidentCauseLookupEntity> results = this._repositiory.GetAll(language);
             return results;
         }
         private string Validate(AccidentCauseLookupEntity entity)

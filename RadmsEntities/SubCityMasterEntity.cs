@@ -1,4 +1,4 @@
-﻿using RadmsDataModels.Models;
+﻿using RadmsDataModels.Modelss;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -28,7 +28,10 @@ namespace RadmsEntities
         {
             this.SubCityId = model.SubCityId;
             this.SubCityName = model.SubCityName;
-            this.City = new CityMasterEntity(model.City);
+            City = new CityMasterEntity
+            {
+                CityName = model.City.CityName
+            };
 
 
         }
@@ -41,7 +44,7 @@ namespace RadmsEntities
             SubCityMaster model = new SubCityMaster();
             model.SubCityId = this.SubCityId;
             model.SubCityName = this.SubCityName;
-            model.CityId = this.City.CityId;
+         //   model.CityId = this.City.CityId;
   
 
 

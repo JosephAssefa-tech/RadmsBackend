@@ -18,9 +18,9 @@ namespace RadmsWebAPI.Controllers
         }
         // GET: api/<AirConditionTypeController>
         [HttpGet]
-        public List<AirConditionTypeLookupViewModel> GetAll()
+        public List<AirConditionTypeLookupViewModel> GetAll(string language)
         {
-            List<AirConditionTypeLookupEntity> entities = this._service.GetAll();
+            List<AirConditionTypeLookupEntity> entities = this._service.GetAll(language);
             List<AirConditionTypeLookupViewModel> viewModels = new List<AirConditionTypeLookupViewModel>();
             foreach (var entity in entities)
             {

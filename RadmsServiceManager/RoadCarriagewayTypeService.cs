@@ -17,9 +17,9 @@ namespace RadmsServiceManager
             _repository = repository;
         }
 
-        public List<RoadCarriagewayTypeLookupEntity> GetAll()
+        public List<RoadCarriagewayTypeLookupEntity> GetAll(string language)
         {
-            List<RoadCarriagewayTypeLookupEntity> results = this._repository.GetAll();
+            List<RoadCarriagewayTypeLookupEntity> results = this._repository.GetAll(language);
             return results;
         }
     }

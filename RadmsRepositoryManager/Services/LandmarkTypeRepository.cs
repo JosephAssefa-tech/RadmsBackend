@@ -1,5 +1,5 @@
 ﻿using RadmsDataAccessLogic;
-using RadmsDataModels.Models;
+using RadmsDataModels.Modelss;
 using RadmsEntities;
 using RadmsRepositoryFacade;
 using System;
@@ -14,9 +14,29 @@ namespace RadmsRepositoryManager.Services
     {
 
         RadmsContext context = new RadmsContext();
-        public List<LandmarkTypeLookupEntity> GetAll()
+        public List<LandmarkTypeLookupEntity> GetAll(string language)
         {
-            List<LandmarkTypeLookup> models = context.LandmarkTypeLookups.ToList();
+            List<LandmarkTypeLookup> models;
+
+            if (language == "amharic")
+            {
+                models = context.LandmarkTypeLookups.Select(x => new LandmarkTypeLookup
+                {
+                    LandmarkName = x.LandmarkNameAm,
+                    LandmarkTypeId=x.LandmarkTypeId
+                }).ToList();
+
+            }
+            else
+            {
+                models = context.LandmarkTypeLookups.Select(x => new LandmarkTypeLookup
+                {
+                    LandmarkName = x.LandmarkName,
+                    LandmarkTypeId = x.LandmarkTypeId
+                }).ToList();
+            }
+
+
             List<LandmarkTypeLookupEntity> entities = new List<LandmarkTypeLookupEntity>();
             foreach (var model in models)
             {

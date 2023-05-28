@@ -9,6 +9,6 @@ namespace RadmsRepositoryFacade
 {
     public interface IHighWayTypeRepository
     {
-        List<HighwayTypeLookupEntity> GetAll();
+        List<HighwayTypeLookupEntity> GetAll(string language);
     }
 }
