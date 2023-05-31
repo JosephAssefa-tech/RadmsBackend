@@ -14,6 +14,30 @@ namespace RadmsRepositoryManager.Services
     public class CityMasterRepository : ICityMasterRepository
     {
         RadmsContext context = new RadmsContext();
+
+        public bool Delete(int cityId)
+        {
+            try
+            {
+                var result = context.CityMasters.Where(x => x.CityId == cityId).FirstOrDefault();
+                if (result != null)
+                {
+                    context.CityMasters.Remove(result);
+                    context.SaveChanges();
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
         public List<CityMasterEntity> GetAll(string language)
         {
             List<CityMaster> models;
@@ -55,5 +79,46 @@ namespace RadmsRepositoryManager.Services
             }
             return entities;
         }
+        public bool Save(CityMasterEntity city, string? selectedLanguage)
+        {
+            try
+            {
+                CityMaster model = city.MapToModel<CityMaster>();
+
+                // Set the data based on the selected language
+                if (selectedLanguage == "English")
+                {
+                    model.CityName = city.CityName;
+                }
+                else if (selectedLanguage == "amharic")
+                {
+                    model.CityNameAm = city.CityName;
+                }
+                else if (selectedLanguage == "afanoromo")
+                {
+                    model.CityNameOr = city.CityName;
+                }
+                else if (selectedLanguage == "somalia")
+                {
+                    model.CityNameSo = city.CityName;
+                }
+                else if (selectedLanguage == "tigray")
+                {
+                    model.CityNameTi = city.CityName;
+                }
+                // Add more conditions for other languages if needed
+
+
+
+                context.CityMasters.Add(model);
+                context.SaveChanges();
+                return true;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
     }
 }

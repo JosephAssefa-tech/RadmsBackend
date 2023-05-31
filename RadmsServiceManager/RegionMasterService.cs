@@ -105,14 +105,36 @@ namespace RadmsServiceManager
             }
         }
 
-        public bool Update(RegionMasterEntity accident)
-        {
-            throw new NotImplementedException();
-        }
 
-        string IRegionMaster.Update(RegionMasterEntity accident)
+       public string Update(RegionMasterEntity entity)
         {
-            throw new NotImplementedException();
+            try
+            {
+                string msg = Validate(entity);
+                if (msg != String.Empty)
+                {
+                    return msg;
+                }
+                else
+                {
+                    bool result = _repositiory.Update(entity);
+                    if (result == true)
+                    {
+                        return "Updated sucessfuly";
+                    }
+                    else
+                    {
+                        return "unkown error occured";
+
+                    }
+                }
+
+            }
+            catch (Exception)
+            {
+                throw;
+
+            }
         }
     }
 }

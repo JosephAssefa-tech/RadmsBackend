@@ -57,16 +57,63 @@ namespace RadmsRepositoryManager.Services
             return entities;
         }
 
-        public string Save(WoredaMasterEntity entity)
+        public string Save(WoredaMasterEntity entity, string selectedLanguage)
         {
             try
             {
                 WoredaMaster model = entity.MapToModel<WoredaMaster>();
-
+                // Set the data based on the selected language
+                if (selectedLanguage == "English")
+                {
+                    model.WoredaName = entity.WoredaName;
+                }
+                else if (selectedLanguage == "amharic")
+                {
+                    model.WoredaNameAm = entity.WoredaName;
+                }
+                else if (selectedLanguage == "afanoromo")
+                {
+                    model.WoredaNameOr = entity.WoredaName;
+                }
+                else if (selectedLanguage == "somalia")
+                {
+                    model.WoredaNameSo = entity.WoredaName;
+                }
+                else if (selectedLanguage == "tigray")
+                {
+                    model.WoredaNameTi = entity.WoredaName;
+                }
 
                 context.WoredaMasters.Add(model);
                 context.SaveChanges();
                 return "saved";
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+        public bool Delete(int woredaId)
+        {
+            try
+            {
+                var result = context.WoredaMasters.Where(x => x.WoredaId == woredaId).FirstOrDefault();
+                if (result != null)
+                {
+                    context.WoredaMasters.Remove(result);
+                    context.SaveChanges();
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+
+                // AccidentCauseLookup model = entity.MapToModel<AccidentCauseLookup>();
+
+                // context.AccidentCauseLookups.Remove(model);
+                // context.SaveChanges();
+                // return true;
             }
             catch (Exception)
             {

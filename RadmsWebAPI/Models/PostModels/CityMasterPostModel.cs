@@ -10,6 +10,16 @@ namespace RadmsWebAPI.Models.PostModels
 
         public int? WoredaId { get; set; }
 
+        public string? CityNameAm { get; set; }
+
+        public string? CityNameOr { get; set; }
+
+        public string? CityNameTi { get; set; }
+
+        public string? CityNameAf { get; set; }
+
+        public string? CityNameSo { get; set; }
+
         public virtual WoredaMasterPostModel? Woreda { get; set; }
 
         public CityMasterPostModel()
@@ -33,7 +43,12 @@ namespace RadmsWebAPI.Models.PostModels
             CityMasterEntity model = new CityMasterEntity();
             model.CityId = this.CityId;
             model.CityName = this.CityName; 
-            model.Woreda = this.Woreda.MapToViewEntity<WoredaMasterEntity>(); ;
+            model.CityNameAm = this.CityNameAm;
+            model.CityNameOr = this.CityNameOr;
+            model.CityNameAf = this.CityNameAf;
+            model.CityNameSo = this.CityNameSo;
+            model.CityNameTi= this.CityNameTi;
+          //  model.Woreda = this.Woreda.MapToViewEntity<WoredaMasterEntity>(); ;
             return model as T;
         }
     }

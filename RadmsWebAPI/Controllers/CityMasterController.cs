@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using RadmsEntities;
 using RadmsServiceFacade;
+using RadmsWebAPI.Models.PostModels;
 using RadmsWebAPI.Models.ViewModels;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -37,10 +38,19 @@ namespace RadmsWebAPI.Controllers
             return "value";
         }
 
-        // POST api/<CityMasterController>
+        // POST api/<ZoneMasterController>
         [HttpPost]
-        public void Post([FromBody] string value)
+        public void Save([FromBody] CityMasterPostModel postModel, string? selectedLanguage)
         {
+            string result = this._service.Save(postModel.MapToViewEntity<CityMasterEntity>(), selectedLanguage);
+            if (result == "saved sucessfuly")
+            {
+
+            }
+            else
+            {
+
+            }
         }
 
         // PUT api/<CityMasterController>/5
@@ -49,10 +59,11 @@ namespace RadmsWebAPI.Controllers
         {
         }
 
-        // DELETE api/<CityMasterController>/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
+        // DELETE api/<RegionMasterController>/5
+        [HttpDelete]
+        public void Delete(int cityId)
         {
+            var result = this._service.Delete(cityId);
         }
     }
 }

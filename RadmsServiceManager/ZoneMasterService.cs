@@ -71,5 +71,19 @@ namespace RadmsServiceManager
             List<ZoneMasterEntity> results = this._repositiory.GetAll(language);
             return results;
         }
+        public string Delete(int zoneId)
+        {
+            if (zoneId != 0)
+            {
+                var result = _repositiory.Delete(zoneId);
+
+                return "sucessfuly deleted";
+
+            }
+            else
+            {
+                return "can't delete b/c accident cause id is not given";
+            }
+        }
     }
 }
