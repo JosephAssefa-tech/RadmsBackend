@@ -11,6 +11,7 @@ namespace RadmsServiceFacade
     {
         List<ZoneMasterEntity> GetAll(string language);
         string Delete(int zoneId);
+        string Update(ZoneMasterEntity accident);
         string Save(ZoneMasterEntity accident, string? selectedLanguage);
     }
 }

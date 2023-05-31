@@ -2,7 +2,7 @@
 using RadmsEntities;
 using RadmsServiceFacade;
 using RadmsWebAPI.Models.PostModels;
-using RadmsWebAPI.Models.UpdateModels;
+using RadmsWebAPI.Models.PutModels;
 using RadmsWebAPI.Models.ViewModels;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860

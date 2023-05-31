@@ -12,7 +12,7 @@ namespace RadmsServiceFacade
     {
         VictimDetailsTransactionEntity GetById(int id);
         List<SummaryData> GetSummaryWithDateAndRegion(int? regionId, DateTime? dateTime);
-        Task<IEnumerable<SummaryData>> GetGroupedDataAsync();
+        Task<IEnumerable<SummaryData>> GetGroupedDataAsync(DateTime? startDate, DateTime? endDate);
 
         VictimDetailsTransactionEntity FilterByAccidentName(string CauseName);
         string Save(VictimDetailsTransactionEntity victim);

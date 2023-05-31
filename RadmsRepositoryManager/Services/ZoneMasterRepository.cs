@@ -121,5 +121,28 @@ namespace RadmsRepositoryManager.Services
                 throw;
             }
         }
+        public bool Update(ZoneMasterEntity entity)
+        {
+            try
+            {
+                ZoneMaster old = context.ZoneMasters.Find(entity.ZoneId);
+                if (old != null)
+                {
+                    old.ZoneId = entity.ZoneId;
+                    old.ZoneName = entity.ZoneName;
+                    context.Entry(old).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
+                    context.SaveChanges();
+
+                }
+                return true;
+
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+
+
+        }
     }
 }

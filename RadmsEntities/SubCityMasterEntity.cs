@@ -58,7 +58,7 @@ namespace RadmsEntities
             model.SubCityNameAf = this.SubCityNameAf;
             model.SubCityNameSo = this.SubCityNameSo;
             model.SubCityNameTi = this.SubCityNameTi;
-         //   model.CityId = this.City.CityId;
+           model.CityId = this.CityId;
   
 
 

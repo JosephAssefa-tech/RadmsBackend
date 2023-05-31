@@ -7,8 +7,17 @@ namespace RadmsWebAPI.Models.PostModels
 
 
         public string WoredaName { get; set; } = null!;
+        public string? WoredaNameAm { get; set; }
 
-          public int? ZoneId { get; set; }
+        public string? WoredaNameOr { get; set; }
+      
+        public string? WoredaNameTi { get; set; }
+   
+        public string? WoredaNameAf { get; set; }
+     
+        public string? WoredaNameSo { get; set; }
+
+        public int? ZoneId { get; set; }
 
        // public virtual ZoneMasterPostModel? Zone { get; set; }
 
@@ -27,6 +36,12 @@ namespace RadmsWebAPI.Models.PostModels
             WoredaMasterEntity entity = new WoredaMasterEntity();
             entity.WoredaName = this.WoredaName;
             entity.ZoneId = this.ZoneId;
+            entity.WoredaNameAm = this.WoredaNameAm;
+            entity.WoredaNameOr = this.WoredaNameOr;
+            entity.WoredaNameAf = this.WoredaNameAf;
+            entity.WoredaNameSo = this.WoredaNameSo;
+            entity.WoredaNameTi = this.WoredaNameTi;
+
             return entity as T;
         }
     }

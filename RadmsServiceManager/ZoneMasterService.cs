@@ -65,6 +65,36 @@ namespace RadmsServiceManager
 
             }
         }
+        public string Update(ZoneMasterEntity entity)
+        {
+            try
+            {
+                string msg = Validate(entity);
+                if (msg != String.Empty)
+                {
+                    return msg;
+                }
+                else
+                {
+                    bool result = _repositiory.Update(entity);
+                    if (result == true)
+                    {
+                        return "Updated sucessfuly";
+                    }
+                    else
+                    {
+                        return "unkown error occured";
+
+                    }
+                }
+
+            }
+            catch (Exception)
+            {
+                throw;
+
+            }
+        }
 
         List<ZoneMasterEntity> IZoneMasterService.GetAll(string language)
         {
