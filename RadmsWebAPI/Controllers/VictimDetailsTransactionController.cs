@@ -30,10 +30,10 @@ namespace RadmsWebAPI.Controllers
             return new string[] { "value1", "value2" };
         }
         [HttpGet("grouped-data")]
-        public async Task<ActionResult<IEnumerable<SummaryData>>> GetGroupedData()
+        public async Task<ActionResult<IEnumerable<SummaryData>>> GetGroupedData(DateTime? startDate, DateTime? endDate)
         {
             
-                var groupedData = await _service.GetGroupedDataAsync();
+                var groupedData = await _service.GetGroupedDataAsync(startDate, endDate);
                 return Ok(groupedData);
             
 

@@ -99,13 +99,14 @@ namespace RadmsServiceManager
             throw new NotImplementedException();
         }
 
-        public async Task<IEnumerable<SummaryData>> GetGroupedDataAsync()
+        public async Task<IEnumerable<SummaryData>> GetGroupedDataAsync(DateTime? startDate, DateTime? endDate)
         {
             var currentYear = DateTime.Now.Year;
             var query =  _otherClassRepository.Query();
-                ;
 
-                var groupedData= await query.Include(o => o.Severity).GroupBy(o => new { o.Severity.SeverityId, o.Severity.SeverityType })
+           // query = query.Where(o => o.Date >= startDate && o.Date <= endDate);
+
+            var groupedData= await query.Include(o => o.Severity).GroupBy(o => new { o.Severity.SeverityId, o.Severity.SeverityType })
                 .Select(g => new SummaryData
                 {
                     Year=currentYear,

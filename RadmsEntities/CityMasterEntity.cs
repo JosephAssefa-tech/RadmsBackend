@@ -57,7 +57,7 @@ namespace RadmsEntities
             model.CityNameAf = this.CityNameAf;
             model.CityNameSo = this.CityNameSo;
             model.CityNameTi = this.CityNameTi;
-           model.WoredaId = this.Woreda.WoredaId;
+           model.WoredaId = this.WoredaId;
             return model as T;
         }
     }

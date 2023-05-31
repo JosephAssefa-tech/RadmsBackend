@@ -1,6 +1,6 @@
 ﻿using RadmsEntities;
 
-namespace RadmsWebAPI.Models.UpdateModels
+namespace RadmsWebAPI.Models.PutModels
 {
     public class RegionMasterUpdateModel
     {
