@@ -19,6 +19,16 @@ namespace RadmsEntities
         public int ZoneId { get; set; }
 
         public string ZoneName { get; set; } = null!;
+        public string? ZoneNameAm { get; set; }
+
+        public string? ZoneNameOr { get; set; }
+
+        public string? ZoneNameTi { get; set; }
+
+        public string? ZoneNameAf { get; set; }
+
+        public string? ZoneNameSo { get; set; }
+
 
         public int? RegionId { get; set; }
 
@@ -47,7 +57,14 @@ namespace RadmsEntities
             model.ZoneId = this.ZoneId;
             model.ZoneName = this.ZoneName;
             model.RegionId = this.RegionId;
-         
+            model.ZoneNameAm = this.ZoneNameAm;
+            model.ZoneNameOr = this.ZoneNameOr;
+            model.ZoneNameAf = this.ZoneNameAf;
+            model.ZoneNameSo = this.ZoneNameSo;
+            model.ZoneNameTi= this.ZoneNameTi;
+
+
+
 
             return model as T;
         }

@@ -10,5 +10,7 @@ namespace RadmsServiceFacade
     public interface  ISubCityMasterService
     {
         List<SubCityMasterEntity> GetAll(string language);
+        string Delete(int subCityId);
+        string Save(SubCityMasterEntity subcity, string? selectedLanguage);
     }
 }

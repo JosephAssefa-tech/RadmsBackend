@@ -41,9 +41,9 @@ namespace RadmsWebAPI.Controllers
 
         // POST api/<WoredaMasterController>
         [HttpPost]
-        public void Post([FromBody] WoredaMasterPostModel postModel)
+        public void Post([FromBody] WoredaMasterPostModel postModel, string? selectedLanguage)
         {
-            string result = this._service.Save(postModel.MapToViewEntity<WoredaMasterEntity>());
+            string result = this._service.Save(postModel.MapToViewEntity<WoredaMasterEntity>(), selectedLanguage);
             if (result == "saved sucessfuly")
             {
 
@@ -60,10 +60,11 @@ namespace RadmsWebAPI.Controllers
         {
         }
 
-        // DELETE api/<WoredaMasterController>/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
+        // DELETE api/<RegionMasterController>/5
+        [HttpDelete]
+        public void Delete(int woredaId)
         {
+            var result = this._service.Delete(woredaId);
         }
     }
 }

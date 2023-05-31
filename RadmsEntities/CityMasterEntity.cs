@@ -16,7 +16,17 @@ namespace RadmsEntities
 
        public int? WoredaId { get; set; }
 
-       public virtual WoredaMasterEntity? Woreda { get; set; }
+        public string? CityNameAm { get; set; }
+
+        public string? CityNameOr { get; set; }
+
+        public string? CityNameTi { get; set; }
+ 
+        public string? CityNameAf { get; set; }
+
+        public string? CityNameSo { get; set; }
+
+          public virtual WoredaMasterEntity? Woreda { get; set; }
 
         public CityMasterEntity()
         {
@@ -42,6 +52,11 @@ namespace RadmsEntities
             CityMaster model = new CityMaster();
             model.CityId = this.CityId;
             model.CityName = this.CityName;
+            model.CityNameAm = this.CityNameAm;
+            model.CityNameOr = this.CityNameOr;
+            model.CityNameAf = this.CityNameAf;
+            model.CityNameSo = this.CityNameSo;
+            model.CityNameTi = this.CityNameTi;
            model.WoredaId = this.Woreda.WoredaId;
             return model as T;
         }

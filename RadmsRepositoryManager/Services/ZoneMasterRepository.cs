@@ -94,5 +94,32 @@ namespace RadmsRepositoryManager.Services
                 throw;
             }
         }
+        public bool Delete(int zoneId)
+        {
+            try
+            {
+                var result = context.ZoneMasters.Where(x => x.ZoneId == zoneId).FirstOrDefault();
+                if (result != null)
+                {
+                    context.ZoneMasters.Remove(result);
+                    context.SaveChanges();
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+
+                // AccidentCauseLookup model = entity.MapToModel<AccidentCauseLookup>();
+
+                // context.AccidentCauseLookups.Remove(model);
+                // context.SaveChanges();
+                // return true;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
     }
 }

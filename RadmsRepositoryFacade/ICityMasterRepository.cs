@@ -10,5 +10,7 @@ namespace RadmsRepositoryFacade
     public interface ICityMasterRepository
     {
         List<CityMasterEntity> GetAll(string language);
+        bool Delete(int cityId);
+        bool Save(CityMasterEntity city, string? selectedLanguage);
     }
 }

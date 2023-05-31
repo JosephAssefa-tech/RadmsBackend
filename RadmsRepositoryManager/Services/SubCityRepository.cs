@@ -57,5 +57,69 @@ namespace RadmsRepositoryManager.Services
             }
             return entities;
         }
+        public bool Delete(int subcityId)
+        {
+            try
+            {
+                var result = context.SubCityMasters.Where(x => x.SubCityId == subcityId).FirstOrDefault();
+                if (result != null)
+                {
+                    context.SubCityMasters.Remove(result);
+                    context.SaveChanges();
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+
+
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        public bool Save(SubCityMasterEntity subcity, string? selectedLanguage)
+        {
+            try
+            {
+                SubCityMaster model = subcity.MapToModel<SubCityMaster>();
+
+                // Set the data based on the selected language
+                if (selectedLanguage == "English")
+                {
+                    model.SubCityName = subcity.SubCityName;
+                }
+                else if (selectedLanguage == "amharic")
+                {
+                    model.SubCityNameAm = subcity.SubCityName;
+                }
+                else if (selectedLanguage == "afanoromo")
+                {
+                    model.SubCityNameOr = subcity.SubCityName;
+                }
+                else if (selectedLanguage == "somalia")
+                {
+                    model.SubCityNameSo = subcity.SubCityName;
+                }
+                else if (selectedLanguage == "tigray")
+                {
+                    model.SubCityNameTi = subcity.SubCityName;
+                }
+                // Add more conditions for other languages if needed
+
+
+
+                context.SubCityMasters.Add(model);
+                context.SaveChanges();
+                return true;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
     }
 }

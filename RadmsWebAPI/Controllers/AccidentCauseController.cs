@@ -63,7 +63,7 @@ namespace RadmsWebAPI.Controllers
 
         // PUT api/<AccidentController>/5
         [HttpPut("{id}")]
-        public void Update([FromBody] AccidentCauseLookupViewModel viewModel)
+        public void Update(int id,[FromBody] AccidentCauseLookupViewModel viewModel)
         {
             string result = this._service.Update(viewModel.MapToViewEntity<AccidentCauseLookupEntity>());
             if (result == "Updated sucessfuly")

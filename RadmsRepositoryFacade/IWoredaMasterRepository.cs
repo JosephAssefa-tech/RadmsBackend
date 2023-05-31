@@ -10,6 +10,7 @@ namespace RadmsRepositoryFacade
     public interface  IWoredaMasterRepository
     {
         List<WoredaMasterEntity> GetAll(string language);
-        string Save(WoredaMasterEntity accident);
+        string Save(WoredaMasterEntity accident, string language);
+        bool Delete(int woredaId);
     }
 }

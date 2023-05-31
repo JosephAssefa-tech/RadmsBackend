@@ -23,6 +23,15 @@ namespace RadmsEntities
         public int? CityId { get; set; }
 
         public virtual CityMasterEntity? City { get; set; }
+        public string? SubCityNameAm { get; set; }
+
+        public string? SubCityNameOr { get; set; }
+
+        public string? SubCityNameTi { get; set; }
+
+        public string? SubCityNameAf { get; set; }
+
+        public string? SubCityNameSo { get; set; }
 
         public SubCityMasterEntity(SubCityMaster model)
         {
@@ -44,6 +53,11 @@ namespace RadmsEntities
             SubCityMaster model = new SubCityMaster();
             model.SubCityId = this.SubCityId;
             model.SubCityName = this.SubCityName;
+            model.SubCityNameAm = this.SubCityNameAm;
+            model.SubCityNameOr = this.SubCityNameOr;
+            model.SubCityNameAf = this.SubCityNameAf;
+            model.SubCityNameSo = this.SubCityNameSo;
+            model.SubCityNameTi = this.SubCityNameTi;
          //   model.CityId = this.City.CityId;
   
 

@@ -59,10 +59,11 @@ namespace RadmsWebAPI.Controllers
         {
         }
 
-        // DELETE api/<ZoneMasterController>/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
+        // DELETE api/<RegionMasterController>/5
+        [HttpDelete]
+        public void Delete(int zoneId)
         {
+            var result = this._service.Delete(zoneId);
         }
     }
 }

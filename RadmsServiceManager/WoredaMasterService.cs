@@ -40,7 +40,7 @@ namespace RadmsServiceManager
 
         }
 
-        public string Save(WoredaMasterEntity entity)
+        public string Save(WoredaMasterEntity entity, string language)
         {
             try
             {
@@ -51,7 +51,7 @@ namespace RadmsServiceManager
                 }
                 else
                 {
-                    string result = _repositiory.Save(entity);
+                    string result = _repositiory.Save(entity, language);
                     if (result!="")
                     {
                         return "saved sucessfuly";
@@ -68,6 +68,20 @@ namespace RadmsServiceManager
             {
                 throw;
 
+            }
+        }
+        public string Delete(int woredaId)
+        {
+            if (woredaId != 0)
+            {
+                var result = _repositiory.Delete(woredaId);
+
+                return "sucessfuly deleted";
+
+            }
+            else
+            {
+                return "can't delete b/c accident cause id is not given";
             }
         }
     }
