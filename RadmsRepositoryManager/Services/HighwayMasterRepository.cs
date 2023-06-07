@@ -14,7 +14,32 @@ namespace RadmsRepositoryManager.Services
     public class HighwayMasterRepository : IHighwayMasterRepository
     {
         RadmsContext context = new RadmsContext();
-        public List<HighwayMasterEntity> GetAll(string language)
+
+        public bool Delete(string hid)
+        {
+            try
+            {
+                var result = context.HighwayMasters.Where(x => x.Hid == hid).FirstOrDefault();
+                if (result != null)
+                {
+                    context.HighwayMasters.Remove(result);
+                    context.SaveChanges();
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+
+
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        public List<HighwayMasterEntity> GetAll(string? language)
 
         {
             List<HighwayMaster> models;
@@ -46,6 +71,45 @@ namespace RadmsRepositoryManager.Services
                 entities.Add(entity);
             }
             return entities;
+        }
+
+        public bool Save(HighwayMasterEntity entity)
+        {
+            try
+            {
+                HighwayMaster model = entity.MapToModel<HighwayMaster>();
+
+
+                context.HighwayMasters.Add(model);
+                context.SaveChanges();
+                return true;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        public bool Update(HighwayMasterEntity entity)
+        {
+            try
+            {
+                HighwayMaster old = context.HighwayMasters.Find(entity.Hid);
+                if (old != null)
+                {
+                    old.Hid = entity.Hid;
+                    old.Hname = entity.Hname;
+                    context.Entry(old).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
+                    context.SaveChanges();
+
+                }
+                return true;
+
+            }
+            catch (Exception)
+            {
+                throw;
+            }
         }
     }
 }

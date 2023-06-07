@@ -13,7 +13,32 @@ namespace RadmsRepositoryManager.Services
     public class RoadCarriagewayTypeRepository : IRoadCarriagewayTypeRepository
     {
         RadmsContext context = new RadmsContext();
-        public List<RoadCarriagewayTypeLookupEntity> GetAll(string language)
+
+        public bool Delete(int roadCarriagewayId)
+        {
+            try
+            {
+                var result = context.RoadCarriagewayTypeLookups.Where(x => x.RoadCarriagewayId == roadCarriagewayId).FirstOrDefault();
+                if (result != null)
+                {
+                    context.RoadCarriagewayTypeLookups.Remove(result);
+                    context.SaveChanges();
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+
+
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        public List<RoadCarriagewayTypeLookupEntity> GetAll(string? language)
         {
             List<RoadCarriagewayTypeLookup> models;
 
@@ -48,7 +73,44 @@ namespace RadmsRepositoryManager.Services
             }
             return entities;
         }
-      
-   
+
+        public bool Save(RoadCarriagewayTypeLookupEntity entity)
+        {
+            try
+            {
+                RoadCarriagewayTypeLookup model = entity.MapToModel<RoadCarriagewayTypeLookup>();
+
+
+                context.RoadCarriagewayTypeLookups.Add(model);
+                context.SaveChanges();
+                return true;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        public bool Update(RoadCarriagewayTypeLookupEntity entity)
+        {
+            try
+            {
+                RoadCarriagewayTypeLookup old = context.RoadCarriagewayTypeLookups.Find(entity.RoadCarriagewayId);
+                if (old != null)
+                {
+                    old.RoadCarriagewayId = entity.RoadCarriagewayId;
+                    old.RoadCarriagewayName = entity.RoadCarriagewayName;
+                    context.Entry(old).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
+                    context.SaveChanges();
+
+                }
+                return true;
+
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
     }
 }
