@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using RadmsEntities;
 using RadmsRepositoryFacade;
+using RadmsWebAPI.Models.PostModels;
+using RadmsWebAPI.Models.PutModels;
 using RadmsWebAPI.Models.ViewModels;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -19,9 +21,9 @@ namespace RadmsWebAPI.Controllers
 
         // GET: api/<VehicleServiceAgeController>
         [HttpGet]
-        public List<VehicleServiceAgeLookupViewModel> GetAll()
+        public List<VehicleServiceAgeLookupViewModel> GetAll(string? language)
         {
-            List<VehicleServiceAgeLookupEntity> entities = this._service.GetAll();
+            List<VehicleServiceAgeLookupEntity> entities = this._service.GetAll(language);
             List<VehicleServiceAgeLookupViewModel> viewModels = new List<VehicleServiceAgeLookupViewModel>();
             foreach (var entity in entities)
             {
@@ -40,20 +42,40 @@ namespace RadmsWebAPI.Controllers
 
         // POST api/<VehicleServiceAgeController>
         [HttpPost]
-        public void Post([FromBody] string value)
+        public void Save([FromBody] VehicleServiceAgeLookupPostModel postModel)
         {
+            string result = this._service.Save(postModel.MapToViewEntity<VehicleServiceAgeLookupEntity>());
+            if (result == "saved sucessfuly")
+            {
+
+            }
+            else
+            {
+
+            }
+
         }
 
         // PUT api/<VehicleServiceAgeController>/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        [HttpPut]
+        public void Update([FromBody] VehicleServiceAgeLookupUpdateModel viewModel)
         {
+            string result = this._service.Update(viewModel.MapToViewEntity<VehicleServiceAgeLookupEntity>());
+            if (result == "Updated sucessfuly")
+            {
+
+            }
+            else
+            {
+
+            }
         }
 
         // DELETE api/<VehicleServiceAgeController>/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
+        [HttpDelete]
+        public void Delete(int vehicleServiceAgeId)
         {
+            var result = this._service.Delete(vehicleServiceAgeId);
         }
     }
 }
