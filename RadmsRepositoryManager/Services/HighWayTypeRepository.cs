@@ -13,7 +13,32 @@ namespace RadmsRepositoryManager.Services
     public class HighWayTypeRepository : IHighWayTypeRepository
     {
         RadmsContext context = new RadmsContext();
-        public List<HighwayTypeLookupEntity> GetAll(string language)
+
+        public bool Delete(int htypeId)
+        {
+            try
+            {
+                var result = context.HighwayTypeLookups.Where(x => x.HtypeId == htypeId).FirstOrDefault();
+                if (result != null)
+                {
+                    context.HighwayTypeLookups.Remove(result);
+                    context.SaveChanges();
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+
+
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        public List<HighwayTypeLookupEntity> GetAll(string? language)
         {
             List<HighwayTypeLookup> models;
             if (language == "amharic")
@@ -44,6 +69,45 @@ namespace RadmsRepositoryManager.Services
                 entities.Add(entity);
             }
             return entities;
+        }
+
+        public bool Save(HighwayTypeLookupEntity entity)
+        {
+            try
+            {
+                HighwayTypeLookup model = entity.MapToModel<HighwayTypeLookup>();
+
+
+                context.HighwayTypeLookups.Add(model);
+                context.SaveChanges();
+                return true;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        public bool Update(HighwayTypeLookupEntity entity)
+        {
+            try
+            {
+                HighwayTypeLookup old = context.HighwayTypeLookups.Find(entity.HtypeId);
+                if (old != null)
+                {
+                    old.HtypeId = entity.HtypeId;
+                    old.HtypeName = entity.HtypeName;
+                    context.Entry(old).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
+                    context.SaveChanges();
+
+                }
+                return true;
+
+            }
+            catch (Exception)
+            {
+                throw;
+            }
         }
     }
 }

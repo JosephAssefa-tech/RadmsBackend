@@ -14,7 +14,32 @@ namespace RadmsRepositoryManager.Services
     {
 
         RadmsContext context = new RadmsContext();
-        public List<LandmarkTypeLookupEntity> GetAll(string language)
+
+        public bool Delete(int landmarkTypeId)
+        {
+            try
+            {
+                var result = context.LandmarkTypeLookups.Where(x => x.LandmarkTypeId ==landmarkTypeId).FirstOrDefault();
+                if (result != null)
+                {
+                    context.LandmarkTypeLookups.Remove(result);
+                    context.SaveChanges();
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+
+
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        public List<LandmarkTypeLookupEntity> GetAll(string? language)
         {
             List<LandmarkTypeLookup> models;
 
@@ -47,6 +72,44 @@ namespace RadmsRepositoryManager.Services
             }
             return entities;
         }
-  
+
+        public bool Save(LandmarkTypeLookupEntity entity)
+        {
+            try
+            {
+                LandmarkTypeLookup model = entity.MapToModel<LandmarkTypeLookup>();
+
+
+                context.LandmarkTypeLookups.Add(model);
+                context.SaveChanges();
+                return true;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        public bool Update(LandmarkTypeLookupEntity entity)
+        {
+            try
+            {
+                LandmarkTypeLookup old = context.LandmarkTypeLookups.Find(entity.LandmarkTypeId);
+                if (old != null)
+                {
+                    old.LandmarkTypeId = entity.LandmarkTypeId;
+                    old.LandmarkTypeId = entity.LandmarkTypeId;
+                    context.Entry(old).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
+                    context.SaveChanges();
+
+                }
+                return true;
+
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
     }
 }
