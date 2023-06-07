@@ -9,6 +9,9 @@ namespace RadmsServiceFacade
 {
     public interface  IlightConditionService
     {
+        string Save(LightConditionLookupEntity entity);
+        string Update(LightConditionLookupEntity entity);
+        string Delete(int lightConditionId);
         List<LightConditionLookupEntity> GetAll(string language);
     }
 }

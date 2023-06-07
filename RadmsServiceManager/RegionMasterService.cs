@@ -39,7 +39,7 @@ namespace RadmsServiceManager
             throw new NotImplementedException();
         }
 
-        public List<RegionMasterEntity> GetAll(string language)
+        public List<RegionMasterEntity> GetAll(string? language)
         {
             List<RegionMasterEntity> results = this._repositiory.GetAll(language);
             return results;

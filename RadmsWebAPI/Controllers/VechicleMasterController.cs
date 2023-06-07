@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using RadmsEntities;
 using RadmsServiceFacade;
+using RadmsWebAPI.Models.PostModels;
+using RadmsWebAPI.Models.PutModels;
 using RadmsWebAPI.Models.ViewModels;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -19,9 +21,9 @@ namespace RadmsWebAPI.Controllers
         }
         // GET: api/<VechicleMasterController>
         [HttpGet]
-        public List<VechicleMasterViewModel> GetAll()
+        public List<VechicleMasterViewModel> GetAll(string? language)
         {
-            List<VechicleMasterEntity> entities = this._service.GetAll();
+            List<VechicleMasterEntity> entities = this._service.GetAll(language);
             List<VechicleMasterViewModel> viewModels = new List<VechicleMasterViewModel>();
             foreach (var entity in entities)
             {
@@ -40,20 +42,40 @@ namespace RadmsWebAPI.Controllers
 
         // POST api/<VechicleMasterController>
         [HttpPost]
-        public void Post([FromBody] string value)
+        public void Save([FromBody] VechicleMasterPostModel viewModel)
         {
+            string result = this._service.Save(viewModel.MapToViewEntity<VechicleMasterEntity>());
+            if (result == "saved sucessfuly")
+            {
+
+            }
+            else
+            {
+
+            }
         }
 
         // PUT api/<VechicleMasterController>/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+
+        [HttpPut]
+        public void Update([FromBody] VechicleMasterUpdateModel viewModel)
         {
+            string result = this._service.Update(viewModel.MapToViewEntity<VechicleMasterEntity>());
+            if (result == "Updated sucessfuly")
+            {
+
+            }
+            else
+            {
+
+            }
         }
 
         // DELETE api/<VechicleMasterController>/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
+        [HttpDelete]
+        public void Delete(int vehicleId)
         {
+            var result = this._service.Delete(vehicleId);
         }
     }
 }

@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using RadmsEntities;
 using RadmsServiceFacade;
+using RadmsWebAPI.Models.PostModels;
+using RadmsWebAPI.Models.PutModels;
 using RadmsWebAPI.Models.ViewModels;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -19,9 +21,9 @@ namespace RadmsWebAPI.Controllers
         }
         // GET: api/<HealthConditionController>
         [HttpGet]
-        public List<HealthConditionLookupViewModel> GetAll()
+        public List<HealthConditionLookupViewModel> GetAll(string? language)
         {
-            List<HealthConditionLookupEntity> entities = this._service.GetAll();
+            List<HealthConditionLookupEntity> entities = this._service.GetAll(language);
             List<HealthConditionLookupViewModel> viewModels = new List<HealthConditionLookupViewModel>();
             foreach (var entity in entities)
             {
@@ -40,20 +42,40 @@ namespace RadmsWebAPI.Controllers
 
         // POST api/<HealthConditionController>
         [HttpPost]
-        public void Post([FromBody] string value)
+        public void Save([FromBody] HealthConditionLookupPostModel viewModel)
         {
+            string result = this._service.Save(viewModel.MapToViewEntity<HealthConditionLookupEntity>());
+            if (result == "saved sucessfuly")
+            {
+
+            }
+            else
+            {
+
+            }
         }
 
         // PUT api/<HealthConditionController>/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+
+        [HttpPut]
+        public void Update([FromBody] HealthConditionLookupUpdateModel viewModel)
         {
+            string result = this._service.Update(viewModel.MapToViewEntity<HealthConditionLookupEntity>());
+            if (result == "Updated sucessfuly")
+            {
+
+            }
+            else
+            {
+
+            }
         }
 
         // DELETE api/<HealthConditionController>/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
+        [HttpDelete]
+        public void Delete(int healthConditionId)
         {
+            var result = this._service.Delete(healthConditionId);
         }
     }
 }

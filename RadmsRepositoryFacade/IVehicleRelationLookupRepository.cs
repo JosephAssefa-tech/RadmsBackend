@@ -9,7 +9,10 @@ namespace RadmsRepositoryFacade
 {
     public interface  IVehicleRelationLookupRepository
     {
-        List<VehicleRelationLookupEntity> GetAll();
+        bool Save(VehicleRelationLookupEntity entity);
+        bool Update(VehicleRelationLookupEntity entity);
+        bool Delete(int vehicleRelationId);
+        List<VehicleRelationLookupEntity> GetAll(string? language);
 
     }
 }

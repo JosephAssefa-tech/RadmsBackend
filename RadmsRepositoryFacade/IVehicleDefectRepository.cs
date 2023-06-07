@@ -9,6 +9,9 @@ namespace RadmsRepositoryFacade
 {
     public interface  IVehicleDefectRepository
     {
-        List<VehicleDefectLookupEntity> GetAll();
+        bool Save(VehicleDefectLookupEntity accident);
+        bool Update(VehicleDefectLookupEntity accident);
+        bool Delete(int vehicleDefectId);
+        List<VehicleDefectLookupEntity> GetAll(string? language);
     }
 }

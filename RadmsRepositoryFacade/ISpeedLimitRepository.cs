@@ -9,7 +9,10 @@ namespace RadmsRepositoryFacade
 {
     public interface ISpeedLimitRepository
     {
-        List<SpeedLimitLookupEntity> GetAll(string language);
+        bool Save(SpeedLimitLookupEntity entity);
+        bool Update(SpeedLimitLookupEntity entity);
+        bool Delete(int speedLimitId);
+        List<SpeedLimitLookupEntity> GetAll(string? language);
 
     }
 }

@@ -9,6 +9,9 @@ namespace RadmsRepositoryFacade
 {
     public interface IVechileServiceAgeService
     {
-        List<VehicleServiceAgeLookupEntity> GetAll();
+        string Save(VehicleServiceAgeLookupEntity entity);
+        string Update(VehicleServiceAgeLookupEntity entity);
+        string Delete(int vehicleServiceAgeId);
+        List<VehicleServiceAgeLookupEntity> GetAll(string language);
     }
 }

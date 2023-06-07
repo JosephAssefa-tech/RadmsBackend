@@ -9,6 +9,9 @@ namespace RadmsServiceFacade
 {
     public interface IVechicleMasterService
     {
-        List<VechicleMasterEntity> GetAll();
+        string Save(VechicleMasterEntity entity);
+        string Update(VechicleMasterEntity entity);
+        string Delete(int vehicleId);
+        List<VechicleMasterEntity> GetAll(string? language);
     }
 }

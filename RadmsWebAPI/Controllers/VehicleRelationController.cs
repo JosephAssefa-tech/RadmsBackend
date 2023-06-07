@@ -20,9 +20,9 @@ namespace RadmsWebAPI.Controllers
 
         // GET: api/<VehicleRelationController>
         [HttpGet]
-        public List<VehicleRelationLookupViewModel> GetAll()
+        public List<VehicleRelationLookupViewModel> GetAll(string? language)
         {
-            List<VehicleRelationLookupEntity> entities = this._service.GetAll();
+            List<VehicleRelationLookupEntity> entities = this._service.GetAll(language);
             List<VehicleRelationLookupViewModel> viewModels = new List<VehicleRelationLookupViewModel>();
             foreach (var entity in entities)
             {

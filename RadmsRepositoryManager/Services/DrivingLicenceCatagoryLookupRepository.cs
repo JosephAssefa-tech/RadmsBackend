@@ -13,10 +13,57 @@ namespace RadmsRepositoryManager.Services
     public class DrivingLicenceCatagoryLookupRepository : IDrivingLicenceCatagoryLookupRepository
     {
         RadmsContext context = new RadmsContext();
-        public List<DrivingLicenceCatagoryLookupEntity> GetAll()
+        public bool Delete(int drivingLicenceCatagoryId)
         {
-            List<DrivingLicenceCatagoryLookup> models = context.DrivingLicenceCatagoryLookups
-         .ToList();
+            try
+            {
+                var result = context.DrivingLicenceCatagoryLookups.Where(x => x.DrivingLicenceCatagoryId == drivingLicenceCatagoryId).FirstOrDefault();
+                if (result != null)
+                {
+                    context.DrivingLicenceCatagoryLookups.Remove(result);
+                    context.SaveChanges();
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+
+                // AccidentCauseLookup model = entity.MapToModel<AccidentCauseLookup>();
+
+                // context.AccidentCauseLookups.Remove(model);
+                // context.SaveChanges();
+                // return true;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+        public List<DrivingLicenceCatagoryLookupEntity> GetAll(string? language)
+        {
+            List<DrivingLicenceCatagoryLookup> models;
+            if(language=="amharic")
+            {
+                models = context.DrivingLicenceCatagoryLookups.Select(x=> new DrivingLicenceCatagoryLookup
+                {
+                    DrivingLicenceCatagoryId=x.DrivingLicenceCatagoryId,
+                    DrivingLicenceCatagoryName=x.DrivingLicenceCatagoryNameAm
+
+                }).ToList();
+
+            }
+            else
+            {
+                models = context.DrivingLicenceCatagoryLookups.Select(x => new DrivingLicenceCatagoryLookup
+                {
+                    DrivingLicenceCatagoryId = x.DrivingLicenceCatagoryId,
+                    DrivingLicenceCatagoryName = x.DrivingLicenceCatagoryName
+
+                }).ToList();
+
+            }
+       
             List<DrivingLicenceCatagoryLookupEntity> entities = new List<DrivingLicenceCatagoryLookupEntity>();
             foreach (var model in models)
             {
@@ -26,6 +73,46 @@ namespace RadmsRepositoryManager.Services
                 entities.Add(entity);
             }
             return entities;
+        }
+        public bool Save(DrivingLicenceCatagoryLookupEntity entity)
+        {
+            try
+            {
+                DrivingLicenceCatagoryLookup model = entity.MapToModel<DrivingLicenceCatagoryLookup>();
+
+
+                context.DrivingLicenceCatagoryLookups.Add(model);
+                context.SaveChanges();
+                return true;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        public bool Update(DrivingLicenceCatagoryLookupEntity entity)
+        {
+            try
+            {
+                DrivingLicenceCatagoryLookup old = context.DrivingLicenceCatagoryLookups.Find(entity.DrivingLicenceCatagoryId);
+                if (old != null)
+                {
+                    old.DrivingLicenceCatagoryId = entity.DrivingLicenceCatagoryId;
+                    old.DrivingLicenceCatagoryName = entity.DrivingLicenceCatagoryName;
+                    context.Entry(old).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
+                    context.SaveChanges();
+
+                }
+                return true;
+
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+
+
         }
     }
 }

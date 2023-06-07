@@ -17,11 +17,11 @@ namespace RadmsServiceManager
             _repository = repository;
         }
 
-        public string Delete(decimal id)
+        public string Delete(int weatherConditionId)
         {
-            if (id != 0)
+            if (weatherConditionId != 0)
             {
-                var result = _repository.Delete(id);
+                var result = _repository.Delete(weatherConditionId);
 
                 return "sucessfuly deleted";
 

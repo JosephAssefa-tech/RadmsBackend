@@ -13,8 +13,35 @@ namespace RadmsRepositoryManager.Services
     public class SpeedLimitRepository : ISpeedLimitRepository
     {
         RadmsContext context = new RadmsContext();
+        public bool Delete(int speedLimitId)
+        {
+            try
+            {
+                var result = context.SpeedLimitLookups.Where(x => x.SpeedLimitId == speedLimitId).FirstOrDefault();
+                if (result != null)
+                {
+                    context.SpeedLimitLookups.Remove(result);
+                    context.SaveChanges();
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
 
-        public List<SpeedLimitLookupEntity> GetAll(string language)
+                // AccidentCauseLookup model = entity.MapToModel<AccidentCauseLookup>();
+
+                // context.AccidentCauseLookups.Remove(model);
+                // context.SaveChanges();
+                // return true;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        public List<SpeedLimitLookupEntity> GetAll(string? language)
     {
             List<SpeedLimitLookup> models;
 
@@ -47,6 +74,46 @@ namespace RadmsRepositoryManager.Services
                 entities.Add(entity);
             }
             return entities;
+        }
+        public bool Save(SpeedLimitLookupEntity entity)
+        {
+            try
+            {
+                SpeedLimitLookup model = entity.MapToModel<SpeedLimitLookup>();
+
+
+                context.SpeedLimitLookups.Add(model);
+                context.SaveChanges();
+                return true;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        public bool Update(SpeedLimitLookupEntity entity)
+        {
+            try
+            {
+                SpeedLimitLookup old = context.SpeedLimitLookups.Find(entity.SpeedLimitId);
+                if (old != null)
+                {
+                    old.SpeedLimitId = entity.SpeedLimitId;
+                    old.SpeedLimitName = entity.SpeedLimitName;
+                    context.Entry(old).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
+                    context.SaveChanges();
+
+                }
+                return true;
+
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+
+
         }
     }
 }

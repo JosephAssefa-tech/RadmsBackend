@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using RadmsEntities;
 using RadmsServiceFacade;
+using RadmsWebAPI.Models.PostModels;
+using RadmsWebAPI.Models.PutModels;
 using RadmsWebAPI.Models.ViewModels;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -39,20 +41,39 @@ namespace RadmsWebAPI.Controllers
 
         // POST api/<AirConditionTypeController>
         [HttpPost]
-        public void Post([FromBody] string value)
+        public void Save([FromBody] AirConditionTypeLookupPostModel viewModel)
         {
+            string result = this._service.Save(viewModel.MapToViewEntity<AirConditionTypeLookupEntity>());
+            if (result == "saved sucessfuly")
+            {
+
+            }
+            else
+            {
+
+            }
         }
 
         // PUT api/<AirConditionTypeController>/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        [HttpPut]
+        public void UPdate(AirConditionTypeLookupUpdateModel viewModel)
         {
+            string result = this._service.Update(viewModel.MapToViewEntity<AirConditionTypeLookupEntity>());
+            if (result == "Updated sucessfuly")
+            {
+
+            }
+            else
+            {
+
+            }
         }
 
         // DELETE api/<AirConditionTypeController>/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
+        [HttpDelete]
+        public void Delete(int airConditionId)
         {
+            var result = this._service.Delete(airConditionId);
         }
     }
 }

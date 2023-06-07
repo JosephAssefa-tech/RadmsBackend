@@ -13,6 +13,73 @@ namespace RadmsRepositoryManager.Services
     public class AirConditionTypeRepository : IAirConditionTypeRepository
     {
         RadmsContext context = new RadmsContext();
+        public bool Delete(int airConditionId)
+        {
+            try
+            {
+                var result = context.AirConditionTypeLookups.Where(x => x.AirConditionId == airConditionId).FirstOrDefault();
+                if (result != null)
+                {
+                    context.AirConditionTypeLookups.Remove(result);
+                    context.SaveChanges();
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+
+                // AccidentCauseLookup model = entity.MapToModel<AccidentCauseLookup>();
+
+                // context.AccidentCauseLookups.Remove(model);
+                // context.SaveChanges();
+                // return true;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        public bool Save(AirConditionTypeLookupEntity entity)
+        {
+            try
+            {
+                AirConditionTypeLookup model = entity.MapToModel<AirConditionTypeLookup>();
+
+
+                context.AirConditionTypeLookups.Add(model);
+                context.SaveChanges();
+                return true;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+        public bool Update(AirConditionTypeLookupEntity entity)
+        {
+            try
+            {
+                AirConditionTypeLookup old = context.AirConditionTypeLookups.Find(entity.AirConditionId);
+                if (old != null)
+                {
+                    old.AirConditionId = entity.AirConditionId;
+                    old.AirConditionName = entity.AirConditionName;
+                    context.Entry(old).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
+                    context.SaveChanges();
+
+                }
+                return true;
+
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+
+
+        }
         public List<AirConditionTypeLookupEntity> GetAll(string language)
         {
             List<AirConditionTypeLookup> models;
