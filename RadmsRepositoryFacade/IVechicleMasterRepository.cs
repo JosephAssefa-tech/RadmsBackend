@@ -9,6 +9,9 @@ namespace RadmsRepositoryFacade
 {
     public interface  IVechicleMasterRepository
     {
-        List<VechicleMasterEntity> GetAll();
+        bool Save(VechicleMasterEntity entity);
+        bool Update(VechicleMasterEntity entity);
+        bool Delete(int vechileId);
+        List<VechicleMasterEntity> GetAll(string? language);
     }
 }

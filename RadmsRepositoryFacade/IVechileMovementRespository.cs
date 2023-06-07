@@ -9,6 +9,9 @@ namespace RadmsRepositoryFacade
 {
     public interface IVechileMovementRespository
     {
-        List<VehicleMovementMasterEntity> GetAll();
+        bool Save(VehicleMovementMasterEntity entity);
+        bool Update(VehicleMovementMasterEntity entity);
+        bool Delete(int vehicleMovementId);
+        List<VehicleMovementMasterEntity> GetAll(string? language);
     }
 }

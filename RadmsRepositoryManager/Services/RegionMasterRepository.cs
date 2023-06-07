@@ -30,11 +30,7 @@ namespace RadmsRepositoryManager.Services
                     return false;
                 }
 
-                // AccidentCauseLookup model = entity.MapToModel<AccidentCauseLookup>();
 
-                // context.AccidentCauseLookups.Remove(model);
-                // context.SaveChanges();
-                // return true;
             }
             catch (Exception)
             {

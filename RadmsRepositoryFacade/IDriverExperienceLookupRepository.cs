@@ -9,6 +9,9 @@ namespace RadmsRepositoryFacade
 {
     public interface IDriverExperienceLookupRepository
     {
+        bool Save(DriverExperienceLookupEntity accident);
+        bool Update(DriverExperienceLookupEntity accident);
+        bool Delete(int driverExperienceId);
         List<DriverExperienceLookupEntity> GetAll();
     }
 }

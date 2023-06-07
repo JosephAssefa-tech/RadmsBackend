@@ -13,10 +13,54 @@ namespace RadmsRepositoryManager.Services
     public class LicenceLevelLookupRepository : ILicenceLevelLookupRepository
     {
         RadmsContext context = new RadmsContext();
-        public List<LicenceLevelLookupEntity> GetAll()
+        public bool Delete(int leveloflicenceId)
         {
-            List<LicenceLevelLookup> models = context.LicenceLevelLookups
-       .ToList();
+            try
+            {
+                var result = context.LicenceLevelLookups.Where(x => x.LeveloflicenceId == regionId).FirstOrDefault();
+                if (result != null)
+                {
+                    context.LicenceLevelLookups.Remove(result);
+                    context.SaveChanges();
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+
+                // AccidentCauseLookup model = entity.MapToModel<AccidentCauseLookup>();
+
+                // context.AccidentCauseLookups.Remove(model);
+                // context.SaveChanges();
+                // return true;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+        public List<LicenceLevelLookupEntity> GetAll(string language)
+        {
+            List<LicenceLevelLookup> models;
+            if(language=="amharic")
+            {
+                models = context.LicenceLevelLookups.Select(x=> new LicenceLevelLookup
+                {
+                    LeveloflicenceId=x.LeveloflicenceId,
+                    LeveloflicenceName=x.LeveloflicenceNameAm,
+                } ) .ToList();
+            }
+            else
+            {
+                models = context.LicenceLevelLookups.Select(x => new LicenceLevelLookup
+                {
+                    LeveloflicenceId = x.LeveloflicenceId,
+                    LeveloflicenceName = x.LeveloflicenceName,
+                }).ToList();
+
+            }
+           
             List<LicenceLevelLookupEntity> entities = new List<LicenceLevelLookupEntity>();
             foreach (var model in models)
             {
@@ -26,6 +70,47 @@ namespace RadmsRepositoryManager.Services
                 entities.Add(entity);
             }
             return entities;
+        }
+
+        public bool Save(LicenceLevelLookupEntity entity)
+        {
+            try
+            {
+                LicenceLevelLookup model = entity.MapToModel<LicenceLevelLookup>();
+
+
+                context.LicenceLevelLookups.Add(model);
+                context.SaveChanges();
+                return true;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        public bool Update(LicenceLevelLookupEntity entity)
+        {
+            try
+            {
+                LicenceLevelLookup old = context.LicenceLevelLookups.Find(entity.LeveloflicenceId);
+                if (old != null)
+                {
+                    old.LeveloflicenceId = entity.LeveloflicenceId;
+                    old.LeveloflicenceName = entity.LeveloflicenceName;
+                    context.Entry(old).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
+                    context.SaveChanges();
+
+                }
+                return true;
+
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+
+
         }
     }
 }

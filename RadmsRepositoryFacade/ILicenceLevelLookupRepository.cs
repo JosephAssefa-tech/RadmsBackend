@@ -9,6 +9,9 @@ namespace RadmsRepositoryFacade
 {
     public interface  ILicenceLevelLookupRepository
     {
-        List<LicenceLevelLookupEntity> GetAll();
+        bool Save(LicenceLevelLookupEntity entity);
+        bool Update(LicenceLevelLookupEntity entity);
+        bool Delete(int leveloflicenceId);
+        List<LicenceLevelLookupEntity> GetAll(string? language);
     }
 }

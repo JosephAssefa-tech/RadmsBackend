@@ -24,7 +24,7 @@ namespace RadmsWebAPI.Controllers
         // GET: api/<RegionMasterController>
         [HttpGet]
         // [Route("/GetAll")]
-        public List<RegionMasterViewModel> GetAll(string language)
+        public List<RegionMasterViewModel> GetAll(string? language)
         {
             List<RegionMasterEntity> entities = this._service.GetAll(language);
             List<RegionMasterViewModel> viewModels = new List<RegionMasterViewModel>();

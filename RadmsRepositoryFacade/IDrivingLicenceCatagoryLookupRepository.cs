@@ -9,6 +9,9 @@ namespace RadmsRepositoryFacade
 {
     public interface  IDrivingLicenceCatagoryLookupRepository
     {
-      List<DrivingLicenceCatagoryLookupEntity> GetAll();
+        bool Save(DrivingLicenceCatagoryLookupEntity accident);
+        bool Update(DrivingLicenceCatagoryLookupEntity accident);
+        bool Delete(int drivingLicenceCatagoryId);
+        List<DrivingLicenceCatagoryLookupEntity> GetAll(string? language);
     }
 }

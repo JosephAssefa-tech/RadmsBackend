@@ -9,6 +9,9 @@ namespace RadmsRepositoryFacade
 {
     public interface  IlightConditionRepository
     {
+        bool Save(LightConditionLookupEntity entity);
+        bool Update(LightConditionLookupEntity entity);
+        bool Delete(int lightConditionId);
         List<LightConditionLookupEntity> GetAll(string language);
     }
 }

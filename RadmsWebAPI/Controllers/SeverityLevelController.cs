@@ -19,7 +19,7 @@ namespace RadmsWebAPI.Controllers
 
         // GET: api/<SeverityLevelController>
         [HttpGet]
-        public List<AccidentSeverityLevelViewModel> GetAll(string language)
+        public List<AccidentSeverityLevelViewModel> GetAll(string? language)
         {
             List<SeverityLevelLookupEntity> entities = this._service.GetAll(language);
             List <AccidentSeverityLevelViewModel> viewModels = new List<AccidentSeverityLevelViewModel>();

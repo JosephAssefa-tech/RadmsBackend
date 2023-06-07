@@ -9,6 +9,9 @@ namespace RadmsRepositoryFacade
 {
     public interface  IVehicleOwnershipRepository
     {
-        List<VehicleOwnershipLookupEntity> GetAll();
+        bool Save(VehicleOwnershipLookupEntity entity);
+        bool Update(VehicleOwnershipLookupEntity entity);
+        bool Delete(int VehicleOwnershipId);
+        List<VehicleOwnershipLookupEntity> GetAll(string? language);
     }
 }

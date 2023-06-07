@@ -13,10 +13,57 @@ namespace RadmsRepositoryManager.Services
     public class DriverExperienceLookupRepository : IDriverExperienceLookupRepository
     {
         RadmsContext context = new RadmsContext();
-        public List<DriverExperienceLookupEntity> GetAll()
+
+
+        public bool Delete(int driverExperienceId)
         {
-            List<DriverExperienceLookup> models = context.DriverExperienceLookups
-          .ToList();
+            try
+            {
+                var result = context.DriverExperienceLookups.Where(x => x.DriverExperienceId == driverExperienceId).FirstOrDefault();
+                if (result != null)
+                {
+                    context.DriverExperienceLookups.Remove(result);
+                    context.SaveChanges();
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+
+                // AccidentCauseLookup model = entity.MapToModel<AccidentCauseLookup>();
+
+                // context.AccidentCauseLookups.Remove(model);
+                // context.SaveChanges();
+                // return true;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+        public List<DriverExperienceLookupEntity> GetAll(string? language)
+        {
+            List<DriverExperienceLookup> models;
+            if(language == "amharic")
+            {
+                models = context.DriverExperienceLookups.Select(x => new DriverExperienceLookup
+                {
+                    DriverExperienceId = x.DriverExperienceId,
+                    DriverExperienceName = x.DriverExperienceNameAm,
+                }).ToList();
+
+            }
+            else
+            {
+                models = context.DriverExperienceLookups.Select(x => new DriverExperienceLookup
+                {
+                    DriverExperienceId = x.DriverExperienceId,
+                    DriverExperienceName = x.DriverExperienceName,
+                }).ToList();
+
+            }
+           
             List<DriverExperienceLookupEntity> entities = new List<DriverExperienceLookupEntity>();
             foreach (var model in models)
             {
@@ -26,6 +73,46 @@ namespace RadmsRepositoryManager.Services
                 entities.Add(entity);
             }
             return entities;
+        }
+        public bool Save(DriverExperienceLookupEntity entity)
+        {
+            try
+            {
+                DriverExperienceLookup model = entity.MapToModel<DriverExperienceLookup>();
+
+
+                context.DriverExperienceLookups.Add(model);
+                context.SaveChanges();
+                return true;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        public bool Update(DriverExperienceLookupEntity entity)
+        {
+            try
+            {
+                DriverExperienceLookup old = context.DriverExperienceLookups.Find(entity.DriverExperienceId);
+                if (old != null)
+                {
+                    old.DriverExperienceId = entity.DriverExperienceId;
+                    old.DriverExperienceName = entity.DriverExperienceName;
+                    context.Entry(old).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
+                    context.SaveChanges();
+
+                }
+                return true;
+
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+
+
         }
     }
 }

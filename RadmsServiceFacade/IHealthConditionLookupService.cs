@@ -9,6 +9,9 @@ namespace RadmsServiceFacade
 {
     public interface IHealthConditionLookupService
     {
-        List<HealthConditionLookupEntity> GetAll();
+        List<HealthConditionLookupEntity> GetAll(string language);
+        string Save(HealthConditionLookupEntity entity);
+        string Update(HealthConditionLookupEntity entity);
+        string Delete(int healthConditionId);
     }
 }

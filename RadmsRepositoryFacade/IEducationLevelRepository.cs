@@ -9,6 +9,9 @@ namespace RadmsRepositoryFacade
 {
     public interface  IEducationLevelRepository
     {
-        List<EducationLevelLookupEntity> GetAll();
+        bool Save(EducationLevelLookupEntity accident);
+        bool Update(EducationLevelLookupEntity accident);
+        bool Delete(int educationLevelId);
+        List<EducationLevelLookupEntity> GetAll(string language);
     }
 }

@@ -9,6 +9,9 @@ namespace RadmsServiceFacade
 {
     public interface IVehicleRelationLookupService
     {
-        List<VehicleRelationLookupEntity> GetAll();
+        string Save(VehicleRelationLookupEntity entity);
+        string Update(VehicleRelationLookupEntity entity);
+        string Delete(int vehicleRelationId);
+        List<VehicleRelationLookupEntity> GetAll(string language);
     }
 }

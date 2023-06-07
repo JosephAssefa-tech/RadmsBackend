@@ -11,7 +11,7 @@ namespace RadmsServiceFacade
     {
         string Save(WeatherConditionTypeLookupEntity accident);
         string Update(WeatherConditionTypeLookupEntity accident);
-        string Delete(decimal id);
+        string Delete(int weatherConditionId);
         List<WeatherConditionTypeLookupEntity> GetAll(string language);
     }
 }

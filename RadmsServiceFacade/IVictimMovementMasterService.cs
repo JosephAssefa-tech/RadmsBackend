@@ -9,7 +9,10 @@ namespace RadmsServiceFacade
 {
     public interface  IVictimMovementMasterService
     {
-        List<VictimMovementMasterEntity> GetAll();
+        string Save(VictimMovementMasterEntity entity);
+        string Update(VictimMovementMasterEntity entity);
+        string Delete(int victimMovementId);
+        List<VictimMovementMasterEntity> GetAll(string? language);
 
     }
 }

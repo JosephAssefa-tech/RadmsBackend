@@ -13,11 +13,11 @@ namespace RadmsRepositoryManager.Services
     public class WeatherConditionTypeRepository : IWeatherConditionTypeRepository
     {
         RadmsContext context = new RadmsContext();
-        public bool Delete(decimal id)
+        public bool Delete(int weatherConditionId)
         {
             try
             {
-                var result = context.WeatherConditionTypeLookups.Where(x => x.WeatherCondId == id).FirstOrDefault();
+                var result = context.WeatherConditionTypeLookups.Where(x => x.WeatherCondId == weatherConditionId).FirstOrDefault();
                 if (result != null)
                 {
                     context.WeatherConditionTypeLookups.Remove(result);
@@ -43,7 +43,8 @@ namespace RadmsRepositoryManager.Services
 
         public WeatherConditionTypeLookupEntity FilterByAccidentName(string CauseName)
         {
-            throw new NotImplementedException();
+            WeatherConditionTypeLookup model = context.WeatherConditionTypeLookups.Where(x => x.WeatherCondName == CauseName).FirstOrDefault();
+            return new WeatherConditionTypeLookupEntity(model);
         }
 
         public List<WeatherConditionTypeLookupEntity> GetAll(string language)

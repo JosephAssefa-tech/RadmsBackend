@@ -9,6 +9,9 @@ namespace RadmsServiceFacade
 {
     public interface  IVehicleOwnershipService
     {
-        List<VehicleOwnershipLookupEntity> GetAll();
+        string Save(VehicleOwnershipLookupEntity entity);
+        string Update(VehicleOwnershipLookupEntity entity);
+        string Delete(int vehicleOwnershipId);
+        List<VehicleOwnershipLookupEntity> GetAll(string language);
     }
 }
