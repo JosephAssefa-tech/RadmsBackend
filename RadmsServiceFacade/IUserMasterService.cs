@@ -9,6 +9,9 @@ namespace RadmsServiceFacade
 {
     public interface  IUserMasterService
     {
-        List<UserMasterEntity> GetAll();
+        string Save(UserMasterEntity entity);
+        string Update(UserMasterEntity entity);
+        string Delete(int userId);
+        List<UserMasterEntity> GetAll(string? language);
     }
 }

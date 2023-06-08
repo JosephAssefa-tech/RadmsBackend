@@ -9,6 +9,9 @@ namespace RadmsServiceFacade
 {
     public interface  IAccidentSeverityLevelServicecs
     {
-        List<SeverityLevelLookupEntity> GetAll(string language);
+        string Save(SeverityLevelLookupEntity entity);
+        string Update(SeverityLevelLookupEntity entity);
+        string Delete(int severityId);
+        List<SeverityLevelLookupEntity> GetAll(string? language);
     }
 }
