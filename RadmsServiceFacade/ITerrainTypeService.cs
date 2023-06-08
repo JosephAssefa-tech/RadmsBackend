@@ -9,6 +9,9 @@ namespace RadmsServiceFacade
 {
     public interface ITerrainTypeService
     {
-        List<TerrainTypeLookupEntity> GetAll(string language);
+        string Save(TerrainTypeLookupEntity entity);
+        string Update(TerrainTypeLookupEntity entity);
+        string Delete(int terrianTypeId);
+        List<TerrainTypeLookupEntity> GetAll(string? language);
     }
 }
