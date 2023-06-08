@@ -9,6 +9,9 @@ namespace RadmsRepositoryFacade
 {
     public interface IVictimTypeLookupRepository
     {
-        List<VictimTypeLookupEntity> GetAll();
+        bool Save(VictimTypeLookupEntity entity);
+        bool Update(VictimTypeLookupEntity entity);
+        bool Delete(int victimTypeId);
+        List<VictimTypeLookupEntity> GetAll(string? language);
     }
 }
