@@ -92,7 +92,7 @@ namespace RadmsRepositoryManager.Services
         //    return true;
         //}
 
-        public List<AccidentCauseLookupEntity> GetAll(string language)
+        public List<AccidentCauseLookupEntity> GetAll(string? language)
         {
             List<AccidentCauseLookup> models;
             if (language == "amharic")

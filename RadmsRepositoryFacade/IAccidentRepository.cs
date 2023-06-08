@@ -12,7 +12,7 @@ namespace RadmsRepositoryFacade
         bool Save(AccidentCauseLookupEntity accident);
         bool Update(AccidentCauseLookupEntity accident);
         bool Delete(decimal id);
-        List<AccidentCauseLookupEntity> GetAll(string language);
+        List<AccidentCauseLookupEntity> GetAll(string? language);
         AccidentCauseLookupEntity GetById(int id);
         AccidentCauseLookupEntity FilterByAccidentName(string CauseName);
         // List<AccidentCauseLookupEntity> FilterByDateRange(DateTime startDate, DateTime endDate);

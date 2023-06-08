@@ -9,6 +9,9 @@ namespace RadmsRepositoryFacade
 {
     public interface IAccidentTypeRepository
     {
-        List<AccidentTypeLookupEntity> GetAll(string language);
+        bool Save(AccidentTypeLookupEntity entity);
+        bool Update(AccidentTypeLookupEntity entity);
+        bool Delete(int accidentTypeId);
+        List<AccidentTypeLookupEntity> GetAll(string? language);
     }
 }
