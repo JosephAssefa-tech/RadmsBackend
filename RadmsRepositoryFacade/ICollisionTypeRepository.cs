@@ -9,6 +9,9 @@ namespace RadmsRepositoryFacade
 {
     public interface ICollisionTypeRepository
     {
-        List<CollisionTypeLookupEntity> GetAll(string language);
+        bool Save(CollisionTypeLookupEntity entity);
+        bool Update(CollisionTypeLookupEntity entity);
+        bool Delete(int collisionTypeId);
+        List<CollisionTypeLookupEntity> GetAll(string? language);
     }
 }

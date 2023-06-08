@@ -9,6 +9,9 @@ namespace RadmsRepositoryFacade
 {
     public interface  IEmploymentStatusLookupRepository
     {
-        List<EmploymentStatusLookupEntity> GetAll();
+        bool Save(EmploymentStatusLookupEntity entity);
+        bool Update(EmploymentStatusLookupEntity entity);
+        bool Delete(int employmentStatusId);
+        List<EmploymentStatusLookupEntity> GetAll(string? language);
     }
 }

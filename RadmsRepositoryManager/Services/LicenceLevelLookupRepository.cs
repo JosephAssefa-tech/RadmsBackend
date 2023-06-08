@@ -17,7 +17,7 @@ namespace RadmsRepositoryManager.Services
         {
             try
             {
-                var result = context.LicenceLevelLookups.Where(x => x.LeveloflicenceId == regionId).FirstOrDefault();
+                var result = context.LicenceLevelLookups.Where(x => x.LeveloflicenceId == leveloflicenceId).FirstOrDefault();
                 if (result != null)
                 {
                     context.LicenceLevelLookups.Remove(result);
@@ -40,7 +40,7 @@ namespace RadmsRepositoryManager.Services
                 throw;
             }
         }
-        public List<LicenceLevelLookupEntity> GetAll(string language)
+        public List<LicenceLevelLookupEntity> GetAll(string? language)
         {
             List<LicenceLevelLookup> models;
             if(language=="amharic")
