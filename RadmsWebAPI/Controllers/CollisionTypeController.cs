@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using RadmsEntities;
 using RadmsServiceFacade;
+using RadmsWebAPI.Models.PostModels;
+using RadmsWebAPI.Models.PutModels;
 using RadmsWebAPI.Models.ViewModels;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -19,7 +21,7 @@ namespace RadmsWebAPI.Controllers
         }
         // GET: api/<CollisionTypeController>
         [HttpGet]
-        public List<CollisionTypeLookupViewModel> GetAll(string language)
+        public List<CollisionTypeLookupViewModel> GetAll(string? language)
         {
             List<CollisionTypeLookupEntity> entities = this._service.GetAll(language);
             List<CollisionTypeLookupViewModel> viewModels = new List<CollisionTypeLookupViewModel>();
@@ -40,20 +42,40 @@ namespace RadmsWebAPI.Controllers
 
         // POST api/<CollisionTypeController>
         [HttpPost]
-        public void Post([FromBody] string value)
+        public void Save([FromBody] CollisionTypeLookupPostModel viewModel)
         {
+            string result = this._service.Save(viewModel.MapToViewEntity<CollisionTypeLookupEntity>());
+            if (result == "saved sucessfuly")
+            {
+
+            }
+            else
+            {
+
+            }
+
         }
 
         // PUT api/<CollisionTypeController>/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        [HttpPut]
+        public void Update([FromBody] CollisionTypeLookupUpdateModel viewModel)
         {
+            string result = this._service.Update(viewModel.MapToViewEntity<CollisionTypeLookupEntity>());
+            if (result == "Updated sucessfuly")
+            {
+
+            }
+            else
+            {
+
+            }
         }
 
         // DELETE api/<CollisionTypeController>/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
+        [HttpDelete]
+        public void Delete(int collisionTypeId)
         {
+            var result = this._service.Delete(collisionTypeId);
         }
     }
 }

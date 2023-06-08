@@ -22,7 +22,7 @@ namespace RadmsWebAPI.Controllers
         // GET: api/<AccidentController>
         [HttpGet]
        // [Route("/GetAll")]
-        public List<AccidentCauseLookupViewModel> GetAll(string language)
+        public List<AccidentCauseLookupViewModel> GetAll(string? language)
         {
             List<AccidentCauseLookupEntity> entities = this._service.GetAll(language);
             List<AccidentCauseLookupViewModel> viewModels = new List<AccidentCauseLookupViewModel>();

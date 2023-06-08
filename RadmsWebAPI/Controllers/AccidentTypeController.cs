@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using RadmsEntities;
 using RadmsServiceFacade;
+using RadmsWebAPI.Models.PostModels;
+using RadmsWebAPI.Models.PutModels;
 using RadmsWebAPI.Models.ViewModels;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -18,7 +20,7 @@ namespace RadmsWebAPI.Controllers
         }
         // GET: api/<AccidentTypeController>
         [HttpGet]
-        public List<AccidentTypeLookupViewModel> GetAll(string language)
+        public List<AccidentTypeLookupViewModel> GetAll(string? language)
         {
             List<AccidentTypeLookupEntity> entities = this._service.GetAll(language);
             List<AccidentTypeLookupViewModel> viewModels = new List<AccidentTypeLookupViewModel>();
@@ -39,20 +41,40 @@ namespace RadmsWebAPI.Controllers
 
         // POST api/<AccidentTypeController>
         [HttpPost]
-        public void Post([FromBody] string value)
+        public void Save([FromBody] AccidentTypeLookupPostModel viewModel)
         {
+            string result = this._service.Save(viewModel.MapToViewEntity<AccidentTypeLookupEntity>());
+            if (result == "saved sucessfuly")
+            {
+
+            }
+            else
+            {
+
+            }
+
         }
 
         // PUT api/<AccidentTypeController>/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        [HttpPut]
+        public void Update([FromBody] AccidentTypeLookupPutModel viewModel)
         {
+            string result = this._service.Update(viewModel.MapToViewEntity<AccidentTypeLookupEntity>());
+            if (result == "Updated sucessfuly")
+            {
+
+            }
+            else
+            {
+
+            }
         }
 
         // DELETE api/<AccidentTypeController>/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
+        [HttpDelete]
+        public void Delete(int accidentTypeId)
         {
+            var result = this._service.Delete(accidentTypeId);
         }
     }
 }

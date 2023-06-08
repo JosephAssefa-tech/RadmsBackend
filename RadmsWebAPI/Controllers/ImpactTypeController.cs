@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using RadmsEntities;
 using RadmsServiceFacade;
+using RadmsWebAPI.Models.PostModels;
+using RadmsWebAPI.Models.PutModels;
 using RadmsWebAPI.Models.ViewModels;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -19,7 +21,7 @@ namespace RadmsWebAPI.Controllers
         }
         // GET: api/<ImpactTypeController>
         [HttpGet]
-        public List<ImpactTypeLookupViewModel> GetAll(string language)
+        public List<ImpactTypeLookupViewModel> GetAll(string? language)
         {
             List<ImpactTypeLookupEntity> entities = this._service.GetAll(language);
             List<ImpactTypeLookupViewModel> viewModels = new List<ImpactTypeLookupViewModel>();
@@ -40,20 +42,40 @@ namespace RadmsWebAPI.Controllers
 
         // POST api/<ImpactTypeController>
         [HttpPost]
-        public void Post([FromBody] string value)
+        public void Save([FromBody] ImpactTypeLookupPostModel viewModel)
         {
+            string result = this._service.Save(viewModel.MapToViewEntity<ImpactTypeLookupEntity>());
+            if (result == "saved sucessfuly")
+            {
+
+            }
+            else
+            {
+
+            }
+
         }
 
         // PUT api/<ImpactTypeController>/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        [HttpPut]
+        public void Update([FromBody] ImpactTypeLookupUpdateModel viewModel)
         {
+            string result = this._service.Update(viewModel.MapToViewEntity<ImpactTypeLookupEntity>());
+            if (result == "Updated sucessfuly")
+            {
+
+            }
+            else
+            {
+
+            }
         }
 
         // DELETE api/<ImpactTypeController>/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
+        [HttpDelete]
+        public void Delete(int impactTypeId)
         {
+            var result = this._service.Delete(impactTypeId);
         }
     }
 }
