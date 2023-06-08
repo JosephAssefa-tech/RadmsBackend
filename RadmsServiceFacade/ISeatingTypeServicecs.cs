@@ -9,6 +9,9 @@ namespace RadmsServiceFacade
 {
     public interface  ISeatingTypeServicecs
     {
-        List<SeatingTypeLookupEntity> GetAll();
+        string Save(SeatingTypeLookupEntity entity);
+        string Update(SeatingTypeLookupEntity entity);
+        string Delete(int seatingTypeId);
+        List<SeatingTypeLookupEntity> GetAll(string? language);
     }
 }

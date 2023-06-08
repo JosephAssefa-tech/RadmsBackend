@@ -9,6 +9,9 @@ namespace RadmsServiceFacade
 {
     public interface  IPedestrianMovementLookupService
     {
-        List<PedestrianMovementLookupEntity> GetAll();
+        string Save(PedestrianMovementLookupEntity entity);
+        string Update(PedestrianMovementLookupEntity entity);
+        string Delete(int pedestrianMovementId);
+        List<PedestrianMovementLookupEntity> GetAll(string? language);
     }
 }

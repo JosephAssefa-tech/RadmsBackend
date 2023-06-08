@@ -10,6 +10,9 @@ namespace RadmsServiceFacade
 {
     public interface IpaymentType 
     {
-        List<PavementTypeLookupEntity> GetAll(string language);
+        string Save(PavementTypeLookupEntity entity);
+        string Update(PavementTypeLookupEntity entity);
+        string Delete(int pavementTypeId);
+        List<PavementTypeLookupEntity> GetAll(string? language);
     }
 }
