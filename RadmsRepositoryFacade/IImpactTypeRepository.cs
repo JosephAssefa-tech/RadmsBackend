@@ -9,6 +9,9 @@ namespace RadmsRepositoryFacade
 {
     public interface IImpactTypeRepository
     {
-        List<ImpactTypeLookupEntity> GetAll(string language);
+        bool Save(ImpactTypeLookupEntity entity);
+        bool Update(ImpactTypeLookupEntity entity);
+        bool Delete(int impactTypeId);
+        List<ImpactTypeLookupEntity> GetAll(string? language);
     }
 }

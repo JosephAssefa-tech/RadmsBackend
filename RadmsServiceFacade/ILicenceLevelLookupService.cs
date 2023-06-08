@@ -9,6 +9,9 @@ namespace RadmsServiceFacade
 {
     public interface ILicenceLevelLookupService
     {
-        List<LicenceLevelLookupEntity> GetAll();
+        string Save(LicenceLevelLookupEntity entity);
+        string Update(LicenceLevelLookupEntity entity);
+        string Delete(int leveloflicenceId);
+        List<LicenceLevelLookupEntity> GetAll(string? language);
     }
 }

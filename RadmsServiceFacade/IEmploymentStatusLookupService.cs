@@ -9,6 +9,9 @@ namespace RadmsServiceFacade
 {
    public interface IEmploymentStatusLookupService
     {
-        List<EmploymentStatusLookupEntity> GetAll();
+        string Save(EmploymentStatusLookupEntity entity);
+        string Update(EmploymentStatusLookupEntity entity);
+        string Delete(int employmentStatusId);
+        List<EmploymentStatusLookupEntity> GetAll(string? language);
     }
 }

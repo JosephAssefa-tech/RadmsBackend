@@ -9,6 +9,9 @@ namespace RadmsRepositoryFacade
 {
     public interface  IUserMasterRepository
     {
-        List<UserMasterEntity> GetAll();
+        bool Save(UserMasterEntity entity);
+        bool Update(UserMasterEntity entity);
+        bool Delete(int userId);
+        List<UserMasterEntity> GetAll(string? language);
     }
 }

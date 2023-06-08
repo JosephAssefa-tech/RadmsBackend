@@ -9,6 +9,9 @@ namespace RadmsRepositoryFacade
 {
     public interface  ISeatingTypeRepository
     {
-        List<SeatingTypeLookupEntity> GetAll();
+        bool Save(SeatingTypeLookupEntity entity);
+        bool Update(SeatingTypeLookupEntity entity);
+        bool Delete(int seatingTypeId);
+        List<SeatingTypeLookupEntity> GetAll(string? language);
     }
 }

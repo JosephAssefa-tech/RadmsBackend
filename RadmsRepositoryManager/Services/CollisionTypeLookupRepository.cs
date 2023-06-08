@@ -12,9 +12,33 @@ namespace RadmsRepositoryManager.Services
 {
     public class CollisionTypeLookupRepository : ICollisionTypeRepository
     {
-        public List<CollisionTypeLookupEntity> GetAll(string language)
+        RadmsContext context = new RadmsContext();
+        public bool Delete(int collisionTypeId)
         {
-            RadmsContext context = new RadmsContext();
+            try
+            {
+                var result = context.CollisionTypeLookups.Where(x => x.CollisionTypeId == collisionTypeId).FirstOrDefault();
+                if (result != null)
+                {
+                    context.CollisionTypeLookups.Remove(result);
+                    context.SaveChanges();
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+
+
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        public List<CollisionTypeLookupEntity> GetAll(string? language)
+        {
             List<CollisionTypeLookup> models;
             if (language == "amharic")
             {
@@ -44,6 +68,45 @@ namespace RadmsRepositoryManager.Services
                 entities.Add(entity);
             }
             return entities;
+        }
+
+        public bool Save(CollisionTypeLookupEntity entity)
+        {
+            try
+            {
+                CollisionTypeLookup model = entity.MapToModel<CollisionTypeLookup>();
+
+
+                context.CollisionTypeLookups.Add(model);
+                context.SaveChanges();
+                return true;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        public bool Update(CollisionTypeLookupEntity entity)
+        {
+            try
+            {
+                CollisionTypeLookup old = context.CollisionTypeLookups.Find(entity.CollisionTypeId);
+                if (old != null)
+                {
+                    old.CollisionTypeId = entity.CollisionTypeId;
+                    old.CollisionTypeName = entity.CollisionTypeName;
+                    context.Entry(old).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
+                    context.SaveChanges();
+
+                }
+                return true;
+
+            }
+            catch (Exception)
+            {
+                throw;
+            }
         }
     }
 }

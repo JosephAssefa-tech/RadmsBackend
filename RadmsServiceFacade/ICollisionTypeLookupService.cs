@@ -9,6 +9,9 @@ namespace RadmsServiceFacade
 {
     public interface  ICollisionTypeLookupService
     {
-        List<CollisionTypeLookupEntity> GetAll(string language);
+        string Save(CollisionTypeLookupEntity entity);
+        string Update(CollisionTypeLookupEntity entity);
+        string Delete(int collisionTypeId);
+        List<CollisionTypeLookupEntity> GetAll(string? language);
     }
 }

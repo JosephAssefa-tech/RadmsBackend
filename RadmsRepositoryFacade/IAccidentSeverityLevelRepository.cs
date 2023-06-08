@@ -9,6 +9,9 @@ namespace RadmsRepositoryFacade
 {
     public interface  IAccidentSeverityLevelRepository
     {
-        List<SeverityLevelLookupEntity> GetAll(string language);
+        bool Save(SeverityLevelLookupEntity entity);
+        bool Update(SeverityLevelLookupEntity entity);
+        bool Delete(int severityId);
+        List<SeverityLevelLookupEntity> GetAll(string? language);
     }
 }

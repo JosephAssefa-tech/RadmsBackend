@@ -13,10 +13,56 @@ namespace RadmsRepositoryManager.Services
     public class VictimTypeLookupRepository : IVictimTypeLookupRepository
     {
         RadmsContext context = new RadmsContext();
-        public List<VictimTypeLookupEntity> GetAll()
+
+        public bool Delete(int victimTypeId)
         {
-            List<VictimTypeLookup> models = context.VictimTypeLookups
-    .ToList();
+            try
+            {
+                var result = context.VictimTypeLookups.Where(x => x.VictimTypeId == victimTypeId).FirstOrDefault();
+                if (result != null)
+                {
+                    context.VictimTypeLookups.Remove(result);
+                    context.SaveChanges();
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+
+
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        public List<VictimTypeLookupEntity> GetAll(string? language)
+        {
+            List<VictimTypeLookup> models;
+
+
+            if (language == "amharic")
+            {
+                models = context.VictimTypeLookups.Select(x => new VictimTypeLookup
+                {
+                    VictimTypeId = x.VictimTypeId,
+                    VictimTypeAm = x.VictimTypeAm,
+                }).ToList();
+
+            }
+            else
+            {
+                models = context.VictimTypeLookups.Select(x => new VictimTypeLookup
+                {
+                    VictimTypeId = x.VictimTypeId,
+                    VictimTypeAm = x.VictimType,
+                }).ToList();
+            }
+
+
+
             List<VictimTypeLookupEntity> entities = new List<VictimTypeLookupEntity>();
             foreach (var model in models)
             {
@@ -26,6 +72,46 @@ namespace RadmsRepositoryManager.Services
                 entities.Add(entity);
             }
             return entities;
+        }
+
+        public bool Save(VictimTypeLookupEntity entity)
+        {
+            try
+            {
+                VictimTypeLookup model = entity.MapToModel<VictimTypeLookup>();
+
+
+                context.VictimTypeLookups.Add(model);
+                context.SaveChanges();
+                return true;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        public bool Update(VictimTypeLookupEntity entity)
+        {
+
+            try
+            {
+                VictimTypeLookup old = context.VictimTypeLookups.Find(entity.VictimTypeId);
+                if (old != null)
+                {
+                    old.VictimTypeId = entity.VictimTypeId;
+                    old.VictimType = entity.VictimType;
+                    context.Entry(old).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
+                    context.SaveChanges();
+
+                }
+                return true;
+
+            }
+            catch (Exception)
+            {
+                throw;
+            }
         }
     }
 }
