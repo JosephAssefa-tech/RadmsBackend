@@ -9,6 +9,9 @@ namespace RadmsRepositoryFacade
 {
     public interface  IPedestrianMovementLookupRepository
     {
-        List<PedestrianMovementLookupEntity> GetAll();
+        bool Save(PedestrianMovementLookupEntity entity);
+        bool Update(PedestrianMovementLookupEntity entity);
+        bool Delete(int pedestrianMovementId);
+        List<PedestrianMovementLookupEntity> GetAll(string? language);
     }
 }

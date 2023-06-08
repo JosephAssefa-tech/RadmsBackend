@@ -14,7 +14,32 @@ namespace RadmsRepositoryManager.Services
     public class TerrianTypeRepository : ITerrianTypeRepository
     {
         RadmsContext context = new RadmsContext();
-        public List<TerrainTypeLookupEntity> GetAll(string language)
+
+        public bool Delete(int terrianTypeId)
+        {
+            try
+            {
+                var result = context.TerrainTypeLookups.Where(x => x.TerrianTypeId == terrianTypeId).FirstOrDefault();
+                if (result != null)
+                {
+                    context.TerrainTypeLookups.Remove(result);
+                    context.SaveChanges();
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+
+
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        public List<TerrainTypeLookupEntity> GetAll(string? language)
         {
             List<TerrainTypeLookup> models;
 
@@ -48,6 +73,46 @@ namespace RadmsRepositoryManager.Services
                 entities.Add(entity);
             }
             return entities;
+        }
+
+        public bool Save(TerrainTypeLookupEntity entity)
+        {
+
+            try
+            {
+                TerrainTypeLookup model = entity.MapToModel<TerrainTypeLookup>();
+
+
+                context.TerrainTypeLookups.Add(model);
+                context.SaveChanges();
+                return true;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        public bool Update(TerrainTypeLookupEntity entity)
+        {
+            try
+            {
+                TerrainTypeLookup old = context.TerrainTypeLookups.Find(entity.TerrianTypeId);
+                if (old != null)
+                {
+                    old.TerrianTypeId = entity.TerrianTypeId;
+                    old.TerrianName = entity.TerrianName;
+                    context.Entry(old).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
+                    context.SaveChanges();
+
+                }
+                return true;
+
+            }
+            catch (Exception)
+            {
+                throw;
+            }
         }
     }
 }

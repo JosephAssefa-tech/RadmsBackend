@@ -13,7 +13,32 @@ namespace RadmsRepositoryManager.Services
     public class AccidentSeverityLevelRepository : IAccidentSeverityLevelRepository
     {
         RadmsContext context = new RadmsContext();
-        public List<SeverityLevelLookupEntity> GetAll(string language)
+
+        public bool Delete(int severityId)
+        {
+            try
+            {
+                var result = context.SeverityLevelLookups.Where(x => x.SeverityId == severityId).FirstOrDefault();
+                if (result != null)
+                {
+                    context.SeverityLevelLookups.Remove(result);
+                    context.SaveChanges();
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+
+
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        public List<SeverityLevelLookupEntity> GetAll(string? language)
         {
             List<SeverityLevelLookup> models;
 
@@ -46,6 +71,45 @@ namespace RadmsRepositoryManager.Services
                 entities.Add(entity);
             }
             return entities;
+        }
+
+        public bool Save(SeverityLevelLookupEntity entity)
+        {
+            try
+            {
+                SeverityLevelLookup model = entity.MapToModel<SeverityLevelLookup>();
+
+
+                context.SeverityLevelLookups.Add(model);
+                context.SaveChanges();
+                return true;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        public bool Update(SeverityLevelLookupEntity entity)
+        {
+            try
+            {
+                SeverityLevelLookup old = context.SeverityLevelLookups.Find(entity.SeverityId);
+                if (old != null)
+                {
+                    old.SeverityId = entity.SeverityId;
+                    old.SeverityType = entity.SeverityType;
+                    context.Entry(old).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
+                    context.SaveChanges();
+
+                }
+                return true;
+
+            }
+            catch (Exception)
+            {
+                throw;
+            }
         }
     }
 }
