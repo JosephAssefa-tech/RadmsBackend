@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using RadmsEntities;
 using RadmsServiceFacade;
+using RadmsWebAPI.Models.PostModels;
+using RadmsWebAPI.Models.PutModels;
 using RadmsWebAPI.Models.ViewModels;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -19,9 +21,9 @@ namespace RadmsWebAPI.Controllers
         }
         // GET: api/<VictimMovementMasterController>
         [HttpGet]
-        public List<VictimMovementMasterViewModel> GetAll()
+        public List<VictimMovementMasterViewModel> GetAll(string? language)
         {
-            List<VictimMovementMasterEntity> entities = this._service.GetAll();
+            List<VictimMovementMasterEntity> entities = this._service.GetAll(language);
             List<VictimMovementMasterViewModel> viewModels = new List<VictimMovementMasterViewModel>();
             foreach (var entity in entities)
             {
@@ -40,20 +42,40 @@ namespace RadmsWebAPI.Controllers
 
         // POST api/<VictimMovementMasterController>
         [HttpPost]
-        public void Post([FromBody] string value)
+        public void Save([FromBody] VictimMovementMasterPostModel viewModel)
         {
+            string result = this._service.Save(viewModel.MapToViewEntity<VictimMovementMasterEntity>());
+            if (result == "saved sucessfuly")
+            {
+
+            }
+            else
+            {
+
+            }
+
         }
 
         // PUT api/<VictimMovementMasterController>/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        [HttpPut]
+        public void Update([FromBody] VictimMovementMasterUpdateModel viewModel)
         {
+            string result = this._service.Update(viewModel.MapToViewEntity<VictimMovementMasterEntity>());
+            if (result == "Updated sucessfuly")
+            {
+
+            }
+            else
+            {
+
+            }
         }
 
         // DELETE api/<VictimMovementMasterController>/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
+        [HttpDelete]
+        public void Delete(int victimMovementId)
         {
+            var result = this._service.Delete(victimMovementId);
         }
     }
 }

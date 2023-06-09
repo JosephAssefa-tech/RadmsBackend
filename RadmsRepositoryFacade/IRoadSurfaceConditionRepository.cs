@@ -9,7 +9,10 @@ namespace RadmsRepositoryFacade
 {
     public interface IRoadSurfaceConditionRepository
     {
-        List<RoadSurfaceConditionLookupEntity> GetAll(string language);
+        bool Save(RoadSurfaceConditionLookupEntity entity);
+        bool Update(RoadSurfaceConditionLookupEntity entity);
+        bool Delete(int roadSurfaceId);
+        List<RoadSurfaceConditionLookupEntity> GetAll(string? language);
 
     }
 }

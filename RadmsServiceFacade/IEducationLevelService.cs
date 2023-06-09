@@ -9,6 +9,9 @@ namespace RadmsServiceFacade
 {
     public interface IEducationLevelService
     {
-        List<EducationLevelLookupEntity> GetAll();
+        string Save(EducationLevelLookupEntity entity);
+        string Update(EducationLevelLookupEntity entity);
+        string Delete(int educationLevelId);
+        List<EducationLevelLookupEntity> GetAll(string? language);
     }
 }

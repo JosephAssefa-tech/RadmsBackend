@@ -9,6 +9,9 @@ namespace RadmsServiceFacade
 {
     public interface  IDriverExperienceLookupService
     {
-        List<DriverExperienceLookupEntity> GetAll();
+        string Save(DriverExperienceLookupEntity entity);
+        string Update(DriverExperienceLookupEntity entity);
+        string Delete(int driverExperienceId);
+        List<DriverExperienceLookupEntity> GetAll(string? language);
     }
 }

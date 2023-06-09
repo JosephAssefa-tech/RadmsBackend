@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using RadmsEntities;
 using RadmsServiceFacade;
+using RadmsWebAPI.Models.PostModels;
+using RadmsWebAPI.Models.PutModels;
 using RadmsWebAPI.Models.ViewModels;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -18,9 +20,9 @@ namespace RadmsWebAPI.Controllers
         }
         // GET: api/<EducationLevelController>
         [HttpGet]
-        public List<EducationLevelViewModel> GetAll()
+        public List<EducationLevelViewModel> GetAll(string? language)
         {
-            List<EducationLevelLookupEntity> entities = this._service.GetAll();
+            List<EducationLevelLookupEntity> entities = this._service.GetAll( language);
             List<EducationLevelViewModel> viewModels = new List<EducationLevelViewModel>();
             foreach (var entity in entities)
             {
@@ -39,20 +41,39 @@ namespace RadmsWebAPI.Controllers
 
         // POST api/<EducationLevelController>
         [HttpPost]
-        public void Post([FromBody] string value)
+        public void Save([FromBody] EducationLevelLookupPostModel postModel)
         {
+            string result = this._service.Save(postModel.MapToViewEntity<EducationLevelLookupEntity>());
+            if (result == "saved sucessfuly")
+            {
+
+            }
+            else
+            {
+
+            }
         }
 
         // PUT api/<EducationLevelController>/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        [HttpPut]
+        public void Update([FromBody] EducationLevelLookupUpdateModel viewModel)
         {
+            string result = this._service.Update(viewModel.MapToViewEntity<EducationLevelLookupEntity>());
+            if (result == "Updated sucessfuly")
+            {
+
+            }
+            else
+            {
+
+            }
         }
 
         // DELETE api/<EducationLevelController>/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
+        [HttpDelete]
+        public void Delete(int educationLevelId)
         {
+            var result = this._service.Delete(educationLevelId);
         }
     }
 }

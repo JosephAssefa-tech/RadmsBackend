@@ -18,11 +18,13 @@ namespace RadmsServiceManager
       RadmsContext context =new RadmsContext();
         IVictimDetailTransactionRepository _repository;
         private readonly IRepository<VictimDetailsTransaction> _otherClassRepository;
-        public VictimDetailTransactionService(IVictimDetailTransactionRepository repository, IRepository<VictimDetailsTransaction> otherClassRepository)
+        private readonly IRepository<AccidentDetailsTransaction> _accidentClassRepository;
+        public VictimDetailTransactionService(IRepository<AccidentDetailsTransaction> accidentClassRepository,IVictimDetailTransactionRepository repository, IRepository<VictimDetailsTransaction> otherClassRepository)
         {
             _repository = repository;
             _otherClassRepository = otherClassRepository;
-        }
+            _accidentClassRepository=accidentClassRepository;
+    }
 
 
         public string Delete(decimal id)
@@ -99,26 +101,46 @@ namespace RadmsServiceManager
             throw new NotImplementedException();
         }
 
-        public async Task<IEnumerable<SummaryData>> GetGroupedDataAsync(DateTime? startDate, DateTime? endDate)
+        public async Task<IEnumerable<SummaryData>> GetGroupedDataAsync(DateTime? startDate = null, DateTime? endDate = null)
         {
             var currentYear = DateTime.Now.Year;
-            var query =  _otherClassRepository.Query();
+            var query = _otherClassRepository.Query();
 
-           // query = query.Where(o => o.Date >= startDate && o.Date <= endDate);
+            var joinedQuery = query.Join(
+                _accidentClassRepository.Query(), // Joining with AccidentDetailsTransaction table
+                o => o.AccidentId,
+                ad => ad.AccidentId,
+                (o, ad) => new { o, ad }
+            );
 
-            var groupedData= await query.Include(o => o.Severity).GroupBy(o => new { o.Severity.SeverityId, o.Severity.SeverityType })
+            if (startDate != null && endDate != null)
+            {
+                joinedQuery = joinedQuery.Where(x => x.ad.DateAndTime >= startDate && x.ad.DateAndTime <= endDate);
+            }
+
+            var groupedData = await joinedQuery
+                .Select(x => new { x.o.Severity.SeverityId, x.o.Severity.SeverityType })
+                .GroupBy(x => new { x.SeverityId, x.SeverityType })
                 .Select(g => new SummaryData
                 {
-                    Year=currentYear,
+                    Year = currentYear,
                     SeverityId = g.Key.SeverityId,
                     SeverityType = g.Key.SeverityType,
                     Count = g.Count()
-                    
                 })
                 .ToListAsync();
 
+            if (groupedData.Count == 0)
+            {
+                groupedData.Add(new SummaryData { Year = currentYear, SeverityId = 0, SeverityType = "", Count = 0 });
+            }
+
             return groupedData;
         }
+
+
+
+
         public List<SummaryData> GetSummaryWithDateAndRegion(int? regionId, DateTime? dateTime)
         {
             try

@@ -1,3 +1,4 @@
+using RadmsDataAccessLogic;
 using RadmsRepositoryFacade;
 using RadmsRepositoryFacade.BaseRepositoryFacade;
 using RadmsRepositoryManager.BaseRepository;
@@ -156,6 +157,7 @@ builder.Services.AddScoped<IBlackSpotService, BlackSpotService>();
 builder.Services.AddScoped<IBlackSpotRepository, BlackSpotRepository>();
 
 
+builder.Services.AddScoped<RadmsContext>();
 
 builder.Services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
 

@@ -9,6 +9,9 @@ namespace RadmsServiceFacade
 {
     public interface  IJunctionTypeService
     {
-        List<JunctionTypeLookupEntity> GetAll(string language);
+        string Save(JunctionTypeLookupEntity entity);
+        string Update(JunctionTypeLookupEntity entity);
+        string Delete(int junctionTypeId);
+        List<JunctionTypeLookupEntity> GetAll(string? language);
     }
 }

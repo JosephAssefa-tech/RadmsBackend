@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using RadmsEntities;
 using RadmsServiceFacade;
+using RadmsWebAPI.Models.PostModels;
+using RadmsWebAPI.Models.PutModels;
 using RadmsWebAPI.Models.ViewModels;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -21,7 +23,7 @@ namespace RadmsWebAPI.Controllers
 
         // GET: api/<PoliceStationMasterController>
         [HttpGet]
-        public List<PoliceStationMasterViewModel> GetAll(string language)
+        public List<PoliceStationMasterViewModel> GetAll(string? language)
         {
             List<PoliceStationMasterEntity> entities = this._service.GetAll(language);
             List<PoliceStationMasterViewModel> viewModels = new List<PoliceStationMasterViewModel>();
@@ -42,20 +44,41 @@ namespace RadmsWebAPI.Controllers
 
         // POST api/<PoliceStationMasterController>
         [HttpPost]
-        public void Post([FromBody] string value)
+        public void Save([FromBody] PoliceStationMasterPostModel viewModel)
         {
+            string result = this._service.Save(viewModel.MapToViewEntity<PoliceStationMasterEntity>());
+            if (result == "saved sucessfuly")
+            {
+
+            }
+            else
+            {
+
+            }
+
         }
 
         // PUT api/<PoliceStationMasterController>/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        [HttpPut]
+        public void Update([FromBody] PoliceStationMasterUpdateModel viewModel)
         {
+            string result = this._service.Update(viewModel.MapToViewEntity<PoliceStationMasterEntity>());
+            if (result == "Updated sucessfuly")
+            {
+
+            }
+            else
+            {
+
+            }
         }
+    
 
         // DELETE api/<PoliceStationMasterController>/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
+        [HttpDelete]
+        public void Delete(string psid)
         {
+            var result = this._service.Delete(psid);
         }
     }
 }

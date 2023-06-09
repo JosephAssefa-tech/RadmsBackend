@@ -12,6 +12,6 @@ namespace RadmsRepositoryFacade
         bool Save(DriverExperienceLookupEntity accident);
         bool Update(DriverExperienceLookupEntity accident);
         bool Delete(int driverExperienceId);
-        List<DriverExperienceLookupEntity> GetAll();
+        List<DriverExperienceLookupEntity> GetAll(string? language);
     }
 }

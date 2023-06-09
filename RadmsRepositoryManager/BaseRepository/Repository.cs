@@ -10,19 +10,17 @@ namespace RadmsRepositoryManager.BaseRepository
 {
     public class Repository<TEntity> : IRepository<TEntity> where TEntity : class
     {
-        RadmsContext _dbContext = new RadmsContext();
-        // _dbContext = new RadmsContext();
+        private readonly RadmsContext _dbContext;
 
-        //public Repository(RadmsContext dbContext)
-        //{
-        //    _dbContext = dbContext;
-        //}
+        public Repository(RadmsContext dbContext)
+        {
+            _dbContext = dbContext;
+        }
 
         public IQueryable<TEntity> Query()
         {
-          
-
             return _dbContext.Set<TEntity>().AsQueryable();
         }
     }
 }
+

@@ -9,6 +9,9 @@ namespace RadmsServiceFacade
 {
     public interface  ILandmarkTypeService
     {
-        List<LandmarkTypeLookupEntity> GetAll(string language);
+        string Save(LandmarkTypeLookupEntity entity);
+        string Update(LandmarkTypeLookupEntity entity);
+        string Delete(int landmarkTypeId);
+        List<LandmarkTypeLookupEntity> GetAll(string? language);
     }
 }

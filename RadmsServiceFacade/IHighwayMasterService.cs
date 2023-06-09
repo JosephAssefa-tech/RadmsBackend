@@ -9,6 +9,9 @@ namespace RadmsServiceFacade
 {
     public interface IHighwayMasterService
     {
-        List<HighwayMasterEntity> GetAll(string language);
+        string Save(HighwayMasterEntity entity);
+        string Update(HighwayMasterEntity entity);
+        string Delete(string hid);
+        List<HighwayMasterEntity> GetAll(string? language);
     }
 }
