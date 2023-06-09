@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using RadmsEntities;
 using RadmsServiceFacade;
+using RadmsWebAPI.Models.PostModels;
+using RadmsWebAPI.Models.PutModels;
 using RadmsWebAPI.Models.ViewModels;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -20,9 +22,9 @@ namespace RadmsWebAPI.Controllers
 
         // GET: api/<PedestrianMovementController>
         [HttpGet]
-        public List<PedestrianMovementLookupViewModel> GetAll()
+        public List<PedestrianMovementLookupViewModel> GetAll(string? language)
         {
-            List<PedestrianMovementLookupEntity> entities = this._service.GetAll();
+            List<PedestrianMovementLookupEntity> entities = this._service.GetAll(language);
             List<PedestrianMovementLookupViewModel> viewModels = new List<PedestrianMovementLookupViewModel>();
             foreach (var entity in entities)
             {
@@ -41,20 +43,40 @@ namespace RadmsWebAPI.Controllers
 
         // POST api/<PedestrianMovementController>
         [HttpPost]
-        public void Post([FromBody] string value)
+        public void Save([FromBody] PedestrianMovementLookupPostModel viewModel)
         {
+            string result = this._service.Save(viewModel.MapToViewEntity<PedestrianMovementLookupEntity>());
+            if (result == "saved sucessfuly")
+            {
+
+            }
+            else
+            {
+
+            }
+
         }
 
         // PUT api/<PedestrianMovementController>/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        [HttpPut]
+        public void Update([FromBody] PedestrianMovementLookupUpdateModel viewModel)
         {
+            string result = this._service.Update(viewModel.MapToViewEntity<PedestrianMovementLookupEntity>());
+            if (result == "Updated sucessfuly")
+            {
+
+            }
+            else
+            {
+
+            }
         }
 
         // DELETE api/<PedestrianMovementController>/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
+        [HttpDelete]
+        public void Delete(int pedestrianMovementId)
         {
+            var result = this._service.Delete(pedestrianMovementId);
         }
     }
 }

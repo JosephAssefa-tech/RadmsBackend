@@ -53,9 +53,10 @@ namespace RadmsWebAPI.Controllers
         }
 
         // DELETE api/<RoadsInvolvedDetailsTransactionController>/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
+        [HttpDelete]
+        public void Delete(int regionId)
         {
+            var result = this._service.Delete(regionId);
         }
     }
 }

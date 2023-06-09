@@ -11,10 +11,10 @@ namespace RadmsServiceFacade
     {
         PoliceStationMasterEntity GetById(string id);
         PoliceStationMasterEntity FilterByAccidentName(string CauseName);
-        bool Save(PoliceStationMasterEntity accident);
-        string Update(PoliceStationMasterEntity accident);
-        string Delete(string id);
-        List<PoliceStationMasterEntity> GetAll(string language);
+        string Save(PoliceStationMasterEntity entity);
+        string Update(PoliceStationMasterEntity entity);
+        string Delete(string psid);
+        List<PoliceStationMasterEntity> GetAll(string? language);
 
 
 

@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using RadmsEntities;
 using RadmsServiceFacade;
+using RadmsWebAPI.Models.PostModels;
+using RadmsWebAPI.Models.PutModels;
 using RadmsWebAPI.Models.ViewModels;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -19,7 +21,7 @@ namespace RadmsWebAPI.Controllers
 
             // GET: api/<JunctionTypeController>
         [HttpGet]
-        public List<JunctionTypeLookupViewModel> GetAll(string language)
+        public List<JunctionTypeLookupViewModel> GetAll(string? language)
         {
             List<JunctionTypeLookupEntity> entities = this._service.GetAll(language);
             List<JunctionTypeLookupViewModel> viewModels = new List<JunctionTypeLookupViewModel>();
@@ -40,20 +42,40 @@ namespace RadmsWebAPI.Controllers
 
         // POST api/<JunctionTypeController>
         [HttpPost]
-        public void Post([FromBody] string value)
+        public void Save([FromBody] JunctionTypeLookupPostModel viewModel)
         {
+            string result = this._service.Save(viewModel.MapToViewEntity<JunctionTypeLookupEntity>());
+            if (result == "saved sucessfuly")
+            {
+
+            }
+            else
+            {
+
+            }
+
         }
 
         // PUT api/<JunctionTypeController>/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        [HttpPut]
+        public void Update([FromBody] JunctionTypeLookupUpdateModel viewModel)
         {
+            string result = this._service.Update(viewModel.MapToViewEntity<JunctionTypeLookupEntity>());
+            if (result == "Updated sucessfuly")
+            {
+
+            }
+            else
+            {
+
+            }
         }
 
         // DELETE api/<JunctionTypeController>/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
+        [HttpDelete]
+        public void Delete(int junctionTypeId)
         {
+            var result = this._service.Delete(junctionTypeId);
         }
     }
 }

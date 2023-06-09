@@ -120,5 +120,28 @@ namespace RadmsRepositoryManager.Services
                 throw;
             }
         }
+        public bool Update(WoredaMasterEntity entity)
+        {
+            try
+            {
+                WoredaMaster old = context.WoredaMasters.Find(entity.WoredaId);
+                if (old != null)
+                {
+                    old.WoredaId = entity.WoredaId;
+                    old.WoredaName = entity.WoredaName;
+                    context.Entry(old).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
+                    context.SaveChanges();
+
+                }
+                return true;
+
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+
+
+        }
     }
 }

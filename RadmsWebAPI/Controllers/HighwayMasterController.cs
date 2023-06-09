@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using RadmsEntities;
 using RadmsServiceFacade;
+using RadmsWebAPI.Models.PostModels;
+using RadmsWebAPI.Models.PutModels;
 using RadmsWebAPI.Models.ViewModels;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -18,7 +20,7 @@ namespace RadmsWebAPI.Controllers
         }
         // GET: api/<HighwayMasterController>
         [HttpGet]
-        public List<HighwayMasterViewModel> GetAll(string language)
+        public List<HighwayMasterViewModel> GetAll(string? language)
         {
             List<HighwayMasterEntity> entities = this._service.GetAll(language);
             List<HighwayMasterViewModel> viewModels = new List<HighwayMasterViewModel>();
@@ -39,20 +41,40 @@ namespace RadmsWebAPI.Controllers
 
         // POST api/<HighwayMasterController>
         [HttpPost]
-        public void Post([FromBody] string value)
+        public void Save([FromBody] HighwayMasterPostModel viewModel)
         {
+            string result = this._service.Save(viewModel.MapToViewEntity<HighwayMasterEntity>());
+            if (result == "saved sucessfuly")
+            {
+
+            }
+            else
+            {
+
+            }
+
         }
 
         // PUT api/<HighwayMasterController>/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        [HttpPut]
+        public void Update([FromBody] HighwayMasterUpdateModel viewModel)
         {
+            string result = this._service.Update(viewModel.MapToViewEntity<HighwayMasterEntity>());
+            if (result == "Updated sucessfuly")
+            {
+
+            }
+            else
+            {
+
+            }
         }
 
         // DELETE api/<HighwayMasterController>/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
+        [HttpDelete]
+        public void Delete(string hid)
         {
+            var result = this._service.Delete(hid);
         }
     }
 }

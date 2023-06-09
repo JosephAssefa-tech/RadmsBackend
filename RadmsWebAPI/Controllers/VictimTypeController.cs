@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using RadmsEntities;
 using RadmsServiceFacade;
+using RadmsWebAPI.Models.PostModels;
+using RadmsWebAPI.Models.PutModels;
 using RadmsWebAPI.Models.ViewModels;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -19,9 +21,9 @@ namespace RadmsWebAPI.Controllers
         }
         // GET: api/<VictimTypeController>
         [HttpGet]
-        public List<VictimTypeLookupViewModel> GetAll()
+        public List<VictimTypeLookupViewModel> GetAll(string? language)
         {
-            List<VictimTypeLookupEntity> entities = this._service.GetAll();
+            List<VictimTypeLookupEntity> entities = this._service.GetAll(language);
             List<VictimTypeLookupViewModel> viewModels = new List<VictimTypeLookupViewModel>();
             foreach (var entity in entities)
             {
@@ -40,20 +42,40 @@ namespace RadmsWebAPI.Controllers
 
         // POST api/<VictimTypeController>
         [HttpPost]
-        public void Post([FromBody] string value)
+        public void Save([FromBody] VictimTypeLookupPostModel viewModel)
         {
+            string result = this._service.Save(viewModel.MapToViewEntity<VictimTypeLookupEntity>());
+            if (result == "saved sucessfuly")
+            {
+
+            }
+            else
+            {
+
+            }
+
         }
 
         // PUT api/<VictimTypeController>/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        [HttpPut]
+        public void Update([FromBody] VictimTypeLookupUpdateModel viewModel)
         {
+            string result = this._service.Update(viewModel.MapToViewEntity<VictimTypeLookupEntity>());
+            if (result == "Updated sucessfuly")
+            {
+
+            }
+            else
+            {
+
+            }
         }
 
         // DELETE api/<VictimTypeController>/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
+        [HttpDelete]
+        public void Delete(int victimTypeId)
         {
+            var result = this._service.Delete(victimTypeId);
         }
     }
 }

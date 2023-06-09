@@ -13,6 +13,32 @@ namespace RadmsRepositoryManager.Services
     public class RoadSurfaceConditionRepository : IRoadSurfaceConditionRepository
     {
         RadmsContext context = new RadmsContext();
+
+        public bool Delete(int roadSurfaceId)
+        {
+
+            try
+            {
+                var result = context.RoadSurfaceConditionLookups.Where(x => x.RoadSurfaceId == roadSurfaceId).FirstOrDefault();
+                if (result != null)
+                {
+                    context.RoadSurfaceConditionLookups.Remove(result);
+                    context.SaveChanges();
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+
+
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
         public List<RoadSurfaceConditionLookupEntity> GetAll(string language)
         {
             List<RoadSurfaceConditionLookup> models;
@@ -44,6 +70,45 @@ namespace RadmsRepositoryManager.Services
                 entities.Add(entity);
             }
             return entities;
+        }
+
+        public bool Save(RoadSurfaceConditionLookupEntity entity)
+        {
+            try
+            {
+                RoadSurfaceConditionLookup model = entity.MapToModel<RoadSurfaceConditionLookup>();
+
+
+                context.RoadSurfaceConditionLookups.Add(model);
+                context.SaveChanges();
+                return true;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        public bool Update(RoadSurfaceConditionLookupEntity entity)
+        {
+            try
+            {
+                RoadSurfaceConditionLookup old = context.RoadSurfaceConditionLookups.Find(entity.RoadSurfaceId);
+                if (old != null)
+                {
+                    old.RoadSurfaceId = entity.RoadSurfaceId;
+                    old.RoadSurfaceName = entity.RoadSurfaceName;
+                    context.Entry(old).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
+                    context.SaveChanges();
+
+                }
+                return true;
+
+            }
+            catch (Exception)
+            {
+                throw;
+            }
         }
     }
 }

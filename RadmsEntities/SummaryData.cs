@@ -25,5 +25,20 @@ namespace RadmsEntities
         {
 
         }
+        public SummaryData(int SeverityId, string SeverityType, int Count, decimal AccidentId, int NumberOfMainRoad, int Year, int RegionId, string RegionName)
+        {
+            this.SeverityId = SeverityId;
+            this.SeverityType = SeverityType;
+            this.Count = Count;
+            this.AccidentId= AccidentId;
+            this.NumberOfMainRoad = NumberOfMainRoad;
+            this.Year = Year;
+            this.RegionId = RegionId;
+            this.RegionName = RegionName;
+
+
+
+
+        }
     }
 }

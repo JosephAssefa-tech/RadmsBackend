@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using RadmsEntities;
 using RadmsServiceFacade;
+using RadmsWebAPI.Models.PostModels;
+using RadmsWebAPI.Models.PutModels;
 using RadmsWebAPI.Models.ViewModels;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -18,7 +20,7 @@ namespace RadmsWebAPI.Controllers
         }
         // GET: api/<LandmarkTypeController>
         [HttpGet]
-        public List<LandmarkTypeLookupViewModel> GetAll(string language)
+        public List<LandmarkTypeLookupViewModel> GetAll(string? language)
         {
             List<LandmarkTypeLookupEntity> entities = this._service.GetAll(language);
             List<LandmarkTypeLookupViewModel> viewModels = new List<LandmarkTypeLookupViewModel>();
@@ -39,20 +41,40 @@ namespace RadmsWebAPI.Controllers
 
         // POST api/<LandmarkTypeController>
         [HttpPost]
-        public void Post([FromBody] string value)
+        public void Save([FromBody] LandmarkTypeLookupPostModel viewModel)
         {
+            string result = this._service.Save(viewModel.MapToViewEntity<LandmarkTypeLookupEntity>());
+            if (result == "saved sucessfuly")
+            {
+
+            }
+            else
+            {
+
+            }
+
         }
 
         // PUT api/<LandmarkTypeController>/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        [HttpPut]
+        public void Update([FromBody] LandmarkTypeLookupUpdateModel viewModel)
         {
+            string result = this._service.Update(viewModel.MapToViewEntity<LandmarkTypeLookupEntity>());
+            if (result == "Updated sucessfuly")
+            {
+
+            }
+            else
+            {
+
+            }
         }
 
         // DELETE api/<LandmarkTypeController>/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
+        [HttpDelete]
+        public void Delete(int landmarkTypeId)
         {
+            var result = this._service.Delete(landmarkTypeId);
         }
     }
 }

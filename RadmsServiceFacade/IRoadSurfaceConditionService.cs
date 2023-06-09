@@ -9,6 +9,9 @@ namespace RadmsServiceFacade
 {
     public interface IRoadSurfaceConditionService
     {
-        List<RoadSurfaceConditionLookupEntity> GetAll(string language);
+        string Save(RoadSurfaceConditionLookupEntity entity);
+        string Update(RoadSurfaceConditionLookupEntity entity);
+        string Delete(int roadSurfaceId);
+        List<RoadSurfaceConditionLookupEntity> GetAll(string? language);
     }
 }

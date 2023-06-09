@@ -73,7 +73,7 @@ namespace RadmsServiceManager
 
         }
 
-        public bool Save(PoliceStationMasterEntity accident)
+        public string Save(PoliceStationMasterEntity accident)
         {
             try
             {
@@ -82,7 +82,7 @@ namespace RadmsServiceManager
                 var result = _repository.Save(accident);
                 // if (result != 0)
                 //  {
-                return result;
+                return "saved";
                 //  }
                 //  else
                 //  {
