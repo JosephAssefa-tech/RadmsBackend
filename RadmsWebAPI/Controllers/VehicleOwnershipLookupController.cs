@@ -70,9 +70,9 @@ namespace RadmsWebAPI.Controllers
 
         // DELETE api/<VehicleOwnershipLookupController>/5
         [HttpDelete]
-        public void Delete(int vehicleMovementId)
+        public void Delete(int vehicleOwnershipId)
         {
-            var result = this._service.Delete(vehicleMovementId);
+            var result = this._service.Delete(vehicleOwnershipId);
         }
     }
 }

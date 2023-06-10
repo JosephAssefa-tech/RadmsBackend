@@ -48,7 +48,7 @@ namespace RadmsRepositoryManager.Services
                 models = context.VictimTypeLookups.Select(x => new VictimTypeLookup
                 {
                     VictimTypeId = x.VictimTypeId,
-                    VictimTypeAm = x.VictimTypeAm,
+                    VictimType = x.VictimTypeAm,
                 }).ToList();
 
             }
@@ -57,7 +57,7 @@ namespace RadmsRepositoryManager.Services
                 models = context.VictimTypeLookups.Select(x => new VictimTypeLookup
                 {
                     VictimTypeId = x.VictimTypeId,
-                    VictimTypeAm = x.VictimType,
+                    VictimType = x.VictimType,
                 }).ToList();
             }
 

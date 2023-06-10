@@ -96,7 +96,7 @@ namespace RadmsRepositoryManager.Services
                 models = context.EmploymentStatusLookups.Select(x => new EmploymentStatusLookup
                 {
                     EmploymentStatusId = x.EmploymentStatusId,
-                    EmploymentStatusNameAm = x.EmploymentStatusName,
+                    EmploymentStatusName = x.EmploymentStatusName,
                 }).ToList();
             }
 

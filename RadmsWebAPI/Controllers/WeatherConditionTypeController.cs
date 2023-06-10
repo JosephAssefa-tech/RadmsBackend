@@ -74,10 +74,10 @@ namespace RadmsWebAPI.Controllers
         }
 
         // DELETE api/<WeatherConditionTypeController>/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
+        [HttpDelete]
+        public void Delete(int weatherCondId)
         {
-            string result = this._service.Delete(id);
+            string result = this._service.Delete(weatherCondId);
             if (result == "sucessfuly deleted")
             {
 

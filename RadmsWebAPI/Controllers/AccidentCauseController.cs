@@ -77,10 +77,10 @@ namespace RadmsWebAPI.Controllers
         }
 
         // DELETE api/<AccidentController>/5
-        [HttpDelete("{id}")]
-        public void Delete(decimal id)
+        [HttpDelete]
+        public void Delete(decimal accidentCauseId)
         {
-            string result = this._service.Delete(id);
+            string result = this._service.Delete(accidentCauseId);
             if(result == "sucessfuly deleted")
             {
 
