@@ -31,7 +31,7 @@ namespace RadmsEntities
         {
             PedestrianMovementLookup model = new PedestrianMovementLookup();
             model.PedestrianMovementId = this.PedestrianMovementId;
-            model.PedestrianMovementId = this.PedestrianMovementId;
+            model.PedestrianMovementName = this.PedestrianMovementName;
             return model as T;
         }
 

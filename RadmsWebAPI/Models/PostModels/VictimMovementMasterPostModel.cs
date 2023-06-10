@@ -26,7 +26,7 @@ namespace RadmsWebAPI.Models.PostModels
         {
             VictimMovementMasterEntity entity = new VictimMovementMasterEntity();
             entity.VictimMovementId = this.VictimMovementId;
-            entity.VictimMovementId = this.VictimMovementId;
+            entity.VictimMovementType = this.VictimMovementType;
 
 
             return entity as T;
