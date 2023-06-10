@@ -30,7 +30,7 @@ namespace RadmsEntities
         {
             RoadCarriagewayTypeLookup model = new RoadCarriagewayTypeLookup();
             model.RoadCarriagewayId = this.RoadCarriagewayId;
-            model.RoadCarriagewayId = this.RoadCarriagewayId;
+            model.RoadCarriagewayName = this.RoadCarriagewayName;
 
             return model as T;
         }
