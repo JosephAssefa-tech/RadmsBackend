@@ -132,7 +132,10 @@ namespace RadmsServiceManager
 
             if (groupedData.Count == 0)
             {
-                groupedData.Add(new SummaryData { Year = currentYear, SeverityId = 0, SeverityType = "", Count = 0 });
+                groupedData.Add(new SummaryData { Year = currentYear, SeverityId = 2, SeverityType = "Type 3", Count = 0 });
+                groupedData.Add(new SummaryData { Year = currentYear, SeverityId = 3, SeverityType = "Type 4", Count = 0 });
+                groupedData.Add(new SummaryData { Year = currentYear, SeverityId = 4, SeverityType = "Type 4", Count = 0 });
+
             }
 
             return groupedData;
@@ -141,14 +144,14 @@ namespace RadmsServiceManager
 
 
 
-        public List<SummaryData> GetSummaryWithDateAndRegion(int? regionId, DateTime? dateTime)
+        public List<SummaryData> GetSummaryWithDateAndRegion(int? regionId, DateTime? startDate, DateTime? endDate)
         {
             try
             {
                
              
 
-                var result = _repository.GetSummaryWithDateAndRegion(regionId,dateTime);
+                var result = _repository.GetSummaryWithDateAndRegion(regionId,startDate,endDate);
             
                 return result;
         
@@ -160,24 +163,24 @@ namespace RadmsServiceManager
 
             }
         }
-        public async Task<int> GetFatalAccidentCount(int year)
+        public async Task<int> GetFatalAccidentCount(int year, DateTime? startDate, DateTime? endDate)
         {
-            return await _repository.GetFatalAccidentCount(year);
+            return await _repository.GetFatalAccidentCount(year, startDate, endDate);
         }
 
-        public async Task<int> GetSeriousAccidentCount(int year)
+        public async Task<int> GetSeriousAccidentCount(int year, DateTime? startDate, DateTime? endDate)
         {
-            return await _repository.GetSeriousAccidentCount(year);
+            return await _repository.GetSeriousAccidentCount(year, startDate, endDate);
         }
 
-        public async Task<int> GetSlightAccidentCount(int year)
+        public async Task<int> GetSlightAccidentCount(int year, DateTime? startDate, DateTime? endDate)
         {
-            return await _repository.GetSlightAccidentCount(year);
+            return await _repository.GetSlightAccidentCount(year, startDate, endDate);
         }
 
-        public async Task<int> GetPropertyDamageCount(int year)
+        public async Task<int> GetPropertyDamageCount(int year, DateTime? startDate, DateTime? endDate)
         {
-            return await _repository.GetPropertyDamageCount(year);
+            return await _repository.GetPropertyDamageCount(year, startDate, endDate);
         }
 
 

@@ -19,9 +19,9 @@ namespace RadmsWebAPI.Controllers
         }
         // GET: api/<BlackSpotController>
         [HttpGet]
-        public List<BlackSpotMasterViewModel> GetAll()
+        public List<BlackSpotMasterViewModel> GetAll(DateTime? startDate, DateTime? endDate)
         {
-            List<BlackSpotMasterEntity> entities = this._service.GetAll();
+            List<BlackSpotMasterEntity> entities = this._service.GetAll(startDate,endDate);
             List<BlackSpotMasterViewModel> viewModels = new List<BlackSpotMasterViewModel>();
             foreach (var entity in entities)
             {

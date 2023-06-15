@@ -11,7 +11,7 @@ namespace RadmsRepositoryFacade
     public interface IVictimDetailTransactionRepository
     {
         VictimDetailsTransactionEntity GetById(int id);
-        List<SummaryData> GetSummaryWithDateAndRegion(int? regionId, DateTime? dateTime);
+        List<SummaryData> GetSummaryWithDateAndRegion(int? regionId, DateTime? startDate, DateTime? endDate);
         // IQueryable<SummaryCount> GetFatalCount();
         int GetSeriousCount();
         int GetSlightCount();
@@ -21,9 +21,9 @@ namespace RadmsRepositoryFacade
         bool Update(VictimDetailsTransactionEntity accident);
         bool Delete(decimal id);
         List<VictimDetailsTransactionEntity> GetAll();
-        Task<int> GetFatalAccidentCount(int year);
-        Task<int> GetSeriousAccidentCount(int year);
-        Task<int> GetSlightAccidentCount(int year);
-        Task<int> GetPropertyDamageCount(int year);
+        Task<int> GetFatalAccidentCount(int year,DateTime? startDate, DateTime? endDate);
+        Task<int> GetSeriousAccidentCount(int year, DateTime? startDate, DateTime? endDate);
+        Task<int> GetSlightAccidentCount(int year, DateTime? startDate, DateTime? endDate);
+        Task<int> GetPropertyDamageCount(int year, DateTime? startDate, DateTime? endDate);
     }
 }

@@ -9,15 +9,16 @@ namespace RadmsEntities
 {
     public class OrganizationMasterEntity
     {
+        public int OrganizationId { get; set; }
+
+        public string OrganizationName { get; set; } = null!;
         public OrganizationMasterEntity()
         {
             //   UserMasters = new HashSet<UserMasterEntity>();
         }
 
 
-        public int OrganizationId { get; set; }
 
-        public string OrganizationName { get; set; } = null!;
         public OrganizationMasterEntity(OrganizationMaster model)
         {
             this.OrganizationId = model.OrganizationId;

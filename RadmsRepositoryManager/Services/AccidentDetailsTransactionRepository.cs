@@ -128,19 +128,64 @@ namespace RadmsRepositoryManager.Services
             return new AccidentDetailsTransactionEntity(model);
         }
 
-        public int GetTotalAccidentCount()
+        //public int GetTotalAccidentCount(DateTime? startDate,DateTime? endDate)
+        //{
+        //      var totalCount  = context.AccidentDetailsTransactions.Count();
+        //    return totalCount;
+
+
+        //}
+        public int GetTotalAccidentCount(DateTime? startDate, DateTime? endDate)
         {
-              var totalCount  = context.AccidentDetailsTransactions.Count();
+            var query = context.AccidentDetailsTransactions.AsQueryable();
+
+            if (startDate.HasValue && endDate.HasValue)
+            {
+                query = query.Where(a => a.DateAndTime >= startDate && a.DateAndTime <= endDate);
+            }
+
+            var totalCount = query.Count();
+
+            if (!startDate.HasValue && !endDate.HasValue)
+            {
+                // Return total count without date filter as default count value
+                return totalCount;
+            }
+
             return totalCount;
-        
-            
         }
 
-        public int GetTotalPropertyDamage()
+
+
+
+
+
+        //public int GetTotalPropertyDamage(DateTime? startDate, DateTime? endDate)
+        //{
+        //    var totalCount = context.AccidentDetailsTransactions.
+        //        Include(x=>x.Severity).
+        //        Where(x=>x.SeverityId==5).Count();
+        //    return totalCount;
+        //}
+        public int GetTotalPropertyDamage(DateTime? startDate, DateTime? endDate)
         {
-            var totalCount = context.AccidentDetailsTransactions.
-                Include(x=>x.Severity).
-                Where(x=>x.SeverityId==5).Count();
+            var totalCount = 0;
+
+            if (startDate != null && endDate != null)
+            {
+                totalCount = context.AccidentDetailsTransactions
+                    .Include(x => x.Severity)
+                    .Where(x => x.SeverityId == 5 && x.DateAndTime >= startDate && x.DateAndTime <= endDate)
+                    .Count();
+            }
+            else
+            {
+                totalCount = context.AccidentDetailsTransactions
+                    .Include(x => x.Severity)
+                    .Where(x => x.SeverityId == 5)
+                    .Count();
+            }
+
             return totalCount;
         }
 

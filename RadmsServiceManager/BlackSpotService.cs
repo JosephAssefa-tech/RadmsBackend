@@ -17,9 +17,9 @@ namespace RadmsServiceManager
             _repositiory = repositiory;
 
         }
-        public List<BlackSpotMasterEntity> GetAll()
+        public List<BlackSpotMasterEntity> GetAll(DateTime? startDate,DateTime? endDate)
         {
-            List<BlackSpotMasterEntity> results = this._repositiory.GetAll();
+            List<BlackSpotMasterEntity> results = this._repositiory.GetAll(startDate,endDate);
             return results;
         }
 

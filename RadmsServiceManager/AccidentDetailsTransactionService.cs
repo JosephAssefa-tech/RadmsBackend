@@ -167,9 +167,9 @@ namespace RadmsServiceManager
             }
         }
 
-        public int GetTotalAccidentCount()
+        public int GetTotalAccidentCount(DateTime? statDate, DateTime? endDate)
         {
-            var count = _repository.GetTotalAccidentCount(); 
+            var count = _repository.GetTotalAccidentCount(statDate, endDate); 
             if (count != null)
             {
                 return count;
@@ -180,9 +180,9 @@ namespace RadmsServiceManager
             }
         }
 
-        public int GetTotalPropertyDamage()
+        public int GetTotalPropertyDamage(DateTime? startDate, DateTime? endDate)
         {
-            var propertyCount = _repository.GetTotalPropertyDamage();
+            var propertyCount = _repository.GetTotalPropertyDamage(startDate,endDate);
             if (propertyCount != null)
             {
                 return propertyCount;

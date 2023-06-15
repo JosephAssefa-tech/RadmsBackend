@@ -40,10 +40,10 @@ namespace RadmsWebAPI.Controllers
         }
         [HttpGet("grouped-region-data")]
 
-        public ActionResult<List<SummaryData>> GetSummaryWithDateAndRegion(int? regionId,DateTime? dateTime)
+        public ActionResult<List<SummaryData>> GetSummaryWithDateAndRegion(int? regionId, DateTime? startDate, DateTime? endDate)
         {
           //  AccidentDetailsTransactionEntity entity = new AccidentDetailsTransactionEntity();
-            var groupedData =  _service.GetSummaryWithDateAndRegion(regionId,dateTime);
+            var groupedData =  _service.GetSummaryWithDateAndRegion(regionId, startDate, endDate);
             return Ok(groupedData);
 
         }
@@ -83,33 +83,85 @@ namespace RadmsWebAPI.Controllers
         public void Delete(int id)
         {
         }
+        //[HttpGet("trend-analysis-data")]
+        //public async Task<IActionResult> GetTrendAnalysisData(DateTime? startDate,DateTime? endDate)
+        //{
+        //    int currentYear = DateTime.Now.Year;
+        //    var data = new List<object>();
+
+        //    for (int i = 0; i < 11; i++)
+        //    {
+        //        int year = currentYear - i;
+        //        var fatalCount = await this._service.GetFatalAccidentCount(year, startDate, endDate);
+        //        var seriousCount = await this._service.GetSeriousAccidentCount(year, startDate, endDate);
+        //        var slightCount = await this._service.GetSlightAccidentCount(year, startDate, endDate);
+        //        var propertyDamageCount = await this._service.GetPropertyDamageCount(year, startDate, endDate);
+
+        //        var yearData = new TrendAnalysisResponse()
+        //        {
+        //            Year = year,
+        //            FatalCount = fatalCount,
+        //            SeriousCount = seriousCount,
+        //            SlightCount = slightCount,
+        //            PropertyDamageCount = propertyDamageCount
+        //        };
+
+        //        data.Add(yearData);
+        //    }
+
+        //    return Ok(data);
+        //}
         [HttpGet("trend-analysis-data")]
-        public async Task<IActionResult> GetTrendAnalysisData()
+        public async Task<IActionResult> GetTrendAnalysisData(DateTime? startDate, DateTime? endDate)
         {
             int currentYear = DateTime.Now.Year;
             var data = new List<object>();
 
-            for (int i = 0; i < 11; i++)
+            if (!startDate.HasValue && !endDate.HasValue)
             {
-                int year = currentYear - i;
-                var fatalCount = await this._service.GetFatalAccidentCount(year);
-                var seriousCount = await this._service.GetSeriousAccidentCount(year);
-                var slightCount = await this._service.GetSlightAccidentCount(year);
-                var propertyDamageCount = await this._service.GetPropertyDamageCount(year);
-
-                var yearData = new TrendAnalysisResponse()
+                // User didn't select startDate and endDate filter
+                for (int i = 0; i < 10; i++)
                 {
-                    Year = year,
-                    FatalCount = fatalCount,
-                    SeriousCount = seriousCount,
-                    SlightCount = slightCount,
-                    PropertyDamageCount = propertyDamageCount
-                };
-
-                data.Add(yearData);
+                    int year = currentYear - i;
+                    var yearData = await GetYearData(year, startDate, endDate);
+                    data.Add(yearData);
+                }
+            }
+            else if (startDate.HasValue && endDate.HasValue)
+            {
+                // User selected startDate and endDate filter
+                for (DateTime date = startDate.Value; date <= endDate.Value; date = date.AddYears(1))
+                {
+                    var yearData = await GetYearData(date.Year, startDate, endDate);
+                    data.Add(yearData);
+                }
+            }
+            else
+            {
+                // Handle other scenarios if needed
             }
 
             return Ok(data);
         }
+
+        private async Task<TrendAnalysisResponse> GetYearData(int year, DateTime? startDate, DateTime? endDate)
+        {
+            var fatalCount = await this._service.GetFatalAccidentCount(year, startDate, endDate);
+            var seriousCount = await this._service.GetSeriousAccidentCount(year, startDate, endDate);
+            var slightCount = await this._service.GetSlightAccidentCount(year, startDate, endDate);
+            var propertyDamageCount = await this._service.GetPropertyDamageCount(year, startDate, endDate);
+
+            var yearData = new TrendAnalysisResponse()
+            {
+                Year = year,
+                FatalCount = fatalCount,
+                SeriousCount = seriousCount,
+                SlightCount = slightCount,
+                PropertyDamageCount = propertyDamageCount
+            };
+
+            return yearData;
+        }
+
     }
 }

@@ -14,8 +14,8 @@ namespace RadmsServiceFacade
         AccidentDetailsTransactionEntity FilterByAccidentName(string CauseName);
        // decimal Save(AccidentDetailsTransactionEntity accident);
         SummaryData Save(AccidentDetailsTransactionEntity accident);
-        int GetTotalAccidentCount();
-        int GetTotalPropertyDamage();
+        int GetTotalAccidentCount(DateTime? startDate, DateTime? endDate);
+        int GetTotalPropertyDamage(DateTime? startDate, DateTime? endDate);
         string Update(AccidentDetailsTransactionEntity accident);
         string Delete(decimal id);
         List<AccidentDetailsTransactionEntity> GetAll();
