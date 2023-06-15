@@ -11,7 +11,7 @@ namespace RadmsServiceFacade
     public interface IVictimDetailTransaction
     {
         VictimDetailsTransactionEntity GetById(int id);
-        List<SummaryData> GetSummaryWithDateAndRegion(int? regionId, DateTime? dateTime);
+        List<SummaryData> GetSummaryWithDateAndRegion(int? regionId, DateTime? startDate, DateTime? endDate);
         Task<IEnumerable<SummaryData>> GetGroupedDataAsync(DateTime? startDate, DateTime? endDate);
 
         VictimDetailsTransactionEntity FilterByAccidentName(string CauseName);
@@ -19,9 +19,9 @@ namespace RadmsServiceFacade
         string Update(VictimDetailsTransactionEntity victim);
         string Delete(decimal id);
         List<VictimDetailsTransactionEntity> GetAll();
-        Task<int> GetFatalAccidentCount(int year);
-        Task<int> GetSeriousAccidentCount(int year);
-        Task<int> GetSlightAccidentCount(int year);
-        Task<int> GetPropertyDamageCount(int year);
+        Task<int> GetFatalAccidentCount(int year, DateTime? startDate, DateTime? endDate);
+        Task<int> GetSeriousAccidentCount(int year, DateTime? startDate, DateTime? endDate);
+        Task<int> GetSlightAccidentCount(int year, DateTime? startDate, DateTime? endDate);
+        Task<int> GetPropertyDamageCount(int year, DateTime? startDate, DateTime? endDate);
     }
 }

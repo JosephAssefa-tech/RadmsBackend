@@ -9,7 +9,7 @@ namespace RadmsServiceFacade
 {
     public interface  IBlackSpotService
     {
-        List<BlackSpotMasterEntity> GetAll();
+        List<BlackSpotMasterEntity> GetAll(DateTime? startDate,DateTime? endDate);
         int GetTotalBlackspotCount();
     }
 }

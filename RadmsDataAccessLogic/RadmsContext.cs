@@ -87,7 +87,7 @@ namespace RadmsDataAccessLogic
                 var connectionString = builder.ConnectionString; // Use connection string optionsBuilder.UseSqlServer(connectionString );
 
                 optionsBuilder.UseSqlServer(connectionString);
-              //  optionsBuilder.UseSqlServer("Server=LAPTOP-LMG59KKQ;Database=RadmsMultiLangual;Trusted_Connection=True;TrustServerCertificate=True;");
+                // optionsBuilder.UseSqlServer("Server=LAPTOP-LMG59KKQ;Database=RadmsMultiLangual;Trusted_Connection=True;TrustServerCertificate=True;");
 
             }
         }

@@ -9,7 +9,7 @@ namespace RadmsRepositoryFacade
 {
     public interface IBlackSpotRepository
     {
-        List<BlackSpotMasterEntity> GetAll();
+        List<BlackSpotMasterEntity> GetAll(DateTime? startDate,DateTime? endDate);
         int GetBlackspotCount();
     }
 }

@@ -14,25 +14,22 @@ namespace RadmsRepositoryManager.Services
     public class BlackSpotRepository : IBlackSpotRepository
     {
         RadmsContext context = new RadmsContext();
-        public List<BlackSpotMasterEntity> GetAll()
+        public List<BlackSpotMasterEntity> GetAll(DateTime? startDate, DateTime? endDate)
         {
-            List<BlackSpotMaster> models = context.BlackSpotMasters.Select(m => new BlackSpotMaster
-            {
-              
-                BlackSpotLat = m.BlackSpotLat,
-                BlackSpotLong = m.BlackSpotLong,
-                // add any other properties you want to include
-            })
-                .Distinct()
-                .ToList();
-            List<BlackSpotMasterEntity> entities = new List<BlackSpotMasterEntity>();
-            foreach (var model in models)
-            {
+            IQueryable<BlackSpotMaster> query = context.BlackSpotMasters;
 
-                BlackSpotMasterEntity entity = new BlackSpotMasterEntity(model);
-
-                entities.Add(entity);
+            if (startDate != null && endDate != null)
+            {
+                query = query.Join(context.AccidentDetailsTransactions,
+                                    blackspot => blackspot.AccidentId,
+                                    accident => accident.AccidentId,
+                                    (blackspot, accident) => new { BlackSpot = blackspot, Accident = accident })
+                             .Where(joinResult => joinResult.Accident.DateAndTime >= startDate && joinResult.Accident.DateAndTime <= endDate)
+                             .Select(joinResult => joinResult.BlackSpot);
             }
+
+            List<BlackSpotMaster> models = query.Distinct().ToList();
+            List<BlackSpotMasterEntity> entities = models.Select(model => new BlackSpotMasterEntity(model)).ToList();
             return entities;
         }
 
