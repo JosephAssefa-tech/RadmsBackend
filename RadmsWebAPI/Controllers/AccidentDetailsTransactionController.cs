@@ -66,19 +66,19 @@ namespace RadmsWebAPI.Controllers
             }
         }
         [HttpGet("count")]
-        public IActionResult GetTotalNumberOfAccident()
+        public IActionResult GetTotalNumberOfAccident(DateTime? startDate, DateTime? endDate)
         {
             ResponseDtos response = new ResponseDtos();
-            int accidentCount = this._service.GetTotalAccidentCount();
-            if(accidentCount==0)
-            {
-                response.StatusCode = 404;
-                response.Message = "no record is found";
-                return NotFound();
+            int accidentCount = this._service.GetTotalAccidentCount(startDate, endDate);
+            //if(accidentCount==0)
+            //{
+            //    response.StatusCode = 404;
+            //    response.Message = "no record is found";
+            //    return NotFound();
 
-            }
-            else
-            {
+            //}
+            //else
+            //{
                 response.StatusCode = 200;
                 response.Message = "Success";
                 var dashboardResponse = new DashboardResponse
@@ -87,13 +87,13 @@ namespace RadmsWebAPI.Controllers
                 };
                 return Ok(dashboardResponse);
 
-            }
+           // }
         }
         [HttpGet("property-damage")]
-        public IActionResult GetTotalPropertyDamage()
+        public IActionResult GetTotalPropertyDamage(DateTime? startDate, DateTime? endDate)
         {
             ResponseDtos response = new ResponseDtos();
-            int propertyCount = this._service.GetTotalPropertyDamage();
+            int propertyCount = this._service.GetTotalPropertyDamage(startDate, endDate);
     
                 response.StatusCode = 200;
                 response.Message = "Success";

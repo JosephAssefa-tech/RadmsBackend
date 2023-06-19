@@ -19,7 +19,17 @@ namespace RadmsServiceManager
 
         public string Delete(int landmarkTypeId)
         {
-            throw new NotImplementedException();
+            if (landmarkTypeId != 0)
+            {
+                var result = _repository.Delete(landmarkTypeId);
+
+                return "sucessfuly deleted";
+
+            }
+            else
+            {
+                return "can't delete b/c accident cause id is not given";
+            }
         }
 
         public List<LandmarkTypeLookupEntity> GetAll(string? langugae)

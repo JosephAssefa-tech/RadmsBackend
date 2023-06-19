@@ -60,7 +60,7 @@ namespace RadmsRepositoryManager.Services
                 models = context.VehicleServiceAgeLookups.Select(x => new VehicleServiceAgeLookup
         {
             VehicleServiceAgeId = x.VehicleServiceAgeId,
-            VehicleServiceName = x.VehicleServiceNameAm
+            VehicleServiceName = x.VehicleServiceName
 
         })
          .ToList();

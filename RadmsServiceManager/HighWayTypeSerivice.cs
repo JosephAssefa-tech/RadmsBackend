@@ -19,7 +19,17 @@ namespace RadmsServiceManager
 
         public string Delete(int htypeId)
         {
-            throw new NotImplementedException();
+            if (htypeId != 0)
+            {
+                var result = _repository.Delete(htypeId);
+
+                return "sucessfuly deleted";
+
+            }
+            else
+            {
+                return "can't delete b/c accident cause id is not given";
+            }
         }
 
         public List<HighwayTypeLookupEntity> GetAll(string? languge)
