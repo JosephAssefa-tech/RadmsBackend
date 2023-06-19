@@ -1,3 +1,6 @@
+using Microsoft.Extensions.DependencyInjection.Extensions;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Serialization;
 using RadmsDataAccessLogic;
 using RadmsRepositoryFacade;
 using RadmsRepositoryFacade.BaseRepositoryFacade;
@@ -5,6 +8,9 @@ using RadmsRepositoryManager.BaseRepository;
 using RadmsRepositoryManager.Services;
 using RadmsServiceFacade;
 using RadmsServiceManager;
+using Telerik.Reporting.Cache.File;
+using Telerik.Reporting.Services;
+using Telerik.WebReportDesigner.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -160,6 +166,40 @@ builder.Services.AddScoped<IBlackSpotRepository, BlackSpotRepository>();
 builder.Services.AddScoped<RadmsContext>();
 
 builder.Services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
+
+builder.Services.AddControllers()
+                .AddNewtonsoftJson(options =>
+                {
+                    // Use the default property (Pascal) casing
+                    options.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
+                    options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
+                });
+// Configure dependencies for ReportsController.
+var reportsPath = Path.Combine(builder.Environment.ContentRootPath, "Reports");
+builder.Services.TryAddSingleton<IReportServiceConfiguration>(sp => new ReportServiceConfiguration
+{
+    ReportingEngineConfiguration = sp.GetService<IConfiguration>(),
+    HostAppId = "RADMSReportService",
+    Storage = new FileStorage(),
+    ReportSourceResolver = new TypeReportSourceResolver().AddFallbackResolver(new UriReportSourceResolver(reportsPath))
+});
+
+builder.Services.TryAddSingleton<IReportDesignerServiceConfiguration>(sp => new ReportDesignerServiceConfiguration
+{
+    DefinitionStorage = new FileDefinitionStorage(reportsPath),
+    ResourceStorage = new ResourceStorage(Path.Combine(builder.Environment.ContentRootPath, "Resources")),
+    SharedDataSourceStorage = new FileSharedDataSourceStorage(Path.Combine(builder.Environment.ContentRootPath, "Shared Data Sources")),
+    SettingsStorage = new FileSettingsStorage(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "Telerik Reporting")),
+});
+
+builder.Services.AddSwaggerGen(options =>
+{
+    options.ResolveConflictingActions(apiDescriptions => apiDescriptions.First());
+    options.IgnoreObsoleteActions();
+    options.IgnoreObsoleteProperties();
+    options.CustomSchemaIds(type => type.ToString());
+});
+
 
 builder.Services.AddCors(options =>
 {
