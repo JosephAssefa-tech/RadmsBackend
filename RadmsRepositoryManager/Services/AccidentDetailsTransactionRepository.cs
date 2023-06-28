@@ -160,13 +160,27 @@ namespace RadmsRepositoryManager.Services
 
 
 
-        //public int GetTotalPropertyDamage(DateTime? startDate, DateTime? endDate)
-        //{
-        //    var totalCount = context.AccidentDetailsTransactions.
-        //        Include(x=>x.Severity).
-        //        Where(x=>x.SeverityId==5).Count();
-        //    return totalCount;
-        //}
+        public int GetTotalPropertyDamageOnDashboard(DateTime? startDate, DateTime? endDate)
+        {
+            var totalPropertyCount = 0;
+            //var query = context.AccidentDetailsTransactions.AsQueryable();
+            if (startDate!=null && endDate.HasValue!=null)
+            {
+                totalPropertyCount = context.AccidentDetailsTransactions.
+                    Where(x=>x.DateAndTime >= startDate && x.DateAndTime <= endDate).
+                    Count(ac => ac.PropertyDamage > 0);
+
+
+            }
+            else
+            {
+                // Return total count without date filter as default count value
+                totalPropertyCount = context.AccidentDetailsTransactions.Count(ac => ac.PropertyDamage > 0);
+
+            }
+
+            return totalPropertyCount;
+        }
         public int GetTotalPropertyDamage(DateTime? startDate, DateTime? endDate)
         {
             var totalCount = 0;

@@ -192,5 +192,18 @@ namespace RadmsServiceManager
                 throw new Exception();
             }
         }
+
+        public int GetTotalPropertyDamageOnDashboard(DateTime? startDate, DateTime? endDate)
+        {
+            var count = _repository.GetTotalPropertyDamageOnDashboard(startDate, endDate);
+            if (count != null)
+            {
+                return count;
+            }
+            else
+            {
+                throw new Exception();
+            }
+        }
     }
 }

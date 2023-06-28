@@ -73,6 +73,7 @@ namespace RadmsDataAccessLogic
         public virtual DbSet<WeatherConditionTypeLookup> WeatherConditionTypeLookups { get; set; } = null!;
         public virtual DbSet<WoredaMaster> WoredaMasters { get; set; } = null!;
         public virtual DbSet<ZoneMaster> ZoneMasters { get; set; } = null!;
+        public virtual DbSet<CourtChargeTypeLookup> CourtChargeTypeLookups { get; set; } = null!;
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -83,11 +84,11 @@ namespace RadmsDataAccessLogic
 
                 //  var builder = new SqlConnectionStringBuilder { DataSource = @"LAPTOP-LMG59KKQ", InitialCatalog = "RadmsMultiLangual", UserID = "user", Password = "Radms123" };
 
-                var builder = new SqlConnectionStringBuilder { DataSource = @"WIN-SILTODJTP4C\MSSQLSERVER01", InitialCatalog = "RADMS", UserID = "user", Password = "Radms123" };
+               var builder = new SqlConnectionStringBuilder { DataSource = @"WIN-SILTODJTP4C\MSSQLSERVER01", InitialCatalog = "RADMS", UserID = "user", Password = "Radms123" };
                 var connectionString = builder.ConnectionString; // Use connection string optionsBuilder.UseSqlServer(connectionString );
 
                 optionsBuilder.UseSqlServer(connectionString);
-                // optionsBuilder.UseSqlServer("Server=LAPTOP-LMG59KKQ;Database=RadmsMultiLangual;Trusted_Connection=True;TrustServerCertificate=True;");
+               // optionsBuilder.UseSqlServer("Server=LAPTOP-LMG59KKQ;Database=RadmsMultiLangual;Trusted_Connection=True;TrustServerCertificate=True;");
 
             }
         }
@@ -326,6 +327,11 @@ namespace RadmsDataAccessLogic
             {
                 entity.HasKey(e => e.EducationLevelId)
                     .HasName("PK__Educatio__6F6237ADE9BC409B");
+            });
+            modelBuilder.Entity<CourtChargeTypeLookup>(entity =>
+            {
+                entity.HasKey(e => e.CourtChargeID)
+                    .HasName("PK__CourtCha__7F6237ADE9BC507A");
             });
 
             modelBuilder.Entity<EmploymentStatusLookup>(entity =>

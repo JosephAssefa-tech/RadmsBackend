@@ -35,10 +35,6 @@ namespace RadmsRepositoryManager.Services
                     AccidentType = x.AccidentType
                 }).ToList();
             }
-
-
-
-
             List<AccidentTypeLookupEntity> entities = new List<AccidentTypeLookupEntity>();
             foreach (var model in models)
             {
