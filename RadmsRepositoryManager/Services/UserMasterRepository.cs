@@ -27,22 +27,30 @@ namespace RadmsRepositoryManager.Services
 
             if (language == "amharic")
             {
-                models = context.UserMasters.
-              Include(x => x.Organization).Select(x => new UserMaster
-              {
-                  UserId = x.UserId,
-                  UserName = x.UserName,
-                }).ToList();
+                models = context.UserMasters
+     .Include(x => x.Organization)
+     .Select(x => new UserMaster
+     {
+         UserId = x.UserId,
+         UserName = x.UserName,
+         Organization = x.Organization // Include the Organization property in the projection
+     })
+     .ToList();
+
 
             }
             else
             {
-                models = context.UserMasters.
-                Include(x => x.Organization).Select(x => new UserMaster
-                {
-                    UserId = x.UserId,
-                    UserName = x.UserName,
-                }).ToList();
+                models = context.UserMasters
+      .Include(x => x.Organization)
+      .Select(x => new UserMaster
+      {
+          UserId = x.UserId,
+          UserName = x.UserName,
+          Organization = x.Organization // Include the Organization property in the projection
+      })
+      .ToList();
+
             }
 
 

@@ -8,6 +8,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\RadmsEntities\RadmsEntities.csproj" />
+    <ProjectReference Include="..\RadmsRepositoryManager\RadmsRepositoryManager.csproj" />
   </ItemGroup>
 
 </Project>

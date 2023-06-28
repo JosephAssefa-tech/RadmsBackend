@@ -159,6 +159,13 @@ builder.Services.AddScoped<IBlackSpotRepository, BlackSpotRepository>();
 builder.Services.AddScoped<ICourtChargeTypeService, CourtChargeTypeService>();
 builder.Services.AddScoped<ICourtChargeTypeLookupRepository, CourtChargeTypeLookupRepository>();
 
+builder.Services.AddScoped<IOrganizationMasterService, OrganizationMasterService>();
+builder.Services.AddScoped<IOrganizationMasterRepository, OrganizationMasterRepository>();
+
+
+
+
+
 
 builder.Services.AddScoped<RadmsContext>();
 

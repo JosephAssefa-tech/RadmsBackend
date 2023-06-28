@@ -162,6 +162,14 @@ namespace RadmsWebAPI.Controllers
 
             return yearData;
         }
+        [HttpGet("get-crash-values")]
+        public async Task<IActionResult> GetCrashValues(DateTime? fromDate, DateTime? toDate)
+        {
+            var crashData = await _service.GetCrashData(fromDate, toDate);
+
+            // Return the result as an HTTP response
+            return Ok(crashData);
+        }
 
     }
 }

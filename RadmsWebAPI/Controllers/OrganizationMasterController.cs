@@ -1,4 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using RadmsEntities;
+using RadmsServiceFacade;
+using RadmsWebAPI.Models.ViewModels;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -8,11 +11,25 @@ namespace RadmsWebAPI.Controllers
     [ApiController]
     public class OrganizationMasterController : ControllerBase
     {
+        IOrganizationMasterService _service;
+        public OrganizationMasterController(IOrganizationMasterService service)
+        {
+            _service = service;
+        }
+
+
         // GET: api/<OrganizationMasterController>
         [HttpGet]
-        public IEnumerable<string> Get()
+        public List<OrganizationMasterViewModel> GetAll(string? language)
         {
-            return new string[] { "value1", "value2" };
+            List<OrganizationMasterEntity> entities = this._service.GetAll(language);
+            List<OrganizationMasterViewModel> viewModels = new List<OrganizationMasterViewModel>();
+            foreach (var entity in entities)
+            {
+                OrganizationMasterViewModel model = new OrganizationMasterViewModel(entity);
+                viewModels.Add(model);
+            }
+            return viewModels;
         }
 
         // GET api/<OrganizationMasterController>/5
