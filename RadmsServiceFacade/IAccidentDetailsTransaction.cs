@@ -15,6 +15,7 @@ namespace RadmsServiceFacade
        // decimal Save(AccidentDetailsTransactionEntity accident);
         SummaryData Save(AccidentDetailsTransactionEntity accident);
         int GetTotalAccidentCount(DateTime? startDate, DateTime? endDate);
+        int GetTotalPropertyDamageOnDashboard(DateTime? startDate, DateTime? endDate);
         int GetTotalPropertyDamage(DateTime? startDate, DateTime? endDate);
         string Update(AccidentDetailsTransactionEntity accident);
         string Delete(decimal id);

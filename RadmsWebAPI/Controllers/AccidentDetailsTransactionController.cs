@@ -15,9 +15,11 @@ namespace RadmsWebAPI.Controllers
     {
 
         IAccidentDetailsTransaction _service;
-        public AccidentDetailsTransactionController(IAccidentDetailsTransaction service)
+        private readonly IAccidentImportService _accidentImportService;
+        public AccidentDetailsTransactionController(IAccidentImportService accidentImportService, IAccidentDetailsTransaction service)
         {
             _service = service;
+            _accidentImportService = accidentImportService;
 
         }
         // GET: api/<AccidentDetailsTransactionController>
@@ -89,6 +91,23 @@ namespace RadmsWebAPI.Controllers
 
            // }
         }
+        [HttpGet("dashboard-property-damage")]
+        public IActionResult GetTotalPropertyDamageOnDashboard(DateTime? startDate, DateTime? endDate)
+        {
+            ResponseDtos response = new ResponseDtos();
+            int propertyCount = this._service.GetTotalPropertyDamageOnDashboard(startDate, endDate);
+
+            response.StatusCode = 200;
+            response.Message = "Success";
+
+            var anonymousResponse = new
+            {
+                DashboardTotalPropertyDamage = propertyCount
+            };
+
+            return Ok(anonymousResponse);
+        }
+
         [HttpGet("property-damage")]
         public IActionResult GetTotalPropertyDamage(DateTime? startDate, DateTime? endDate)
         {
@@ -135,6 +154,30 @@ namespace RadmsWebAPI.Controllers
 
             }
 
+        }
+        [HttpPost("import")]
+        public async Task<IActionResult> ImportAccidents(IFormFile file)
+        {
+            try
+            {
+                if (file == null || file.Length == 0)
+                    return BadRequest("No file uploaded");
+
+                byte[] fileData;
+                using (var memoryStream = new MemoryStream())
+                {
+                    await file.CopyToAsync(memoryStream);
+                    fileData = memoryStream.ToArray();
+                }
+
+                await _accidentImportService.ImportAccidentsFromXlsx(fileData);
+
+                return Ok("Accident data imported successfully");
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"An error occurred: {ex.Message}");
+            }
         }
     }
 }

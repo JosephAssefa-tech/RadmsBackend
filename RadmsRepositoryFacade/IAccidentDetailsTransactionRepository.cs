@@ -14,6 +14,8 @@ namespace RadmsRepositoryFacade
         SummaryData SaveAsync(AccidentDetailsTransactionEntity accident);
         int GetTotalPropertyDamage(DateTime? startDate, DateTime? endDate);
         int GetTotalAccidentCount(DateTime? startDate,DateTime? endDate);
+         
+        int GetTotalPropertyDamageOnDashboard(DateTime? startDate,DateTime? endDate);
         bool Update(AccidentDetailsTransactionEntity accident);
         bool Delete(decimal id );
         List<AccidentDetailsTransactionEntity> GetAll();

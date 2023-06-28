@@ -156,6 +156,9 @@ builder.Services.AddScoped<IPedestrianMovementLookupRepository, PedestrianMoveme
 builder.Services.AddScoped<IBlackSpotService, BlackSpotService>();
 builder.Services.AddScoped<IBlackSpotRepository, BlackSpotRepository>();
 
+builder.Services.AddScoped<ICourtChargeTypeService, CourtChargeTypeService>();
+builder.Services.AddScoped<ICourtChargeTypeLookupRepository, CourtChargeTypeLookupRepository>();
+
 
 builder.Services.AddScoped<RadmsContext>();
 
