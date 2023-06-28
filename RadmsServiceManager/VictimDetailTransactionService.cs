@@ -4,6 +4,7 @@ using RadmsDataModels.Modelss;
 using RadmsEntities;
 using RadmsRepositoryFacade;
 using RadmsRepositoryFacade.BaseRepositoryFacade;
+using RadmsRepositoryManager.Helpers;
 using RadmsServiceFacade;
 using System;
 using System.Collections.Generic;
@@ -183,6 +184,10 @@ namespace RadmsServiceManager
             return await _repository.GetPropertyDamageCount(year, startDate, endDate);
         }
 
-
+        public async Task<CrashValuesEntities> GetCrashData(DateTime? fromDate, DateTime? toDate)
+        {
+            // Call the repository method to fetch the crash data
+            return await _repository.CrashData(fromDate, toDate);
+        }
     }
 }

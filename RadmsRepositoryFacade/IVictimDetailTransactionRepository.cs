@@ -5,7 +5,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
 namespace RadmsRepositoryFacade
 {
     public interface IVictimDetailTransactionRepository
@@ -25,5 +24,7 @@ namespace RadmsRepositoryFacade
         Task<int> GetSeriousAccidentCount(int year, DateTime? startDate, DateTime? endDate);
         Task<int> GetSlightAccidentCount(int year, DateTime? startDate, DateTime? endDate);
         Task<int> GetPropertyDamageCount(int year, DateTime? startDate, DateTime? endDate);
+        Task<CrashValuesEntities> CrashData(DateTime? fromDate, DateTime? toDate);
+
     }
 }

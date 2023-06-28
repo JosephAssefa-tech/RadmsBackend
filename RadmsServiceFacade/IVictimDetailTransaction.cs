@@ -1,5 +1,6 @@
 ﻿using RadmsDataModels.Modelss;
 using RadmsEntities;
+using RadmsRepositoryManager.Helpers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,5 +24,7 @@ namespace RadmsServiceFacade
         Task<int> GetSeriousAccidentCount(int year, DateTime? startDate, DateTime? endDate);
         Task<int> GetSlightAccidentCount(int year, DateTime? startDate, DateTime? endDate);
         Task<int> GetPropertyDamageCount(int year, DateTime? startDate, DateTime? endDate);
+        Task<CrashValuesEntities> GetCrashData(DateTime? fromDate, DateTime? toDate);
+
     }
 }

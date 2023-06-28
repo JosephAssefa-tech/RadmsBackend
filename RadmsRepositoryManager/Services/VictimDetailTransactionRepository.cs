@@ -349,6 +349,69 @@ namespace RadmsRepositoryManager.Services
 
             return await query.CountAsync();
         }
+        // the below code is for crash
+        // Infrastructure Layer
+      
 
+            public async Task<CrashValuesEntities> CrashData(DateTime? fromDate, DateTime? toDate)
+            {
+                var crashValues = new CrashValuesEntities();
+
+                var crashDatas = await (
+                    from vdt in context.VictimDetailsTransactions
+                    join adt in context.AccidentDetailsTransactions on vdt.AccidentId equals adt.AccidentId
+                    join sll in context.SeverityLevelLookups on vdt.SeverityId equals sll.SeverityId
+                    //the below submissionflag need to be 2 change it when the user module done
+                    //  where adt.SubmissionFlag == 2 && adt.DateAndTime >= fromDate && adt.DateAndTime <= toDate
+                     where  adt.DateAndTime >= fromDate && adt.DateAndTime <= toDate
+                    orderby adt.AccidentId descending
+                    select new
+                    {
+                        adt.AccidentId,
+                        sll.SeverityId
+                    }
+                ).ToListAsync();
+
+                foreach (var crashData in crashDatas)
+                {
+                    int? localFatalCrash = 0;
+                    int? localSeriousCrash = 0;
+                    int? localSlightCrash = 0;
+
+                    var victimDatas = await context.VictimDetailsTransactions
+                        .Where(victim => victim.AccidentId == crashData.AccidentId)
+                        .ToListAsync();
+
+                    foreach (var victimData in victimDatas)
+                    {
+                        if (victimData.SeverityId == 2)
+                        {
+                            localFatalCrash = 1;
+                            localSeriousCrash = 0;
+                            localSlightCrash = 0;
+                        }
+                        else if (victimData.SeverityId == 3)
+                        {
+                            localFatalCrash = 0;
+                            localSeriousCrash = 1;
+                            localSlightCrash = 0;
+                        }
+                        else if (victimData.SeverityId == 4)
+                        {
+                            localFatalCrash = 0;
+                            localSeriousCrash = 0;
+                            localSlightCrash = 1;
+                        }
+                    }
+
+                    crashValues.FatalCrash += localFatalCrash.GetValueOrDefault();
+                    crashValues.SeriousCrash += localSeriousCrash.GetValueOrDefault();
+                    crashValues.SlightCrash += localSlightCrash.GetValueOrDefault();
+                }
+
+                return crashValues;
+            }
+
+     
     }
 }
