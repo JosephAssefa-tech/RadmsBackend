@@ -29,6 +29,12 @@ namespace RadmsWebAPI.Models.ViewModels
         public int SubmissionFlag { get; set; }
         public string Hid { get; set; } = null!;
         public string? AccidentLocalName { get; set; }
+        public int? WoredaId { get; set; }
+        public string? WoredaName { get; set; }
+        public string? ZoneName { get; set; }
+        public string? RegionName { get; set; }
+        public string? CityName { get; set; }
+        public string? SubCityName { get; set; }
         public virtual AccidentTypeLookupViewModel AccidentType { get; set; } = null!;
         public virtual AirConditionTypeLookupViewModel AirCondition { get; set; } = null!;
         public virtual AccidentCauseLookupViewModel CauseofAccident { get; set; } = null!;
@@ -86,6 +92,12 @@ namespace RadmsWebAPI.Models.ViewModels
             this.SubmissionFlag = entity.SubmissionFlag;
             this.Hid = entity.Hid;
             this.AccidentLocalName = entity.AccidentLocalName;
+            this.WoredaName = entity.WoredaName;
+            this.ZoneName = entity.ZoneName;
+            this.RegionName = entity.RegionName;
+            this.CityName = entity.CityName;
+            this.SubCityName = entity.SubCityName;
+            this.WoredaId = entity.WoredaId;
             //this.AccidentType = new AccidentTypeLookupViewModel(entity.AccidentType);
             //this.AirCondition = new AirConditionTypeLookupViewModel(entity.AirCondition);
             //this.CauseofAccident =new AccidentCauseLookupViewModel(entity.CauseofAccident);

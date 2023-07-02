@@ -163,6 +163,8 @@ builder.Services.AddScoped<IOrganizationMasterService, OrganizationMasterService
 builder.Services.AddScoped<IOrganizationMasterRepository, OrganizationMasterRepository>();
 
 
+builder.Services.AddScoped<ICourtCaseTransactionService, CourtCaseTransactionService>();
+builder.Services.AddScoped<ICourtCaseTransactionRepository, CourtCaseTransactionRepository>();
 
 
 

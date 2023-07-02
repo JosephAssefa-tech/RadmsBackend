@@ -19,7 +19,7 @@ namespace RadmsServiceFacade
         int GetTotalPropertyDamage(DateTime? startDate, DateTime? endDate);
         string Update(AccidentDetailsTransactionEntity accident);
         string Delete(decimal id);
-        List<AccidentDetailsTransactionEntity> GetAll();
+        List<AccidentDetailsTransactionEntity> GetAll(string? language, int? page, int? pageSize);
 
     }
 }

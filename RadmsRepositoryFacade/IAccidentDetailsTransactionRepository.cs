@@ -18,7 +18,9 @@ namespace RadmsRepositoryFacade
         int GetTotalPropertyDamageOnDashboard(DateTime? startDate,DateTime? endDate);
         bool Update(AccidentDetailsTransactionEntity accident);
         bool Delete(decimal id );
-        List<AccidentDetailsTransactionEntity> GetAll();
+        List<AccidentDetailsTransactionEntity> GetAll(string? language, int? page, int? pageSize);
+        List<AccidentDetailsTransactionEntity> FilterAllAcidentForCourtCases(int? RegionID,
+            int? ZoneId, int? WoredaId, int? CityId, int? SubCityId, int? Psid, DateTime? FromDate, DateTime? ToDate);
         AccidentDetailsTransactionEntity GetById(int id);
         AccidentDetailsTransactionEntity FilterByAccidentName(string CauseName);
     }

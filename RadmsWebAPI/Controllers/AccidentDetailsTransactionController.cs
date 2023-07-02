@@ -15,26 +15,36 @@ namespace RadmsWebAPI.Controllers
     {
 
         IAccidentDetailsTransaction _service;
-        private readonly IAccidentImportService _accidentImportService;
-        public AccidentDetailsTransactionController(IAccidentImportService accidentImportService, IAccidentDetailsTransaction service)
+        //private readonly IAccidentImportService _accidentImportService;
+        public AccidentDetailsTransactionController(IAccidentDetailsTransaction service)
         {
             _service = service;
-            _accidentImportService = accidentImportService;
+            //_accidentImportService = accidentImportService;
 
         }
         // GET: api/<AccidentDetailsTransactionController>
-        [HttpGet]
-        public List<AccidentDetailsTransactionViewModel> GetAll()
+        [HttpGet("get-accident-lists-for")]
+        public ApiResponse<List<AccidentDetailsTransactionViewModel>> GetAll(DateTime? fromDate, DateTime? ToDate,string? language, int? page = 1, int? pageSize = 5)
         {
-            List<AccidentDetailsTransactionEntity> entities = this._service.GetAll();
+            List<AccidentDetailsTransactionEntity> entities = this._service.GetAll(language, page, pageSize);
             List<AccidentDetailsTransactionViewModel> viewModels = new List<AccidentDetailsTransactionViewModel>();
             foreach (var entity in entities)
             {
                 AccidentDetailsTransactionViewModel model = new AccidentDetailsTransactionViewModel(entity);
                 viewModels.Add(model);
             }
-            return viewModels;
+
+            int totalCount = this._service.GetTotalAccidentCount(fromDate,ToDate); // Assuming you have a method to get the total count
+
+            ApiResponse<List<AccidentDetailsTransactionViewModel>> response = new ApiResponse<List<AccidentDetailsTransactionViewModel>>
+            {
+                Data = viewModels,
+                TotalCount = totalCount
+            };
+
+            return response;
         }
+
 
         // GET api/<AccidentDetailsTransactionController>/5
         [HttpGet("{id}")]
@@ -155,29 +165,29 @@ namespace RadmsWebAPI.Controllers
             }
 
         }
-        [HttpPost("import")]
-        public async Task<IActionResult> ImportAccidents(IFormFile file)
-        {
-            try
-            {
-                if (file == null || file.Length == 0)
-                    return BadRequest("No file uploaded");
+        //[HttpPost("import")]
+        //public async Task<IActionResult> ImportAccidents(IFormFile file)
+        //{
+        //    try
+        //    {
+        //        if (file == null || file.Length == 0)
+        //            return BadRequest("No file uploaded");
 
-                byte[] fileData;
-                using (var memoryStream = new MemoryStream())
-                {
-                    await file.CopyToAsync(memoryStream);
-                    fileData = memoryStream.ToArray();
-                }
+        //        byte[] fileData;
+        //        using (var memoryStream = new MemoryStream())
+        //        {
+        //            await file.CopyToAsync(memoryStream);
+        //            fileData = memoryStream.ToArray();
+        //        }
 
-                await _accidentImportService.ImportAccidentsFromXlsx(fileData);
+        //        await _accidentImportService.ImportAccidentsFromXlsx(fileData);
 
-                return Ok("Accident data imported successfully");
-            }
-            catch (Exception ex)
-            {
-                return StatusCode(500, $"An error occurred: {ex.Message}");
-            }
-        }
+        //        return Ok("Accident data imported successfully");
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        return StatusCode(500, $"An error occurred: {ex.Message}");
+        //    }
+        //}
     }
 }
