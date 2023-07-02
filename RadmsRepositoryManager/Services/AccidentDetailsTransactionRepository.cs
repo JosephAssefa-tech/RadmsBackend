@@ -46,50 +46,51 @@ namespace RadmsRepositoryManager.Services
             return new AccidentDetailsTransactionEntity(model);
         }
 
-        public List<AccidentDetailsTransactionEntity> GetAll()
+        public List<AccidentDetailsTransactionEntity> GetAll(string? language, int? page, int? pageSize)
         {
-            //use the below Include function for table that have a relationship to fetch the other table data
-            // List<AccidentCauseLookup> models = context.AccidentCauseLookups.Include(x=>x.RelationTable).ToList();
-
-            List<AccidentDetailsTransaction> models = context.AccidentDetailsTransactions.
-                Include(x=>x.AccidentType)
-                .Include(x=>x.AirCondition)
-                .Include(x=>x.CauseofAccident)
-                .Include(x=>x.City)
-                .Include(x=>x.Woreda)
-                .Include(x=>x.Zone).ThenInclude(r=>r.Region)
-                .Include(x=>x.Region)
-                .Include(x=>x.JunctionType)
-                .Include(x=>x.CollisionType)
-                .Include(x => x.HidNavigation).ThenInclude(z=>z.Howner)
+            IQueryable<AccidentDetailsTransaction> query = context.AccidentDetailsTransactions
+                .Include(x => x.AccidentType)
+                .Include(x => x.AirCondition)
+                .Include(x => x.CauseofAccident)
+                .Include(x => x.City)
+                .Include(x => x.Woreda)
+                .Include(x => x.Zone).ThenInclude(r => r.Region)
+                .Include(x => x.Region)
+                .Include(x => x.JunctionType)
+                .Include(x => x.CollisionType)
+                .Include(x => x.HidNavigation).ThenInclude(z => z.Howner)
                 .Include(x => x.HighwayType)
                 .Include(x => x.ImpactType)
                 .Include(x => x.JunctionType)
                 .Include(x => x.LandmarkType)
                 .Include(x => x.LightCondtion)
                 .Include(x => x.PavementType)
-                .Include(x => x.Ps).ThenInclude(s=>s.SubCity)
+                .Include(x => x.Ps).ThenInclude(s => s.SubCity)
                 .Include(x => x.RoadCarriageway)
                 .Include(x => x.RoadSurface)
                 .Include(x => x.Severity)
                 .Include(x => x.SpeedLimit)
-                .Include(x => x.SubCity).ThenInclude(c=>c.City).ThenInclude(w=>w.Woreda)
+                .Include(x => x.SubCity).ThenInclude(c => c.City).ThenInclude(w => w.Woreda)
                 .Include(x => x.TerrianType)
-                .Include(x => x.User).ThenInclude(o=>o.Organization)
+                .Include(x => x.User).ThenInclude(o => o.Organization)
                 .Include(x => x.WeatherCond)
-                .Include(x => x.Woreda)
-                 //      .Include(e => e.EmployeeOrganization).ThenInclude(o => o.Role)
-                // .Include(e => e.EmployeeOrganization).ThenInclude(o => o.Country)
+                .Include(x => x.Woreda);
 
-                .ToList();
+            if (page.HasValue && pageSize.HasValue)
+            {
+                query = query.Skip((page.Value - 1) * pageSize.Value) // Skip the previous pages
+                             .Take(pageSize.Value); // Take the specified number of records for the current page
+            }
+
+            List<AccidentDetailsTransaction> models = query.ToList();
             List<AccidentDetailsTransactionEntity> entities = new List<AccidentDetailsTransactionEntity>();
+
             foreach (var model in models)
             {
-
                 AccidentDetailsTransactionEntity entity = new AccidentDetailsTransactionEntity(model);
-
                 entities.Add(entity);
             }
+
             return entities;
         }
 
@@ -295,13 +296,6 @@ namespace RadmsRepositoryManager.Services
                 old.Image5=accident.Image5;
                 old.Image6=accident.Image6;
 
-
-
-
-
-
-
-
                 //old.AccidentType = accident.AccidentType;
                 context.Entry(old).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
                 context.SaveChanges();
@@ -312,5 +306,50 @@ namespace RadmsRepositoryManager.Services
                 throw;
             }
         }
+
+
+        public List<AccidentDetailsTransactionEntity> FilterAllAcidentForCourtCases(int? RegionID, int? ZoneId, int? WoredaId, int? CityId, int? SubCityId, int? Psid, DateTime? FromDate, DateTime? ToDate)
+        {
+            List<AccidentDetailsTransaction> models = context.AccidentDetailsTransactions
+                .Include(x => x.AccidentType)
+                .Include(x => x.AirCondition) // Add this line to include related property
+                .Include(x => x.CauseofAccident)
+                .Include(x => x.City)
+                .Include(x => x.Woreda)
+                .Include(x => x.Zone).ThenInclude(r => r.Region)
+                .Include(x => x.Region)
+                .Include(x => x.CollisionType)
+                .Include(x => x.HidNavigation).ThenInclude(z => z.Howner)
+                .Include(x => x.HighwayType)
+                .Include(x => x.ImpactType)
+                .Include(x => x.JunctionType)// Add this line to include related property
+                .Include(x => x.LandmarkType)
+                .Include(x => x.LightCondtion)
+                .Include(x => x.PavementType)
+                .Include(x => x.Ps).ThenInclude(s => s.SubCity)
+                .Include(x => x.RoadCarriageway)
+                .Include(x => x.RoadSurface)
+                .Include(x => x.Severity)
+                .Include(x => x.SpeedLimit)
+                .Include(x => x.SubCity).ThenInclude(c => c.City).ThenInclude(w => w.Woreda)
+                .Include(x => x.TerrianType)
+                .Include(x => x.User).ThenInclude(o => o.Organization)
+                .Include(x => x.WeatherCond)
+                .Include(x => x.Woreda)
+                .Where(x => x.RegionId == RegionID && x.ZoneId == ZoneId && x.WoredaId == WoredaId && x.CityId == CityId && x.SubCityId == SubCityId && x.Psid.Equals(Psid))
+                .ToList();
+
+            List<AccidentDetailsTransactionEntity> entities = new List<AccidentDetailsTransactionEntity>();
+            foreach (var model in models)
+            {
+                AccidentDetailsTransactionEntity entity = new AccidentDetailsTransactionEntity(model);
+
+
+                entities.Add(entity);
+            }
+            return entities;
+        }
+
+
     }
 }

@@ -37,11 +37,19 @@ namespace RadmsServiceManager
             throw new NotImplementedException();
         }
 
-        public List<AccidentDetailsTransactionEntity> GetAll()
+        public List<AccidentDetailsTransactionEntity> GetAll(string? language, int? page, int? pageSize)
         {
-            List<AccidentDetailsTransactionEntity> results = this._repository.GetAll();
+            List<AccidentDetailsTransactionEntity> results = this._repository.GetAll(language, page, pageSize);
             return results;
         }
+        public List<AccidentDetailsTransactionEntity> FilterAllAcidentForCourtCases(int? RegionID,
+           int? ZoneId, int? WoredaId, int? CityId, int? SubCityId, int? Psid, DateTime? FromDate, DateTime? ToDate)
+        {
+            List<AccidentDetailsTransactionEntity> results = this._repository.FilterAllAcidentForCourtCases( RegionID,
+            ZoneId,  WoredaId,  CityId,  SubCityId,  Psid, FromDate, ToDate);
+            return results;
+        }
+
 
         public AccidentDetailsTransactionEntity GetById(int id)
         {

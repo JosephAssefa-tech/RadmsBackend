@@ -106,20 +106,26 @@ namespace RadmsEntities
 
         public string? AccidentLocalName { get; set; }
 
+        public string? WoredaName { get; set; }
+        public string? RegionName { get; set; }
+        public string? ZoneName { get; set; }
+        public string? CityName { get; set; }
+        public string? SubCityName { get; set; }
+
         //public virtual AccidentTypeLookupEntity AccidentType { get; set; } = null!;
 
         //public virtual AirConditionTypeLookupEntity AirCondition { get; set; } = null!;
 
         //public virtual AccidentCauseLookupEntity CauseofAccident { get; set; } = null!;
 
-        //public virtual CityMasterEntity? City { get; set; }
+        public virtual CityMasterEntity? City { get; set; }
 
         //public virtual CollisionTypeLookupEntity CollisionType { get; set; } = null!;
 
         //public virtual HighwayMasterEntity HidNavigation { get; set; } = null!;
 
         //public virtual HighwayTypeLookupEntity HighwayType { get; set; } = null!;
-  
+
         //public virtual ImpactTypeLookupEntity ImpactType { get; set; } = null!;
 
         //public virtual JunctionTypeLookupEntity JunctionType { get; set; } = null!;
@@ -132,7 +138,7 @@ namespace RadmsEntities
 
         //public virtual PoliceStationMasterEntity Ps { get; set; } = null!;
 
-        //public virtual RegionMasterEntity? Region { get; set; }
+        public virtual RegionMasterEntity? Region { get; set; }
 
         //public virtual RoadCarriagewayTypeLookupEntity RoadCarriageway { get; set; } = null!;
 
@@ -142,7 +148,7 @@ namespace RadmsEntities
 
         //public virtual SpeedLimitLookupEntity SpeedLimit { get; set; } = null!;
 
-        //public virtual SubCityMasterEntity? SubCity { get; set; }
+        public virtual SubCityMasterEntity? SubCity { get; set; }
 
         //public virtual TerrainTypeLookupEntity TerrianType { get; set; } = null!;
 
@@ -150,13 +156,13 @@ namespace RadmsEntities
 
         //public virtual WeatherConditionTypeLookupEntity WeatherCond { get; set; } = null!;
 
-        //public virtual WoredaMasterEntity? Woreda { get; set; }
+        public virtual WoredaMasterEntity? Woreda { get; set; }
 
-        //public virtual ZoneMasterEntity? Zone { get; set; }
+        public virtual ZoneMasterEntity? Zone { get; set; }
 
-       // public virtual ICollection<VehicleDetailsTransactionEntity> VehicleDetailsTransactions { get; set; }
+        // public virtual ICollection<VehicleDetailsTransactionEntity> VehicleDetailsTransactions { get; set; }
 
-       // public virtual ICollection<VictimDetailsTransactionEntity> VictimDetailsTransactions { get; set; }
+        // public virtual ICollection<VictimDetailsTransactionEntity> VictimDetailsTransactions { get; set; }
 
 
 
@@ -246,7 +252,11 @@ namespace RadmsEntities
             this.RegionId = model.RegionId;
 
             this.ZoneId = model.ZoneId;
-
+            this.WoredaName = model.Woreda.WoredaName;
+            this.ZoneName = model.Zone.ZoneName;
+            this.RegionName = model.Region.RegionName;
+            this.CityName = model.City.CityName;
+            this.SubCityName = model.SubCity.SubCityName;
             this.AccidentLocalName = model.AccidentLocalName;
 
         //this.AccidentType = new AccidentTypeLookupEntity(model.AccidentType);
@@ -385,7 +395,7 @@ namespace RadmsEntities
             model.RegionId = this.RegionId;
 
             model.ZoneId = this.ZoneId;
-
+            this.WoredaName = model.Woreda?.WoredaName;
             model.AccidentLocalName = this.AccidentLocalName;
 
 

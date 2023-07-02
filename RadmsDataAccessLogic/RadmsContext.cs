@@ -74,7 +74,7 @@ namespace RadmsDataAccessLogic
         public virtual DbSet<WoredaMaster> WoredaMasters { get; set; } = null!;
         public virtual DbSet<ZoneMaster> ZoneMasters { get; set; } = null!;
         public virtual DbSet<CourtChargeTypeLookup> CourtChargeTypeLookups { get; set; } = null!;
-
+        public virtual DbSet<CourtCaseTransaction> CourtCaseTransactions { get; set; } = null!;
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             if (!optionsBuilder.IsConfigured)
