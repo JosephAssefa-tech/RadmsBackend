@@ -46,7 +46,7 @@ namespace RadmsRepositoryManager.Services
             return new AccidentDetailsTransactionEntity(model);
         }
 
-        public List<AccidentDetailsTransactionEntity> GetAll(string? language, int? page, int? pageSize)
+        public List<AccidentDetailsTransactionEntity> GetAll(int? regionId, string? language, int? page, int? pageSize)
         {
             IQueryable<AccidentDetailsTransaction> query = context.AccidentDetailsTransactions
                 .Include(x => x.AccidentType)
@@ -76,6 +76,11 @@ namespace RadmsRepositoryManager.Services
                 .Include(x => x.WeatherCond)
                 .Include(x => x.Woreda);
 
+            if (regionId.HasValue)
+            {
+                query = query.Where(x => x.RegionId == regionId);
+            }
+
             if (page.HasValue && pageSize.HasValue)
             {
                 query = query.Skip((page.Value - 1) * pageSize.Value) // Skip the previous pages
@@ -93,6 +98,7 @@ namespace RadmsRepositoryManager.Services
 
             return entities;
         }
+
 
         public AccidentDetailsTransactionEntity GetById(int id)
         {

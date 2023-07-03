@@ -96,9 +96,9 @@ namespace RadmsServiceManager
             }
         }
 
-        List<ZoneMasterEntity> IZoneMasterService.GetAll(string language)
+        List<ZoneMasterEntity> IZoneMasterService.GetAll(string language,int? regionId)
         {
-            List<ZoneMasterEntity> results = this._repositiory.GetAll(language);
+            List<ZoneMasterEntity> results = this._repositiory.GetAll(language, regionId);
             return results;
         }
         public string Delete(int zoneId)

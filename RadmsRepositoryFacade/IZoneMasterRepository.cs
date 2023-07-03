@@ -9,7 +9,7 @@ namespace RadmsRepositoryFacade
 {
     public interface IZoneMasterRepository
     {
-        List<ZoneMasterEntity> GetAll(string language);
+        List<ZoneMasterEntity> GetAll(string language,int? regionId);
         bool Update(ZoneMasterEntity accident);
         bool Save(ZoneMasterEntity accident, string? selectedLanguage);
         bool Delete(int zoneId);
