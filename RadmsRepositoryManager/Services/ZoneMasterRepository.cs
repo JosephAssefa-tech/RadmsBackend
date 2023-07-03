@@ -14,13 +14,20 @@ namespace RadmsRepositoryManager.Services
     public class ZoneMasterRepository : IZoneMasterRepository
     {
         RadmsContext context = new RadmsContext();
-        public List<ZoneMasterEntity> GetAll(string language)
+        public List<ZoneMasterEntity> GetAll(string language, int? regionId)
         {
+            IQueryable<ZoneMaster> query = context.ZoneMasters;
+
+            if (regionId.HasValue)
+            {
+                query = query.Where(x => x.RegionId == regionId.Value);
+            }
+
             List<ZoneMaster> models;
 
             if (language == "amharic")
             {
-                models = context.ZoneMasters.Select(x => new ZoneMaster
+                models = query.Select(x => new ZoneMaster
                 {
                     ZoneId = x.ZoneId,
                     ZoneName = x.ZoneNameAm,
@@ -29,11 +36,10 @@ namespace RadmsRepositoryManager.Services
                         RegionName = x.Region.RegionNameAm
                     }
                 }).ToList();
-
             }
             else
             {
-                models = context.ZoneMasters.Select(x => new ZoneMaster
+                models = query.Select(x => new ZoneMaster
                 {
                     ZoneId = x.ZoneId,
                     ZoneName = x.ZoneName,
@@ -43,16 +49,12 @@ namespace RadmsRepositoryManager.Services
                     }
                 }).ToList();
             }
-            List<ZoneMasterEntity> entities = new List<ZoneMasterEntity>();
-            foreach (var model in models)
-            {
 
-                ZoneMasterEntity entity = new ZoneMasterEntity(model);
+            List<ZoneMasterEntity> entities = models.Select(model => new ZoneMasterEntity(model)).ToList();
 
-                entities.Add(entity);
-            }
             return entities;
         }
+
 
         public bool Save(ZoneMasterEntity entity, string? selectedLanguage)
         {

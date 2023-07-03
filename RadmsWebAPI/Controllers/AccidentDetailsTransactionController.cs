@@ -24,9 +24,9 @@ namespace RadmsWebAPI.Controllers
         }
         // GET: api/<AccidentDetailsTransactionController>
         [HttpGet("get-accident-lists-for")]
-        public ApiResponse<List<AccidentDetailsTransactionViewModel>> GetAll(DateTime? fromDate, DateTime? ToDate,string? language, int? page = 1, int? pageSize = 5)
+        public ApiResponse<List<AccidentDetailsTransactionViewModel>> GetAll(int? regionId,DateTime? fromDate, DateTime? ToDate,string? language, int? page = 1, int? pageSize = 5)
         {
-            List<AccidentDetailsTransactionEntity> entities = this._service.GetAll(language, page, pageSize);
+            List<AccidentDetailsTransactionEntity> entities = this._service.GetAll(regionId,language, page, pageSize);
             List<AccidentDetailsTransactionViewModel> viewModels = new List<AccidentDetailsTransactionViewModel>();
             foreach (var entity in entities)
             {

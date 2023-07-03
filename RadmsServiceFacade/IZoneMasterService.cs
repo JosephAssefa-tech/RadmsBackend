@@ -9,7 +9,7 @@ namespace RadmsServiceFacade
 {
     public interface IZoneMasterService
     {
-        List<ZoneMasterEntity> GetAll(string language);
+        List<ZoneMasterEntity> GetAll(string language,int? regionId);
         string Delete(int zoneId);
         string Update(ZoneMasterEntity accident);
         string Save(ZoneMasterEntity accident, string? selectedLanguage);
